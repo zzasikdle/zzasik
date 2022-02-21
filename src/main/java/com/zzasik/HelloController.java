@@ -10,10 +10,19 @@ import org.springframework.web.bind.annotation.RestController;
 	
 	@RestController
 	public class HelloController {
+
+
+
 	    @GetMapping("/hello")
 	    public List<String> hello() {
 	        return Arrays.asList("hello","안녕하세요");
-	    } 
+	    }
+
+
+		@GetMapping("/test")
+		public List<String> test() {
+			return Arrays.asList("test","입니다.","이것도 해보자.");
+		}
 	}
 
 
