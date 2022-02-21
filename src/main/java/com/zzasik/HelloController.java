@@ -1,6 +1,8 @@
 package com.zzasik;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 	
 	@RestController
 	public class HelloController {
-	    @GetMapping("/api/hello")
-	    public String hello() {
-	        return "Ȯ�� " + new Date() + "\n";
+	    @GetMapping("/hello")
+	    public List<String> hello() {
+	        return Arrays.asList("hello","안녕하세요");
 	    }
 	}
 
