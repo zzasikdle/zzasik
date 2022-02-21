@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 	    @GetMapping("/hello")
 	    public List<String> hello() {
 	        return Arrays.asList("hello","안녕하세요");
-	    }
+	    } 
 	}
 
 
