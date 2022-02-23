@@ -15,11 +15,24 @@ public class MemberServiceImpl implements MemberService {
 	public MemberServiceImpl() {
 		
 	}
-	
+	/* 로그인 */
 	@Override
 	public MemberVO login(MemberVO memberVO) throws Exception {
 		
 		return memberDAO.login(memberVO);
 	}
-
+	
+	/* 회원 가입 */
+	
+	@Override
+	public int insertMember(MemberVO memberVO) throws Exception {
+		return memberDAO.insertMember(memberVO);
+	}
+	
+	/* 아이디 중복 체크 */
+	@Override
+	public MemberVO findMemberById(MemberVO memberVO) throws Exception {
+		
+		return memberDAO.findMemberById(memberVO);
+	}
 }
