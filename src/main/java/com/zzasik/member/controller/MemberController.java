@@ -49,7 +49,7 @@ public class MemberController {
 	
 	/* 회원가입 */
 	
-	@PostMapping("/member/join")
+	@PostMapping("/member/join") 
 	public  Map<String, Object> memberJoin(@RequestBody MemberVO memberVO ) throws Exception {
 		// json 형태로 받기위해서 RequestBody로 함. 
 		// object로 한 이유: 다양한 형태의 값을받기위함.
