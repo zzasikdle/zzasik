@@ -1,26 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
-import React, {useState, useEffect} from 'react';
 
+import Home from './home';
+import WriteBoard from './board/writeboard';
+import BoardList from './board/boardList';
+
+
+
+import {Route, Routes, BrowserRouter} from 'react-router-dom';
 function App() {
-  const [message, setMessage]=useState([]);
-  useEffect(()=>{
-    fetch("/hello")
-        .then((res)=>{
-          return res.json();
-        })
-        .then((data)=>{
-            setMessage(data);
-        });
-  },[]);
   return (
     <div className="App">
-      <header className="App-header">
-        // 기본코드
-        <ul>
-          {message.map((v,idx)=><li key={`${idx}-${v}`}>{v}</li>)}
-        </ul>
-      </header>
+      <BrowserRouter>
+        <div id='container'>
+         
+       
+          <div> 
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/writeboard" element={<WriteBoard />} />
+              <Route path="/board/list" element={ < BoardList />} />
+        
+              
+              
+            </Routes> 
+          </div>
+       
+        </div>
+      </BrowserRouter>
     </div>
   );
 }
