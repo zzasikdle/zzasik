@@ -5,6 +5,7 @@
 
 <mapper namespace="com.zzasik.board.dao.BoardDAO">
 <resultMap id="BoardsResult" type="BoardVO">
+ <result property="user_id" column="user_id"/>
     <result property="board_code" column="board_code" />
     <result property="board_title" column="board_title" />
     <result property="board_content" column="board_content" />
@@ -20,11 +21,19 @@
     ]]>
   </select>
   
-    <select id="addNewBoard" resultType="BoardVO">
+    <select id="addNewBoard" parameterType="java.util.Map">
+
      	<![CDATA[
-		INSERT into boardtbl(board_code,board_title,board_content,meal_type,board_price)
-		VALUES(#{board_code}, #{board_title}, #{board_content},	#{meal_type}, #{board_price})
+		INSERT into boardtbl(user_id,teacher_name,board_code,board_title,board_content,meal_type,board_price)
+		VALUES (#{user_id},#{teacher_name},#{board_code}, #{board_title}, #{board_content},	#{meal_type}, #{board_price})
 	]]>   
+  </select>
+  
+    <select id="selectBoard" resultType="BoardVO"   parameterType="int">
+    <![CDATA[
+      SELECT * from boardtbl
+      where board_code = #{board_code}		
+    ]]>
   </select>
   
 </mapper>

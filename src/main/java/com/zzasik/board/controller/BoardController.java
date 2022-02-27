@@ -1,6 +1,9 @@
 package com.zzasik.board.controller;
 
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,11 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.zzasik.board.service.BoardService;
 import com.zzasik.board.vo.BoardVO;
@@ -45,40 +47,32 @@ public class BoardController {
 		return BoardsList;
 	}
 	
-/*	@GetMapping(value = "/board/addNewBoard")
-	@PostMapping(value = "/board/addNewBoard")
-	public void addNewBoard(MultipartHttpServletRequest multipartRequest, HttpServletResponse resp) throws Exception{
-		multipartRequest.setCharacterEncoding("utf-8");
-		Map<String, Object> boardMap = new HashMap<String, Object>();
-		Enumeration enu = multipartRequest.getParameterNames();
-		while (enu.hasMoreElements()) {
-
-			String name = (String) enu.nextElement();
-			String value = multipartRequest.getParameter(name);
-			System.out.printf("%s %s\n", name, value);
-			boardMap.put(name, value);
-			boardService.addNewBoard(boardMap);
-	}
-	
-	
-	}*/
-
-/* 후기게시판 게시물 작성 */
-
 @PostMapping(value = "/board/addNewBoard")
-public String addNewBoard(BoardVO boardVO, RedirectAttributes rttr, HttpServletRequest request) throws Exception {
+public void addNewBoard(MultipartHttpServletRequest multipartRequest) throws Exception {
+	multipartRequest.setCharacterEncoding("utf-8");
+	Map<String,Object> boardMap = new HashMap<String,Object>();
+	Enumeration enu = multipartRequest.getParameterNames();
+	while (enu.hasMoreElements()) {
+		String key = (String) enu.nextElement();
+		String value = multipartRequest.getParameter(key);
+		System.out.printf("%s %s\n", key, value);
+		boardMap.put(key, value);
+	}
 	logger.info("게시판 작성");
+	boardService.addNewBoard(boardMap);
+ }
 
-	boardService.addNewBoard(boardVO);
-
-	rttr.addFlashAttribute("result", "write success");
-
-	return "redirect:/board/listBoards";
+@GetMapping(value="/board/viewBoard")
+public BoardVO viewBoard(@RequestParam("board_code")int board_code, HttpServletRequest request, 
+		HttpServletResponse response) throws Exception {
+	
+	return boardService.viewBoard(board_code);
 }
+
 	
 	
 	
-	} // end class()
+} // end class()
 	
 	
 

@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import WriteBoard from './writeboard';
-
+import { Link} from 'react-router-dom';
+import './boardList.css';
 
 const BoardList = ( ) => {
     const baseUrl = "http://localhost:8090";
 
     const [ boardList, setBoardList] = useState([]);
+
+    
+  
+       
+    
 
     useEffect(( ) => {
         async function call() {
@@ -27,22 +31,25 @@ const BoardList = ( ) => {
     let result = [];
     return (
         <div>
-           <table style={{align:"center", border:"1", width:"80%"}}>
+            <div>
+        <div class="headermsg">짜식<br/>온라인 식단 !!<br/> 전문가 코치가 검증한 올바른 식단법!!<br/>지금바로 효과의 차이를 느껴보세요</div>
+
+            </div>
+           <table>
 
               <tbody>
                   {boardList.length===0 ? 
                    <tr>
                        <td colSpan="4"> 
-                       <p style={{align:"center"}}>
-                         <b><span style={{fontSize:"9pt"}}>등록된 글이 없습니다</span></b>
+                       <p>
+                         <b><span>등록된 글이 없습니다</span></b>
                        </p></td>
                    </tr>
                   : 
                   boardList.map((board, key) => {
                       return( 
-                     
-                          <ul key={key}>
-                              <li>
+                    <Link to={`/board/viewboard/${board.board_code}`}>
+                          <ul key={key} class="board_ul"> <li>
                             <a>
                             <div>{board.board_code}</div>
                             <div> {board.board_title} </div>                          
@@ -54,6 +61,7 @@ const BoardList = ( ) => {
                               </li>
                         
                           </ul>
+                           </Link>
                         
                       )
                   })

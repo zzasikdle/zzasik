@@ -1,0 +1,11 @@
+#footer {
+    clear: both;
+    padding: 5px;
+    border: 0px solid #bcbcbc;
+     background-color: lightblue;
+  }
+
+  p {
+    font-size:20px;
+     text-align:center;
+   }

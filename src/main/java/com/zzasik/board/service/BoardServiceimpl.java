@@ -21,23 +21,25 @@ public class BoardServiceimpl implements BoardService {
 	public BoardServiceimpl() {
 		
 	}
-	
-	
-	
 
-	
-
-	
 	@Override
 	public List<BoardVO> listBoards() throws Exception {
 		List<BoardVO> BoardList = boardDAO.selectAllBoardsList();
 		return BoardList;
 	}
 	
+	
+	
 	@Override
-	public void addNewBoard(BoardVO boardVO) throws Exception {
-		 boardDAO.addNewBoard(boardVO);
+	public void addNewBoard(Map boardMap) throws Exception {
+		 boardDAO.addNewBoard(boardMap);
 		
+	}
+	
+	@Override
+	public BoardVO viewBoard(int board_code) throws Exception {
+			BoardVO boardvo =boardDAO.selectBoard(board_code);
+		return boardvo;
 	}
 	
 	

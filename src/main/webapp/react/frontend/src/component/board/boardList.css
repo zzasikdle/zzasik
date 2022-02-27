@@ -1,0 +1,6 @@
+.headermsg{ background-color: pink;  width: 1500px; text-align:left;} 
+.board_ul{background-color: blue; float:left; width: 300px; height: 500px;margin: 10px;}
+
+.board_ul:hover{
+    background-color: aqua;
+}

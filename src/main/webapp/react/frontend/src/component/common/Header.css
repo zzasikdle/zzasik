@@ -1,0 +1,16 @@
+#header {
+    padding: 5px;
+    margin-bottom: 5px;
+    border: 0px solid #bcbcbc;
+    background-color: orange; 
+    height:150px;
+  }
+
+#header h1{
+    width:900px;
+    text-align: center;
+}
+
+#header>p, #header h1{
+    float: left;
+}
