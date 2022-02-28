@@ -1,0 +1,237 @@
+
+
+@font-face {
+  font-family: 'AppleSDG';
+  src: url("../public/fonts/AppleSDGothicNeoM.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AppleSDGB';
+  src: url("../public/fonts/AppleSDGothicNeoB.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+$mainColor : #F2A74B;
+
+
+
+
+.App {
+  text-align: center;
+  font-family: 'AppleSDG';
+  font-size: 16px;
+}
+
+.main-nav{
+
+}
+
+.main {
+  padding:200px;
+  background : linear-gradient(
+    rgba(0,0,0,0.2),
+    rgba(0,0,0,0.2)
+  ) ,url('../public/img/main.jpeg');
+  background-size: cover;
+  width:100%;
+  height: 800px;
+  color: white;
+  float: left;
+
+  h4{
+    font-size: 30px;
+  }
+
+  p{
+    font-size: 14px;
+  }
+
+  Button{
+    padding:7px 15px;
+    margin:10px;
+    font-size: 20px;
+  }
+}
+
+
+.main-merit {
+  padding: 80px;
+  background-color:#eee;
+  height:700px;
+  width:100%;
+  color: $mainColor;
+  float:left;
+
+
+  .main-merit-parts{
+    height: 200px;
+    
+  }
+
+  h4 {
+    margin-top:20px;
+    color: black;
+    font-size: 30px;
+  }
+  p{
+    margin-top:20px;
+    color: black;
+  }
+
+  }
+
+
+
+  .main-steps{
+    width: 100%;
+    text-align:center;
+    padding: 50px;
+    background-color:white;
+    color: $mainColor;
+    float:left;
+
+    h4{
+      font-size: 30px;
+      margin-top:10px;
+      color: black;
+    }
+    p{
+      margin-top:20px;
+      color: grey;
+    }
+
+ 
+  }
+
+
+  .main-steps-text{
+    padding:20px;
+    display: inline-block;
+    width:16rem;
+    height:300px;
+    margin: 20px;
+    border:1px solid #eee;
+    
+
+
+    h4{
+      margin-top: 20px;
+      font-size: 24px;
+    }
+
+    p{
+      margin-top: 50px;
+      color: grey;
+    }
+  }
+
+
+
+  .question{
+    background-color:#eee;
+    margin: auto;
+    padding:50px;
+    padding-bottom:100px;
+    width:100%;
+    float:left;
+
+    small{
+      color: $mainColor;
+    }
+
+    h4{
+      margin-top: 20px;
+      font-size: 24px;
+    }
+
+    p{
+      margin-top: 50px;
+      color: grey;
+    }
+
+  
+  }
+
+
+
+  .footer{
+    padding: 50px;
+    background-color:black;
+    width:100%;
+    float:left;
+    color: white;
+    text-align:left;
+    small{
+      width: 100%;
+      color: grey;
+      font-size: 12px;
+      margin-bottom: 15px;
+      float:left;
+    }
+
+    .footer-logo{
+      padding: 50px;
+      font-size:46px;
+      float:left;
+      width: 25%;
+    }
+    .footer-about{
+      
+      float:left;
+      width: 30%;
+ 
+      small{
+        padding-right: 20px;
+      }
+    }
+    .footer-company{
+  
+      float:left;
+      width: 15%;
+    
+      small{
+        font-size:16px;
+      }
+      small:hover{
+        color: white;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+    .footer-account{
+      
+      float:left;
+      width: 15%;
+
+      small{
+        font-size:16px;
+      }
+      small:hover{
+        color: white;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+    
+    .footer-contactus{
+      
+      float:left;
+      width: 15%;
+    }
+
+    .footer-footer{
+      margin-top:10px;
+      padding: 10px;
+      border-top: 1px solid grey;
+      width: 100%;
+      float:left;
+    }
+  }
+
+
+
+ 

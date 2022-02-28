@@ -1,28 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
 import React, {useState, useEffect} from 'react';
+import './Main.scss';
+import MainNav from './components/MainNav';
 
+import Home from './components/Home';
+import Main from './components/Main';
+import Question from './components/Accordion';
+import Footer from './components/Footer';
+
+
+
+import {Link, Route, Switch} from 'react-router-dom';
+import { } from 'react-bootstrap';
 function App() {
-  const [message, setMessage]=useState([]);
-  useEffect(()=>{
-    fetch("/hello")
-        .then((res)=>{
-          return res.json();
-        })
-        .then((data)=>{
-            setMessage(data);
-        });
-  },[]);
-  return (
-    <div className="App">
-      <header className="App-header">
-        // 기본코드
-        <ul>
-          {message.map((v,idx)=><li key={`${idx}-${v}`}>{v}</li>)}
-        </ul>
-      </header>
-    </div>
-  );
-}
+
+
+  
+ 
+  return(  
+
+<div className="App">
+  
+<MainNav />        
+<Home />
+
+<Switch>
+
+
+<Route path="/main">
+    <Main />
+</Route>
+</Switch>
+
+
+<Question/>
+
+<Footer/>
+    </div> 
+  )
+};
+
 
 export default App;
