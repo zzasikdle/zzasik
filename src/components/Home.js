@@ -15,7 +15,7 @@ function Home() {
   <div className="wrap">
     <div className="main">
 
-<h4>내가 원하는 변화?</h4>
+<h4>내가 원하는 변화? 0302</h4>
 
 
 <Button className="btn btn-primary"  size="lg">다이어트</Button> 
