@@ -1,34 +1,39 @@
-import './App.css';
 
-import Home from './home';
-import WriteBoard from './board/writeboard';
-import BoardList from './board/boardList';
+import React, {useState, useEffect} from 'react';
+
+// SCSS
+import './Main.scss';
+import { } from 'react-bootstrap';
+
+// COMPONENT
+import MainNav from './components/MainNav';
+import Home from './components/Home';
+import Question from './components/Accordion';
+import Footer from './components/Footer';
+
+//ROUTE
+import {Link, Route, Switch} from 'react-router-dom';
 
 
 
-import {Route, Routes, BrowserRouter} from 'react-router-dom';
 function App() {
+
+
   return (
     <div className="App">
-      <BrowserRouter>
-        <div id='container'>
-         
-       
-          <div> 
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/writeboard" element={<WriteBoard />} />
-              <Route path="/board/list" element={ < BoardList />} />
-        
-              
-              
-            </Routes> 
-          </div>
-       
-        </div>
-      </BrowserRouter>
+    
+<MainNav />    
+
+<Home />
+
+<Question/>
+
+<Footer/>
+
+  
     </div>
   );
 }
+
 
 export default App;
