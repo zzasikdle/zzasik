@@ -2,8 +2,9 @@ import React ,{useState, useEffect} from 'react'
 import {Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  faSearch,faFish,faEgg } from '@fortawesome/free-solid-svg-icons';
-import Bounce from 'react-reveal/Bounce';
 import Zoom from 'react-reveal/Zoom';
+import Fade from 'react-reveal/Fade';
+
 
 
 
@@ -14,48 +15,55 @@ function Home() {
   <div className="wrap">
     <div className="main">
 
-<h4>ZZASIK</h4>
+<h4>내가 원하는 변화?</h4>
 
 
-<Button variant="light">Get Start</Button> 
-<Button variant="light">Get Test</Button> 
+<Button className="btn btn-primary"  size="lg">다이어트</Button> 
+<Button className="btn btn-danger" >식습관 개선</Button> 
+
     </div>
 
 <div className="main-merit" >
 
-<Bounce bottom>
+<Fade bottom>
 <div className="main-merit-parts">
 <FontAwesomeIcon icon={faSearch} size="2x" />
 <h4>좋은 가격</h4>
-<p>동해물과 백두산이 마르고 닳도록, 하느님이 보우하사 우리나라만세</p>
+<p>동해물과 백두산이 마르고 닳도록, 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산 
+  <br/>대한 사람 대한으로 길이 보전하세 가을하늘 공활한데 높고 구름 없이 괴로우나 즐거우나
+  <br/> 일편 단심일세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세</p>
 
 </div>
-</Bounce>
+</Fade>
 
-<Bounce bottom>
+<Fade bottom>
 <div className="main-merit-parts">
 <FontAwesomeIcon icon={faFish} size='2x' />
 <h4>좋은 생선</h4>
-<p>무궁화 삼천리 화려강산, 대한사람 대한으로 길이 보전하세</p>
+<p>동해물과 백두산이 마르고 닳도록, 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산 
+  <br/>대한 사람 대한으로 길이 보전하세 가을하늘 공활한데 높고 구름 없이 괴로우나 즐거우나
+  <br/> 일편 단심일세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세</p>
 </div>
-</Bounce>
+</Fade>
 
-<Bounce bottom>
 
+<Fade bottom>
 <div className="main-merit-parts">
 <FontAwesomeIcon icon={faEgg} size='2x' />
 <h4>좋은 계란</h4>
-<p>이 기상과 이 맘으로 충성을 다하여</p>
+<p>동해물과 백두산이 마르고 닳도록, 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산 
+  <br/>대한 사람 대한으로 길이 보전하세 가을하늘 공활한데 높고 구름 없이 괴로우나 즐거우나
+  <br/> 일편 단심일세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세</p>
 </div>
-</Bounce>
+</Fade>
 
 </div> 
 {/* end main-merit */}
 
 <div className="main-steps">
 <small>Our Steps</small>
-<h4>가자</h4>
-<p>아침해가 빛나는 끝이 없는 바닷가, 아침 공기 마시며 자, 힘차게 달려보자</p>
+<h4>이렇게 이용</h4>
+<p>대한 사람 대한으로 길이 보전하세</p>
 <Zoom>
 <div className="main-steps-text">
   <h3>1.</h3>

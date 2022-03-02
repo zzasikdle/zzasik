@@ -18,7 +18,7 @@ function Question() {
 <Accordion>
   <Fade>
   <Accordion.Item eventKey="0">
-    <Accordion.Header>연회비는요?</Accordion.Header>
+    <Accordion.Header>1. 연회비는요?</Accordion.Header>
     <Accordion.Body>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -32,7 +32,7 @@ function Question() {
   </Fade>
   <Fade>
   <Accordion.Item eventKey="1">
-    <Accordion.Header>배달은요?</Accordion.Header>
+    <Accordion.Header>2. 배달은요?</Accordion.Header>
     <Accordion.Body>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -46,7 +46,7 @@ function Question() {
   </Fade>
   <Fade>
   <Accordion.Item eventKey="2">
-    <Accordion.Header>교육은요?</Accordion.Header>
+    <Accordion.Header>3. 교육은요?</Accordion.Header>
     <Accordion.Body>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -60,7 +60,7 @@ function Question() {
   </Fade>
   <Fade>
   <Accordion.Item eventKey="3">
-    <Accordion.Header>뭐는요?</Accordion.Header>
+    <Accordion.Header>4. 뭐는요?</Accordion.Header>
     <Accordion.Body>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -74,7 +74,7 @@ function Question() {
   </Fade>
   <Fade>
   <Accordion.Item eventKey="4">
-    <Accordion.Header>나는요?</Accordion.Header>
+    <Accordion.Header>5. 나는요?</Accordion.Header>
     <Accordion.Body>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim

@@ -11,16 +11,21 @@ import Footer from './components/Footer';
 
 import {Link, Route, Switch} from 'react-router-dom';
 import { } from 'react-bootstrap';
+import {CSSTransition} from 'react-transition-group'
+
 function App() {
 
+  let[aniSwitch,setAniSwitch] = useState(false);
 
   
  
   return(  
 
 <div className="App">
-  
-<MainNav />        
+<CSSTransition in={aniSwitch} classNames="ani" timeout={500}>
+<MainNav setAniSwitch={setAniSwitch} />    
+</CSSTransition>
+
 <Home />
 
 <Switch>
