@@ -31,8 +31,8 @@ public class MemberServiceImpl implements MemberService {
 	
 	/* 아이디 중복 체크 */
 	@Override
-	public MemberVO findMemberById(MemberVO memberVO) throws Exception {
+	public int findMemberById(String user_id) throws Exception {
 		
-		return memberDAO.findMemberById(memberVO);
+		return memberDAO.findMemberById(user_id);
 	}
 }

@@ -23,8 +23,8 @@
 	</insert>
 	
 	<!--  아이디 중복 체크 -->
-	<select id="findMemberById" resultType="MemberVO">
-		SELECT user_name FROM usertbl WHERE user_id=#{user_id}
+	<select id="findMemberById" resultType="int">
+		SELECT COUNT(user_id) FROM usertbl WHERE user_id=#{user_id}
 		
 	</select>
 	
