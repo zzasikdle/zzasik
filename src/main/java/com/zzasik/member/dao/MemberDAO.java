@@ -10,10 +10,10 @@ import com.zzasik.member.vo.MemberVO;
 @Mapper
 public interface MemberDAO {
 	
-	public MemberVO login(MemberVO memberVO) throws DataAccessException;
+public MemberVO login(MemberVO memberVO) throws DataAccessException;
 	
 	public int insertMember(MemberVO memberVO) throws Exception;
 	
-	public MemberVO findMemberById(MemberVO memberVO) throws DataAccessException;
+	public int findMemberById(String user_id) throws DataAccessException;
 	
 }

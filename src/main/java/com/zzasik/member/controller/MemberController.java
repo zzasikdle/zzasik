@@ -3,6 +3,7 @@ package com.zzasik.member.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -70,8 +71,18 @@ public class MemberController {
 	public  Map<String, Object> memberIdCheck(@RequestBody MemberVO memberVO ) throws Exception {
 	
 		System.out.println(memberVO.getUser_id());
-		MemberVO dto = memberService.findMemberById(memberVO); // 존재하는 id면 dto에 name이 담겼을것.
-		boolean existing =  dto != null ? true : false; // dto 값이 있으면 true(중복된아이디) 없으면 false (사용가능아이디 ) 
+		
+		String user_id = memberVO.getUser_id(); 
+		
+		System.out.println(user_id);
+		
+		int cnt = memberService.findMemberById(user_id); // 존재하는 id면  cnt =1 일 것.
+		// 존재하지 않으면 null 에러가 나버림 . 어떻게 하지?
+		
+		
+		System.out.println("존재하는 아이디 입니다. : "+ memberVO.getUser_name());
+		
+		boolean existing =  cnt != 0 ? true : false; // cnt가 1이면 true(중복된아이디) , 0이면 false (사용가능아이디 ) 
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("existing", existing);
