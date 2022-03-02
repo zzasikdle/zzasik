@@ -1,48 +1,39 @@
-import React, {useState, useEffect} from 'react';
-import './Main.scss';
-import MainNav from './components/MainNav';
 
+import React, {useState, useEffect} from 'react';
+
+// SCSS
+import './Main.scss';
+import { } from 'react-bootstrap';
+
+// COMPONENT
+import MainNav from './components/MainNav';
 import Home from './components/Home';
-import Main from './components/Main';
 import Question from './components/Accordion';
 import Footer from './components/Footer';
 
-
-
+//ROUTE
 import {Link, Route, Switch} from 'react-router-dom';
-import { } from 'react-bootstrap';
-import {CSSTransition} from 'react-transition-group'
+
+
 
 function App() {
 
-  let[aniSwitch,setAniSwitch] = useState(false);
 
-  
- 
-  return(  
-
-<div className="App">
-<CSSTransition in={aniSwitch} classNames="ani" timeout={500}>
-<MainNav setAniSwitch={setAniSwitch} />    
-</CSSTransition>
+  return (
+    <div className="App">
+    
+<MainNav />    
 
 <Home />
-
-<Switch>
-
-
-<Route path="/main">
-    <Main />
-</Route>
-</Switch>
-
 
 <Question/>
 
 <Footer/>
-    </div> 
-  )
-};
+
+  
+    </div>
+  );
+}
 
 
 export default App;

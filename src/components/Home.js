@@ -18,7 +18,7 @@ function Home() {
 <h4>내가 원하는 변화? 0302</h4>
 
 
-<Button className="btn btn-primary"  size="lg">다이어트</Button> 
+<Button className="btn btn-primary">다이어트</Button> 
 <Button className="btn btn-danger" >식습관 개선</Button> 
 
     </div>
