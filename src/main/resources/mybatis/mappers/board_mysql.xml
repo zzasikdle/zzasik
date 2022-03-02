@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zzasik.board.dao.BoardDAO">
+<resultMap id="BoardsResult" type="BoardVO">
+    <result property="board_code" column="board_code" />
+    <result property="board_title" column="board_title" />
+    <result property="board_content" column="board_content" />
+    <result property="meal_type" column="meal_type" />
+    <result property="board_price" column="board_price" />
+    <result property="teacher_name" column="teacher_name" />
+  </resultMap> 
+  
+
+  <select id="selectAllBoardsList" resultMap="BoardsResult">
+    <![CDATA[
+      SELECT * FROM boardtbl
+    ]]>
+  </select>
+  
+    <select id="addNewBoard" resultType="BoardVO">
+     	<![CDATA[
+		INSERT into boardtbl(board_code,board_title,board_content,meal_type,board_price)
+		VALUES(#{board_code}, #{board_title}, #{board_content},	#{meal_type}, #{board_price})
+	]]>   
+  </select>
+  
+</mapper>
