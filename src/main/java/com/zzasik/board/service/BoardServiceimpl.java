@@ -31,8 +31,11 @@ public class BoardServiceimpl implements BoardService {
 	
 	
 	@Override
-	public void addNewBoard(Map boardMap) throws Exception {
+	public int addNewBoard(Map boardMap) throws Exception {
+		int board_code = boardDAO.selectNewBoardCode();
+		boardMap.put("board_code", board_code);
 		 boardDAO.addNewBoard(boardMap);
+		 return board_code;
 		
 	}
 	
@@ -41,6 +44,13 @@ public class BoardServiceimpl implements BoardService {
 			BoardVO boardvo =boardDAO.selectBoard(board_code);
 		return boardvo;
 	}
+	
+	@Override
+	public void joinBoard(Map joinMap) throws Exception {
+		boardDAO.joinBoard(joinMap);
+		
+	}
+	
 	
 	
 	

@@ -17,5 +17,8 @@ public interface BoardDAO {
 	public BoardVO writeBoard(BoardVO boardDTO) throws DataAccessException;
 	public List selectAllBoardsList() throws DataAccessException;
 	public BoardVO addNewBoard(Map boardMap) throws DataAccessException;
+	public void joinBoard(Map joinMap) throws DataAccessException;
+	public int selectNewBoardCode() throws DataAccessException;
 	public BoardVO selectBoard(int board_code) throws DataAccessException;
+	
 }

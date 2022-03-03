@@ -12,6 +12,9 @@
     <result property="meal_type" column="meal_type" />
     <result property="board_price" column="board_price" />
     <result property="teacher_name" column="teacher_name" />
+    <result property="imageFilename" column="imageFilename" />
+     <result property="origin_price" column="origin_price" />
+      <result property="discount" column="discount" />
   </resultMap> 
   
 
@@ -24,8 +27,8 @@
     <select id="addNewBoard" parameterType="java.util.Map">
 
      	<![CDATA[
-		INSERT into boardtbl(user_id,teacher_name,board_code,board_title,board_content,meal_type,board_price)
-		VALUES (#{user_id},#{teacher_name},#{board_code}, #{board_title}, #{board_content},	#{meal_type}, #{board_price})
+		INSERT into boardtbl(user_id,teacher_name,board_code,board_title,board_content,meal_type,board_price,imageFilename,discount,origin_price)
+		VALUES (#{user_id},#{teacher_name},#{board_code}, #{board_title}, #{board_content},	#{meal_type}, #{board_price},#{imageFilename},#{discount},#{origin_price})
 	]]>   
   </select>
   
@@ -35,5 +38,20 @@
       where board_code = #{board_code}		
     ]]>
   </select>
+  
+    <select id="selectNewBoardCode" resultType="int"  >
+		<![CDATA[ 
+			SELECT  IFNULL(max(board_code), 0) + 1 from boardtbl		
+		]]>
+	</select>
+	
+	   <select id="joinBoard" parameterType="java.util.Map">
+
+     	<![CDATA[
+		INSERT into subscribe_cart(user_id,board_code)
+		VALUES (#{user_id},#{board_code})
+	]]>   
+  </select>
+	
   
 </mapper>

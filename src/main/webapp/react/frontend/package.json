@@ -11,8 +11,10 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.0",
     "cors": "^2.8.5",
+    "express": "^4.17.3",
     "history": "^5.3.0",
     "http-proxy-middleware": "^2.0.3",
+    "multer": "^1.4.4",
     "query-string": "^7.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -45,5 +47,13 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8090"
+  "proxy": "http://localhost:8090",
+  "devDependencies": {
+    "crypto-browserify": "^3.12.0",
+    "https-browserify": "^1.0.0",
+    "os-browserify": "^0.3.0",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "url": "^0.11.0"
+  }
 }

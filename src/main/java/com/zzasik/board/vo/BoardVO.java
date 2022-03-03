@@ -11,9 +11,30 @@ public class BoardVO {
 	private String meal_type;
 	private int board_price;
 	private String teacher_name;
+	private String imageFilename;
+	private int origin_price;
+	private int discount;
 	
 	
-	
+
+	public int getOrigin_price() {
+		return origin_price;
+	}
+	public void setOrigin_price(int origin_price) {
+		this.origin_price = origin_price;
+	}
+	public int getDiscount() {
+		return discount;
+	}
+	public void setDiscount(int discount) {
+		this.discount = discount;
+	}
+	public String getImageFilename() {
+		return imageFilename;
+	}
+	public void setImageFilename(String imageFilename) {
+		this.imageFilename = imageFilename;
+	}
 	public String getUser_id() {
 		return user_id;
 	}

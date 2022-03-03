@@ -14,7 +14,7 @@ import {Route, Routes, BrowserRouter} from 'react-router-dom';
 import Join from './component/member/Join';
 
 
-const cors = require('cors');
+
 
 
 function App() {
