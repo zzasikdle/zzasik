@@ -22,4 +22,14 @@
 			  SELECT * FROM noticetbl
 		]]>  
 	</select>
+	
+	<!-- 회원 권한 수정 -->
+	
+	<update id="handleClassification" parameterType="MemberVO">
+		<![CDATA[ 
+			UPDATE usertbl 
+			SET classification= #{classification}
+			WHERE user_id = #{user_id}
+		]]>
+	</update>
 </mapper>

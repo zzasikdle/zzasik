@@ -11,4 +11,6 @@ public interface MyHomeService {
 	HashMap<String,Object> getUserInfo(String user_id) throws Exception;
 	List<MemberVO> listMembers() throws Exception;
 	List<NoticeVO> listNotices() throws Exception;
+	
+	public int handleClassification(MemberVO memberVO) throws Exception;
 }
