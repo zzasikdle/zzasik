@@ -3,14 +3,11 @@ package com.zzasik.member.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zzasik.member.service.MemberService;
@@ -23,6 +20,10 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	
 	public MemberController() {
 		
 	}
@@ -33,14 +34,32 @@ public class MemberController {
 		// json 형태로 받기위해서 RequestBody로 함. 
 		// object로 한 이유: 다양한 형태의 값을받기위함.
 		System.out.printf("%s %s \n", memberVO.getUser_id(), memberVO.getUser_pwd());
+		
+		boolean success = true ;
+		
+		
+		// 해시 비밀번호 일치 여부
+		MemberVO hashedPwd = memberService.findPasswordById(memberVO);
+		//System.out.println(hashedPwd.getUser_pwd());
+		if(!passwordEncoder.matches(memberVO.getUser_pwd(), hashedPwd.getUser_pwd() )  ) {
+			System.out.println("wrong password");
+			success = false;
+			System.out.println(success);
+		}
+		
+		// id만 가지고 유저 정보 가져오기 . 어차피 비밀번호는 해시로 일치여부 걸렀음.
 		MemberVO dto = memberService.login(memberVO);
 		
-		boolean success =  dto != null ? true : false;
+		//boolean success =  dto != null ? true : false;
+		
+		
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("user_id", memberVO.getUser_id());
 		map.put("success", success);
+		map.put("user_name", dto.getUser_name());
+		map.put("classification", dto.getClassification());
 		if(success) {		  
 		    map.put("user_name", dto.getUser_name());
 		}		
