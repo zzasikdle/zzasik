@@ -4,6 +4,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { Link } from 'react-router-dom';
 
 
 const Login = ( ) => {
@@ -56,6 +57,7 @@ const Login = ( ) => {
             <p><FontAwesomeIcon icon={faUser} /> <input type="search" placeholder="아이디" onChange={handleId} value={user_id} /></p>
             <p><FontAwesomeIcon icon={faLock} /> <input type="password" placeholder="비밀번호" onChange={handlePwd} value={user_pwd}/></p>
             <p><button className="LoginBtn" onClick={handleSubmit}>로그인</button></p>
+            <Link className="joinBtn" to="/member/Join">회원가입</Link>
         </div>
     );
 };

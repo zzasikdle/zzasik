@@ -20,7 +20,7 @@ import Join from './components/member/Join';
 
 //MyPage
 import MypageRoute from './MypageRoute';
-
+import MemberList from './mypage/admin/component/MemberList'
 
 
 function App() {
@@ -40,6 +40,8 @@ function App() {
         </Route>
         <Route path="/member/login" component={Login} />
         <Route path="/member/Join" component={Join} />
+        <Route path="/mypage/admin/member" component={MemberList} />
+        
         <MypageRoute/>
 
       </Switch>
