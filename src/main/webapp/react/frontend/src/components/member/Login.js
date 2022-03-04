@@ -15,24 +15,16 @@ const Login = ( ) => {
 
     const handleId = (e) => {
         setId(e.target.value);
-        console.log(user_id);
     }
 
     const handlePwd = (e) => {
         setPwd(e.target.value);
-        console.log(user_pwd);
     }
 
     function handleSubmit(e) {
         
         const handleSubmit = async() => { //await 키워드가 비동기 코드를 호출할 수 있게 하기 위해서 async()로 함수를 먼저 비동기함수로 만든다.
             e.preventDefault();
-            console.log(user_id);
-            console.log(user_pwd);
-            
-
-
-
             await axios
                 .post(baseUrl+'/member/login', {user_id:user_id, user_pwd:user_pwd})
                 .then((response)=>{
@@ -43,6 +35,8 @@ const Login = ( ) => {
                         sessionStorage.setItem('user_name', response.data.user_name);
                         sessionStorage.setItem('success', response.data.success);
                         sessionStorage.setItem('user_id', response.data.user_id);
+                        sessionStorage.setItem('classification', response.data.classification);
+                        
                         document.location.href='/';
                     }else {
                         alert('존재하지 않는 아이디 또는 비밀번호 입니다.');
@@ -59,9 +53,9 @@ const Login = ( ) => {
 
     return (
         <div id="loginForm">
-            <p><FontAwesomeIcon icon={faUser} /><input type="text" placeholder="아이디" onChange={handleId} value={user_id} /></p>
-            <p><FontAwesomeIcon icon={faLock} /><input type="password" placeholder="비밀번호" onChange={handlePwd} value={user_pwd}/></p>
-            <p><button onClick={handleSubmit}>로그인</button></p>
+            <p><FontAwesomeIcon icon={faUser} /> <input type="search" placeholder="아이디" onChange={handleId} value={user_id} /></p>
+            <p><FontAwesomeIcon icon={faLock} /> <input type="password" placeholder="비밀번호" onChange={handlePwd} value={user_pwd}/></p>
+            <p><button className="LoginBtn" onClick={handleSubmit}>로그인</button></p>
         </div>
     );
 };

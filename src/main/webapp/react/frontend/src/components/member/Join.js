@@ -74,29 +74,13 @@ const Join = () => {
 
     const handleBirth = (e) => {
         setBirth(e.target.value);
-        console.log(birth);
     }
-
     const handlePhone = (e) => {
         setPhone(e.target.value);
-        console.log(phone);
     }
-
-    const handleAddr1 = (e) => {
-        setAddr1(e.target.value);
-        console.log(addr_1);
-    }
-    
-    const handleAddr2 = (e) => {
-        setAddr2(e.target.value);
-        console.log(addr_2);
-    }
-    
     const handleAddr3 = (e) => {
         setAddr3(e.target.value);
-        
     }
-
     const handleEmail= useCallback ( (e) => {
         
         const emailRegex =
@@ -114,10 +98,12 @@ const Join = () => {
 
     const handleSurveyCode = (e) => {
         setSurveyCode(e.target.value);
-        console.log(survey_code);
     }
 
     /* 주소 검색 api */
+
+    const addRef = useRef(); //주소
+    const zoneRef = useRef(); //우편번호
 
     const [isAddress, setIsAddress] = useState("");
     const [isZoneCode, setIsZoneCode] = useState();
@@ -156,12 +142,7 @@ const Join = () => {
     height: "500px",
     padding: "7px",
   };
-
-  const addRef = useRef();
-  const zoneRef = useRef();
-    
-
-
+  
     /* 비밀번호 확인 */
     const pwdInput = useRef();
     const pwdInput2 = useRef();
@@ -169,32 +150,24 @@ const Join = () => {
         //pwdInput.current.value  유저가 입력한 비번.
         // pwdInput2.current.value 재입력 비번.
         if(pwdInput.current.value !== pwdInput2.current.value){
-            console.log("일치하지않음");
             pwdCorrect.innerHTML = "❌ 비밀번호가 일치 하지 않습니다."
             setIsPasswordConfirm(false);
         }else{
-            console.log("일치함.");
             pwdCorrect.innerHTML = "✅ 비밀번호가 일치 합니다."
             setIsPasswordConfirm(true);
         }
-
     }
-
     /* 아이디 중복 체크  */
     function handleIdCheck(e){
 
-        console.log("아이디 체크 진입");
-        console.log(user_id);
-
-        
-        
         const handleIdCheck = async() => {
             
             // input 창에 값이 바뀔떄마다 state 값을 업뎃해줘야 그걸 받아서 post요청을 보내는데, 지금 state가 업뎃이 안되고 있음.
             await axios
             .post(baseUrl + '/member/memberIdCheck' , {user_id:user_id})
             .then( (response) => {
-                console.log(response.data.existing) // true(중복된아이디) / 없으면 false (사용가능아이디 )
+                //console.log(response.data.existing)
+                // true(중복된아이디) / 없으면 false (사용가능아이디 )
 
                 if(response.data.existing === true){
                     alert('이미 존재하는 아이디 입니다.');
@@ -211,13 +184,9 @@ const Join = () => {
             })
         }
         handleIdCheck();
-        
-        
     }
 
     function handleJoin(e) {
-
-        
 
         const check = document.getElementById("check");
 
@@ -233,8 +202,6 @@ const Join = () => {
                         survey_code : survey_code , classification : classification
                     })
                 .then( (response) => {
-                    console.log(response.status);
-                    console.log(response.data.user_id);
                     alert(' 회원가입 되었습니다.');
                     document.location.href='/member/login'; // 로그인 창으로 보내기.
                     }
@@ -249,157 +216,153 @@ const Join = () => {
             alert('필수 정보를 입력 해주세요.');
         }
     } 
-
     const handleCreate = (data) => {
         console.log(data);
       }
 
-
-    
-
     return (
-
         <>
-            <div>
-                
-            <div className="formbox">
-                <h3 class="join_title">아이디</h3>
-                <input
-                class="join_input"
-                type="text"
-                id="user_id"
-                maxLength="20"
-                onChange={handleId}
-                /><span id="check"></span>
-            </div>    
-                <button onClick={handleIdCheck}>중복체크</button>
-
-            <div className="formbox">
-                <h3 class="join_title">비밀번호</h3>
-                <input
+        <div id="joinForm">
+                <div className="formbox">
+                    <h3 class="join_title">아이디</h3>
+                    <input
                     class="join_input"
-                    type="password"
+                    type="text"
+                    id="user_id"
                     maxLength="20"
-                    onChange={handlePwd} value={user_pwd}
-                    placeholder="비밀번호 (숫자+영문자+특수문자 조합으로 8자리 이상)"
-                    ref={pwdInput}
-                />
-            </div>
-                <br/>
-                <span className={`${isPassword ? 'success' : 'error'}`}>{passwordMessage}</span>
-                
-            <div className="formbox">
-                <h3 class="join_title">비밀번호 재입력</h3>
-                <input
-                    class="join_input"
-                    type="password"
-                    title="input password confirm"
-                    maxLength="20"
-                    onChange={pwdCheck}
-                    ref={pwdInput2}
-                />
-            </div>
-                <br/>
-                <span id="pwdCorrect"></span>
-            <div className="formbox">    
-                <h3 class="join_title">이름</h3>
-                <input
-                class="join_input"
-                type="text"
-                required
-                maxLength="20"
-                onChange={handleName} value={user_name}
-                />
-            </div>
-                <br/>
-                <span className={`${isName ? 'success' : 'error'}`}>{nameMessage}</span>
+                    onChange={handleId}
+                    />
+                </div>
+                    <span id="check"></span><br/>
+                    <button id="idCheckBtn"onClick={handleIdCheck}>중복체크</button>
 
-            <div className="formbox">
-                <h3 class="join_title">생년월일</h3>
-            <input type="date" name="birth" id="birth" required
-            onChange={handleBirth} value={birth}/>
-            </div>
-            <div className="formbox">
-                <h3 class="join_title">휴대전화</h3>
-                <input
-                    class="join_input"
-                    type="text"
-                    title="input phone number"
-                    required
-                    maxLength="13"
-                    onChange={handlePhone} value={phone}
-                />
-            </div>
-            <br/>
-
-            <div className="formbox">
-                <h3 class="join_title">주소1</h3>
-                <input
-                    class="join_input"
-                    type="text"
-                    title="input addr_1"
-                    maxLength="50"
-                    value={isZoneCode}
-                    ref={zoneRef}
-                    readOnly
-                />
-            <button type='button' onClick={onChangeOpenPost} >우편번호찾기</button>
-            </div>
-            {isOpenPost  ? (
-             <DaumPostcode style={postCodeStyle} autoClose onComplete={handleComplete } />
-            ) : null}<br/>
-            <div className="formbox">
-                <h3 class="join_title">주소2</h3>
-                <input
-                    class="join_input"
-                    type="text"
-                    value={isAddress}
-                    maxLength="50"
-                    ref={addRef}
-                    readOnly
-                />
-            </div>
-
-            <div className="formbox">
-                <h3 class="join_title">주소3</h3>
-                <input
-                    class="join_input"
-                    type="text"
-                    onChange={handleAddr3}
-                    maxLength="50"
-                />
-            </div>
-
-            <div className="formbox">
-                <h3 class="join_title">이메일</h3>
-                <input
-                    class="join_input"
-                    type="text"
-                    onChange={handleEmail} value={email}
-                    title="input email"
-                    required
-                    maxLength="50"
-                />
-            
-                <br/>
-                <span className={`${isEmail ? 'success' : 'error'}`}>{emailMessage}</span>
-            </div>
-
-            <div className="formbox">
-                <h3 class="join_title">설문조사 코드</h3>
+                <div className="formbox">
+                    <h3 class="join_title">비밀번호</h3>
                     <input
                         class="join_input"
-                        type="number"
-                        min='1' max='10' step='1'
-                        onChange={handleSurveyCode} value={survey_code}
-                        title="input survey_code"
+                        type="password"
+                        id="user"
+                        maxLength="20"
+                        onChange={handlePwd} value={user_pwd}
+                        placeholder="비밀번호 (숫자+영문자+특수문자 조합으로 8자리 이상)"
+                        ref={pwdInput}
+                    />
+                </div>
+                    <br/>
+                    <span className={`${isPassword ? 'success' : 'error'}`}>{passwordMessage}</span>
+                    
+                <div className="formbox">
+                    <h3 class="join_title">비밀번호 재입력</h3>
+                    <input
+                        class="join_input"
+                        type="password"
+                        title="input password confirm"
+                        maxLength="20"
+                        onChange={pwdCheck}
+                        ref={pwdInput2}
+                    />
+                </div>
+                    <br/>
+                    <span id="pwdCorrect"></span>
+                <div className="formbox">    
+                    <h3 class="join_title">이름</h3>
+                    <input
+                    class="join_input"
+                    type="text"
+                    required
+                    maxLength="20"
+                    onChange={handleName} value={user_name}
+                    />
+                </div>
+                    <br/>
+                    <span className={`${isName ? 'success' : 'error'}`}>{nameMessage}</span>
+
+                <div className="formbox">
+                    <h3 class="join_title">생년월일</h3>
+                <input type="date" name="birth" id="birth" required
+                onChange={handleBirth} value={birth}/>
+                </div>
+                <div className="formbox">
+                    <h3 class="join_title">휴대전화</h3>
+                    <input
+                        class="join_input"
+                        type="text"
+                        title="input phone number"
+                        required
+                        maxLength="13"
+                        onChange={handlePhone} value={phone}
+                    />
+                </div>
+                <br/>
+
+                <div className="formbox">
+                    <h3 class="join_title">주소1</h3>
+                    <input
+                        class="join_input"
+                        type="text"
+                        title="input addr_1"
+                        maxLength="50"
+                        value={isZoneCode}
+                        ref={zoneRef}
+                        readOnly
+                    />
+                </div>
+                <button id="postCodeBtn" type='button' onClick={onChangeOpenPost} >우편번호찾기</button>
+                {isOpenPost  ? (
+                <DaumPostcode style={postCodeStyle} autoClose onComplete={handleComplete } />
+                ) : null}<br/>
+                <div className="formbox">
+                    <h3 class="join_title">주소2</h3>
+                    <input
+                        class="join_input"
+                        type="text"
+                        value={isAddress}
+                        maxLength="50"
+                        ref={addRef}
+                        readOnly
+                    />
+                </div>
+
+                <div className="formbox">
+                    <h3 class="join_title">주소3</h3>
+                    <input
+                        class="join_input"
+                        type="text"
+                        onChange={handleAddr3}
                         maxLength="50"
                     />
-            </div>
+                </div>
+
+                <div className="formbox">
+                    <h3 class="join_title">이메일</h3>
+                    <input
+                        class="join_input"
+                        type="text"
+                        onChange={handleEmail} value={email}
+                        title="input email"
+                        required
+                        maxLength="50"
+                    />
                 
-                <p><button onClick={handleJoin}
-                    disabled={!(isId && isName && isEmail && isPassword && isPasswordConfirm)}
-                >회원가입</button></p>
+                    <br/>
+                    <span className={`${isEmail ? 'success' : 'error'}`}>{emailMessage}</span>
+                </div>
+
+                <div className="formbox">
+                    <h3 class="join_title">설문조사 코드</h3>
+                        <input
+                            class="join_input"
+                            type="number"
+                            min='1' max='10' step='1'
+                            onChange={handleSurveyCode} value={survey_code}
+                            title="input survey_code"
+                            maxLength="50"
+                        />
+                </div>
+                    
+                    <p><button id="joinBtn" onClick={handleJoin}
+                        disabled={!(isId && isName && isEmail && isPassword && isPasswordConfirm)}
+                    >회원가입</button></p>
 
             </div>
         </>
