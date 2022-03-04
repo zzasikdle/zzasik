@@ -1,0 +1,12 @@
+.formbox {
+    position: relative;
+    margin-bottom: 20px;  
+  }
+
+  .success {
+    color: #8f8c8b;
+    
+  }
+  .error {
+    color: #ff2727;
+  }
