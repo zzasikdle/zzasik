@@ -34,5 +34,12 @@ public class MyHomeServiceImpl implements MyHomeService {
 		
 		return myhomeDAO.selectAllNoticesList();
 	}
+	
+	/* 회원 권한 수정*/
+	@Override
+	public int handleClassification(MemberVO memberVO) throws Exception {
+		
+		return myhomeDAO.handleClassification(memberVO);
+	}
 
 }
