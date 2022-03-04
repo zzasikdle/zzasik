@@ -1,11 +1,39 @@
 #loginForm{
-        padding: 17px 25px 17px 35px;
-		padding-top: 100px;
-	    box-sizing: border-box;
-	    text-align: left;
-	    border: 2px solid #dadada;
-	    box-shadow: 0 2px 6px 0 rgb(68 68 68 / 8%);
-	    height: 100%;
-	    margin-top: 20px;
-	    border-radius: 6px;
+	margin-top: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+    width: 50%;
+    padding: 4.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+.LoginBtn{
+	position:relative;
+    left:17%;
+    transform: translateX(-50%);
+    margin-bottom: 40px;
+    width:30%;
+    height:40px;
+    background: linear-gradient(85deg,#f5f397,#ade9ab,#facf8e);
+    background-position: left;
+    background-size: 200%;
+    color:white;
+    font-weight: bold;
+    border:none;
+    border-radius: 10px;
+    cursor:pointer;
+    transition: 0.4s;
+    display:inline;
+}
+.LoginBtn:hover {
+    background-position: right;
+  }
