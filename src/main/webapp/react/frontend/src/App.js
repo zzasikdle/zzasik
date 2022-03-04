@@ -14,8 +14,13 @@ import Footer from './components/Footer';
 //ROUTE
 import {Link, Route, Switch,BrowserRouter} from 'react-router-dom';
 
+//Member
+import Login from './components/member/Login';
+import Join from './components/member/Join';
+
 //MyPage
 import MypageRoute from './MypageRoute';
+
 
 
 function App() {
@@ -33,7 +38,8 @@ function App() {
           <Question/>
           <Footer/>
         </Route>
-
+        <Route path="/member/login" component={Login} />
+        <Route path="/member/Join" component={Join} />
         <MypageRoute/>
 
       </Switch>
