@@ -38,6 +38,7 @@ const Join = () => {
     const [isEmail, setIsEmail] = useState(false);
     const [isPassword, setIsPassword] = useState(false);
     const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
+    const [isUserAddress ,setUserAddress] = useState(false);
 
 
     //https://wonyoung2257.tistory.com/4  참고하여 간략하게 바꾸기.
@@ -131,6 +132,7 @@ const Join = () => {
 
     setIsZoneCode(data.zonecode); // 우편번호 삽입.
     setIsAddress(fullAddress); // 전체 주소.
+    setUserAddress(true); // 주소 입력 완료.
     setIsOpenPost(false); // 주소 클릭 시팝업 창 자동 닫힘. 
   };
 
@@ -345,8 +347,8 @@ const Join = () => {
                     />
                 
                     <br/>
-                    <span className={`${isEmail ? 'success' : 'error'}`}>{emailMessage}</span>
                 </div>
+                    <span className={`${isEmail ? 'success' : 'error'}`}>{emailMessage}</span>
 
                 <div className="formbox">
                     <h3 class="join_title">설문조사 코드</h3>
@@ -361,7 +363,7 @@ const Join = () => {
                 </div>
                     
                     <p><button id="joinBtn" onClick={handleJoin}
-                        disabled={!(isId && isName && isEmail && isPassword && isPasswordConfirm)}
+                        disabled={!(isId && isName && isEmail && isPassword && isPasswordConfirm && isUserAddress)}
                     >회원가입</button></p>
 
             </div>

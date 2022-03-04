@@ -20,7 +20,6 @@
 	position:relative;
     left:17%;
     transform: translateX(-50%);
-    margin-bottom: 40px;
     width:30%;
     height:40px;
     background: linear-gradient(85deg,#f5f397,#ade9ab,#facf8e);
@@ -37,3 +36,25 @@
 .LoginBtn:hover {
     background-position: right;
   }
+
+.joinBtn{
+    position:relative;
+    left: 3%;
+    transform: translateX(-50%);
+    width:50%;
+    height:70px;
+    background: linear-gradient(125deg,#f5f397,#ade9ab,#facf8e);
+    background-position: left;
+    background-size: 200%;
+    color:white;
+    font-weight: bold;
+    border:none;
+    border-radius: 10px;
+    cursor:pointer;
+    transition: 0.4s;
+    display:inline;
+    text-decoration: none;
+}
+.joinBtn:hover{
+    background-position: right;
+}
