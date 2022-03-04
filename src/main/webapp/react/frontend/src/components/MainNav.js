@@ -49,7 +49,7 @@ function MainNav(props) {
           <Nav.Link href="#action2">로그인</Nav.Link>
           <Nav.Link href="#action2">짜식들</Nav.Link>
           <NavDropdown title="마이페이지" id="offcanvasNavbarDropdown">
-            <NavDropdown.Item href="#action3">나의 정보</NavDropdown.Item>
+            <NavDropdown.Item href="/myhome">나의 정보</NavDropdown.Item>
             <NavDropdown.Item href="#action3">식단 추천</NavDropdown.Item>
             <NavDropdown.Item href="#action4">나의 식단</NavDropdown.Item>
             <NavDropdown.Item href="#action4">주문/배송</NavDropdown.Item>

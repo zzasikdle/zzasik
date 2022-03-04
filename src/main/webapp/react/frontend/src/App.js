@@ -12,26 +12,34 @@ import Question from './components/Accordion';
 import Footer from './components/Footer';
 
 //ROUTE
-import {Link, Route, Switch} from 'react-router-dom';
+import {Link, Route, Switch,BrowserRouter} from 'react-router-dom';
 
+//MyPage
+import MypageRoute from './MypageRoute';
 
 
 function App() {
 
 
   return (
+    <BrowserRouter>
     <div className="App">
     
-<MainNav />    
+      <MainNav />   
 
-<Home />
+      <Switch>
+        <Route exact path="/">
+          <Home />
+          <Question/>
+          <Footer/>
+        </Route>
 
-<Question/>
+        <MypageRoute/>
 
-<Footer/>
+      </Switch>
 
-  
     </div>
+    </BrowserRouter>
   );
 }
 
