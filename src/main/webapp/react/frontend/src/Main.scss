@@ -24,8 +24,23 @@
 .main-nav{
   opacity: 0;
   transition-duration: 2s;
+  color: $mainColor;
 }
 
+.offcanvas{
+  font-family: 'AppleSDG';
+}
+
+.main-logo{
+  position: absolute;
+  top: 30vh;
+  left:40vw;
+  background-image: url(../public/img/logo6.png);
+  width: 400px;
+  height: 320px;
+  background-size: cover;
+  
+}
 .main-nav-fixed{
   opacity: 1;
   transition-duration: 2s;
@@ -50,6 +65,7 @@
   height: 100vh;
   color: white;
   float: left;
+  position: relative;
 
  
 
