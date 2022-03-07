@@ -1,5 +1,6 @@
 import React ,{useState, useEffect} from 'react'
 import { } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function Footer() {
   
@@ -21,8 +22,8 @@ function Footer() {
   </div>
 <div className="footer-account">
   <p>ACCOUNT</p>
-  <small>* Sign in</small>
-  <small>* Sign up</small>
+  <small><Link to="/member/login">* Sign in</Link></small>
+  <small><Link to="/member/Join">* Sign up</Link></small>
   <small>* View Account</small>
 </div>
 <div className="footer-contactus">

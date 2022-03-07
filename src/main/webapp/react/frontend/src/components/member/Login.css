@@ -1,0 +1,60 @@
+#loginForm{
+	margin-top: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+    width: 50%;
+    padding: 4.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.LoginBtn{
+	position:relative;
+    left:17%;
+    transform: translateX(-50%);
+    width:30%;
+    height:40px;
+    background: linear-gradient(85deg,#f5f397,#ade9ab,#facf8e);
+    background-position: left;
+    background-size: 200%;
+    color:white;
+    font-weight: bold;
+    border:none;
+    border-radius: 10px;
+    cursor:pointer;
+    transition: 0.4s;
+    display:inline;
+}
+.LoginBtn:hover {
+    background-position: right;
+  }
+
+.joinBtn{
+    position:relative;
+    left: 3%;
+    transform: translateX(-50%);
+    width:50%;
+    height:70px;
+    background: linear-gradient(125deg,#f5f397,#ade9ab,#facf8e);
+    background-position: left;
+    background-size: 200%;
+    color:white;
+    font-weight: bold;
+    border:none;
+    border-radius: 10px;
+    cursor:pointer;
+    transition: 0.4s;
+    display:inline;
+    text-decoration: none;
+}
+.joinBtn:hover{
+    background-position: right;
+}
