@@ -1,10 +1,13 @@
 package com.zzasik.member.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.zzasik.member.dao.MemberDAO;
+import com.zzasik.member.vo.AddressVO;
 import com.zzasik.member.vo.MemberVO;
 
 @Service
@@ -41,6 +44,15 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.insertMember(memberVO);
 	}
 	
+	/* 배송지 추가 */
+	
+	@Override
+	public int insertAddress(MemberVO memberVO) throws Exception {
+		
+		return memberDAO.insertAddress(memberVO);
+	}
+	
+	
 	/* 아이디 중복 체크 */
 	@Override
 	public int findMemberById(String user_id) throws Exception {
@@ -54,4 +66,28 @@ public class MemberServiceImpl implements MemberService {
 		
 		return memberDAO.findPasswordById(memberVO);
 	}
+	
+	/* 회원 정보 수정 ( 이름 ) */
+
+	@Override
+	public int modMemberName(MemberVO memberVO) throws Exception {
+	
+		return memberDAO.modMemberName(memberVO);
+	}
+	
+	/* 회원 정보 수정 ( 휴대전화 ) */
+
+	@Override
+	public int modMemberPhone(MemberVO memberVO) throws Exception {
+	
+		return memberDAO.modMemberPhone(memberVO);
+	}
+	
+	/* 배송지 리스트 가져오기 */
+	@Override
+	public List<AddressVO> listAddress(MemberVO memberVO) throws Exception {
+		List<AddressVO> addressList = memberDAO.listAddress(memberVO);
+		return addressList;
+	}
+
 }

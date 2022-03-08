@@ -5,19 +5,32 @@
 					
 <mapper namespace="com.zzasik.member.dao.MemberDAO">
 
-	
+	<resultMap  id="addressResult" type="AddressVO">
+	  <result property="addr_1" column="addr_1" />
+      <result property="addr_2" column="addr_2" />
+      <result property="addr_3" column="addr_3" />
+	</resultMap>
 	
 	<select id="login" resultType="MemberVO">
 		SELECT * FROM usertbl WHERE user_id=#{user_id}
 		
 	</select>
 	
-	<!-- 회원 가입 -->
+	<!-- 회원 가입  -->
 	<insert id="insertMember" parameterType="memberVO">
 		<![CDATA[
 			INSERT INTO usertbl
 			VALUES ( #{user_id},#{user_name},#{user_pwd},#{birth}
-			,#{addr_1},#{addr_2},#{addr_3},#{phone},#{email},#{classification},#{survey_code} )
+			,#{phone},#{email},#{classification},#{survey_code} )
+			
+		]]>
+	</insert>
+	
+	<!-- 배송지 리스트 저장 -->
+	<insert id="insertAddress" parameterType="memberVO">
+		<![CDATA[
+			INSERT INTO addresstbl
+			VALUES ( #{user_id} , #{addr_1},#{addr_2},#{addr_3} )
 			
 		]]>
 	</insert>
@@ -32,5 +45,32 @@
 	<select id="findPasswordById" resultType="memberVO">
 		SELECT user_pwd FROM usertbl WHERE user_id=#{user_id}
 	</select>
+	
+	<!-- 회원 정보 수정 ( 이름  ) -->
+	
+	<update id="modMemberName" parameterType="memberVO">
+		<![CDATA[ 
+			UPDATE usertbl 
+			SET user_name = #{user_name}
+			WHERE user_id = #{user_id} 
+		]]>
+	</update>
+	
+	<!-- 회원 정보 수정 ( 휴대전화  ) -->
+	
+	<update id="modMemberPhone" parameterType="memberVO">
+		<![CDATA[ 
+			UPDATE usertbl 
+			SET phone = #{phone}
+			WHERE user_id = #{user_id} 
+		]]>
+	</update>
+	
+	<!-- 배송지 리스트 가져오기  -->
+	
+	<select id="listAddress" resultType="AddressVO" parameterType="memberVO">
+		SELECT addr_1 , addr_2, addr_3 from addresstbl where user_id = #{user_id}
+	</select>
+	
 	
 </mapper>
