@@ -67,6 +67,10 @@ function MainNav(props) {
                     null
           }
           <Nav.Link href="#action2">짜식들</Nav.Link>
+          
+          <Nav.Link href="/board/list">게시판 리스트</Nav.Link>
+          <Nav.Link href="/writeboard">글쓰기</Nav.Link>
+           <Nav.Link href="/board/teacherBoard">teacherBoard</Nav.Link>
           <NavDropdown title="마이페이지" id="offcanvasNavbarDropdown">
             <NavDropdown.Item href="/myhome">나의 정보</NavDropdown.Item>
             <NavDropdown.Item href="#action3">식단 추천</NavDropdown.Item>

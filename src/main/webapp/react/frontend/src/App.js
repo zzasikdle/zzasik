@@ -12,7 +12,8 @@ import Question from './components/Accordion';
 import Footer from './components/Footer';
 
 //ROUTE
-import {Link, Route, Switch,BrowserRouter} from 'react-router-dom';
+import {Link, Route,  Switch,BrowserRouter} from 'react-router-dom';
+
 
 //Member
 import Login from './components/member/Login';
@@ -22,6 +23,11 @@ import Join from './components/member/Join';
 import MypageRoute from './MypageRoute';
 import MemberList from './mypage/admin/component/MemberList'
 
+//board
+import WriteBoard from './components/board/writeboard';
+import BoardList from './components/board/boardList';
+import ViewBoard from './components/board/viewboard';
+import teacherBoard from './components/board/teacherBoard';
 
 function App() {
 
@@ -41,6 +47,10 @@ function App() {
         <Route path="/member/login" component={Login} />
         <Route path="/member/Join" component={Join} />
         <Route path="/mypage/admin/member" component={MemberList} />
+        <Route path="/writeboard" component={WriteBoard} />
+        <Route path="/board/list" component={BoardList} />
+        <Route path="/board/viewboard/:board_code" component={ViewBoard} />
+        <Route path="/board/teacherBoard" component={teacherBoard} />
         
         <MypageRoute/>
 
