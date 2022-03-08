@@ -1,5 +1,7 @@
 package com.zzasik.member.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
@@ -14,7 +16,15 @@ public interface MemberDAO {
 	
 	public int insertMember(MemberVO memberVO) throws Exception;
 	
+	public int insertAddress(MemberVO memberVO) throws Exception;
+	
 	public int findMemberById(String user_id) throws DataAccessException;
 	
 	public MemberVO findPasswordById(MemberVO memberVO) throws DataAccessException;
+	
+	public int modMemberName(MemberVO memberVO) throws Exception;
+
+	public int modMemberPhone(MemberVO memberVO) throws Exception;
+	
+	public List listAddress(MemberVO memberVO) throws DataAccessException;
 }
