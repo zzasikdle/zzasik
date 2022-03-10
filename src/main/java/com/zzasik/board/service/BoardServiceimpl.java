@@ -49,6 +49,12 @@ public class BoardServiceimpl implements BoardService {
 		
 	}
 	
+	@Override
+	public List<BoardVO> viewTeacherBoard(String user_id) throws Exception {
+		List<BoardVO> TeacherList =boardDAO.selectTeacherBoard(user_id);
+		return TeacherList;
+	}
+	
 	
 	
 	

@@ -144,11 +144,17 @@ public void joinBoard(@RequestParam("board_code") String board_code, @RequestPar
 	boardService.joinBoard(joinMap);
 }
 
-
-
-
-
+//teacherBoard º¸±â
+@GetMapping(value="/board/teacherBoard")
+public List<BoardVO> teacherBoard(@RequestParam("user_id") String user_id ,HttpServletRequest request, 
+		HttpServletResponse response) throws Exception {
+	System.out.println("user_id="+user_id);
 	
+	List<BoardVO> teahcerList =  boardService.viewTeacherBoard(user_id);
+	
+	return teahcerList;
+}
+
 	
 } // end class()
 	

@@ -20,5 +20,7 @@ public interface BoardDAO {
 	public void joinBoard(Map joinMap) throws DataAccessException;
 	public int selectNewBoardCode() throws DataAccessException;
 	public BoardVO selectBoard(int board_code) throws DataAccessException;
+	public List selectTeacherBoard(String user_id) throws DataAccessException;
+	
 	
 }

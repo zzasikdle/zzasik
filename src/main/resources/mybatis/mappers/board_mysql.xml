@@ -53,5 +53,11 @@
 	]]>   
   </select>
 	
+	
+	  <select id="selectTeacherBoard" resultType="BoardVO" parameterType="String">
+    <![CDATA[
+      SELECT board_title, user_id , board_content  from boardtbl where user_id = #{user_id}; 
+    ]]>
+  </select>
   
 </mapper>

@@ -59,14 +59,16 @@ useEffect(() => {
     
         } 
     
-
-
-
-
+    let codes = board.board_content;
   return(
+      
 
 <div>   
-    <><div>board_cotent</div><div>{board.board_content}</div></>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <><div>board_cotent</div><div dangerouslySetInnerHTML={ {__html:codes}}></div></>
     <><div>meal_type</div><div>{board.meal_type}</div></>
     <><div>teacher_name</div><div>{board.teacher_name}</div></>
     <><div>board_title</div><div>{board.board_title}</div></>
