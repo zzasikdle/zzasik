@@ -32,7 +32,7 @@ public class MemberController {
 	
 	
 	public MemberController() {
-		
+		 
 	}
 	
 	/* 濡쒓렇�씤 */
