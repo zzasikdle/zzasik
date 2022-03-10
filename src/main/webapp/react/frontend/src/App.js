@@ -29,6 +29,13 @@ import BoardList from './components/board/boardList';
 import ViewBoard from './components/board/viewboard';
 import teacherBoard from './components/board/teacherBoard';
 
+
+//Notice
+import NoticePage from './components/notice/NoticePage';
+import MyEditor from './components/notice/MyEditor';
+import NoticeView from './components/notice/NoticeView';
+import NoticeEdit from './components/notice/NoticeEdit';
+
 function App() {
 
 
@@ -52,6 +59,10 @@ function App() {
         <Route path="/board/viewboard/:board_code" component={ViewBoard} />
         <Route path="/board/teacherBoard" component={teacherBoard} />
         
+        <Route exact path="/notice"><NoticePage/></Route>
+        <Route exact path="/notice/new"><MyEditor/></Route>
+        <Route path="/notice/edit/:notice_code"><NoticeEdit/></Route>
+        <Route path="/notice/:notice_code"><NoticeView/></Route>
         <MypageRoute/>
 
       </Switch>

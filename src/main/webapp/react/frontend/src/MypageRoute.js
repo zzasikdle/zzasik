@@ -29,8 +29,8 @@ import modAddress from './mypage/user/page/modAddress';
 
 function MypageRoute() {
   //const user_id = sessionStorage.getItem('user_id');
-  const user_id = "hong";
-  const classification = 1; //0: 관리자 페이지, 1: 마이페이지
+  const user_id = "admin";
+  const classification = 0; //0: 관리자 페이지, 1: 마이페이지
   return (
     <div className='myhome-container'>
       <div className='myhome-wrap'>

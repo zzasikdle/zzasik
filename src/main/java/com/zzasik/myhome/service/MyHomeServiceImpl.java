@@ -34,6 +34,30 @@ public class MyHomeServiceImpl implements MyHomeService {
 		
 		return myhomeDAO.selectAllNoticesList();
 	}
+	@Override
+	public void writeNotice(NoticeVO noticeVO) throws Exception {
+		myhomeDAO.insertNotice(noticeVO);
+		
+	}
+	@Override
+	public int getNewNoticeNum() throws Exception {
+		return myhomeDAO.maxNoticeNum();
+	}
+	@Override
+	public NoticeVO viewNotice(int notice_code) throws Exception {
+		
+		return myhomeDAO.selectNotice(notice_code);
+	}
+	@Override
+	public void delNotice(int notice_code) throws Exception {
+		myhomeDAO.deleteNotice(notice_code);
+		
+	}
+	@Override
+	public void editNotice(NoticeVO noticeVO) throws Exception {
+		myhomeDAO.updateNotice(noticeVO);
+		
+	}
 	
 	/* 회원 권한 수정*/
 	@Override
