@@ -30,7 +30,7 @@ public class MemberController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	 
+	  
 	public MemberController() {
 		 
 	}
