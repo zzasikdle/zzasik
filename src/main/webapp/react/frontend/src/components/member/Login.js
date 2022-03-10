@@ -36,6 +36,7 @@ const Login = ( ) => {
                         sessionStorage.setItem('user_name', response.data.user_name);
                         sessionStorage.setItem('success', response.data.success);
                         sessionStorage.setItem('user_id', response.data.user_id);
+                        sessionStorage.setItem('phone', response.data.phone);
                         sessionStorage.setItem('classification', response.data.classification);
                         
                         document.location.href='/';
