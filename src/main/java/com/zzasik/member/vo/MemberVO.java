@@ -10,6 +10,7 @@ public class MemberVO {
 	private String addr_1;
 	private String addr_2;
 	private String addr_3;
+	private String addr_receiver;
 	private String phone;
 	private String email;
 	private String classification;
@@ -81,6 +82,12 @@ public class MemberVO {
 	}
 	public void setSurvey_code(int survey_code) {
 		this.survey_code = survey_code;
+	}
+	public String getAddr_receiver() {
+		return addr_receiver;
+	}
+	public void setAddr_receiver(String addr_receiver) {
+		this.addr_receiver = addr_receiver;
 	}
 	
 	
