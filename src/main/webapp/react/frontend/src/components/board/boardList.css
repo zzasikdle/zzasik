@@ -44,16 +44,16 @@ table {
 }
 
 
-.content_div{height:105px; margin:30px}
+.content_div{height:10px; margin:30px; margin-bottom: 0px;}
 .head_div{width: 1900px; margin-top : 60px; margin-left: 200px;}
-.headermsg{font-size:40px;   width: 1500px; text-align:left; font-weight:bold;}
+.headermsg{font-size:40px;  width: 1500px; text-align:left; font-weight:bold;}
 .midmsg{text-align:left;font-size: 35px;}
 .bootmsg{text-align:left;font-size: 20px;}
 .boot_a{font-weight: bold;text-decoration-line : none; color: black;background: linear-gradient( to right, rgba(255, 255, 0, 0.781), rgba(255, 255, 0, 0.424) );}
 .board_ul{ float:left;  width: 355px; height:400px; margin-right: 35px;
     border: 1px solid #ddd;
     box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
-    margin-bottom: 35px;}
+    margin-bottom: 90px;}
 .board_ul:hover{background-color: #caabab0c;  border: 1px solid rgba(0, 0, 0, 0.308); }
 .meal_type{color:rgba(0, 0, 0, 0.691); text-align: left; margin-bottom: 10px; font-size: 12px;}
 .board_title{font-size: 20px;text-align: left; width:250px; color: rgba(0, 0, 0, 0.952); font-weight: lighter;}
@@ -64,7 +64,7 @@ table {
     text-align: center;
     display: table;
     width:355px;
-    height:250px;
+    height:0px;
 }
 .container {
     display:table-cell;

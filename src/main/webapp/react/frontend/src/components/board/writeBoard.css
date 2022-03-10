@@ -49,7 +49,6 @@ hr:not([size]) {
 .fir_div{width:1900px}
 #write_form{width:1000px; height:2000px; vertical-align: middle; margin-left: 27%;}
 #title{margin-left: 20px; width:800px; height: 50px;}
-.board_content{}
 .type{margin-left: 20px; width:140px; height: 30px;font-size: 10px} 
 .price{margin-left: 20px; width:140px; height:30px; font-size: 10px;}
 #text_editor{width: 1000px; background-color: blue;}
