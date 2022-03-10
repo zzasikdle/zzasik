@@ -1,0 +1,199 @@
+.profile-edit{
+    margin: 50px 0 0 100px;
+    width: 1000px;
+    height: 500px;
+}
+
+.setting_popup_title:first-child {
+    margin-top: 5px;
+}
+.setting_popup_title .h_title {
+    font-size: 12px;
+    line-height: 45px;
+    color: #222;
+}
+.tbl_delivery_info {
+    width: 100%;
+    padding: 13px 0 11px;
+    border-bottom: 1px solid #ebebeb;
+    table-layout: fixed;
+    -webkit-font-smoothing: antialiased;
+}
+caption {
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin-top: -1px;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+}
+.blind {
+    visibility: hidden;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+}
+body, input, textarea, select, button, table {
+    font-family: '나눔고딕',NanumGothic,'돋움',Dotum,Helvetica,sans-serif;
+    font-size: 12px;
+}
+table {
+    border-collapse: separate;
+    text-indent: initial;
+    border-spacing: 2px;
+}
+
+colgroup {
+    display: table-column-group;
+}
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+.tbl_delivery_info {
+    width: 100%;
+    padding: 13px 0 11px;
+    border-bottom: 1px solid #ebebeb;
+    table-layout: fixed;
+    -webkit-font-smoothing: antialiased;
+}
+.tbl_delivery_info th.cell_title {
+    width: 98px;
+    padding: 5px 0 0 12px;
+    font-weight: normal;
+    line-height: 32px;
+    text-align: left;
+    color: #222;
+    vertical-align: top;
+}
+.basic_input {
+    display: inline-block;
+    position: relative;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #222;
+    vertical-align: top;
+}
+th {
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: bold;
+    text-align: -internal-center;
+}
+label {
+    cursor: default;
+}
+input[type="text" i] {
+    padding: 1px 2px;
+}
+
+.basic_input .lb_text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0 10px;
+    line-height: 30px;
+    color: #888;
+}
+.basic_input .ip_text {
+    position: relative;
+    width: 100%;
+    height: 30px;
+    border: none;
+    background-color: transparent;
+    line-height: 30px;
+    color: #222;
+    vertical-align: top;
+}
+.setting_btn.green {
+    border-color: #00c73c;
+    color: #00c73c;
+}
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.tbl_delivery_info th .mark_necessity {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-left: 2px;
+    background-repeat: no-repeat;
+    background-position: -145px -60px; 
+}
+.tbl_delivery_info .setting_selectbox, .tbl_delivery_info .setting_selectbox a.select_value {
+    height: 30px;
+    line-height: 30px;
+}
+.setting_selectbox .layer_select_option {
+    display: none;
+    z-index: 10;
+    position: absolute;
+    left: -1px;
+    right: -1px;
+    top: 33px;
+    padding: 10px 0;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 1px 1px 4px 0 rgb(0 0 0 / 5%);
+}
+.tbl_delivery_info .hyphen {
+    padding: 0 2px 0 1px;
+    line-height: 32px;
+    color: #ccc;
+    vertical-align: top;
+}
+.tbl_delivery_info .default_delivery {
+    display: block;
+    margin-top: 6px;
+}
+.tbl_delivery_info .setting_checkbox {
+    margin-right: 3px;
+    vertical-align: top;
+}
+.setting_checkbox, .setting_radio {
+    display: inline-block;
+    position: relative;
+}
+.delivery_notice {
+    padding: 16px 20px 14px;
+    background-color: #fafafa;
+    font-size: 11px;
+    line-height: 22px;
+    color: #666;
+}
+#pop_footer {
+    padding: 30px 0 32px;
+    text-align: center;
+}
+.button {
+    width: 72px;
+    padding: 0 9px;
+    font-size: 13px;
+    color: #222;
+    background: #fff;
+    border: 1px solid #ddd;
+    line-height: 34px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-font-smoothing: antialiased;
+    cursor: pointer;
+}
