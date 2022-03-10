@@ -5,11 +5,6 @@
 					
 <mapper namespace="com.zzasik.member.dao.MemberDAO">
 
-	<resultMap  id="addressResult" type="AddressVO">
-	  <result property="addr_1" column="addr_1" />
-      <result property="addr_2" column="addr_2" />
-      <result property="addr_3" column="addr_3" />
-	</resultMap>
 	
 	<select id="login" resultType="MemberVO">
 		SELECT * FROM usertbl WHERE user_id=#{user_id}
@@ -26,11 +21,20 @@
 		]]>
 	</insert>
 	
-	<!-- 배송지 리스트 저장 -->
+	<!-- 배송지 리스트 저장 ( 회원 가입 시 기본 저장 되는 로직 )  -->
 	<insert id="insertAddress" parameterType="memberVO">
 		<![CDATA[
 			INSERT INTO addresstbl
-			VALUES ( #{user_id} , #{addr_1},#{addr_2},#{addr_3} )
+			VALUES ( #{user_id} , '자택',#{user_name},#{phone}, #{addr_1},#{addr_2},#{addr_3} )
+			
+		]]>
+	</insert>
+	
+	<!-- 배송지 리스트 저장 ( 정보 수정에서 배송지 추가 시 저장 되는 로직 )  -->
+	<insert id="addAddress" parameterType="AddressVO">
+		<![CDATA[
+			INSERT INTO addresstbl
+			VALUES ( #{user_id} , #{addr_title},#{addr_receiver},#{addr_phone}, #{addr_1},#{addr_2},#{addr_3} )
 			
 		]]>
 	</insert>
@@ -69,7 +73,15 @@
 	<!-- 배송지 리스트 가져오기  -->
 	
 	<select id="listAddress" resultType="AddressVO" parameterType="memberVO">
-		SELECT addr_1 , addr_2, addr_3 from addresstbl where user_id = #{user_id}
+		SELECT addr_title , addr_receiver ,addr_phone ,addr_1 , addr_2, addr_3 from addresstbl where user_id = #{user_id}
+	</select>
+	
+	<!-- 배송지 리스트 가져오기 ( 배송지 수정 )  -->
+	
+	<select id="getAddress" resultType="AddressVO" parameterType="memberVO">
+		SELECT addr_title , addr_receiver ,addr_phone ,addr_1 , addr_2, addr_3 from addresstbl 
+		where user_id = #{user_id}  
+		AND addr_receiver = #{addr_receiver}
 	</select>
 	
 	

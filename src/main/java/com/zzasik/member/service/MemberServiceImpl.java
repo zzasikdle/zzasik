@@ -44,7 +44,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.insertMember(memberVO);
 	}
 	
-	/* 배송지 추가 */
+	/* 배송지 리스트 저장 ( 회원 가입 시 기본 저장 되는 로직 ) */
 	
 	@Override
 	public int insertAddress(MemberVO memberVO) throws Exception {
@@ -52,6 +52,13 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.insertAddress(memberVO);
 	}
 	
+	/* 배송지 리스트 저장 ( 정보 수정에서 배송지 추가 시 저장 되는 로직 ) */
+	
+	@Override
+	public int addAddress(AddressVO addressVO) throws Exception {
+		
+		return memberDAO.addAddress(addressVO);
+	}
 	
 	/* 아이디 중복 체크 */
 	@Override
@@ -89,5 +96,11 @@ public class MemberServiceImpl implements MemberService {
 		List<AddressVO> addressList = memberDAO.listAddress(memberVO);
 		return addressList;
 	}
-
+	
+	/* 배송지 리스트 가져오기 ( 배송지 수정 할 때 가져오기 ) */
+	@Override
+	public List<AddressVO> getAddress(MemberVO memberVO) throws Exception {
+		List<AddressVO> addressList = memberDAO.getAddress(memberVO);
+		return addressList;
+	}
 }

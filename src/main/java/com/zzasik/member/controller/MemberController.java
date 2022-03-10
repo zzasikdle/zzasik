@@ -182,5 +182,41 @@ public class MemberController {
 		
 	}
 	
+//	/* 배송지 수정 */
+//	
+//	 // 기존의 배송지 리스트 가져오기 
+//	@GetMapping("/member/getAddress")
+//	public List<AddressVO> getAddress(@RequestParam("user_id") String user_id , 
+//			@RequestParam("addr_receiver") String addr_receiver,
+//			HttpServletRequest request, HttpServletResponse response) throws Exception {
+//	  
+//		MemberVO memberVO = new MemberVO();
+//		memberVO.setUser_id(user_id);
+//		memberVO.setAddr_receiver(addr_receiver);
+//		
+//		List<AddressVO> AddressList = memberService.getAddress(memberVO);	
+//	    System.out.println(AddressList);
+//			
+//	   return AddressList;	
+//	}
+	
+	
+	
+	
+	/* 배송지 추가 하기 */
+	
+	@PostMapping("/member/addAddress") 
+	public  Map<String, Object> addAddress(@RequestBody AddressVO addressVO ) throws Exception {
+		
+		int addResult = memberService.addAddress(addressVO); // 배송지 저장.
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("message", "배송지가 추가 되었습니다."); 
+		//map.put("path", "/myhome/myAddress");
+		
+		return map;  
+	}
+	
 	
 }
