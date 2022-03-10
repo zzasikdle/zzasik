@@ -198,13 +198,14 @@ const Join = () => {
                 .post(baseUrl + '/member/join', 
                     {   
                         user_id:user_id, user_pwd:user_pwd,
-                        user_name:user_name , addr_1 : zoneRef.current.value,
+                        user_name:user_name ,
+                        addr_1 : zoneRef.current.value,
                         addr_2 : addRef.current.value , addr_3: addr_3,birth: birth,
                         phone : phone , email : email,
                         survey_code : survey_code , classification : classification
                     })
                 .then( (response) => {
-                    alert(' 회원가입 되었습니다.');
+                    alert(response.data.user_id + '님 회원가입 되었습니다.');
                     document.location.href='/member/login'; // 로그인 창으로 보내기.
                     }
                 )
@@ -212,6 +213,7 @@ const Join = () => {
                     console.log(error);
                 })
         }
+        
         if(check.innerHTML ==="✅" && pwdCorrect.innerHTML === "✅ 비밀번호가 일치 합니다."){
             handleJoin(); // 회원 가입 승인.
         }else{
