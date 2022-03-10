@@ -25,7 +25,7 @@ import com.zzasik.member.vo.MemberVO;
 public class MemberController {
 	
 	@Autowired
-	private MemberService memberService;
+	private MemberService memberService ;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -35,17 +35,17 @@ public class MemberController {
 		
 	}
 	
-	/* 로그인 */
+	/* 濡쒓렇�씤 */
 	@PostMapping("/member/login")
 	public  Map<String, Object> loginCheck(@RequestBody MemberVO memberVO ) throws Exception {
-		// json 형태로 받기위해서 RequestBody로 함. 
-		// object로 한 이유: 다양한 형태의 값을받기위함.
+		// json �삎�깭濡� 諛쏄린�쐞�빐�꽌 RequestBody濡� �븿. 
+		// object濡� �븳 �씠�쑀: �떎�뼇�븳 �삎�깭�쓽 媛믪쓣諛쏄린�쐞�븿.
 		System.out.printf("%s %s \n", memberVO.getUser_id(), memberVO.getUser_pwd());
 		
 		boolean success = true ;
 		
 		
-		// 해시 비밀번호 일치 여부
+		// �빐�떆 鍮꾨�踰덊샇 �씪移� �뿬遺�
 		MemberVO hashedPwd = memberService.findPasswordById(memberVO);
 		//System.out.println(hashedPwd.getUser_pwd());
 		if(!passwordEncoder.matches(memberVO.getUser_pwd(), hashedPwd.getUser_pwd() )  ) {
@@ -54,7 +54,7 @@ public class MemberController {
 			System.out.println(success);
 		}
 		
-		// id만 가지고 유저 정보 가져오기 . 어차피 비밀번호는 해시로 일치여부 걸렀음.
+		// id留� 媛�吏�怨� �쑀�� �젙蹂� 媛��졇�삤湲� . �뼱李⑦뵾 鍮꾨�踰덊샇�뒗 �빐�떆濡� �씪移섏뿬遺� 嫄몃��쓬.
 		MemberVO dto = memberService.login(memberVO);
 		
 		//boolean success =  dto != null ? true : false;
@@ -75,16 +75,16 @@ public class MemberController {
 		return map;
 	}
 	
-	/* 회원가입 */
+	/* �쉶�썝媛��엯 */
 	
 	@PostMapping("/member/join") 
 	public  Map<String, Object> memberJoin(@RequestBody MemberVO memberVO ) throws Exception {
-		// json 형태로 받기위해서 RequestBody로 함. 
-		// object로 한 이유: 다양한 형태의 값을받기위함.
+		// json �삎�깭濡� 諛쏄린�쐞�빐�꽌 RequestBody濡� �븿. 
+		// object濡� �븳 �씠�쑀: �떎�뼇�븳 �삎�깭�쓽 媛믪쓣諛쏄린�쐞�븿.
 		System.out.printf("%s %s \n", memberVO.getUser_id(), memberVO.getUser_pwd(), memberVO.getUser_name());
 		
-		int result = memberService.insertMember(memberVO); // 배송지 이외의 정보 저장.
-		int addResult = memberService.insertAddress(memberVO); // 배송지 저장.
+		int result = memberService.insertMember(memberVO); // 諛곗넚吏� �씠�쇅�쓽 �젙蹂� ���옣.
+		int addResult = memberService.insertAddress(memberVO); // 諛곗넚吏� ���옣.
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("user_id", memberVO.getUser_id());
@@ -93,7 +93,7 @@ public class MemberController {
 		return map;  
 	}
 	
-	/* 회원 아이디 중복 체크 */
+	/* �쉶�썝 �븘�씠�뵒 以묐났 泥댄겕 */
 	@PostMapping("/member/memberIdCheck")
 	public  Map<String, Object> memberIdCheck(@RequestBody MemberVO memberVO ) throws Exception {
 	
@@ -103,13 +103,13 @@ public class MemberController {
 		
 		System.out.println(user_id);
 		
-		int cnt = memberService.findMemberById(user_id); // 존재하는 id면  cnt =1 일 것.
-		// 존재하지 않으면 null 에러가 나버림 . 어떻게 하지? -> try ~ catch문으로 null 에러 받기.
+		int cnt = memberService.findMemberById(user_id); // 議댁옱�븯�뒗 id硫�  cnt =1 �씪 寃�.
+		// 議댁옱�븯吏� �븡�쑝硫� null �뿉�윭媛� �굹踰꾨┝ . �뼱�뼸寃� �븯吏�? -> try ~ catch臾몄쑝濡� null �뿉�윭 諛쏄린.
 		
 		
-		System.out.println("존재하는 아이디 입니다. : "+ memberVO.getUser_name());
+		System.out.println("議댁옱�븯�뒗 �븘�씠�뵒 �엯�땲�떎. : "+ memberVO.getUser_name());
 		
-		boolean existing =  cnt != 0 ? true : false; // cnt가 1이면 true(중복된아이디) , 0이면 false (사용가능아이디 ) 
+		boolean existing =  cnt != 0 ? true : false; // cnt媛� 1�씠硫� true(以묐났�맂�븘�씠�뵒) , 0�씠硫� false (�궗�슜媛��뒫�븘�씠�뵒 ) 
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("existing", existing);
@@ -118,23 +118,23 @@ public class MemberController {
 		return map; 
 	}
 	
-	/* 회원 정보 수정 ( 이름 )  */
+	/* �쉶�썝 �젙蹂� �닔�젙 ( �씠由� )  */
 	
 	@PostMapping("/member/modMemberName")
 	public  Map<String, Object> modMemberName(@RequestBody MemberVO memberVO ) throws Exception {
 	
-		// 로그인한 세션ID를 받아와서 그 아이디로 db검색 후 받아온 정보 수정. 
-		// 받아오는 정보 input 창 name은 MemberVO와 같게 해야 알아서 매칭.
-		// 바꾸지 않은 정보는 
+		// 濡쒓렇�씤�븳 �꽭�뀡ID瑜� 諛쏆븘���꽌 洹� �븘�씠�뵒濡� db寃��깋 �썑 諛쏆븘�삩 �젙蹂� �닔�젙. 
+		// 諛쏆븘�삤�뒗 �젙蹂� input 李� name�� MemberVO�� 媛숆쾶 �빐�빞 �븣�븘�꽌 留ㅼ묶.
+		// 諛붽씀吏� �븡�� �젙蹂대뒗 
 		System.out.println(memberVO.getUser_id());
 		System.out.println(memberVO.getUser_name());
 		
-		String user_id = memberVO.getUser_id();  // 세션에서 받아온 아이디.
-		String user_name = memberVO.getUser_name(); // 바꾸고자 하는 이름.
+		String user_id = memberVO.getUser_id();  // �꽭�뀡�뿉�꽌 諛쏆븘�삩 �븘�씠�뵒.
+		String user_name = memberVO.getUser_name(); // 諛붽씀怨좎옄 �븯�뒗 �씠由�.
 
 		try {
 			
-			int modResult = memberService.modMemberName(memberVO);		//family에 데이터 insert 
+			int modResult = memberService.modMemberName(memberVO);		//family�뿉 �뜲�씠�꽣 insert 
 			
 		}catch (Exception e) {
 				e.printStackTrace();
@@ -145,36 +145,36 @@ public class MemberController {
 		return map; 
 	}
 	
-	/* 회원 정보 수정 ( 휴대전화 )  */
+	/* �쉶�썝 �젙蹂� �닔�젙 ( �쑕���쟾�솕 )  */
 	
 	@PostMapping("/member/modMemberPhone")
 	public  Map<String, Object> modMemberPhone(@RequestBody MemberVO memberVO ) throws Exception {
 	
-		String user_id = memberVO.getUser_id();  // 세션에서 받아온 아이디.
-		String phone = memberVO.getPhone();// 바꾸고자 하는 이름.
+		String user_id = memberVO.getUser_id();  // �꽭�뀡�뿉�꽌 諛쏆븘�삩 �븘�씠�뵒.
+		String phone = memberVO.getPhone();// 諛붽씀怨좎옄 �븯�뒗 �씠由�.
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		try {
 			
-			int modResult = memberService.modMemberPhone(memberVO);		//family에 데이터 insert 
-			map.put("message", "휴대전화번호가 변경 되었습니다."); 
+			int modResult = memberService.modMemberPhone(memberVO);		//family�뿉 �뜲�씠�꽣 insert 
+			map.put("message", "�쑕���쟾�솕踰덊샇媛� 蹂�寃� �릺�뿀�뒿�땲�떎."); 
 			
 		}catch (Exception e) {
-			map.put("message", "휴대전화번호가 변경에 실패 하였습니다."); 
+			map.put("message", "�쑕���쟾�솕踰덊샇媛� 蹂�寃쎌뿉 �떎�뙣 �븯���뒿�땲�떎."); 
 				e.printStackTrace();
 			}
 		return map; 
 	}
 	
-	/* 배송지 리스트 가져오기 */
+	/* 諛곗넚吏� 由ъ뒪�듃 媛��졇�삤湲� */
 	//@RequestParam("user_id") String user_id
 	@GetMapping("/member/listAddress")
 	public List<AddressVO> listAddress(@RequestParam("user_id") String user_id , HttpServletRequest request, HttpServletResponse response) throws Exception {
 	  
 		MemberVO memberVO = new MemberVO();
 		memberVO.setUser_id(user_id);
-		System.out.println("테스트중입니다." + memberVO.getUser_id());
+		System.out.println("�뀒�뒪�듃以묒엯�땲�떎." + memberVO.getUser_id());
 		List<AddressVO> AddressList = memberService.listAddress(memberVO);	
 	    System.out.println(AddressList);
 			
