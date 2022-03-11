@@ -45,7 +45,7 @@ public class BoardController {
 	public BoardController() { 
 		
 	}
- 
+  
 
 	@GetMapping(value = "/board/listBoards")
 	@PostMapping(value = "/board/listBoards")
