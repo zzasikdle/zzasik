@@ -42,7 +42,7 @@ public class BoardController {
 	@Autowired
 	private BoardVO boardVO;
 	
-	public BoardController() {
+	public BoardController() { 
 		
 	}
 
