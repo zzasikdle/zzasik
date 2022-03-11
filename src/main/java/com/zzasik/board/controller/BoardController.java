@@ -30,7 +30,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.zzasik.board.service.BoardService;
 import com.zzasik.board.vo.BoardVO;
-
+ 
 @CrossOrigin("*")
 @RestController("boardController")
 public class BoardController {
