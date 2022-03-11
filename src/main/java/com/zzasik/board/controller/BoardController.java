@@ -55,7 +55,7 @@ public class BoardController {
 		System.out.println(BoardsList);
 		return BoardsList;
 	}
-	
+	 
 @PostMapping(value = "/board/addNewBoard")
 public ResponseEntity addNewBoard(MultipartHttpServletRequest multipartRequest,  HttpServletResponse response) throws Exception {
 	multipartRequest.setCharacterEncoding("utf-8");
