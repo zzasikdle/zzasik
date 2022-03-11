@@ -59,7 +59,6 @@ table {
 .board_title{font-size: 20px;text-align: left; width:250px; color: rgba(0, 0, 0, 0.952); font-weight: lighter;}
 .board_price{text-align: right; color:black; font-weight: bold;}
 .board_teacher_name{text-align: left; color:rgba(0, 0, 0, 0.623)}
-
 .header_div{
     text-align: center;
     display: table;
@@ -71,7 +70,6 @@ table {
     vertical-align:middle;
     margin : 0px;
     padding: 0px;
-    
 }   
 .image_box{
     width:100%;
