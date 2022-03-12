@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { useRef, useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
-import './addAddress.css';
+import { useParams } from "react-router-dom";
+import './UpdateAddress.css';
 
-const AddAddress = () => {
+const UpdateAddress = () => {
 
     const baseUrl = "http://localhost:8090";
     
@@ -22,7 +23,7 @@ const AddAddress = () => {
     const [ phone , setPhone] = useState('');
 
     const addr_title = useRef();
-    const addr_receiver = useRef();
+    const addr_Revisedreceiver = useRef();
     
     
     /* 주소 검색 팝업  */
@@ -30,6 +31,8 @@ const AddAddress = () => {
     const onOpenModal = ()=>{
         setModalOn(!modalOn);
     }
+    const {addr_receiver} = useParams(); // 원래 receiver 
+
     const handleAddress = () => {
         // id 가 zipcode 인 input을 가져와서 value를 addr_1로  바꿔주기.
         zoneRef.current.value = isZoneCode;
@@ -38,7 +41,8 @@ const AddAddress = () => {
     }
 
 
-    const Modal  = () => {
+    const Modal  = (props) => {
+        const { children, onClick } = props;
         
         return (
             
@@ -159,10 +163,11 @@ const AddAddress = () => {
         const addAddress = async() => {
             
             await axios
-                .post(baseUrl + '/member/addAddress', 
+                .post(baseUrl + '/member/updateAddress', 
                     {   
                         user_id:user_id, addr_title: addr_title.current.value,
-                        addr_receiver :addr_receiver.current.value,
+                        addr_receiver : addr_receiver, // 원래 receiver , 이걸로 구별해준다.
+                        addr_Revisedreceiver :addr_Revisedreceiver.current.value,  // 바뀔 수령인
                         addr_phone : addr_phone,
                         addr_1 : zoneRef.current.value,
                         addr_2 : addRef.current.value , addr_3: addDeRef.current.value
@@ -185,7 +190,6 @@ const AddAddress = () => {
 
         addAddress(); // 함수 실행.
     } 
-
 
     const closePage =()=>{
         document.location.href='/myhome/myAddress';
@@ -226,8 +230,8 @@ const AddAddress = () => {
                                 </th>
                                 <td>
                                     <span className="_editable_input _input basic_input" style={{width: "133px"}}>
-                                       
-                                        <input type="text" id="receiver" className="ip_text" ref={addr_receiver} maxlength="150" ></input>
+                                        
+                                        <input type="text" id="receiver" className="ip_text" ref={addr_Revisedreceiver} maxlength="150" ></input>
                                     </span>
                                 </td>
                             </tr>
@@ -244,9 +248,14 @@ const AddAddress = () => {
                                         <input type="text" id="zipCode" className="ip_text" disabled="disabled" value={isZoneCode}
                                             ref={zoneRef} readOnly></input>
                                     </span>
-                            
+                                    {/* <button className="_search setting_btn green" onClick={onChangeOpenPost} >주소검색</button>
+                                    {isOpenPost  ? (
+                                        <DaumPostcode style={postCodeStyle} autoClose onComplete={handleComplete } />
+                                        ) : null}<br/> */}
+
                                     <button className="_search setting_btn green" onClick={onOpenModal} >주소검색</button>
                                     {modalOn ? <Modal ></Modal> : ''}
+
 
                                     <p className="address_detail">
                                         <span className="_input basic_input" style={{width: "338px"}}>
@@ -331,4 +340,4 @@ const AddAddress = () => {
     )
 }
 
-export default AddAddress;
+export default UpdateAddress;

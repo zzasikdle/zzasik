@@ -1,17 +1,62 @@
 import './MyHome.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+// import Modal from './Modal';
 
 /* 마이페이지 */
 export default function MyHome(){
 
-    //로그인 연동 후 가져오기
-    //const user_name = sessionStorage.getItem('user_name');
+    const baseUrl = "http://localhost:8090";
+    
+    const user_id = sessionStorage.getItem("user_id");
+    const user_name = sessionStorage.getItem("user_name");
 
-    const user_name = "홍길동";
+    const [modalOn , setModalOn] = useState(false);
+    const onOpenModal = ()=>{
+        setModalOn(!modalOn);
+    }
 
+    const deleteId = async() => {
+        
+        await axios
+         .post(baseUrl + '/member/deleteId',  {user_id:user_id})
+         .then( (response) => {
+             sessionStorage.removeItem('user_name');
+             sessionStorage.removeItem('success');
+             sessionStorage.removeItem('user_id');
+             sessionStorage.removeItem('phone');
+             sessionStorage.removeItem('classification');
+             sessionStorage.removeItem('survey_code');
+             alert('탈퇴가 완료 되었습니다. 그 동안 감사했습니다.');
+            document.location.href='/member/login';
+         })
+         .catch((error)=> {
+            console.log(error);
+        })
+
+    }
+
+    const Modal  = (props) => {
+        const { children, onClick } = props;
+
+        return (
+            
+            <div className="modal"> 
+                        <div className="bg"></div>
+                         <div className="modalBox"> 
+                            <p> 회원 탈퇴 하시겠습니까? </p> 
+                            <button className="closeBtn" onClick={deleteId}>예</button> 
+                            <button className="closeBtn" onClick={onOpenModal}>아니오</button> 
+                        </div> 
+            </div>
+          )
+    }
+
+
+    
     return (
-            <>
+        <div>
             <h1>마이페이지</h1>
             <div className='content'>
                 <div className='box profile'>
@@ -25,8 +70,12 @@ export default function MyHome(){
                         <span>회원님 반갑습니다!</span>
                     </div>
                 </div>
-                <button className='delAccount'>회원 탈퇴</button>
+                <button className='delAccount' onClick={onOpenModal} >회원 탈퇴</button>
+                {modalOn ? <Modal ></Modal> : ''}
+                
+                <please />
             </div>
-            </>
+        </div>
     );
+
 }
