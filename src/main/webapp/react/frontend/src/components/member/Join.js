@@ -1,7 +1,6 @@
 import './Join.css';
 import axios from "axios";
-import { useState , useRef, useMemo, useCallback } from "react";
-import { Modal } from "react-bootstrap";
+import { useState , useRef, useCallback } from "react";
 import DaumPostcode from "react-daum-postcode";
 import { useHref } from "react-router";
 import { Link } from 'react-router-dom'; 

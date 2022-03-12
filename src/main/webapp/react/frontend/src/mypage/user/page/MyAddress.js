@@ -44,6 +44,20 @@ const MyAddress  =() => {
     },[user_id]);
 
 
+    const deleteAddress = async(addr_title) => {
+        
+        await axios
+         .post(baseUrl + '/member/deleteAddress',  {user_id:user_id , addr_title : addr_title})
+         .then( (response) => {
+            alert('배송지 삭제가 완료 되었습니다.');
+            document.location.href='/myhome/myAddress';
+         })
+         .catch((error)=> {
+            console.log(error);
+        })
+    }
+
+    
 
     return(
         <div className='box container' >
@@ -111,18 +125,12 @@ const MyAddress  =() => {
                                         <td className="cell_tel">{Address.addr_phone}</td>
                                         <td className="cell_edit">
                                             <button className="_delete setting_btn type_h">
-                                                <Link to={`/myhome/modAddress/${Address.addr_receiver}`} id='modAddress'>수정</Link>
-                                                
-                                                {/* <Link to={{
-                                                        pathname: `/myhome/modAddress/${this.state.addr_receiver}`,
-                                                            state: { 
-                                                                addr_receiver : this.state.addr_receiver,
-                                                            }
-                                                    }}>수정</Link> */}
-                                                
-                                                </button>
-                                            
-                                            <button className="_delete setting_btn type_h">삭제</button>
+                                                {/* <Link to={`/myhome/modAddress/${Address.addr_receiver}`} id='modAddress'>수정</Link> */}
+                                                <Link to={`/myhome/updateAddress/${Address.addr_receiver}`} id='UpdateAddress'>수정</Link>
+                                            </button>
+                                            <button className="_delete setting_btn type_h" onClick={ () => deleteAddress(Address.addr_title)}>
+                                                삭제
+                                            </button>
                                         </td>
                                     </tr>
                                 )
