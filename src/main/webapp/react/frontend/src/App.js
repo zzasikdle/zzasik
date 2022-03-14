@@ -22,6 +22,9 @@ import Join from './components/member/Join';
 import MypageRoute from './MypageRoute';
 import MemberList from './mypage/admin/component/MemberList'
 
+//Servey
+import Servey from './components/Servey'
+
 
 function App() {
 
@@ -33,6 +36,8 @@ function App() {
       <MainNav />   
 
       <Switch>
+      <Route path="/servey" component={Servey}/>
+      
         <Route exact path="/">
           <Home />
           <Question/>
