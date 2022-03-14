@@ -45,41 +45,38 @@ const AddAddress = () => {
             <div className="modal"> 
                         <div className="bg"></div>
                          <div className="modalBox"> 
-                            <table className="tbl_delivery_info">
-                                <tbody>
-                                    <tr>
-                                        <th className="cell_title">우편번호</th>
-                                        <td>
-                                            <span className="_editable_input _input basic_input focus" style={{width: "133px"}}>
-                                                <input type="text" id="addressName" className="ip_text" value={isZoneCode}  maxLength="150" readOnly/>
+                            
+                            <div id="head" className="modalBox_item">
+                                <h6>주소</h6>
+                            </div>
+
+                            <div className="modalBox_item">
+                                <input type="text" id="zoneCode" className="ip_text" value={isZoneCode}  maxLength="150" readOnly/>
+                                <button onClick={onChangeOpenPost}>주소검색</button>
+                                <br/>
+                                <input type="text" id="address" className="ip_text"  value={isAddress}  maxLength="150" readOnly/>
+                                <br/>
+                                
+                                    <button  onClick={handleAddress}>저장</button> 
+                                    <button  onClick={onOpenModal}>닫기</button> 
+                                
+                            </div>
+
+                            
+                                                {/* <input type="text" id="addressName" className="ip_text" value={isZoneCode}  maxLength="150" readOnly/>
                                                
-                                            </span>
                                             <button onClick={onChangeOpenPost}>주소검색</button>
                                                 {isOpenPost  ? (
                                                     <DaumPostcode style={postCodeStyle} autoClose onComplete={handleComplete } />
                                                     ) : null}<br/> 
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <th className="cell_title">주소 </th>
-                                        <td>
-                                            <span className="_editable_input _input basic_input focus" style={{width: "133px"}}>
+                                        <h5 className="cell_title">주소 </h5>
                                                 <input type="text" id="addressName" className="ip_text"  value={isAddress}  maxLength="150" readOnly/>
-                                                    
-                                        
-                                                
-                                            </span>
-                                            
-                                        </td>
-                                    </tr>
-                            
                                     <div id="pop_footer" class="btn_footer">
                                         <button  onClick={handleAddress}>저장</button> 
                                         <button  onClick={onOpenModal}>닫기</button> 
                                     </div>
-                                </tbody>
-                            </table>
+                                
+                             */}
                         </div> 
             </div>
           )
