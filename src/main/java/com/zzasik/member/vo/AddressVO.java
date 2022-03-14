@@ -11,6 +11,8 @@ public class AddressVO {
 	private String addr_1;
 	private String addr_2;
 	private String addr_3;
+	private String addr_Revisedreceiver;
+	
 	public String getUser_id() {
 		return user_id;
 	}
@@ -52,6 +54,12 @@ public class AddressVO {
 	}
 	public void setAddr_3(String addr_3) {
 		this.addr_3 = addr_3;
+	}
+	public String getAddr_Revisedreceiver() {
+		return addr_Revisedreceiver;
+	}
+	public void setAddr_Revisedreceiver(String addr_Revisedreceiver) {
+		this.addr_Revisedreceiver = addr_Revisedreceiver;
 	}
 	
 	

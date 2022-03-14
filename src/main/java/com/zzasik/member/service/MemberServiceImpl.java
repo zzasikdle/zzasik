@@ -60,6 +60,22 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.addAddress(addressVO);
 	}
 	
+	/* 배송지 리스트 저장 ( 정보 수정에서 배송지 추가 시 저장 되는 로직 ) */
+	
+	@Override
+	public int updateAddress(AddressVO addressVO) throws Exception {
+		
+		return memberDAO.updateAddress(addressVO);
+	}
+	
+	/* 배송지 삭제 */
+	
+	@Override
+	public int deleteAddress(AddressVO addressVO) throws Exception {
+		return memberDAO.deleteAddress(addressVO);
+	}
+	
+	
 	/* 아이디 중복 체크 */
 	@Override
 	public int findMemberById(String user_id) throws Exception {
@@ -90,6 +106,14 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.modMemberPhone(memberVO);
 	}
 	
+	/* 회원 탈퇴 */
+	
+	@Override
+	public int deleteId(MemberVO memberVO) throws Exception {
+		return memberDAO.deleteId(memberVO);
+	}
+	
+	
 	/* 배송지 리스트 가져오기 */
 	@Override
 	public List<AddressVO> listAddress(MemberVO memberVO) throws Exception {
@@ -99,8 +123,8 @@ public class MemberServiceImpl implements MemberService {
 	
 	/* 배송지 리스트 가져오기 ( 배송지 수정 할 때 가져오기 ) */
 	@Override
-	public List<AddressVO> getAddress(MemberVO memberVO) throws Exception {
-		List<AddressVO> addressList = memberDAO.getAddress(memberVO);
-		return addressList;
+	public AddressVO getAddress(MemberVO memberVO) throws Exception {
+		AddressVO addressVO = memberDAO.getAddress(memberVO);
+		return addressVO;
 	}
 }
