@@ -28,13 +28,14 @@ import modAddress from './mypage/user/page/modAddress';
 
 
 function MypageRoute() {
-  //const user_id = sessionStorage.getItem('user_id');
-  const user_id = "admin";
-  const classification = 0; //0: 관리자 페이지, 1: 마이페이지
+  const user_id = sessionStorage.getItem('user_id');
+
   return (
+    <>
+    <div className='myhome-mainbar' ></div>
     <div className='myhome-container'>
       <div className='myhome-wrap'>
-        {classification===1 ? <Sidebar/> : <Sidebar_Admin/>} 
+        {sessionStorage.getItem('classification')==='0' ? <Sidebar_Admin/> : <Sidebar/>} 
         <main>
           <Route path='/myhome' exact component={MyHome}/>
           <Route path='/myhome/edit' component={Edit}/>
@@ -54,6 +55,7 @@ function MypageRoute() {
         </main>
       </div>
     </div>
+    </>
       
   );
 }
