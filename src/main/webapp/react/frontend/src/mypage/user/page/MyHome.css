@@ -1,0 +1,101 @@
+/**/
+.content{
+    display:flex;
+    float: left;
+    margin-top: 70px;
+}
+
+/*박스*/
+.box{
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.box_header {
+   display: flex;
+}
+
+.box_header h2{
+    margin: 15px 0px 20px 25px;
+    font-size: 25px;
+}
+
+/*마이페이지*/
+
+/*내 정보*/
+.profile{
+    margin: auto;
+    width: 400px;
+    height: 350px;
+}
+
+.profile_content{
+    text-align: center;
+}
+
+.profile #edit{
+    font-size: 16px;
+    float: right;
+	margin: 16px 10px 0 200px;
+	color: blue;
+	font-weight: 500;
+	text-decoration: none;
+}
+
+/*회원 탈퇴 버튼*/
+.delAccount{
+    width: 90px;
+    height: 50px;
+    margin: auto;
+    color:#fff;
+	background: rgba(0,79,255,0.9);
+	font-size: 15px;
+	border:none;
+	box-shadow: 0 4px 8px rgba(0,79,255,0.6) rgba(18, 209, 248, 0.7);
+    
+}
+.delAccount:focus {
+	outline:0;
+}
+.delAccount:hover{
+	background: rgba(18, 209, 248, 0.9);
+	cursor: pointer;
+	box-shadow: 0 2px 4px rgba(18, 209, 248, 0.6);
+}
+
+.openBtn {
+    background-color: #F9B514;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal .bg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modalBox {
+    position: absolute;
+    background-color: #fff;
+    width: 400px;
+    height: 170px;
+    padding: 15px;
+}
+
+.modalBox .closeBtn {
+    display: block;
+    width: 80px;
+    margin: 0 auto;
+}

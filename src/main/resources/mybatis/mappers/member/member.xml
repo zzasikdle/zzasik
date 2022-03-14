@@ -6,26 +6,82 @@
 <mapper namespace="com.zzasik.member.dao.MemberDAO">
 
 	
-	
 	<select id="login" resultType="MemberVO">
-		SELECT * FROM usertbl WHERE user_id=#{user_id} AND user_pwd=#{user_pwd} 
+		SELECT * FROM usertbl WHERE user_id=#{user_id}
 		
 	</select>
 	
-	<!-- 회원 가입 -->
+	<!-- 회원 가입  -->
 	<insert id="insertMember" parameterType="memberVO">
 		<![CDATA[
 			INSERT INTO usertbl
 			VALUES ( #{user_id},#{user_name},#{user_pwd},#{birth}
-			,#{addr_1},#{addr_2},#{addr_3},#{phone},#{email},#{classification},#{survey_code} )
+			,#{phone},#{email},#{classification},#{survey_code} )
+			
+		]]>
+	</insert>
+	
+	<!-- 배송지 리스트 저장 ( 회원 가입 시 기본 저장 되는 로직 )  -->
+	<insert id="insertAddress" parameterType="memberVO">
+		<![CDATA[
+			INSERT INTO addresstbl
+			VALUES ( #{user_id} , '자택',#{user_name},#{phone}, #{addr_1},#{addr_2},#{addr_3} )
+			
+		]]>
+	</insert>
+	
+	<!-- 배송지 리스트 저장 ( 정보 수정에서 배송지 추가 시 저장 되는 로직 )  -->
+	<insert id="addAddress" parameterType="AddressVO">
+		<![CDATA[
+			INSERT INTO addresstbl
+			VALUES ( #{user_id} , #{addr_title},#{addr_receiver},#{addr_phone}, #{addr_1},#{addr_2},#{addr_3} )
 			
 		]]>
 	</insert>
 	
 	<!--  아이디 중복 체크 -->
-	<select id="findMemberById" resultType="MemberVO">
-		SELECT user_name FROM usertbl WHERE user_id=#{user_id}
+	<select id="findMemberById" resultType="int">
+		SELECT COUNT(user_id) FROM usertbl WHERE user_id=#{user_id}
 		
+	</select>
+	
+	<!-- 해시 비밀번호 가져오기 ( 매치 해보기 위해서 )  -->
+	<select id="findPasswordById" resultType="memberVO">
+		SELECT user_pwd FROM usertbl WHERE user_id=#{user_id}
+	</select>
+	
+	<!-- 회원 정보 수정 ( 이름  ) -->
+	
+	<update id="modMemberName" parameterType="memberVO">
+		<![CDATA[ 
+			UPDATE usertbl 
+			SET user_name = #{user_name}
+			WHERE user_id = #{user_id} 
+		]]>
+	</update>
+	
+	<!-- 회원 정보 수정 ( 휴대전화  ) -->
+	
+	<update id="modMemberPhone" parameterType="memberVO">
+		<![CDATA[ 
+			UPDATE usertbl 
+			SET phone = #{phone}
+			WHERE user_id = #{user_id} 
+		]]>
+	</update>
+	
+	<!-- 배송지 리스트 가져오기  -->
+	
+	<select id="listAddress" resultType="AddressVO" parameterType="memberVO">
+		SELECT addr_title , addr_receiver ,addr_phone ,addr_1 , addr_2, addr_3 from addresstbl where user_id = #{user_id}
+	</select>
+	
+	<!-- 배송지 리스트 가져오기 ( 배송지 수정 )  -->
+	
+	<select id="getAddress" resultType="AddressVO" parameterType="memberVO">
+		SELECT addr_title , addr_receiver ,addr_phone ,addr_1 , addr_2, addr_3 from addresstbl 
+		where user_id = #{user_id}  
+		AND addr_receiver = #{addr_receiver}
 	</select>
 	
 	

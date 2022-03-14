@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="com.zzasik.myhome.dao.MyHomeDAO">
+
+   <select id="selectUserInfo" resultType="hashmap" parameterType="String">
+		<![CDATA[
+			  SELECT * FROM usertbl WHERE user_id = #{user_id}
+		]]>  
+	</select>
+	
+	<select id="selectAllMembersList" resultType="MemberVO">
+		<![CDATA[
+			  SELECT * FROM usertbl
+		]]>  
+	</select>
+	
+	<select id="selectAllNoticesList" resultType="NoticeVO">
+		<![CDATA[
+			  SELECT * FROM noticetbl
+		]]>  
+	</select>
+	
+	<insert id="insertNotice" parameterType="NoticeVO">
+		<![CDATA[
+			INSERT INTO noticetbl VALUES(#{notice_code},#{notice_title},#{notice_content},current_date())
+		]]>
+	</insert>
+	
+	<select id="maxNoticeNum" resultType="int">
+		<![CDATA[
+			   SELECT IFNULL(max(notice_code),0) from noticetbl
+		]]>  
+	</select>
+	
+	<select id="selectNotice" parameterType="int" resultType="NoticeVO">
+		<![CDATA[
+			  SELECT * FROM noticetbl WHERE notice_code=#{notice_code}
+		]]>
+	</select>
+	
+	<delete id="deleteNotice" parameterType="int">
+		<![CDATA[
+			  DELETE FROM noticetbl WHERE notice_code=#{notice_code}
+		]]>
+	</delete>
+	
+	<update id="updateNotice" parameterType="NoticeVO">
+		<![CDATA[
+			  UPDATE noticetbl 
+			  SET notice_title=#{notice_title},notice_content=#{notice_content}
+			  WHERE notice_code=#{notice_code}
+		]]>
+	</update>
+	
+	<!-- 회원 권한 수정 -->
+	
+	<update id="handleClassification" parameterType="MemberVO">
+		<![CDATA[ 
+			UPDATE usertbl 
+			SET classification= #{classification}
+			WHERE user_id = #{user_id}
+		]]>
+	</update>
+</mapper>

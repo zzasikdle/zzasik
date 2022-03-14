@@ -1,4 +1,4 @@
-
+@import './_val.scss';
 
 @font-face {
   font-family: 'AppleSDG';
@@ -13,11 +13,6 @@
   font-weight: normal;
   font-style: normal;
 }
-
-
-$mainColor : #F2A74B;
-
-
 
 
 .App {
@@ -59,7 +54,7 @@ $mainColor : #F2A74B;
  
 
   h4{
-    font-size: 80px;
+    font-size: 5em;
     position: relative;
     top: 50vh;
 
@@ -91,8 +86,7 @@ $mainColor : #F2A74B;
 
 
   .main-merit-parts{
-    height: 40vh;
-    
+    height: 700px;
   }
 
   h4 {
@@ -101,13 +95,33 @@ $mainColor : #F2A74B;
     font-size: 30px;
   }
   p{
-    margin-top:50px;
+    margin-top:40px;
     color: black;
   }
 
+  
+
   }
 
+  .main-merit-img{
+    margin: auto;
+    margin: top 20px;
+    background-size: cover;
+    width:60%;
+    height:60%;
+  }
 
+  .img-1{
+    background-image: url(../public/img/merit3.jpeg);
+  }
+
+  .img-2{
+    background-image: url(../public/img/merit2.jpeg);
+  }
+
+  .img-3{
+    background-image: url(../public/img/merit4.jpeg);
+  }
 
   .main-steps{
     width: 100%;
@@ -134,9 +148,9 @@ $mainColor : #F2A74B;
   .main-steps-text{
     padding:20px;
     display: inline-block;
-    width:16rem;
+    margin: 30px;
+    width:17rem;
     height:300px;
-    margin: 20px;
     border:1px solid #eee;
     
 
@@ -256,5 +270,64 @@ $mainColor : #F2A74B;
   }
 
 
+
+
+
+
+
+
+
+@include tablet{
+  .footer{
+ 
+
+    .footer-logo{
+ 
+      width: 100%;
+      text-align: center;
+    }
+    .footer-about{
+      
+  
+      width: 100%;
+      margin-top:20px;
+ 
+    }
+    .footer-company{
+  
+    
+      width: 100%;
+      margin-top:20px;
+
+    }
+    .footer-account{
+      
+     
+      width: 15%;
+      margin-top:20px;
+
+    }
+    
+    .footer-contactus{
+      
+      width: 100%;
+      margin-top:20px;
+
+    }
+
+    .footer-footer{
+    
+      width: 100%;
+
+    }
+  }
+
+
+  .main-steps-text{
+    width: 100%;
+    margin: 0px;
+    margin-top:40px;
+  }
+}
 
  
