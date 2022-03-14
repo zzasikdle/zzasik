@@ -164,7 +164,7 @@ public void delBoard(@RequestParam("board_code") String board_code )throws Excep
 	boardService.delBoard(delMap);
 
 }
-
+ 
 //수정하기
 @PostMapping(value = "/board/modifyBoard")
 public ResponseEntity modifyBoard(MultipartHttpServletRequest multipartRequest,  HttpServletResponse response) throws Exception {
