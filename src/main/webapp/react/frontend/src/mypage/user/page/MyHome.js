@@ -62,7 +62,7 @@ export default function MyHome(){
                 <div className='box profile'>
                     <div className='box_header'>
                         <h2>내 정보</h2>
-                        <Link to='/myhome/edit' id='edit'>내 정보 수정<img style={{height:17,width:17}} src='/img/arrow.png'/></Link>   
+                        <Link to='/myhome/edit' id='edit'>내 정보 수정<img style={{height:17,width:17,marginBottom:3}} src='/img/arrow.png'/></Link>   
                     </div>
                     <div className="profile_content">
                         <img src='/img/profile.png'/>

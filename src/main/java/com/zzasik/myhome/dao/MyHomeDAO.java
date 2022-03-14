@@ -17,4 +17,11 @@ public interface MyHomeDAO {
 	HashMap<String,Object> selectUserInfo(String user_info) throws DataAccessException;
 	List<MemberVO> selectAllMembersList();
 	List<NoticeVO> selectAllNoticesList();
+	void insertNotice(NoticeVO noticeVO) throws DataAccessException;
+	int maxNoticeNum() throws DataAccessException;
+	NoticeVO selectNotice(int notice_code) throws DataAccessException;
+	void deleteNotice(int notice_code) throws DataAccessException;
+	void updateNotice(NoticeVO noticeVO) throws DataAccessException;
+	
+	public int handleClassification(MemberVO memberVO) throws Exception;
 }

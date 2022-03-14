@@ -40,7 +40,7 @@ const MemberList = () => {
          })
          .then( (response)=> {
              alert('회원권한이 수정 되었습니다.');
-             document.location.href='/mypage/admin/member'; 
+             document.location.href='/admin'; 
          })
          .catch((error)=> {
              console.log(error);
