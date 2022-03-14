@@ -170,6 +170,6 @@ const ModifyBoard = ( ) => {
         </div>
         </div>
     ); 
-};
+}; 
 
 export default ModifyBoard; 
