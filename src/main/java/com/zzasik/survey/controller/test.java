@@ -1,24 +1,27 @@
 package com.zzasik.survey.controller;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.zzasik.survey.service.SurveyService;
+
 public class test {
+	
 	public static void main(String[] args) {
-		ArrayList <String> arrList = new ArrayList<String>();
+		SurveyLogic surveyLogic = new SurveyLogic();
+		Map<String, Object> infoMap = surveyLogic.Meta(170, 70, 25, "남성", 1);
 		
-		arrList.add("테스트");
+		double BMI = (double)infoMap.get("BMI");
+		int activity = (Integer)infoMap.get("activity");
+		
+		ArrayList<String> arrList = surveyLogic.Logic(BMI, 25, "남성", activity);
 		
 		System.out.println(arrList);
 		
-		arrList.remove(String.valueOf("저탄고지"));
-		
+		surveyLogic.Logic3(arrList, "당뇨병",null,null);
 		System.out.println(arrList);
-		
-		double i = Math.random();
-		
-		int ii = (int)(i*100000);
-		System.out.println(ii);
-		System.out.println(ii);
 	}
 }
