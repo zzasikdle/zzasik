@@ -26,8 +26,6 @@ const ModAddress = () => {
     const [ addr_2 , setAddr_2 ] = useState(Address.addr_2);
     const [ addr_3 , setAddr_3 ] = useState(Address.addr_3);
     
-    console.log(Address.title); // undefined 나온다. 왜냐하면 useEffect는 맨마지막에 실행되기 때문에 ..
-
     const handleAddr_title = (e) => {
         setAddr_title(e.target.value);
     }
@@ -39,16 +37,84 @@ const ModAddress = () => {
     const handlePhone = () => {
         setAddr_phone(codeNo + secondPhone + thirdPhone) ; 
     }
-    const handleAddr_1 = () => {
-        setAddr_1(addRef);
+    const handleAddr_1 = (e) => {
+        setAddr_1(e.target.value);
     }
-    const handleAddr_2 = () => {
-        setAddr_2(zoneRef);
+    const handleAddr_2 = (e) => {
+        setAddr_2(e.target.value);
     }
-    const handleAddr_3 = () => {
-        setAddr_3(addDeRef);
+    const handleAddr_3 = (e) => {
+        setAddr_3(e.target.value);
     }
     
+    /* 주소 검색 팝업  */
+    const [modalOn , setModalOn] = useState(false);
+    const onOpenModal = ()=>{
+        setModalOn(!modalOn);
+    }
+
+    const handleAddress = () => {
+        // id 가 zipcode 인 input을 가져와서 value를 addr_1로  바꿔주기.
+        zoneRef.current.value = isZoneCode;
+        addRef.current.value= isAddress;
+        onOpenModal();
+    }
+
+
+    const Modal  = (props) => {
+        const { children, onClick } = props;
+        
+        return (
+            
+            <div className="modal"> 
+                        <div className="bg"></div>
+                         <div className="modalBox"> 
+                            <table className="tbl_delivery_info">
+                                <tbody>
+                                    <tr>
+                                        <th className="cell_title">우편번호</th>
+                                        <td>
+                                            <span className="_editable_input _input basic_input focus" style={{width: "133px"}}>
+                                                <label htmlFor="addressName" className="lb_text blind">배송지명 입력</label>
+                                                <input type="text" id="addressName" className="ip_text" onChange={handleAddr_1} value={isZoneCode}  maxLength="150"/>
+                                               
+                                            </span>
+                                            <button onClick={onChangeOpenPost}>주소검색</button>
+                                                {isOpenPost  ? (
+                                                    <DaumPostcode style={postCodeStyle} autoClose onComplete={handleComplete } />
+                                                    ) : null}<br/> 
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th className="cell_title">주소</th>
+                                        <td>
+                                            <span className="_editable_input _input basic_input focus" style={{width: "133px"}}>
+                                                <label htmlFor="addressName" className="lb_text blind">배송지명 입력</label>
+                                                <input type="text" id="addressName" className="ip_text"  onChange={handleAddr_2} value={isAddress}  maxLength="150"/>
+                                                    
+                                        
+                                                
+                                            </span>
+                                            
+                                        </td>
+                                    </tr>
+                                    
+            
+                                    
+
+
+                                    <div id="pop_footer" class="btn_footer">
+                                        <button  onClick={handleAddress}>저장</button> 
+                                        <button  onClick={onOpenModal}>닫기</button> 
+                                    </div>
+                                </tbody>
+                            </table>
+                        </div> 
+            </div>
+          )
+    }
+
     
     /* 주소 검색 api */
 
@@ -120,13 +186,19 @@ const ModAddress = () => {
 
         handlePhone(); // 전화번호 융합.
         
+        console.log(addr_title);
+        console.log(addr_receiver);
+        console.log(addr_title);
+        console.log(addr_title);
+        console.log(addr_title);
+
         const updateAddress = async() => {
             
             await axios
                 .post(baseUrl + '/member/updateAddress', 
                     {   
                         user_id:user_id, addr_title: addr_title,
-                        addr_receiver : addr_receiver , 
+                        addr_receiver : addr_receiver ,  // 원래 receiver , params 값
                         addr_Revisedreceiver : addr_Revisedreceiver, // 바뀔 수령인
                         addr_phone : addr_phone,
                         addr_1 : addr_1,
@@ -162,7 +234,7 @@ const ModAddress = () => {
             .catch((error)=> {
                 console.log(error);
             })
-    },[]);
+    },[user_id]);
 
     return (
         <>
@@ -182,12 +254,11 @@ const ModAddress = () => {
                     </colgroup>
                         <tbody>
                             <tr>
-                                
                                 <th className="cell_title">배송지명</th>
                                 <td>
                                     <span className="_editable_input _input basic_input focus" style={{width: "133px"}}>
                                         <label htmlFor="addressName" className="lb_text blind">배송지명 입력</label>
-                                        <input type="text" id="addressName" className="ip_text"  onChange={handleAddr_title} placeholder={Address.addr_title}  maxLength="150">
+                                        <input type="text" id="addressName" className="ip_text"  onChange={handleAddr_title}  maxLength="150">
                                             
                                         </input>
                                         <input type="hidden" id="hash" className="ip_text" value></input>
@@ -204,7 +275,7 @@ const ModAddress = () => {
                                 <td>
                                     <span className="_editable_input _input basic_input" style={{width: "133px"}}>
                                         
-                                        <input type="text" id="receiver" className="ip_text" onChange={handleReceiver} placeholder={Address.addr_receiver} maxLength="150" ></input>
+                                        <input type="text" id="receiver" className="ip_text" onChange={handleReceiver}  maxLength="150" ></input>
                                     </span>
                                 </td>
                             </tr>
@@ -218,19 +289,25 @@ const ModAddress = () => {
                                 <td>
                                     <span className="_input basic_input" style={{width:"64px"}}>
                                         <label htmlFor="zipCode" className="lb_text blind" >우편번호 입력</label>
-                                        <input type="text" id="zipCode" className="ip_text" disabled="disabled" value={isZoneCode}
-                                            onChange={handleAddr_1} ref={addRef} placeholder={Address.addr_1} readOnly></input>
+                                        <input type="text" id="zipCode" className="ip_text" disabled="disabled" 
+                                            onChange={handleAddr_1} ref={zoneRef}  readOnly></input>
                                     </span>
-                                    <button className="_search setting_btn green" onClick={onChangeOpenPost} >주소검색</button>
+                                    {/* <button className="_search setting_btn green" onClick={onChangeOpenPost} >주소검색</button>
                                     {isOpenPost  ? (
                                         <DaumPostcode style={postCodeStyle} autoClose onComplete={handleComplete } />
-                                        ) : null}<br/>
+                                        ) : null}<br/> */}
+
+                                    <button className='popUp' onClick={onOpenModal} >주소검색</button>
+                                    {modalOn ? <Modal ></Modal> : ''}
+
+
+
                                     <p className="address_detail">
                                         <span className="_input basic_input" style={{width: "338px"}}>
                                             <label htmlFor="baseAddress" className="lb_text blind" >배송지 새주소</label>
                                             <input 
                                                 type="text" id="baseAddress" className="ip_text" disabled="disabled"
-                                                value={isAddress} onChange={handleAddr_2} ref={zoneRef} placeholder={Address.addr_2} 
+                                                value={isAddress} onChange={handleAddr_2} ref={addRef}  
                                                 >
                                             </input> 
                                             <input type="hidden" id="roadNameAddressYn"></input>
@@ -241,7 +318,7 @@ const ModAddress = () => {
                                             <label htmlFor="detailAddress"  className="lb_text">
                                             
                                             </label>
-                                            <input type="text" id="detailAddress"  className="ip_text"  maxLength="100" onChange={handleAddr_3} ref={addDeRef} placeholder={Address.addr_3}></input>
+                                            <input type="text" id="detailAddress"  className="ip_text"  maxLength="100" onChange={handleAddr_3} ref={addDeRef} ></input>
                                         </span>
                                     </p>
                                 </td>
@@ -272,7 +349,7 @@ const ModAddress = () => {
                                     <span className="hyphen">-</span>
                                     <span className="_editable_input _input basic_input" style={{width: "48px"}}>
                                         <label htmlFor="telNo1Second" className="lb_text blind">연락처 두번째자리 입력</label>
-                                        <input type="text" id="telNo1Second" className="ip_text" maxLength="4" onChange={handleSecondPhone}></input>
+                                        <input type="text" id="telNo1Second" className="ip_text" maxLength="4"  onChange={handleSecondPhone}></input>
                                     </span>
                                     <span className="hyphen">-</span>
                                     <span className="_editable_input _input basic_input" style={{width: "48px"}}>
