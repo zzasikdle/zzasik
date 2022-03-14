@@ -4,13 +4,36 @@ import org.springframework.stereotype.Component;
 
 @Component("BoardVO")
 public class BoardVO {
-	
+	private String user_id;
 	private int board_code;
 	private String board_title;
 	private String board_content;
 	private String meal_type;
 	private int board_price;
 	private String teacher_name;
+	private String imageFilename;
+	private String teacher_id;
+	
+	
+	
+	public String getTeacher_id() {
+		return teacher_id;
+	}
+	public void setTeacher_id(String teacher_id) {
+		this.teacher_id = teacher_id;
+	}
+	public String getImageFilename() {
+		return imageFilename;
+	}
+	public void setImageFilename(String imageFilename) {
+		this.imageFilename = imageFilename;
+	}
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
 	public int getBoard_code() {
 		return board_code;
 	}
@@ -47,6 +70,25 @@ public class BoardVO {
 	public void setTeacher_name(String teacher_name) {
 		this.teacher_name = teacher_name;
 	}
+	
+	
+	public BoardVO() {
+		// TODO Auto-generated constructor stub
+	}
+	public BoardVO(String user_id, int board_code, String board_title, String board_content, String meal_type,
+			int board_price, String teacher_name) {
+		super();
+		this.user_id = user_id;
+		this.board_code = board_code;
+		this.board_title = board_title;
+		this.board_content = board_content;
+		this.meal_type = meal_type;
+		this.board_price = board_price;
+		this.teacher_name = teacher_name;
+	}
+	
+	
+	
 	
 
 	

@@ -15,7 +15,7 @@ function Home() {
   <div className="wrap">
     <div className="main">
 
-<h4>내가 원하는 변화? 0302</h4>
+<h4>짜식들 프로젝트 3월 2일</h4>
 
 
 <Button className="btn btn-primary">다이어트</Button> 
@@ -33,6 +33,7 @@ function Home() {
   <br/>대한 사람 대한으로 길이 보전하세 가을하늘 공활한데 높고 구름 없이 괴로우나 즐거우나
   <br/> 일편 단심일세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세</p>
 
+<div className="main-merit-img img-1"></div>
 </div>
 </Fade>
 
@@ -43,6 +44,7 @@ function Home() {
 <p>동해물과 백두산이 마르고 닳도록, 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산 
   <br/>대한 사람 대한으로 길이 보전하세 가을하늘 공활한데 높고 구름 없이 괴로우나 즐거우나
   <br/> 일편 단심일세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세</p>
+  <div className="main-merit-img img-2"></div>
 </div>
 </Fade>
 
@@ -54,6 +56,7 @@ function Home() {
 <p>동해물과 백두산이 마르고 닳도록, 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산 
   <br/>대한 사람 대한으로 길이 보전하세 가을하늘 공활한데 높고 구름 없이 괴로우나 즐거우나
   <br/> 일편 단심일세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세</p>
+  <div className="main-merit-img img-3"></div>
 </div>
 </Fade>
 

@@ -1,0 +1,104 @@
+.container{
+    margin: 50px 0 0 100px;
+    width: 1000px;
+    height: 500px;
+}
+
+div {
+    display: block;
+}
+
+p{
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    
+}
+
+th{
+    color: #333;
+    border-right: 1px solid #e5e5e5;
+    background: #f9f9f9;
+}
+
+td, th{
+    line-height: 14px;
+    text-align: left;
+    vertical-align: top;
+    letter-spacing: -1px;
+    border: 0;
+    border-top: 1px solid #e5e5e5;
+}
+
+.thcell{
+    padding: 35px 31px 32px;
+}
+
+
+.tdcell{
+    padding: 32px 0 32px 30px;
+}
+
+.contxt_tit{
+    font-size: 14px;
+    line-height: 16px;
+    color: #333;
+}
+
+.contxt_desc{
+    line-height: 19px;
+    padding-top: 10px;
+    color: #8e8e8e;
+}
+
+.btn_area_btm{
+    overflow: hidden;
+    margin-left: -8px;
+    padding-top: 14px;
+    text-align: left;
+}
+
+.contxt_tit2{
+    font-weight: 700;
+    padding-top: 27px;
+    color: #333;
+}
+    
+.btn2 {
+    border: 1px solid #bfbfbf;
+    background: #fff;
+    }
+
+.country_code {
+        font-size: 12px;
+        line-height: 27px;
+        display: inline-block;
+        float: left;
+        padding-left: 7px;
+        letter-spacing: 0;
+        color: #333;
+}
+.contxt_webctrl .country_code_w {
+    display: inline-block;
+    overflow: hidden;
+    min-width: 176px;
+    margin-left: 8px;
+    vertical-align: top;
+    border: 1px solid #ccc;
+}
+
+.country_code_w input {
+        float: left;
+        width: 147px;
+        margin-left: 4px;
+        padding-left: 0;
+        letter-spacing: 0;
+        border: 0;
+}
+
+.contxt_webctrl .country_drop {
+    width: 110px;
+}
+
