@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.zzasik.board.dao.BoardDAO">
+<resultMap id="BoardsResult" type="BoardVO">
+ <result property="user_id" column="user_id"/>
+    <result property="board_code" column="board_code" />
+    <result property="board_title" column="board_title" />
+    <result property="board_content" column="board_content" />
+    <result property="meal_type" column="meal_type" />
+    <result property="board_price" column="board_price" />
+    <result property="teacher_name" column="teacher_name" />
+    <result property="imageFilename" column="imageFilename" />
+    <result property="teacher_id" column="teacher_id" />
+
+  </resultMap> 
+  
+
+  <select id="selectAllBoardsList" resultMap="BoardsResult">
+    <![CDATA[
+      SELECT * FROM boardtbl
+    ]]>
+  </select>
+  
+    <select id="addNewBoard" parameterType="java.util.Map">
+
+     	<![CDATA[
+		INSERT into boardtbl(user_id,teacher_name,board_code,board_title,board_content,meal_type,board_price,imageFilename)
+		VALUES (#{user_id},#{teacher_name},#{board_code}, #{board_title}, #{board_content},	#{meal_type}, #{board_price},#{imageFilename})
+	]]>   
+  </select>
+  
+    <select id="selectBoard" resultType="BoardVO"   parameterType="int">
+    <![CDATA[
+      SELECT * from boardtbl
+      where board_code = #{board_code}		
+    ]]>
+  </select>
+  
+    <select id="selectNewBoardCode" resultType="int"  >
+		<![CDATA[ 
+			SELECT  IFNULL(max(board_code), 0) + 1 from boardtbl		
+		]]>
+	</select>
+	
+	   <select id="joinBoard" parameterType="java.util.Map">
+
+     	<![CDATA[
+		INSERT into joincart(user_id,board_code,teacher_id)
+		VALUES (#{user_id},#{board_code},#{teacher_id})
+	]]>   
+  </select>
+	
+	
+	  <select id="selectTeacherBoard" resultType="BoardVO" parameterType="String">
+    <![CDATA[
+      SELECT board_title, user_id , board_content  from boardtbl where user_id = #{user_id}; 
+    ]]>
+  </select>
+  
+</mapper>
