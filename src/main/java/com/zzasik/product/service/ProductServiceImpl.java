@@ -54,8 +54,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ProductVO getProductDetail(int pro_num) {		
-		return productDAO.selectProductOne(pro_num);
+	public ProductVO getProductDetail(int pro_code) {		
+		return productDAO.selectProductOne(pro_code);
 	}
 
 	@Override
@@ -68,26 +68,26 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public boolean deleteProduct(int pro_num) {
+	public boolean deleteProduct(int pro_code) {
 		int queryResult = 0;
 		
-		ProductVO product = productDAO.selectProductOne(pro_num);
+		ProductVO product = productDAO.selectProductOne(pro_code);
 		
 		if(product != null) {
-			queryResult = productDAO.deleteProduct(pro_num);
+			queryResult = productDAO.deleteProduct(pro_code);
 		}
 		
 		return (queryResult == 1) ? true : false;
 	}
 
 	@Override
-	public int updateCount(int pro_num) {
-		return productDAO.updateCount(pro_num);
+	public int updateCount(int pro_code) {
+		return productDAO.updateCount(pro_code);
 	}
 
 	@Override
-	public int updateAvail(int pro_num) {
-		return productDAO.updateAvail(pro_num);
+	public int updateAvail(int pro_code) {
+		return productDAO.updateAvail(pro_code);
 	}
 
 }
