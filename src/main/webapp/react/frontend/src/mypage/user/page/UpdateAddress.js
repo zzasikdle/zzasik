@@ -41,8 +41,7 @@ const UpdateAddress = () => {
     }
 
 
-    const Modal  = (props) => {
-        const { children, onClick } = props;
+    const Modal  = () => {
         
         return (
             
@@ -248,10 +247,6 @@ const UpdateAddress = () => {
                                         <input type="text" id="zipCode" className="ip_text" disabled="disabled" value={isZoneCode}
                                             ref={zoneRef} readOnly></input>
                                     </span>
-                                    {/* <button className="_search setting_btn green" onClick={onChangeOpenPost} >주소검색</button>
-                                    {isOpenPost  ? (
-                                        <DaumPostcode style={postCodeStyle} autoClose onComplete={handleComplete } />
-                                        ) : null}<br/> */}
 
                                     <button className="_search setting_btn green" onClick={onOpenModal} >주소검색</button>
                                     {modalOn ? <Modal ></Modal> : ''}
