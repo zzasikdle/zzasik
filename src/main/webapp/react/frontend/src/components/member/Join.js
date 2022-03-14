@@ -1,10 +1,12 @@
 import './Join.css';
 import axios from "axios";
-import { useState , useRef, useMemo, useCallback } from "react";
-import { Modal } from "react-bootstrap";
+import { useState , useRef, useCallback } from "react";
 import DaumPostcode from "react-daum-postcode";
 import { useHref } from "react-router";
 import { Link } from 'react-router-dom'; 
+
+//jquery 추가
+import $ from "jquery";
 
 const Join = () => {
 
@@ -24,7 +26,6 @@ const Join = () => {
     
     const check = document.getElementById("check");
     const pwdCorrect = document.getElementById("pwdCorrect");
-    
 
     // 오류메시지 상태저장
     const [nameMessage, setNameMessage] = useState('');
@@ -134,16 +135,35 @@ const Join = () => {
     setIsAddress(fullAddress); // 전체 주소.
     setUserAddress(true); // 주소 입력 완료.
     setIsOpenPost(false); // 주소 클릭 시팝업 창 자동 닫힘. 
+
+    $(".modal").attr("style","display:none"); //모달창 닫힘.
   };
 
   const postCodeStyle = {
     display: "block",
-    position: "absolute",
-    top: "50%",
+    margin: "auto",
     width: "400px",
     height: "500px",
     padding: "7px",
   };
+
+   //우편번호찾기 모달창
+    $(function(){ 
+        //우편번호찾기 버튼 클릭시, 모달창 띄움
+        $("#postCodeBtn").on("click",function(){
+            $(".modal").attr("style","display:block");
+            $(".modal_content").css({
+                 "top": (($(window).height()-$(".modal_content").outerHeight())/2+$(window).scrollTop())+"px",
+                 "left": (($(window).width()-$(".modal_content").outerWidth())/2+$(window).scrollLeft())+"px"
+                 //팝업창을 가운데로 띄우기 위해 현재 화면의 가운데 값과 스크롤 값을 계산하여 팝업창 CSS 설정     
+              }); 
+        });
+        
+        $("#btn_close_modal").on("click",function(){
+            $(".modal").attr("style","display:none");
+            onChangeOpenPost();
+        });
+     });
   
     /* 비밀번호 확인 */
     const pwdInput = useRef();
@@ -198,13 +218,14 @@ const Join = () => {
                 .post(baseUrl + '/member/join', 
                     {   
                         user_id:user_id, user_pwd:user_pwd,
-                        user_name:user_name , addr_1 : zoneRef.current.value,
+                        user_name:user_name ,
+                        addr_1 : zoneRef.current.value,
                         addr_2 : addRef.current.value , addr_3: addr_3,birth: birth,
                         phone : phone , email : email,
                         survey_code : survey_code , classification : classification
                     })
                 .then( (response) => {
-                    alert(' 회원가입 되었습니다.');
+                    alert(response.data.user_id + '님 회원가입 되었습니다.');
                     document.location.href='/member/login'; // 로그인 창으로 보내기.
                     }
                 )
@@ -212,6 +233,7 @@ const Join = () => {
                     console.log(error);
                 })
         }
+        
         if(check.innerHTML ==="✅" && pwdCorrect.innerHTML === "✅ 비밀번호가 일치 합니다."){
             handleJoin(); // 회원 가입 승인.
         }else{
@@ -225,7 +247,7 @@ const Join = () => {
     return (
         <>
         <div id="joinForm">
-                <div className="formbox">
+                <div className="formbox" style={{paddingTop:40}}>
                     <h3 class="join_title">아이디</h3>
                     <input
                     class="join_input"
@@ -310,9 +332,7 @@ const Join = () => {
                     />
                 </div>
                 <button id="postCodeBtn" type='button' onClick={onChangeOpenPost} >우편번호찾기</button>
-                {isOpenPost  ? (
-                <DaumPostcode style={postCodeStyle} autoClose onComplete={handleComplete } />
-                ) : null}<br/>
+                <br/>
                 <div className="formbox">
                     <h3 class="join_title">주소2</h3>
                     <input
@@ -366,6 +386,18 @@ const Join = () => {
                         disabled={!(isId && isName && isEmail && isPassword && isPasswordConfirm && isUserAddress)}
                     >회원가입</button></p>
 
+            </div>
+            <div class = "modal">
+                <div class= "modal_content">
+                    <div class= "modal_title">
+                        <h3 style={{color:"black",fontSize:25,margin:17}}>우편번호찾기</h3>
+                        <img src='/img/close.png' id="btn_close_modal" style={{width:30,height:30,marginLeft:200}}/>
+                    </div>
+                {isOpenPost  ? (
+                <DaumPostcode style={postCodeStyle} autoClose onComplete={handleComplete } />
+                ) : null}
+                </div>	
+                <div class="modal_layer"></div>
             </div>
         </>
     )

@@ -23,6 +23,38 @@
 		]]>  
 	</select>
 	
+	<insert id="insertNotice" parameterType="NoticeVO">
+		<![CDATA[
+			INSERT INTO noticetbl VALUES(#{notice_code},#{notice_title},#{notice_content},current_date())
+		]]>
+	</insert>
+	
+	<select id="maxNoticeNum" resultType="int">
+		<![CDATA[
+			   SELECT IFNULL(max(notice_code),0) from noticetbl
+		]]>  
+	</select>
+	
+	<select id="selectNotice" parameterType="int" resultType="NoticeVO">
+		<![CDATA[
+			  SELECT * FROM noticetbl WHERE notice_code=#{notice_code}
+		]]>
+	</select>
+	
+	<delete id="deleteNotice" parameterType="int">
+		<![CDATA[
+			  DELETE FROM noticetbl WHERE notice_code=#{notice_code}
+		]]>
+	</delete>
+	
+	<update id="updateNotice" parameterType="NoticeVO">
+		<![CDATA[
+			  UPDATE noticetbl 
+			  SET notice_title=#{notice_title},notice_content=#{notice_content}
+			  WHERE notice_code=#{notice_code}
+		]]>
+	</update>
+	
 	<!-- 회원 권한 수정 -->
 	
 	<update id="handleClassification" parameterType="MemberVO">
