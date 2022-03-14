@@ -2,12 +2,12 @@ import './AdminViewProduct.css';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../config";
+import { useHistory } from 'react-router-dom';
 
 const UserViewProduct = ( ) => {
 
-    const navigate = useNavigate();
+    const history = useHistory();
 
     const [product, setProduct] = useState({});
     const {pro_code} = useParams();
@@ -21,6 +21,7 @@ const UserViewProduct = ( ) => {
     const [pro_price, setPrice] = useState(product.pro_price);
     const [pro_detail, setDetail] = useState(product.pro_detail);
     const [pro_img, setImg] = useState('');
+    const [quantity, setQuantity] = useState('');
     const [disabled, setDisabled] = useState(true);
 
     const [image, setImage] = useState('');
@@ -53,7 +54,7 @@ const UserViewProduct = ( ) => {
              {headers : {"Content-Type":"multipart/form-data; boundary=${formData._boundary"}})
         .then((response) => {
             alert(response.data.message);
-            navigate(response.data.path);
+            history.push(response.data.path);
         })
         .catch((error) => {
             console.log(error);
@@ -61,11 +62,19 @@ const UserViewProduct = ( ) => {
     }
 
     const orderProduct = () => {
-        navigate("/")
+        history.push("/")
     }
 
     const backToList = () => {
-        navigate("/shop/product/list")
+        history.push("/shop/product")
+    }
+
+    const plus = ( ) => {
+
+    }
+
+    const minus = ( ) => {
+
     }
 
     return (

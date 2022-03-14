@@ -4,16 +4,16 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { baseUrl } from '../config'
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const AdminProductList = ( ) => {
 
     const [ productList, setProductList ] = useState([]);
 
-    const navigate = useNavigate();
+    const history = useHistory();
 
     const writeProduct = ( ) => {
-        navigate("/admin/product/new");
+        history.push("/admin/product/new");
     }
 
     useEffect(( ) => {
@@ -31,13 +31,15 @@ const AdminProductList = ( ) => {
     let result = [];
 
     return (
-        <div>
+        <div id="con">
             <div className='leftBtn'>
-                {/* {sessionStorage.classification === 0 ? */}
+                {console.log("classification:" + (sessionStorage.classification))}
+                {sessionStorage.classification === "0" ?
                     <>
                         <input type="button" value="글쓰기" onClick={writeProduct} />
+                        <button><Link to='/admin/product/new'>글쓰기</Link></button>
                     </>
-                {/* : null } */}
+                : null }
             </div>
 
             <div id="wrapper">

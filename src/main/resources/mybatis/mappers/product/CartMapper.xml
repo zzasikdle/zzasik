@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zzasik.product.dao.CartDAO">
+<mapper namespace="com.zzasik.productCart.dao.CartDAO">
 	<resultMap type="cartVO" id="cartResult">
 		<result property="user_id" column="user_id" />
 		<result property="pro_code" column="pro_code" />
@@ -14,10 +14,11 @@
 	</sql>
 
 	<!-- 장바구니 목록 -->
-	<select id="selectCartList" parameterType="productVO" resultMap="productResult">
+	<select id="selectCartList" resultMap="cartResult">
 	SELECT *
-	FROM product_cart
-	WHERE user_id = #{user_id}
+	FROM product_cart c
+	JOIN producttbl p ON c.pro_code = p.pro_code
+	WHERE c.user_id = #{user_id}
 	</select>
 	
 	<!-- 장바구니 상품 추가 -->
@@ -32,4 +33,9 @@
 	FROM product_cart
 	WHERE user_id = #{user_id} AND pro_code = #{pro_code}
 	</delete>
+	
+	<select id="selectTotalCount" resultType="int">
+	SELECT count(*)
+	FROM product_cart
+	</select>
 </mapper>
