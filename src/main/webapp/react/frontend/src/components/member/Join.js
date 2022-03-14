@@ -136,7 +136,7 @@ const Join = () => {
     setUserAddress(true); // 주소 입력 완료.
     setIsOpenPost(false); // 주소 클릭 시팝업 창 자동 닫힘. 
 
-    $(".modal").attr("style","display:none"); //모달창 닫힘.
+    $(".j_modal").attr("style","display:none"); //모달창 닫힘.
   };
 
   const postCodeStyle = {
@@ -151,7 +151,7 @@ const Join = () => {
     $(function(){ 
         //우편번호찾기 버튼 클릭시, 모달창 띄움
         $("#postCodeBtn").on("click",function(){
-            $(".modal").attr("style","display:block");
+            $(".j_modal").attr("style","display:block");
             $(".modal_content").css({
                  "top": (($(window).height()-$(".modal_content").outerHeight())/2+$(window).scrollTop())+"px",
                  "left": (($(window).width()-$(".modal_content").outerWidth())/2+$(window).scrollLeft())+"px"
@@ -160,7 +160,7 @@ const Join = () => {
         });
         
         $("#btn_close_modal").on("click",function(){
-            $(".modal").attr("style","display:none");
+            $(".j_modal").attr("style","display:none");
             onChangeOpenPost();
         });
      });
@@ -387,7 +387,7 @@ const Join = () => {
                     >회원가입</button></p>
 
             </div>
-            <div class = "modal">
+            <div class = "j_modal">
                 <div class= "modal_content">
                     <div class= "modal_title">
                         <h3 style={{color:"black",fontSize:25,margin:17}}>우편번호찾기</h3>
