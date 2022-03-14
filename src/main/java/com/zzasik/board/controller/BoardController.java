@@ -30,7 +30,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.zzasik.board.service.BoardService;
 import com.zzasik.board.vo.BoardVO;
-
+ 
 @CrossOrigin("*")
 @RestController("boardController")
 public class BoardController {
@@ -42,10 +42,10 @@ public class BoardController {
 	@Autowired
 	private BoardVO boardVO;
 	
-	public BoardController() {
+	public BoardController() { 
 		
 	}
-
+  
 
 	@GetMapping(value = "/board/listBoards")
 	@PostMapping(value = "/board/listBoards")
@@ -55,7 +55,7 @@ public class BoardController {
 		System.out.println(BoardsList);
 		return BoardsList;
 	}
-	
+	 
 @PostMapping(value = "/board/addNewBoard")
 public ResponseEntity addNewBoard(MultipartHttpServletRequest multipartRequest,  HttpServletResponse response) throws Exception {
 	multipartRequest.setCharacterEncoding("utf-8");
@@ -144,11 +144,17 @@ public void joinBoard(@RequestParam("board_code") String board_code, @RequestPar
 	boardService.joinBoard(joinMap);
 }
 
-
-
-
-
+//teacherBoard º¸±â
+@GetMapping(value="/board/teacherBoard")
+public List<BoardVO> teacherBoard(@RequestParam("user_id") String user_id ,HttpServletRequest request, 
+		HttpServletResponse response) throws Exception {
+	System.out.println("user_id="+user_id);
 	
+	List<BoardVO> teahcerList =  boardService.viewTeacherBoard(user_id);
+	
+	return teahcerList;
+}
+
 	
 } // end class()
 	

@@ -27,7 +27,7 @@ import MemberList from './mypage/admin/component/MemberList'
 import WriteBoard from './components/board/writeboard';
 import BoardList from './components/board/boardList';
 import ViewBoard from './components/board/viewboard';
-import teacherBoard from './components/board/teacherBoard';
+import TeacherBoard from './components/board/teacherBoard';
 
 
 //Notice
@@ -57,7 +57,7 @@ function App() {
         <Route path="/writeboard" component={WriteBoard} />
         <Route path="/board/list" component={BoardList} />
         <Route path="/board/viewboard/:board_code" component={ViewBoard} />
-        <Route path="/board/teacherBoard" component={teacherBoard} />
+        <Route path="/board/teacherBoard" component={TeacherBoard} />
         
         <Route exact path="/notice"><NoticePage/></Route>
         <Route exact path="/notice/new"><MyEditor/></Route>
