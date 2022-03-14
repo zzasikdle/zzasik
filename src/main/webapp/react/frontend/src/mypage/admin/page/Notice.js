@@ -13,7 +13,7 @@ function Notice(){
                 <div className="box table-section">
                     <div className="box_header">
                     <h2>공지 사항</h2>
-                    <Link to='/notice' className='manage'>관리하기<img style={{height:16,width:16,marginTop:5}} src='/img/arrow.png'/></Link>
+                    <Link to='/notice' className='manage'>관리하기<img style={{height:16,width:16,marginTop:2}} src='/img/arrow.png'/></Link>
                     </div>
                     {NoticeList()}
                 </div>

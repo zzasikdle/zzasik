@@ -26,6 +26,7 @@
     "html-to-draftjs": "^1.5.0",
 >>>>>>> branch 'main' of https://github.com/zzasikdle/zzasik.git
     "http-proxy-middleware": "^2.0.3",
+    "jquery": "^3.6.0",
     "node-sass": "^7.0.1",
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.2",

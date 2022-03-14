@@ -24,12 +24,12 @@ function SidebarItem({menu,isActive}){
     return isActive === true ? (
         <div className="sidebar-item active">
 
-          <p>{menu.name}</p>
+          <p style={{color:"#3F497A",fontWeight:550, paddingLeft:40}}>{menu.name}</p>
         </div>
       ) : (
         <div className="sidebar-item ">
 
-          <p>{menu.name}</p>
+          <p style={{paddingLeft:40}}>{menu.name}</p>
         </div>
       );
 }

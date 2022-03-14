@@ -82,7 +82,7 @@ border-radius: 2px !important;
     padding: 100px 0 100px 0;
 }
 
-.notice-container button{
+.noticeBtn{
     width: 65px;
     height: 30px;
     padding-top: 30px;
@@ -94,10 +94,10 @@ border-radius: 2px !important;
 	box-shadow: 0 2px 4px #BDBDBD;
     
 }
-.notice-container button:focus {
+.noticeBtn:focus {
 	outline:0;
 }
-.notice-container button:hover{
+.noticeBtn:hover{
 	background: #3F497A;
 	cursor: pointer;
 	box-shadow: 0 2px 4px #3F497A;

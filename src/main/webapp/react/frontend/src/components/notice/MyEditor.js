@@ -98,8 +98,8 @@ const MyEditor = () => {
             // 에디터의 값이 변경될 때마다 onEditorStateChange 호출
             onEditorStateChange={onEditorStateChange}
           />
-          <button onClick={checkReg}>작성하기</button>
-          <button onClick={checkCencel} >취소</button>
+          <button className="noticeBtn" onClick={checkReg}>작성하기</button>
+          <button className="noticeBtn" onClick={checkCencel} >취소</button>
         </div>
       </div>
   );
