@@ -3,6 +3,8 @@ import { useRef, useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
 import './addAddress.css';
 
+
+
 const AddAddress = () => {
 
     const baseUrl = "http://localhost:8090";
@@ -18,8 +20,6 @@ const AddAddress = () => {
     
 
     /* 서버로 넘겨줄 값. */
-
-    const [ phone , setPhone] = useState('');
 
     const addr_title = useRef();
     const addr_receiver = useRef();
@@ -41,7 +41,7 @@ const AddAddress = () => {
     const Modal  = () => {
         
         return (
-            
+    
             <div className="modal"> 
                         <div className="bg"></div>
                          <div className="modalBox"> 
@@ -51,8 +51,7 @@ const AddAddress = () => {
                                         <th className="cell_title">우편번호</th>
                                         <td>
                                             <span className="_editable_input _input basic_input focus" style={{width: "133px"}}>
-                                                <label htmlFor="addressName" className="lb_text blind">배송지명 입력</label>
-                                                <input type="text" id="addressName" className="ip_text" value={isZoneCode}  maxLength="150"/>
+                                                <input type="text" id="addressName" className="ip_text" value={isZoneCode}  maxLength="150" readOnly/>
                                                
                                             </span>
                                             <button onClick={onChangeOpenPost}>주소검색</button>
@@ -66,8 +65,7 @@ const AddAddress = () => {
                                         <th className="cell_title">주소 </th>
                                         <td>
                                             <span className="_editable_input _input basic_input focus" style={{width: "133px"}}>
-                                                <label htmlFor="addressName" className="lb_text blind">배송지명 입력</label>
-                                                <input type="text" id="addressName" className="ip_text"  value={isAddress}  maxLength="150"/>
+                                                <input type="text" id="addressName" className="ip_text"  value={isAddress}  maxLength="150" readOnly/>
                                                     
                                         
                                                 
