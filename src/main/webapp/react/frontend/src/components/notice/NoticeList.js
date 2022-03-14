@@ -1,11 +1,16 @@
 import { useEffect } from "react";
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import React, {useState} from 'react';
-import './MemberList.css';
+import { Link } from 'react-router-dom';
+import Pagination from "./Pagination";
 
 const NoticeList = () => {
-    const [ noticeList,setNoticeList] = useState([]);
+    const [ noticeList,setNoticeList] = useState([]);   //공지사항 리스트
+    const [ limit, setLimit] = useState(10);    //한 페이지당 표시할 게시물 개수
+    const [ page, setPage] = useState(1);
+    const offset = (page - 1) * limit;
+
+
 
     useEffect(()=>{
         axios
@@ -20,11 +25,7 @@ const NoticeList = () => {
     },[]);
 
     return (
-        <div className="box table-section">
-            <div className="box_header">
-            <h2>공지 사항</h2>
-            <Link to='/' className='manage'>관리하기<img style={{height:16,width:16,marginTop:5}} src='/img/arrow.png'/></Link>
-            </div>
+        <>
             <table class="tb" style={{cellspacing:"0",border:"1"}}>
                 <colgroup>
                     <col width="40"/>
@@ -48,11 +49,11 @@ const NoticeList = () => {
                             </p></td>
                     </tr>
                     :
-                    noticeList.map((notice,key) => {
+                    noticeList.slice(offset, offset + limit).map((notice,key) => {
                         return(
                             <tr>
-                                <td id='notice_code'>{notice.notice_code}</td>
-                                <td id='notice_title'>{notice.notice_title}</td>
+                                <td id='notice_code'>{offset+key+1}</td>
+                                <td id='notice_title'><Link to={`/notice/${notice.notice_code}`}>{notice.notice_title}</Link></td>
                                 <td id='notice_regdate'>{notice.notice_regdate}</td>
                             </tr>
                         )
@@ -60,7 +61,15 @@ const NoticeList = () => {
                     }
                 </tbody>
             </table>
-        </div>
+            <footer>
+            <Pagination
+                total={noticeList.length}
+                limit={limit}
+                page={page}
+                setPage={setPage}
+            />
+        </footer>
+        </>
     )
 }
 

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { Link } from 'react-router-dom';
 
 
 const Login = ( ) => {
@@ -35,7 +36,9 @@ const Login = ( ) => {
                         sessionStorage.setItem('user_name', response.data.user_name);
                         sessionStorage.setItem('success', response.data.success);
                         sessionStorage.setItem('user_id', response.data.user_id);
+                        sessionStorage.setItem('phone', response.data.phone);
                         sessionStorage.setItem('classification', response.data.classification);
+                        sessionStorage.setItem('survey_code', response.data.survey_code);
                         
                         document.location.href='/';
                     }else {
@@ -50,12 +53,13 @@ const Login = ( ) => {
         setId('');
         setPwd(''); // 로그인 후 빈칸으로 초기화 
     }
-
+        
     return (
         <div id="loginForm">
             <p><FontAwesomeIcon icon={faUser} /> <input type="search" placeholder="아이디" onChange={handleId} value={user_id} /></p>
             <p><FontAwesomeIcon icon={faLock} /> <input type="password" placeholder="비밀번호" onChange={handlePwd} value={user_pwd}/></p>
             <p><button className="LoginBtn" onClick={handleSubmit}>로그인</button></p>
+            <Link className="joinBtn" to="/member/Join">회원가입</Link>
         </div>
     );
 };

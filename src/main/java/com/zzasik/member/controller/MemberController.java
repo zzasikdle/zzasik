@@ -32,14 +32,14 @@ import com.zzasik.member.vo.MemberVO;
 public class MemberController {
 	
 	@Autowired
-	private MemberService memberService;
+	private MemberService memberService ;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	
+	  
 	public MemberController() {
-		
+		 
 	}
 	
 	/* 로그인 */
@@ -107,13 +107,13 @@ public class MemberController {
 		String user_id = memberVO.getUser_id(); 
 		
 		
-		int cnt = memberService.findMemberById(user_id); // 존재하는 id면  cnt =1 일 것.
-		// 존재하지 않으면 null 에러가 나버림 . 어떻게 하지? -> try ~ catch문으로 null 에러 받기.
+		int cnt = memberService.findMemberById(user_id); // 議댁옱�븯�뒗 id硫�  cnt =1 �씪 寃�.
+		// 議댁옱�븯吏� �븡�쑝硫� null �뿉�윭媛� �굹踰꾨┝ . �뼱�뼸寃� �븯吏�? -> try ~ catch臾몄쑝濡� null �뿉�윭 諛쏄린.
 		
 		
-		System.out.println("존재하는 아이디 입니다. : "+ memberVO.getUser_name());
+		System.out.println("議댁옱�븯�뒗 �븘�씠�뵒 �엯�땲�떎. : "+ memberVO.getUser_name());
 		
-		boolean existing =  cnt != 0 ? true : false; // cnt가 1이면 true(중복된아이디) , 0이면 false (사용가능아이디 ) 
+		boolean existing =  cnt != 0 ? true : false; // cnt媛� 1�씠硫� true(以묐났�맂�븘�씠�뵒) , 0�씠硫� false (�궗�슜媛��뒫�븘�씠�뵒 ) 
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("existing", existing);
@@ -151,31 +151,31 @@ public class MemberController {
 	@PostMapping("/member/modMemberPhone")
 	public  Map<String, Object> modMemberPhone(@RequestBody MemberVO memberVO ) throws Exception {
 	
-		String user_id = memberVO.getUser_id();  // 세션에서 받아온 아이디.
-		String phone = memberVO.getPhone();// 바꾸고자 하는 이름.
+		String user_id = memberVO.getUser_id();  // �꽭�뀡�뿉�꽌 諛쏆븘�삩 �븘�씠�뵒.
+		String phone = memberVO.getPhone();// 諛붽씀怨좎옄 �븯�뒗 �씠由�.
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		try {
 			
-			int modResult = memberService.modMemberPhone(memberVO);		//family에 데이터 insert 
-			map.put("message", "휴대전화번호가 변경 되었습니다."); 
+			int modResult = memberService.modMemberPhone(memberVO);		//family�뿉 �뜲�씠�꽣 insert 
+			map.put("message", "�쑕���쟾�솕踰덊샇媛� 蹂�寃� �릺�뿀�뒿�땲�떎."); 
 			
 		}catch (Exception e) {
-			map.put("message", "휴대전화번호가 변경에 실패 하였습니다."); 
+			map.put("message", "�쑕���쟾�솕踰덊샇媛� 蹂�寃쎌뿉 �떎�뙣 �븯���뒿�땲�떎."); 
 				e.printStackTrace();
 			}
 		return map; 
 	}
 	
-	/* 배송지 리스트 가져오기 */
+	/* 諛곗넚吏� 由ъ뒪�듃 媛��졇�삤湲� */
 	//@RequestParam("user_id") String user_id
 	@GetMapping("/member/listAddress")
 	public List<AddressVO> listAddress(@RequestParam("user_id") String user_id , HttpServletRequest request, HttpServletResponse response) throws Exception {
 	  
 		MemberVO memberVO = new MemberVO();
 		memberVO.setUser_id(user_id);
-		System.out.println("테스트중입니다." + memberVO.getUser_id());
+		System.out.println("�뀒�뒪�듃以묒엯�땲�떎." + memberVO.getUser_id());
 		List<AddressVO> AddressList = memberService.listAddress(memberVO);	
 	    System.out.println(AddressList);
 			

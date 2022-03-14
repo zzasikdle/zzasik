@@ -1,7 +1,6 @@
 import './Join.css';
 import axios from "axios";
-import { useState , useRef, useMemo, useCallback } from "react";
-import { Modal } from "react-bootstrap";
+import { useState , useRef, useCallback } from "react";
 import DaumPostcode from "react-daum-postcode";
 import { useHref } from "react-router";
 import { Link } from 'react-router-dom'; 
@@ -38,6 +37,7 @@ const Join = () => {
     const [isEmail, setIsEmail] = useState(false);
     const [isPassword, setIsPassword] = useState(false);
     const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
+    const [isUserAddress ,setUserAddress] = useState(false);
 
 
     //https://wonyoung2257.tistory.com/4  참고하여 간략하게 바꾸기.
@@ -131,6 +131,7 @@ const Join = () => {
 
     setIsZoneCode(data.zonecode); // 우편번호 삽입.
     setIsAddress(fullAddress); // 전체 주소.
+    setUserAddress(true); // 주소 입력 완료.
     setIsOpenPost(false); // 주소 클릭 시팝업 창 자동 닫힘. 
   };
 
@@ -196,13 +197,14 @@ const Join = () => {
                 .post(baseUrl + '/member/join', 
                     {   
                         user_id:user_id, user_pwd:user_pwd,
-                        user_name:user_name , addr_1 : zoneRef.current.value,
+                        user_name:user_name ,
+                        addr_1 : zoneRef.current.value,
                         addr_2 : addRef.current.value , addr_3: addr_3,birth: birth,
                         phone : phone , email : email,
                         survey_code : survey_code , classification : classification
                     })
                 .then( (response) => {
-                    alert(' 회원가입 되었습니다.');
+                    alert(response.data.user_id + '님 회원가입 되었습니다.');
                     document.location.href='/member/login'; // 로그인 창으로 보내기.
                     }
                 )
@@ -210,6 +212,7 @@ const Join = () => {
                     console.log(error);
                 })
         }
+        
         if(check.innerHTML ==="✅" && pwdCorrect.innerHTML === "✅ 비밀번호가 일치 합니다."){
             handleJoin(); // 회원 가입 승인.
         }else{
@@ -345,8 +348,8 @@ const Join = () => {
                     />
                 
                     <br/>
-                    <span className={`${isEmail ? 'success' : 'error'}`}>{emailMessage}</span>
                 </div>
+                    <span className={`${isEmail ? 'success' : 'error'}`}>{emailMessage}</span>
 
                 <div className="formbox">
                     <h3 class="join_title">설문조사 코드</h3>
@@ -361,7 +364,7 @@ const Join = () => {
                 </div>
                     
                     <p><button id="joinBtn" onClick={handleJoin}
-                        disabled={!(isId && isName && isEmail && isPassword && isPasswordConfirm)}
+                        disabled={!(isId && isName && isEmail && isPassword && isPasswordConfirm && isUserAddress)}
                     >회원가입</button></p>
 
             </div>

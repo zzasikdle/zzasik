@@ -62,12 +62,15 @@ function MainNav(props) {
                     <Nav.Link href="/member/login">로그인</Nav.Link>
           }
           {sessionStorage.getItem('classification')==='0'?
-                    <Nav.Link href="/" onClick={onLogout} >관리자 페이지</Nav.Link>
+                    <Nav.Link href="/mypage/admin/member" >관리자 페이지</Nav.Link>
                     :
-                    <Nav.Link href="/member/login">로그인</Nav.Link>
+                    null
           }
-          
           <Nav.Link href="#action2">짜식들</Nav.Link>
+          
+          <Nav.Link href="/board/list">게시판 리스트</Nav.Link>
+          <Nav.Link href="/writeboard">글쓰기</Nav.Link>
+           <Nav.Link href="/board/teacherBoard">teacherBoard</Nav.Link>
           <NavDropdown title="마이페이지" id="offcanvasNavbarDropdown">
             <NavDropdown.Item href="/myhome">나의 정보</NavDropdown.Item>
             <NavDropdown.Item href="#action3">식단 추천</NavDropdown.Item>
