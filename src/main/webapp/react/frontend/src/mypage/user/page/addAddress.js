@@ -63,7 +63,7 @@ const AddAddress = () => {
                                     </tr>
 
                                     <tr>
-                                        <th className="cell_title">주소</th>
+                                        <th className="cell_title">주소 </th>
                                         <td>
                                             <span className="_editable_input _input basic_input focus" style={{width: "133px"}}>
                                                 <label htmlFor="addressName" className="lb_text blind">배송지명 입력</label>
