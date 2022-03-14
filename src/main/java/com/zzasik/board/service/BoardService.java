@@ -12,5 +12,8 @@ public interface BoardService {
 	public void joinBoard(Map joinMap) throws Exception;
 	public BoardVO viewBoard(int board_code) throws Exception;
 	public List<BoardVO> viewTeacherBoard(String user_id) throws Exception;
+	public void delBoard(Map delMap) throws Exception;
+	public void modifyBoard(Map boardMap) throws Exception;
+	
 	
 } 

@@ -65,6 +65,42 @@ const ViewBoard = () => {
 
     }
 
+
+    const modifyBtn = async () => {
+        alert("해당 글을 수정하시겠습니까?")
+        document.location.href=`/board/modifyBoard/${board.board_code}`;
+
+    }
+   
+
+
+    const delBtn = async () => {
+        alert("정말 삭제하시겠습니까? ")
+
+
+        await axios
+            .get(baseUrl + "/board/delBoard", {
+                params:
+                {
+                    board_code: board_code,
+
+                }
+            }
+
+            ).then(() => {
+                document.location.href='/board/list';
+
+            })
+
+            .catch((error) => {
+              
+
+
+            })
+
+    }
+
+
     let codes = board.board_content;
     return (
 
@@ -97,6 +133,24 @@ const ViewBoard = () => {
                     <div class="evenet_div_2"><a class="temp_3">유형</a><a class="temp_4">{board.meal_type}</a></div>
                     <div class="evenet_div_2"><a class="temp_3">코치</a><a class="temp_4">{board.teacher_name}강사님</a></div>
                     <div class="join_btn"><button class="join_btn" onClick={joinBtn}>신청하기</button></div>
+                    <br />
+                    <br />
+
+                    <div>
+                    {
+                        board.user_id === sessionStorage.getItem('user_id')
+                        ?
+        <>  <div class="join_btn"><button class="join_btn" onClick={modifyBtn}>수정하기</button></div>
+                    <div class="join_btn"><button class="join_btn" onClick={delBtn}>삭제하기</button></div>
+                    </>
+
+                    :null
+                }
+                    </div>
+
+
+
+
                 </div>
 
 
@@ -160,9 +214,7 @@ const ViewBoard = () => {
 
                 <div class="asdasd">
                     <div dangerouslySetInnerHTML={{ __html: codes }}></div>
-                    <div>meal_type</div><div>{board.meal_type}</div>
-                    <div>teacher_name</div><div>{board.teacher_name}</div>
-                    <div>{board.user_id}</div>
+           
                     </div>
                 </div>
 

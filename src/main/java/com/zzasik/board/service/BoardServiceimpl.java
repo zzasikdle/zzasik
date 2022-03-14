@@ -56,7 +56,16 @@ public class BoardServiceimpl implements BoardService {
 	}
 	
 	
+	public void delBoard(Map delMap) throws Exception {	
+		boardDAO.delBoard(delMap);
+	}
 	
 	
+	@Override
+	public void modifyBoard(Map boardMap) throws Exception {
+		boardDAO.modifyBoard(boardMap);
+		
+	}
 	
-}
+	
+}// end class() 

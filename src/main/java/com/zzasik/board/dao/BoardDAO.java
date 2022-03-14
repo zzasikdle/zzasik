@@ -21,6 +21,8 @@ public interface BoardDAO {
 	public int selectNewBoardCode() throws DataAccessException;
 	public BoardVO selectBoard(int board_code) throws DataAccessException;
 	public List selectTeacherBoard(String user_id) throws DataAccessException;
+	public void delBoard (Map delMap) throws DataAccessException;
+	public void modifyBoard(Map boardMap) throws DataAccessException;
 	
 	
 }
