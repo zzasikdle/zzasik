@@ -67,7 +67,7 @@ public ResponseEntity addNewBoard(MultipartHttpServletRequest multipartRequest, 
 		System.out.printf("%s %s\n", name, value);
 		boardMap.put(name, value);
 	}
-	 
+	  
 	String imageFilename = upload(multipartRequest);
 	boardMap.put("board_code", 0);
 	boardMap.put("imageFilename", imageFilename);
