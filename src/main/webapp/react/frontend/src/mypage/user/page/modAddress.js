@@ -7,10 +7,9 @@ import './modAddress.css';
 const ModAddress = () => {
 
     const baseUrl = "http://localhost:8090";
-    const addr_receiver = this.Address.addr_receiver;
-    console.log(addr_receiver);
+    const {addr_receiver} = useParams(); // 원래 receiver 
     const user_id = sessionStorage.getItem("user_id");
-    const [ Address,  setAddress] = useState('');
+    const [ Address,  setAddress] = useState({}); // Address는 key값과 value로 이루어진 객체이기 떄문에 {}로 받아줘야 값을 정상적으로 받을 수 있다.
 
     /* 휴대전화 */
     const [ codeNo , setCodeNo] = useState('');
@@ -20,11 +19,102 @@ const ModAddress = () => {
 
     /* 서버로 넘겨줄 값. */
 
-    const [ phone , setPhone] = useState('');
-
-    const addr_title = useRef();
-    //const addr_receiver = useRef();
+    const [ addr_title , setAddr_title ]  = useState(Address.title);
+    const [ addr_Revisedreceiver , setRevisedreceiver ] = useState(addr_receiver);
+    const  [ addr_phone , setAddr_phone ]  = useState(Address.phone);
+    const [ addr_1 , setAddr_1 ] = useState(Address.addr_1);
+    const [ addr_2 , setAddr_2 ] = useState(Address.addr_2);
+    const [ addr_3 , setAddr_3 ] = useState(Address.addr_3);
     
+    const handleAddr_title = (e) => {
+        setAddr_title(e.target.value);
+    }
+    const handleReceiver = (e) => {
+        setRevisedreceiver(e.target.value);
+    }
+    
+
+    const handlePhone = () => {
+        setAddr_phone(codeNo + secondPhone + thirdPhone) ; 
+    }
+    const handleAddr_1 = (e) => {
+        setAddr_1(e.target.value);
+    }
+    const handleAddr_2 = (e) => {
+        setAddr_2(e.target.value);
+    }
+    const handleAddr_3 = (e) => {
+        setAddr_3(e.target.value);
+    }
+    
+    /* 주소 검색 팝업  */
+    const [modalOn , setModalOn] = useState(false);
+    const onOpenModal = ()=>{
+        setModalOn(!modalOn);
+    }
+
+    const handleAddress = () => {
+        // id 가 zipcode 인 input을 가져와서 value를 addr_1로  바꿔주기.
+        zoneRef.current.value = isZoneCode;
+        addRef.current.value= isAddress;
+        onOpenModal();
+    }
+
+
+    const Modal  = (props) => {
+        const { children, onClick } = props;
+        
+        return (
+            
+            <div className="modal"> 
+                        <div className="bg"></div>
+                         <div className="modalBox"> 
+                            <table className="tbl_delivery_info">
+                                <tbody>
+                                    <tr>
+                                        <th className="cell_title">우편번호</th>
+                                        <td>
+                                            <span className="_editable_input _input basic_input focus" style={{width: "133px"}}>
+                                                <label htmlFor="addressName" className="lb_text blind">배송지명 입력</label>
+                                                <input type="text" id="addressName" className="ip_text" onChange={handleAddr_1} value={isZoneCode}  maxLength="150"/>
+                                               
+                                            </span>
+                                            <button onClick={onChangeOpenPost}>주소검색</button>
+                                                {isOpenPost  ? (
+                                                    <DaumPostcode style={postCodeStyle} autoClose onComplete={handleComplete } />
+                                                    ) : null}<br/> 
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th className="cell_title">주소</th>
+                                        <td>
+                                            <span className="_editable_input _input basic_input focus" style={{width: "133px"}}>
+                                                <label htmlFor="addressName" className="lb_text blind">배송지명 입력</label>
+                                                <input type="text" id="addressName" className="ip_text"  onChange={handleAddr_2} value={isAddress}  maxLength="150"/>
+                                                    
+                                        
+                                                
+                                            </span>
+                                            
+                                        </td>
+                                    </tr>
+                                    
+            
+                                    
+
+
+                                    <div id="pop_footer" class="btn_footer">
+                                        <button  onClick={handleAddress}>저장</button> 
+                                        <button  onClick={onOpenModal}>닫기</button> 
+                                    </div>
+                                </tbody>
+                            </table>
+                        </div> 
+            </div>
+          )
+    }
+
     
     /* 주소 검색 api */
 
@@ -78,7 +168,7 @@ const ModAddress = () => {
     // 전화번호
     
     const handleCodeNo = (e) => {
-        setCodeNo(e.target.value); // 지역번호 저장.
+        setCodeNo(e.target.value);
     }
 
     const handleSecondPhone = (e) => {
@@ -90,41 +180,50 @@ const ModAddress = () => {
     }
     
 
+    // 기본 값 을 useState를 써서 기본값으로 저장해놓고 바뀐값만 업데이트 되도록 한다.
 
-    // function addAddress(e) {
+    function updateAddress(e) {
 
-    //     const addr_phone = codeNo + secondPhone + thirdPhone ; 
+        handlePhone(); // 전화번호 융합.
         
-    //     const addAddress = async() => {
+        console.log(addr_title);
+        console.log(addr_receiver);
+        console.log(addr_title);
+        console.log(addr_title);
+        console.log(addr_title);
+
+        const updateAddress = async() => {
             
-    //         await axios
-    //             .post(baseUrl + '/member/addAddress', 
-    //                 {   
-    //                     user_id:user_id, addr_title: addr_title.current.value,
-    //                     addr_receiver :addr_receiver.current.value,
-    //                     addr_phone : addr_phone,
-    //                     addr_1 : zoneRef.current.value,
-    //                     addr_2 : addRef.current.value , addr_3: addDeRef.current.value
-    //                 })
-    //             .then( (response) => {
-    //                 alert(response.data.message);
-    //                 document.location.href='/myhome/myAddress';
-    //                 }
-    //             )
-    //             .catch((error) => {
-    //                 console.log(error);
-    //             })
-    //     }
+            await axios
+                .post(baseUrl + '/member/updateAddress', 
+                    {   
+                        user_id:user_id, addr_title: addr_title,
+                        addr_receiver : addr_receiver ,  // 원래 receiver , params 값
+                        addr_Revisedreceiver : addr_Revisedreceiver, // 바뀔 수령인
+                        addr_phone : addr_phone,
+                        addr_1 : addr_1,
+                        addr_2 : addr_2 , addr_3: addr_3
+                    })
+                .then( (response) => {
+                    alert(response.data.message);
+                    document.location.href='/myhome/myAddress';
+                    }
+                )
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
         
-    //     // if(check.innerHTML ==="✅" && pwdCorrect.innerHTML === "✅ 비밀번호가 일치 합니다."){
-    //     //     handleJoin(); // 회원 가입 승인.
-    //     // }else{
-    //     //     alert('필수 정보를 입력 해주세요.');
-    //     // }
+        // if(check.innerHTML ==="✅" && pwdCorrect.innerHTML === "✅ 비밀번호가 일치 합니다."){
+        //     handleJoin(); // 회원 가입 승인.
+        // }else{
+        //     alert('필수 정보를 입력 해주세요.');
+        // }
 
-    //     addAddress(); // 함수 실행.
-    // } 
+        updateAddress(); // 함수 실행.
+    } 
 
+    
     
 
     useEffect(()=>{
@@ -136,7 +235,6 @@ const ModAddress = () => {
                 console.log(error);
             })
     },[user_id]);
-
 
     return (
         <>
@@ -159,8 +257,8 @@ const ModAddress = () => {
                                 <th className="cell_title">배송지명</th>
                                 <td>
                                     <span className="_editable_input _input basic_input focus" style={{width: "133px"}}>
-                                        <label for="addressName" className="lb_text blind">배송지명 입력</label>
-                                        <input type="text" id="addressName" className="ip_text" value={Address.addr_receiver} ref={addr_title} maxlength="150">
+                                        <label htmlFor="addressName" className="lb_text blind">배송지명 입력</label>
+                                        <input type="text" id="addressName" className="ip_text"  onChange={handleAddr_title}  maxLength="150">
                                             
                                         </input>
                                         <input type="hidden" id="hash" className="ip_text" value></input>
@@ -176,8 +274,8 @@ const ModAddress = () => {
                                 </th>
                                 <td>
                                     <span className="_editable_input _input basic_input" style={{width: "133px"}}>
-                                        <label for="receiver" className="lb_text ">150자 이내로 입력</label>
-                                        <input type="text" id="receiver" className="ip_text" ref={addr_receiver} maxlength="150" ></input>
+                                        
+                                        <input type="text" id="receiver" className="ip_text" onChange={handleReceiver}  maxLength="150" ></input>
                                     </span>
                                 </td>
                             </tr>
@@ -190,31 +288,37 @@ const ModAddress = () => {
                                 </th>
                                 <td>
                                     <span className="_input basic_input" style={{width:"64px"}}>
-                                        <label for="zipCode" className="lb_text blind" >우편번호 입력</label>
-                                        <input type="text" id="zipCode" className="ip_text" disabled="disabled" value={isZoneCode}
-                                            ref={zoneRef} readOnly></input>
+                                        <label htmlFor="zipCode" className="lb_text blind" >우편번호 입력</label>
+                                        <input type="text" id="zipCode" className="ip_text" disabled="disabled" 
+                                            onChange={handleAddr_1} ref={zoneRef}  readOnly></input>
                                     </span>
-                                    <button className="_search setting_btn green" onClick={onChangeOpenPost} >주소검색</button>
+                                    {/* <button className="_search setting_btn green" onClick={onChangeOpenPost} >주소검색</button>
                                     {isOpenPost  ? (
                                         <DaumPostcode style={postCodeStyle} autoClose onComplete={handleComplete } />
-                                        ) : null}<br/>
+                                        ) : null}<br/> */}
+
+                                    <button className='popUp' onClick={onOpenModal} >주소검색</button>
+                                    {modalOn ? <Modal ></Modal> : ''}
+
+
+
                                     <p className="address_detail">
                                         <span className="_input basic_input" style={{width: "338px"}}>
-                                            <label for="baseAddress" className="lb_text blind" >배송지 새주소</label>
+                                            <label htmlFor="baseAddress" className="lb_text blind" >배송지 새주소</label>
                                             <input 
                                                 type="text" id="baseAddress" className="ip_text" disabled="disabled"
-                                                value={isAddress}
-                                                ref={addRef}>
+                                                value={isAddress} onChange={handleAddr_2} ref={addRef}  
+                                                >
                                             </input> 
                                             <input type="hidden" id="roadNameAddressYn"></input>
                                         </span>
                                     </p>
                                     <p className="address_detail" >
                                         <span className="_editable_input _input basic_input" style={{width: "338px"}}>
-                                            <label for="detailAddress"  className="lb_text">
+                                            <label htmlFor="detailAddress"  className="lb_text">
                                             
                                             </label>
-                                            <input type="text" id="detailAddress"  className="ip_text"  maxlength="100" ref={addDeRef} placeholder="상세 주소를 입력해주세요."></input>
+                                            <input type="text" id="detailAddress"  className="ip_text"  maxLength="100" onChange={handleAddr_3} ref={addDeRef} ></input>
                                         </span>
                                     </p>
                                 </td>
@@ -230,7 +334,7 @@ const ModAddress = () => {
                                 <td>
                                     <span className="_tel1box setting_selectbox" style={{width:"68px"}}>
                                             <select onChange={handleCodeNo}>
-                                                <option selected >선택</option>
+                                                <option defaultValue >선택</option>
                                                 <option value="010" >010</option>
                                                 <option value="011">011</option>
                                                 <option value="012" >012</option>
@@ -244,13 +348,13 @@ const ModAddress = () => {
                                     </span>
                                     <span className="hyphen">-</span>
                                     <span className="_editable_input _input basic_input" style={{width: "48px"}}>
-                                        <label for="telNo1Second" className="lb_text blind">연락처 두번째자리 입력</label>
-                                        <input type="text" id="telNo1Second" className="ip_text" maxlength="4" onChange={handleSecondPhone}></input>
+                                        <label htmlFor="telNo1Second" className="lb_text blind">연락처 두번째자리 입력</label>
+                                        <input type="text" id="telNo1Second" className="ip_text" maxLength="4"  onChange={handleSecondPhone}></input>
                                     </span>
                                     <span className="hyphen">-</span>
                                     <span className="_editable_input _input basic_input" style={{width: "48px"}}>
-                                        <label for="telNo1Third" className="lb_text blind" >연락처 세번째자리 입력</label>
-                                        <input type="text" id="telNo1Third"  className="ip_text" maxlength="4"  onChange={handleThirdPhone} ></input>
+                                        <label htmlFor="telNo1Third" className="lb_text blind" >연락처 세번째자리 입력</label>
+                                        <input type="text" id="telNo1Third"  className="ip_text" maxLength="4"  onChange={handleThirdPhone} ></input>
                                     </span>
                                 </td>
                             </tr>
@@ -262,7 +366,7 @@ const ModAddress = () => {
                                         <span className="_checkbox _input setting_checkbox">
                                             <input type="checkbox"  id="baseAddressYn"></input>
                                         </span>
-                                        <label for="baseAddressYn" className="lb_text" >기본 배송지로 설정</label>
+                                        <label htmlFor="baseAddressYn" className="lb_text" >기본 배송지로 설정</label>
                                     </span>
                                 </td>
                             </tr>
@@ -275,7 +379,7 @@ const ModAddress = () => {
 
             <div id="pop_footer">
                 <button>닫기</button>
-                {/* <button onClick={addAddress}>저장</button> */}
+                <button onClick={updateAddress}>저장</button>
             </div>
         </>
     )

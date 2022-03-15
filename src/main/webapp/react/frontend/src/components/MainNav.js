@@ -70,20 +70,45 @@ function MainNav(props) {
           
           <Nav.Link href="/board/list">게시판 리스트</Nav.Link>
           <Nav.Link href="/writeboard">글쓰기</Nav.Link>
-           <Nav.Link href="/board/teacherBoard">teacherBoard</Nav.Link>
-          <NavDropdown title="마이페이지" id="offcanvasNavbarDropdown">
-            <NavDropdown.Item href="/myhome">나의 정보</NavDropdown.Item>
-            <NavDropdown.Item href="#action3">식단 추천</NavDropdown.Item>
-            <NavDropdown.Item href="#action4">나의 식단</NavDropdown.Item>
-            <NavDropdown.Item href="#action4">주문/배송</NavDropdown.Item>
-            <NavDropdown.Item href="#action4">수강중인 프로그램</NavDropdown.Item>
-            <NavDropdown.Item href="/" onClick={onLogout} >로그아웃</NavDropdown.Item>
+          <Nav.Link href="/board/teacherBoard">teacherBoard</Nav.Link>
+          <Nav.Link href="/notice">공지사항</Nav.Link>
+          {sessionStorage.getItem('classification')==='0'?
+                    <>
+                    <NavDropdown title="관리자페이지" id="offcanvasNavbarDropdown">
+                    <NavDropdown.Item href="/admin">회원 정보</NavDropdown.Item>
+                    <NavDropdown.Item href="#action3">공지사항 관리</NavDropdown.Item>
+                    <NavDropdown.Item href="#action4">고객센터 관리</NavDropdown.Item>
+                    <NavDropdown.Item href="#action4">상품 관리</NavDropdown.Item>
+                    <NavDropdown.Item href="#action4">코칭 서비스 관리</NavDropdown.Item>
+                    <NavDropdown.Item href="/" onClick={onLogout} >로그아웃</NavDropdown.Item>
 
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action5">
-              Something else here
-            </NavDropdown.Item>
-          </NavDropdown>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action5">
+                      Something else here
+                    </NavDropdown.Item>
+                    </NavDropdown>
+                    </>
+                    :
+                    sessionStorage.getItem('success')==='true'?
+                    <>
+                    <NavDropdown title="마이페이지" id="offcanvasNavbarDropdown">
+                    <NavDropdown.Item href="/myhome">나의 정보</NavDropdown.Item>
+                    <NavDropdown.Item href="#action3">식단 추천</NavDropdown.Item>
+                    <NavDropdown.Item href="/myhome/myDiet">나의 식단</NavDropdown.Item>
+                    <NavDropdown.Item href="/myhome/myLesson">나의 코칭 서비스</NavDropdown.Item>
+                    <NavDropdown.Item href="/myhome/myOrder">주문내역</NavDropdown.Item>
+                    <NavDropdown.Item href="/myhome/myCart">장바구니</NavDropdown.Item>
+                    <NavDropdown.Item href="/" onClick={onLogout} >로그아웃</NavDropdown.Item>
+
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action5">
+                      Something else here
+                    </NavDropdown.Item>
+                    </NavDropdown>
+                    </>
+                    :
+                    null
+          }
         </Nav>
         <Form className="d-flex">
           <FormControl

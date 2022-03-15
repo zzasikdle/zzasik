@@ -1,0 +1,12 @@
+#con {
+    position: absolute;
+    top: 50px;
+}
+
+#tr_file_upload{
+    display: none;
+}
+
+#tr_btn_modify{
+    display: none;
+}

@@ -8,15 +8,15 @@ import Fade from 'react-reveal/Fade';
 
 
 
-
 function Home() {
   
     return(
   <div className="wrap">
     <div className="main">
 
-<h4>짜식들 프로젝트 3월 2일</h4>
 
+<div className='main-logo'></div>
+<h4>짜식들 프로젝트 3월 2일</h4>
 
 <Button className="btn btn-primary">다이어트</Button> 
 <Button className="btn btn-danger" >식습관 개선</Button> 

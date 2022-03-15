@@ -3,6 +3,8 @@ import { useRef, useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
 import './addAddress.css';
 
+
+
 const AddAddress = () => {
 
     const baseUrl = "http://localhost:8090";
@@ -19,12 +21,67 @@ const AddAddress = () => {
 
     /* 서버로 넘겨줄 값. */
 
-    const [ phone , setPhone] = useState('');
-
     const addr_title = useRef();
     const addr_receiver = useRef();
     
     
+    /* 주소 검색 팝업  */
+    const [modalOn , setModalOn] = useState(false);
+    const onOpenModal = ()=>{
+        setModalOn(!modalOn);
+    }
+    const handleAddress = () => {
+        // id 가 zipcode 인 input을 가져와서 value를 addr_1로  바꿔주기.
+        zoneRef.current.value = isZoneCode;
+        addRef.current.value= isAddress;
+        onOpenModal();
+    }
+
+
+    const Modal  = () => {
+        
+        return (
+    
+            <div className="modal"> 
+                        <div className="bg"></div>
+                         <div className="modalBox"> 
+                            
+                            <div id="head" className="modalBox_item">
+                                <h6>주소</h6>
+                            </div>
+
+                            <div className="modalBox_item">
+                                <input type="text" id="zoneCode" className="ip_text" value={isZoneCode}  maxLength="150" readOnly/>
+                                <button onClick={onChangeOpenPost}>주소검색</button>
+                                <br/>
+                                <input type="text" id="address" className="ip_text"  value={isAddress}  maxLength="150" readOnly/>
+                                <br/>
+                                
+                                    <button  onClick={handleAddress}>저장</button> 
+                                    <button  onClick={onOpenModal}>닫기</button> 
+                                
+                            </div>
+
+                            
+                                                {/* <input type="text" id="addressName" className="ip_text" value={isZoneCode}  maxLength="150" readOnly/>
+                                               
+                                            <button onClick={onChangeOpenPost}>주소검색</button>
+                                                {isOpenPost  ? (
+                                                    <DaumPostcode style={postCodeStyle} autoClose onComplete={handleComplete } />
+                                                    ) : null}<br/> 
+                                        <h5 className="cell_title">주소 </h5>
+                                                <input type="text" id="addressName" className="ip_text"  value={isAddress}  maxLength="150" readOnly/>
+                                    <div id="pop_footer" class="btn_footer">
+                                        <button  onClick={handleAddress}>저장</button> 
+                                        <button  onClick={onOpenModal}>닫기</button> 
+                                    </div>
+                                
+                             */}
+                        </div> 
+            </div>
+          )
+    }
+
     /* 주소 검색 api */
 
     const addRef = useRef(); //주소
@@ -125,6 +182,10 @@ const AddAddress = () => {
     } 
 
 
+    const closePage =()=>{
+        document.location.href='/myhome/myAddress';
+    }
+
     return (
         <>
             <div className='box container' >
@@ -160,7 +221,7 @@ const AddAddress = () => {
                                 </th>
                                 <td>
                                     <span className="_editable_input _input basic_input" style={{width: "133px"}}>
-                                        <label for="receiver" className="lb_text ">150자 이내로 입력</label>
+                                       
                                         <input type="text" id="receiver" className="ip_text" ref={addr_receiver} maxlength="150" ></input>
                                     </span>
                                 </td>
@@ -178,10 +239,10 @@ const AddAddress = () => {
                                         <input type="text" id="zipCode" className="ip_text" disabled="disabled" value={isZoneCode}
                                             ref={zoneRef} readOnly></input>
                                     </span>
-                                    <button className="_search setting_btn green" onClick={onChangeOpenPost} >주소검색</button>
-                                    {isOpenPost  ? (
-                                        <DaumPostcode style={postCodeStyle} autoClose onComplete={handleComplete } />
-                                        ) : null}<br/>
+                            
+                                    <button className="_search setting_btn green" onClick={onOpenModal} >주소검색</button>
+                                    {modalOn ? <Modal ></Modal> : ''}
+
                                     <p className="address_detail">
                                         <span className="_input basic_input" style={{width: "338px"}}>
                                             <label for="baseAddress" className="lb_text blind" >배송지 새주소</label>
@@ -258,7 +319,7 @@ const AddAddress = () => {
             </div>
 
             <div id="pop_footer">
-                <button>닫기</button>
+                <button onClick={closePage}>닫기</button>
                 <button onClick={addAddress}>저장</button>
             </div>
         </>

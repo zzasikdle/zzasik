@@ -13,7 +13,13 @@ public interface MemberService {
 
 	public int insertAddress(MemberVO memberVO) throws Exception;
 	
+	public int updateAddress(AddressVO addressVO) throws Exception;
+	
 	public int addAddress(AddressVO addressVO) throws Exception;
+	
+	public int deleteAddress(AddressVO addressVO) throws Exception;
+	
+	public int deleteId(MemberVO memberVO) throws Exception;
 	
 	public int findMemberById(String user_id) throws Exception;
 	
@@ -25,6 +31,6 @@ public interface MemberService {
 	
 	public List<AddressVO> listAddress(MemberVO memberVO) throws Exception;
 	
-	public List<AddressVO> getAddress(MemberVO memberVO) throws Exception;
+	public AddressVO getAddress(MemberVO memberVO) throws Exception;
 	
 }

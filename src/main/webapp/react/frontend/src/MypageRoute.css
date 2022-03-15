@@ -1,7 +1,11 @@
 /*마이페이지,관리자페이지*/
+.myhome-mainbar{
+  width:100%;
+  height:46px;
+}
 .myhome-container{
   width: 100%;
-  height: 100vh;
+  height: 93vh;
   display: flex;
   flex-direction: row;
   background-color: #C8CDD1;
@@ -13,6 +17,7 @@
   height: 100%;
   margin: 5px 0px 5px 0px;
   background-color: #F3F5FA;
+  overflow: hidden;
 }
 
 .myhome-wrap h1 {

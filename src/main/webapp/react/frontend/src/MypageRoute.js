@@ -24,23 +24,26 @@ import Sidebar_Admin from './mypage/admin/common/Sidebar';
 import './MypageRoute.css';
 import MyAddress from './mypage/user/page/MyAddress';
 import addAddress from './mypage/user/page/addAddress';
-import modAddress from './mypage/user/page/modAddress';
+// import modAddress from './mypage/user/page/modAddress';
+import UpdateAddress from './mypage/user/page/UpdateAddress';
 
 
 function MypageRoute() {
-  //const user_id = sessionStorage.getItem('user_id');
-  const user_id = "admin";
-  const classification = 0; //0: 관리자 페이지, 1: 마이페이지
+  const user_id = sessionStorage.getItem('user_id');
+
   return (
+    <>
+    <div className='myhome-mainbar' ></div>
     <div className='myhome-container'>
       <div className='myhome-wrap'>
-        {classification===1 ? <Sidebar/> : <Sidebar_Admin/>} 
+        {sessionStorage.getItem('classification')==='0' ? <Sidebar_Admin/> : <Sidebar/>} 
         <main>
           <Route path='/myhome' exact component={MyHome}/>
           <Route path='/myhome/edit' component={Edit}/>
           <Route path='/myhome/myAddress' component={MyAddress}/>
           <Route path='/myhome/addAddress' component={addAddress}/>
-          <Route path='/myhome/modAddress' component={modAddress}/>
+          {/* <Route path='/myhome/modAddress/:addr_receiver' component={modAddress}/> */}
+          <Route path='/myhome/UpdateAddress/:addr_receiver' component={UpdateAddress}/>
           <Route path='/myhome/myDiet' component={MyDiet}/>
           <Route path='/myhome/myLesson' component={MyLesson}/>
           <Route path='/myhome/myOrder' component={MyOrder}/>
@@ -54,6 +57,7 @@ function MypageRoute() {
         </main>
       </div>
     </div>
+    </>
       
   );
 }

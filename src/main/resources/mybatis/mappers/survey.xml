@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zzasik.survey.dao.SurveyDAO">
+	<resultMap id="surveyResult" type="surveyVO">
+   	  <result property="code" column="survey_code" />
+      <result property="result1" column="survey_result1" />
+      <result property="result2" column="survey_result2" />
+      <result property="result3" column="survey_result3" />
+   </resultMap> 
+   
+   <resultMap id="productResult" type="productVO">
+   	  <result property="proname" column="pro_name" />
+      <result property="proclass" column="pro_class" />
+      <result property="proprice" column="pro_price" />
+      <result property="proimg" column="pro_img" />
+      <result property="prodetail" column="pro_detail" />
+   </resultMap> 
+
+	<select id="addSurvey" parameterType="surveyVO" >
+	<![CDATA[
+		insert into surveytbl(survey_code, survey_result1, survey_result2, survey_result3)
+		values(#{code}, #{result1}, #{result2}, #{result3})
+	]]>
+  </select>
+  
+  <select id="surveylist" resultMap="surveyResult" parameterType="productVO">
+		<![CDATA[
+			select pro_name, pro_class, pro_price, pro_img, pro_detail from producttbl
+			where pro_class like '%'||'${keyword1}'||'%'
+            or pro_class like '%'||'${keyword2}'||'%'
+            or pro_class like '%'||'${keyword3}'||'%'
+		]]>
+	</select>
+
+ </mapper>    
+
+
+
+
+
+

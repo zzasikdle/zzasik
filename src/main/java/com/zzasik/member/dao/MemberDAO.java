@@ -19,11 +19,17 @@ public interface MemberDAO {
 	
 	public int insertAddress(MemberVO memberVO) throws Exception;
 	
+	public int updateAddress(AddressVO addressVO) throws Exception;
+	
 	public int addAddress(AddressVO addressVO) throws Exception;
+	
+	public int deleteAddress(AddressVO addressVO) throws Exception;
 	
 	public int findMemberById(String user_id) throws DataAccessException;
 	
 	public MemberVO findPasswordById(MemberVO memberVO) throws DataAccessException;
+	
+	public int deleteId(MemberVO memberVO) throws Exception;
 	
 	public int modMemberName(MemberVO memberVO) throws Exception;
 
@@ -31,6 +37,6 @@ public interface MemberDAO {
 	
 	public List listAddress(MemberVO memberVO) throws DataAccessException;
 	
-	public List getAddress(MemberVO memberVO) throws DataAccessException;
+	public AddressVO getAddress(MemberVO memberVO) throws DataAccessException;
 	
 }
