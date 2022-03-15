@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import './teacherBoard.css';
+ import './teacherBoard.css';
 
 const TeacherBoard = ( ) => {
     const baseUrl = "http://localhost:8090";
@@ -58,7 +58,7 @@ const TeacherBoard = ( ) => {
         var i =0;
         var user_table = [];
         for(i=0; i<userlist.length; i++){
-            user_table.push(<option>{userlist[i].user_id}</option>)
+            user_table.push(<td>{userlist[i].user_id}</td>)
         }
         return(
             user_table
@@ -67,6 +67,10 @@ const TeacherBoard = ( ) => {
 
     const listBtn = async () =>{
        alert("check")
+    }
+
+    const sub_btn = async () =>{
+        alert("^^")
     }
 
 
@@ -164,15 +168,30 @@ const TeacherBoard = ( ) => {
                     </div>
                 <div class="div_3">
                     <div class="div_4">
-                        수강회원
-                <a>
-                    <select class="select_box">
-                        <option>목록</option>
-                        {userList()}
-                    </select>
-                    </a>
+                   
+                        수강신청 회원
+
+                        <table>
+                            <thead>
+                                <tr>
+                                   <th>아이디</th> 
+                                   <th>수강현황</th> 
+                                   <th>신청</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    {userList()}
+                                    <td>값</td>
+                                    <td type="button" onClick={sub_btn}>신청</td> 
+                                    </tr>
+
+                                </tbody>
+                            
+                        </table>
+                   
                 </div>
-                <div class="input_div">
+                {/* <div class="input_div">
                 <p>아침<input type="text"/></p>
                 <p>점심<input type="text"/></p>
                 <p>저녁<input type="text"/></p>
@@ -180,7 +199,7 @@ const TeacherBoard = ( ) => {
                 <p>총 칼로리<input type="text"/></p>
                 <p>기타<input type="text"/></p>
                 
-                </div>
+                </div> */}
                 </div>
                
             
