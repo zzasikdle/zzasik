@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { baseUrl } from "../config";
 import FilePreview from "./FilePreview";
 import InputFile from "./InputFile";
 
 const UploadProduct = ( ) => {
-    const navigate = useNavigate();
+    const history = useHistory();
 
     const [pro_name, setName] = useState();
     const [pro_class, setClass] = useState();
@@ -47,7 +48,7 @@ const UploadProduct = ( ) => {
             {headers : {"Content-Type":"multipart/form-data; boundary=${formData._boundary"}})
         .then((response) => {
             alert(response.data.message);
-            navigate(response.data.path);
+            history.push(response.data.path);
         })
         .catch((error) => {
             console.log(error);
@@ -87,8 +88,8 @@ const UploadProduct = ( ) => {
                     </tr>
                     <tr>
                         <td>
-                            <Link to="product/list" onClick={handleWrite}>글쓰기</Link>
-                            <Link to="product/list">취소</Link>
+                            <Link to="/admin/product" onClick={handleWrite}>글쓰기</Link>
+                            <Link to="/admin/product">취소</Link>
                         </td>
                     </tr>
                 </tbody>
