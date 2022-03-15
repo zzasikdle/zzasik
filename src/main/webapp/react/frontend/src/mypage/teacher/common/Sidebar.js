@@ -15,8 +15,8 @@ function Sidebar(){
 
     const menus = [
         { name: "마이페이지",path:"/teacher"},
-        { name: "나의 코칭 서비스",path:"/teacher/service"},
-        { name: "신청 내역",path:"/teacher/register"},
+        { name: "나의 코칭 서비스",path:"/teacher/lesson"},
+        { name: "신청 내역",path:"/teacher/signuplist"},
         { name: "코칭 하기",path:"/teacher/coaching"}
     ];
 
