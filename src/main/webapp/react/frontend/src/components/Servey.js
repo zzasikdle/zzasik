@@ -12,7 +12,11 @@ function Servey() {
  const [userName,setUserName] = useState('');
  const [progress,setProgress] = useState(1);
  const [page,setPage] = useState(0);
- const [illness,setIllness] = useState('');
+ const [sickness,setSickness] = useState('');
+ const [psickness,setPsickness] = useState('');
+ const [check,setCheck] = useState(false);
+
+
 
  const add = (key, value) => {
   setServey((prev) => new Map([...prev,[key,value]]));
@@ -22,34 +26,100 @@ function Servey() {
 
 
  function getCheckboxValue()  {
-  // 선택된 목록 가져오기
-  const query = 'input[name="illness"]:checked';
+  const query = 'input[name="sickness"]:checked';
   const selectedEls = 
       document.querySelectorAll(query);
   
-  // 선택된 목록에서 value 찾기
   let result = [''];
   selectedEls.forEach((el) => {
     result += el.value + ' ';
   });
-  
-  // 출력
-  setIllness(result);
-  document.getElementById('result').innerText
-    = result;
+  setSickness(result);
 }
 
+
+function getCheckboxValue2()  {
+  const query = 'input[name="p_sickness"]:checked';
+  const selectedEls = 
+      document.querySelectorAll(query);
   
+  let result = [''];
+  selectedEls.forEach((el) => {
+    result += el.value + ' ';
+  });
+  setPsickness(result);
+}
+  
+
+function intCheck(e){
+  const checkText = e.target.value;
+  const intStyle = /(^\d+$)|(^\d{1,}.\d{0,2}$)/; 
+
+  if(intStyle.test(checkText)){
+    setCheck(true);
+  }else{
+    setCheck(false);
+  }
+
+}
+
+function emailCheck(e){
+  const checkText = e.target.value;
+  const emailStyle = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+  if(emailStyle.test(checkText)){
+    setCheck(true);
+  }else{
+    setCheck(false);
+  }
+}
+
+
+function ageReject(e) {
+  if(check == true){
+    add('age', inputText);
+    setCheck(false);
+  }else{
+    e.preventDefault();
+  }
+}
+
+function heightReject(e) {
+
+  if(check == true){
+    add('height', inputText);
+    setCheck(false);
+  }else{
+    e.preventDefault();
+  }
+}
+
+function weightReject(e){
+  if(check == true){
+    add('wieght', inputText);
+    setCheck(false);
+  }else{
+    
+    e.preventDefault();
+  }
+}
+
+
+function emailReject(e){
+  if(check == true){
+    add('email', inputText)
+    setCheck(false);
+  }else{
+    
+    e.preventDefault();
+  }
+}
+
+
+
+
+
     return(
-      <div className="container">
       <div className="servey">
-
-     
-
-
-
-<Button className="btn btn-primary testbtn" onClick={() => {console.log(servey)}} >값 보기</Button> 
-
 
       { page === 0 
       ?    
@@ -59,8 +129,6 @@ function Servey() {
         </div>
       <Button className="btn" onClick={() => {add('gender','여자')}} >여자</Button> 
       <Button className="btn" onClick={() => {add('gender','남자')}} >남자</Button> 
-
-
       </div>
       : null
       }
@@ -70,15 +138,21 @@ function Servey() {
       { page === 1
       ?  
       <Fade bottom>  
-      <div className='servey-btn'>
+      <div className='servey-input'>
       <div className='servey-title'>
         <h4>당신의 나이는 어떻게 되세요?</h4>
+        {check === false
+
+        ? 
+        <div>
+        <p>숫자만 입력해 주세요.</p>
         </div>
-      <Button className="btn" onClick={() => {add('age','10')}} >10대</Button> 
-      <Button className="btn" onClick={() => {add('age','20')}} >20대</Button> 
-      <Button className="btn" onClick={() => {add('age','30')}} >30대</Button> 
-      <Button className="btn" onClick={() => {add('age','40')}} >40대</Button> 
-      <Button className="btn" onClick={() => {add('age','50')}} >50대</Button> 
+        : <p className='alert-none'>공백</p>
+        }
+        </div>
+        <input  onChange={(e) =>{setInputText(e.target.value); intCheck(e)} }></input>
+    
+        <Button className="btn btn-primary" onClick={(e) => {ageReject(e);}} >확인</Button>
       </div>
       </Fade>
       :null
@@ -114,13 +188,18 @@ function Servey() {
       <div className='servey-title'>
       <h4>{ servey.get('userName')}님, 반갑습니다</h4>
       <h4> {userName}님의 신장을 알려주세요. </h4>
-    
-
-
+      {check === false
+        ? 
+        <div>
+        <p >숫자만 입력해 주세요.</p>
+          <p>예 ) 180.3</p>
+        </div>
+        : <p className='alert-none'>공백</p>
+        }
       </div>
-        <input onChange={(e) =>{setInputText(e.target.value)} }></input>
+        <input onChange={(e) =>{setInputText(e.target.value); intCheck(e)} }></input>
     
-        <Button className="btn btn-primary" onClick={() => {add('height', inputText)}} >확인</Button> 
+        <Button className="btn btn-primary" onClick={(e) => {heightReject(e)}} >확인</Button> 
       </div>
       </Fade>
 
@@ -136,9 +215,13 @@ function Servey() {
       <div className='servey-input'>
       <div className='servey-title'>
       <h4>감사합니다. 실례지만 몸무게도 알려주세요!</h4>
+      {check === false
+        ? <p >숫자만 입력해 주세요.</p>
+        : <p className='alert-none'>공백</p>
+        }
       </div>
-        <input onChange={(e) =>{setInputText(e.target.value)} }></input>
-        <Button className="btn btn-primary" onClick={() => {add('weight', inputText)}} >확인</Button> 
+        <input onChange={(e) =>{setInputText(e.target.value); intCheck(e)} }></input>
+        <Button className="btn btn-primary"  onClick={(e) => {weightReject(e)}} >확인</Button> 
       </div>
       </Fade>
 
@@ -162,82 +245,119 @@ function Servey() {
       <Fade bottom>
       <div className='servey-input'>
       <div className='servey-title'>
-      <h4>평소 운동량은 얼마나?</h4>
+      <h4>평소에 운동이나 직업에 관한 활동량이 어떻게 되시나요?</h4>
       </div>
-      <Button className="btn" onClick={() => {add('workout','1')}} >주 1회</Button> 
-      <Button className="btn" onClick={() => {add('workout','2')}} >주 2회</Button> 
-      <Button className="btn" onClick={() => {add('workout','3')}} >주 3회</Button> 
-      <Button className="btn" onClick={() => {add('workout','4')}} >주 4회</Button> 
-      <Button className="btn" onClick={() => {add('workout','5')}} >주 5회</Button> 
+      <Button className="btn btn-primary" onClick={() => {add('activity',1)}} >가벼운 활동</Button> 
+      <Button className="btn btn-primary" onClick={() => {add('activity',2)}} >보통 활동</Button> 
+      <Button className="btn btn-primary" onClick={() => {add('activity',3)}} >힘든 활동</Button> 
       </div>
       </Fade>
       :null
       }
         
-
       { page === 7
-      ? <Loading progress={progress} setProgress={setProgress} page={page} setPage={setPage} loading={50}/>
+      
+      ?
+      <Fade bottom>
+      <div className='servey-btn'>
+      <div className='servey-title'>
+      <h4>평소에 운동을 하신다면 빈도가 어떻게 되시나요?</h4>
+      </div>
+      <Button className="btn btn-primary" onClick={() => {add('frequency','안함')}} >하지 않음</Button> 
+      <Button className="btn btn-primary" onClick={() => {add('frequency','주1~2회')}} >주1~2회</Button> 
+      <Button className="btn btn-primary" onClick={() => {add('frequency','주3~4회')}} >주3~4회</Button>
+      <Button className="btn btn-primary" onClick={() => {add('frequency','주5회 이상')}} >주5회 이상</Button> 
+      </div>
+      </Fade>
+
       :null
       }
 
       { page === 8
+      
+      ?
+      <Fade bottom>
+      <div className='servey-btn'>
+      <div className='servey-title'>
+      <h4>식단관리의 목적이 무엇인가요?</h4>
+      </div>
+      <Button className="btn btn-primary" onClick={() => {add('goal','근력증진')}} >근력증진</Button> 
+      <Button className="btn btn-primary" onClick={() => {add('goal','건강유지')}} >건강유지</Button> 
+      <Button className="btn btn-primary" onClick={() => {add('goal','질병치료')}} >질병치료</Button>
+      </div>
+      </Fade>
+
+      :null
+      }
+
+
+
+      
+
+
+      { page === 9
+      ? <Loading progress={progress} setProgress={setProgress} page={page} setPage={setPage} loading={50}/>
+      :null
+      }
+
+      { page === 10
       ? 
       <Fade bottom>
       <div className='servey-btn'>
       <div className='servey-title'>
-      <h4>지병을 모두 선택해주세요</h4>
+      <h4>현재 겪고 계신 질환 중에 해당되는 사항이 있으신가요?</h4>
       </div>
       
       <div className='servey-checkbox-wrap'>
       <div className='servey-checkbox'>
       <input type='checkbox'
-       name='illness' 
+       name='sickness' 
        value='당뇨병'
        onClick={()=> {getCheckboxValue()}}/> 당뇨병
        </div>
       <div className='servey-checkbox'>
       <input type='checkbox'
-       name='illness' 
-       value='고지혈증'
-       onClick={()=> {getCheckboxValue()}}/> 고지혈증
+       name='sickness' 
+       value='저혈압'
+       onClick={()=> {getCheckboxValue()}}/> 저혈압
        </div>
       <div className='servey-checkbox'>
       <input type='checkbox'
-       name='illness' 
+       name='sickness' 
+       value='고혈압'
+       onClick={()=> {getCheckboxValue()}}/> 고혈압
+       </div>
+      <div className='servey-checkbox'>
+      <input type='checkbox'
+       name='sickness' 
+       value='신장질환'
+       onClick={()=> {getCheckboxValue()}}/> 신장질환
+       </div>
+      <div className='servey-checkbox'>
+      <input type='checkbox'
+       name='sickness' 
+       value='빈혈'
+       onClick={()=> {getCheckboxValue()}}/> 빈혈
+       </div>
+      <div className='servey-checkbox'>
+      <input type='checkbox'
+       name='sickness' 
        value='통풍'
        onClick={()=> {getCheckboxValue()}}/> 통풍
        </div>
-      <div className='servey-checkbox'>
+       <div className='servey-checkbox'>
       <input type='checkbox'
-       name='illness' 
-       value='탈모'
-       onClick={()=> {getCheckboxValue()}}/> 탈모
+       name='sickness' 
+       value='심장병'
+       onClick={()=> {getCheckboxValue()}}/> 심장병
        </div>
       <div className='servey-checkbox'>
       <input type='checkbox'
-       name='illness' 
-       value='분노조절장에'
-       onClick={()=> {getCheckboxValue()}}/> 분노조절장애
+       name='sickness' 
+       value='해당 없음'
+       onClick={()=> {getCheckboxValue()}}/> 해당 없음
        </div>
-      <div className='servey-checkbox'>
-      <input type='checkbox'
-       name='illness' 
-       value='정신병'
-       onClick={()=> {getCheckboxValue()}}/> 정신병
-       </div>
-      <div className='servey-checkbox'>
-      <input type='checkbox'
-       name='illness' 
-       value='알레르기'
-       onClick={()=> {getCheckboxValue()}}/> 알레르기
-       </div>
-      <div className='servey-checkbox'>
-      <input type='checkbox'
-       name='illness' 
-       value='정상'
-       onClick={()=> {getCheckboxValue()}}/> 없어요!
-       </div>
-       <Button className="btn" onClick={() => {add('illness',illness)}} >확인</Button> 
+       <Button className="btn" onClick={() => {add('sickness',sickness)}} >확인</Button> 
        </div>
       </div>
       </Fade>
@@ -245,39 +365,120 @@ function Servey() {
       }
 
 
-      { page === 9
+
+
+
+{ page === 11
+      ? 
+      <Fade bottom>
+      <div className='servey-btn'>
+      <div className='servey-title'>
+      <h4>과거에 겪으신 질환 중에 해당되는 사항이 있으신가요?</h4>
+      </div>
+      
+      <div className='servey-checkbox-wrap'>
+      <div className='servey-checkbox'>
+      <input type='checkbox'
+       name='p_sickness' 
+       value='당뇨병'
+       onClick={()=> {getCheckboxValue2()}}/> 당뇨병
+       </div>
+      <div className='servey-checkbox'>
+      <input type='checkbox'
+       name='p_sickness' 
+       value='저혈압'
+       onClick={()=> {getCheckboxValue2()}}/> 저혈압
+       </div>
+      <div className='servey-checkbox'>
+      <input type='checkbox'
+       name='p_sickness' 
+       value='고혈압'
+       onClick={()=> {getCheckboxValue2()}}/> 고혈압
+       </div>
+      <div className='servey-checkbox'>
+      <input type='checkbox'
+       name='p_sickness' 
+       value='신장질환'
+       onClick={()=> {getCheckboxValue2()}}/> 신장질환
+       </div>
+      <div className='servey-checkbox'>
+      <input type='checkbox'
+       name='p_sickness' 
+       value='빈혈'
+       onClick={()=> {getCheckboxValue2()}}/> 빈혈
+       </div>
+      <div className='servey-checkbox'>
+      <input type='checkbox'
+       name='p_sickness' 
+       value='통풍'
+       onClick={()=> {getCheckboxValue2()}}/> 통풍
+       </div>
+       <div className='servey-checkbox'>
+      <input type='checkbox'
+       name='p_sickness' 
+       value='심장병'
+       onClick={()=> {getCheckboxValue2()}}/> 심장병
+       </div>
+      <div className='servey-checkbox'>
+      <input type='checkbox'
+       name='p_sickness' 
+       value='해당 없음'
+       onClick={()=> {getCheckboxValue2()}}/> 해당 없음
+       </div>
+       <Button className="btn" onClick={() => {add('p_sickness',psickness)}} >확인</Button> 
+       </div>
+      </div>
+      </Fade>
+      : null
+      }
+
+      { page === 12
       ? <FinalLoading userName={userName} servey={servey}  page={page} setPage={setPage} />
       : null
       } 
 
-      { page === 10
+      { page === 13
       ? 
       <Fade bottom>
       <div className='servey-input'>
       <div className='servey-title'>
       <h4>고객님의 결과 확인을 위해 이메일을 남겨주세요!</h4>
+
+        {check === false
+
+        ? 
+        <div>
+        <p>이메일을 올바르게 입력해주세요.</p>
+        </div>
+        : <p className='alert-none'>공백</p>
+        }
       </div>
-        <input onChange={(e) =>{setInputText(e.target.value)} }></input>
-        <Button className="btn btn-primary" onClick={() => {add('email', inputText)}} >확인</Button> 
+        <input onChange={(e) =>{setInputText(e.target.value); emailCheck(e)} }></input>
+        <Button className="btn btn-primary" id='emailInput' onClick={(e) => {emailReject(e)}} >확인</Button> 
         <Button className="btn" onClick={() => {console.log(servey)}} >저장된 값 보기</Button> 
       </div>
       </Fade>
       :null
       }
 
-      { page === 11
-      ? null
+      { page === 14
+      ?
+      <div className='servey-input'>
+      <div className='servey-title'>
+      <h4>결과 확인</h4>
+      </div>
+        <Button className="btn" onClick={() => {console.log(servey)}} >저장된 값 보기</Button> 
+      </div>
       :null
       }
 
-      { page === 12
+      { page === 15
       ? null
       :null
       }
         
 
         
-</div>
 </div>
     )
 }

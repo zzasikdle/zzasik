@@ -1,3 +1,4 @@
+
 @import './_val.scss';
 
 @font-face {
@@ -44,14 +45,6 @@
 .main-nav-fixed{
   opacity: 1;
   transition-duration: 2s;
-}
-
-.ani-enter{
-  opacity: 0.1;
-}
-
-.ani-enter{
-  opacity: 0.1;
 }
 
 
@@ -113,6 +106,7 @@
   p{
     margin-top:40px;
     color: black;
+    margin-bottom: 20px;
   }
 
   
@@ -155,6 +149,7 @@
     p{
       margin-top:50px;
       color: grey;
+      
     }
 
  
@@ -204,6 +199,7 @@
     p{
       margin-top: 50px;
       color: grey;
+      margin-bottom: 20px;
     }
 
   
@@ -218,6 +214,11 @@
     float:left;
     color: white;
     text-align:left;
+
+
+    p{
+      margin-bottom: 5px;
+    }
     small{
       width: 100%;
       color: grey;
@@ -293,6 +294,7 @@
     height: 100vh;
     background-image: url(../public/img/merit4.jpeg);
     background-size: cover;
+    border: 1px solid transparent;
     
 
 
@@ -303,6 +305,7 @@
 
       h4{
         font-size: 2rem;
+        margin: 20px;
       }
     }
 
@@ -327,6 +330,17 @@
         outline: none;
         color: $mainColor;
         font-weight: 600;
+      }
+
+      .alert-white{
+        color: white;
+      }
+      .alert-red{
+        color: red;
+      }
+
+      .alert-none{
+        color: transparent;
       }
     }
 
@@ -410,5 +424,3 @@
     margin-top:40px;
   }
 }
-
- 
