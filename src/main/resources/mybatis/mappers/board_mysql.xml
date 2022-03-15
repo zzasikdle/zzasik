@@ -15,6 +15,15 @@
     <result property="imageFilename" column="imageFilename" />
     <result property="teacher_id" column="teacher_id" />
      <result property="writedate" column="writedate" />
+     
+     <result property="breakfast" column="breakfast" />
+     <result property="Lunch" column="Lunch" />
+     <result property="dinner" column="dinner" />
+     <result property="snack_1" column="snack_1" />
+     <result property="snack_2" column="snack_2" />
+     <result property="snack_3" column="snack_3" />
+     <result property="calorie" column="calorie" />
+     <result property="coaching_answer" column="coaching_answer" />
  
   </resultMap> 
   
@@ -80,5 +89,13 @@
       SELECT user_id FROM joincart where board_code=#{board_code}
     ]]>
   </select> 
+  
+     <select id="suganginsert" parameterType="java.util.Map">
+
+     	<![CDATA[
+		INSERT into coachingtbl(user_id)
+		VALUES (#{user_id})
+	]]>   
+  </select>
 </mapper>
   
