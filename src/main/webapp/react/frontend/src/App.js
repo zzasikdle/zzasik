@@ -23,11 +23,8 @@ import Join from './components/member/Join';
 import MypageRoute from './MypageRoute';
 import MemberList from './mypage/admin/component/MemberList'
 
-
 //Servey
 import Servey from './components/Servey'
-
-
 //board
 import WriteBoard from './components/board/writeboard';
 import BoardList from './components/board/boardList';
