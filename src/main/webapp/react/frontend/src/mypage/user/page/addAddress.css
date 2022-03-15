@@ -198,3 +198,44 @@ p {
     cursor: pointer;
 }
 
+.modalBox{
+    width: 60%;
+    height: 65%;
+     
+}
+.modalBox_item{
+    display: inline-block;
+    padding: 43px 43px ;
+}
+#head{
+    padding-bottom: 10px;
+}
+
+.modalBox_item input {
+    margin: 20px 20px 20px 100px; 
+    height: 50px;
+    border: 1px solid rgb(219, 212, 212);
+    border-radius: 10px;
+}
+
+.modalBox_item button {
+    margin: 0 20px 0 20px;
+    padding: 0 5px 0 5px;
+    transform: translateX(-50%);
+    height:40px;
+    background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+    background-position: left;
+    background-size: 200%;
+    border-radius: 10px;
+    color:white;
+    font-weight: bold;
+    border:none;
+    cursor:pointer;
+    transition: 0.4s;
+    display:inline;
+}
+.modalBox_item button:hover{
+    background-position: right;
+}
+
+
