@@ -79,6 +79,6 @@
     <![CDATA[
       SELECT user_id FROM joincart where board_code=#{board_code}
     ]]>
-  </select>
+  </select> 
 </mapper>
   
