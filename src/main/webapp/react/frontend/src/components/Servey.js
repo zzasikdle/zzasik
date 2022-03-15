@@ -1,13 +1,15 @@
 import React ,{useState, useEffect} from 'react';
 import {Button,ProgressBar,Spinner,Form } from 'react-bootstrap';
 import Fade from 'react-reveal/Fade';
+import axios from 'axios'
 
 function Servey() {
     
 
-   
+ const [code,setCode] = useState('');
+ const baseUrl = "http://localhost:8090";
 
- const [servey,setServey] = useState(new Map());
+ const [survey,setSurvey] = useState(new Map());
  const [inputText,setInputText] = useState('');
  const [userName,setUserName] = useState('');
  const [progress,setProgress] = useState(1);
@@ -19,7 +21,7 @@ function Servey() {
 
 
  const add = (key, value) => {
-  setServey((prev) => new Map([...prev,[key,value]]));
+  setSurvey((prev) => new Map([...prev,[key,value]]));
   const nowPage = page + 1;
   setPage(nowPage);
  };
@@ -114,7 +116,97 @@ function emailReject(e){
   }
 }
 
+function Submit1(e) {
+        
+  const Submit1 = async() => { //await 키워드가 비동기 코드를 호출할 수 있게 하기 위해서 async()로 함수를 먼저 비동기함수로 만든다.
+      
+      await axios
+          .post(baseUrl+'/survey1', survey)
+          .then((response)=>{
+          })
+          .catch((error) => {
+              console.log(error);
+          });
+  }
+  console.log(survey);
+  Submit1();
+  setSurvey();
+ // 로그인 후 빈칸으로 초기화 
+}
 
+function Submit2(e) {
+        
+  const Submit2 = async(e) => { //await 키워드가 비동기 코드를 호출할 수 있게 하기 위해서 async()로 함수를 먼저 비동기함수로 만든다.
+      e.preventDefault();
+      await axios
+          .post(baseUrl+'/survey2', survey)
+          .then((response)=>{
+          })
+          .catch((error) => {
+              console.log(error);
+          });
+  }
+  console.log(survey);
+  Submit2();
+  setSurvey();
+ // 로그인 후 빈칸으로 초기화 
+}
+
+function Submit3(e) {
+        
+  const Submit3 = async(e) => { //await 키워드가 비동기 코드를 호출할 수 있게 하기 위해서 async()로 함수를 먼저 비동기함수로 만든다.
+      e.preventDefault();
+      await axios
+          .post(baseUrl+'/survey3', survey)
+          .then((response)=>{
+          })
+          .catch((error) => {
+              console.log(error);
+          });
+  }
+  console.log(survey);
+  Submit3();
+  setSurvey();
+ // 로그인 후 빈칸으로 초기화 
+}
+
+function Submit4(e) {
+        
+  const Submit4 = async(e) => { //await 키워드가 비동기 코드를 호출할 수 있게 하기 위해서 async()로 함수를 먼저 비동기함수로 만든다.
+      e.preventDefault();
+      await axios
+          .post(baseUrl+'/survey4', survey)
+          .then((response)=>{
+          })
+          .catch((error) => {
+              console.log(error);
+          });
+  }
+  console.log(survey);
+  Submit4();
+  setSurvey();
+ // 로그인 후 빈칸으로 초기화 
+}
+
+function Submit5(e) {
+        
+  const Submit5 = async(e) => { //await 키워드가 비동기 코드를 호출할 수 있게 하기 위해서 async()로 함수를 먼저 비동기함수로 만든다.
+      e.preventDefault();
+      await axios
+          .post(baseUrl+'/survey5', survey)
+          .then((response)=>{
+            setCode(response.data.survey_code);
+          })
+          .catch((error) => {
+              console.log(error);
+          });
+  }
+  console.log(survey);
+  console.log(code);
+  Submit5()
+  setSurvey();
+ // 로그인 후 빈칸으로 초기화 
+}
 
 
 
@@ -127,8 +219,8 @@ function emailReject(e){
         <div className='servey-title'>
         <h4>당신의 성별은 어떻게 되세요?</h4>
         </div>
-      <Button className="btn" onClick={() => {add('gender','여자')}} >여자</Button> 
-      <Button className="btn" onClick={() => {add('gender','남자')}} >남자</Button> 
+      <Button className="btn" onClick={() => {add('gender','여성')}} >여자</Button> 
+      <Button className="btn" onClick={() => {add('gender','남성')}} >남자</Button> 
       </div>
       : null
       }
@@ -186,7 +278,7 @@ function emailReject(e){
       <Fade bottom>  
       <div className='servey-input'>
       <div className='servey-title'>
-      <h4>{ servey.get('userName')}님, 반갑습니다</h4>
+      <h4>{ survey.get('userName')}님, 반갑습니다</h4>
       <h4> {userName}님의 신장을 알려주세요. </h4>
       {check === false
         ? 
@@ -247,9 +339,9 @@ function emailReject(e){
       <div className='servey-title'>
       <h4>평소에 운동이나 직업에 관한 활동량이 어떻게 되시나요?</h4>
       </div>
-      <Button className="btn btn-primary" onClick={() => {add('activity',1)}} >가벼운 활동</Button> 
-      <Button className="btn btn-primary" onClick={() => {add('activity',2)}} >보통 활동</Button> 
-      <Button className="btn btn-primary" onClick={() => {add('activity',3)}} >힘든 활동</Button> 
+      <Button className="btn btn-primary" onClick={() => {add('activity',1); Submit1();}} >가벼운 활동</Button> 
+      <Button className="btn btn-primary" onClick={() => {add('activity',2); Submit1();}} >보통 활동</Button> 
+      <Button className="btn btn-primary" onClick={() => {add('activity',3); Submit1();}} >힘든 활동</Button> 
       </div>
       </Fade>
       :null
@@ -263,10 +355,10 @@ function emailReject(e){
       <div className='servey-title'>
       <h4>평소에 운동을 하신다면 빈도가 어떻게 되시나요?</h4>
       </div>
-      <Button className="btn btn-primary" onClick={() => {add('frequency','안함')}} >하지 않음</Button> 
-      <Button className="btn btn-primary" onClick={() => {add('frequency','주1~2회')}} >주1~2회</Button> 
-      <Button className="btn btn-primary" onClick={() => {add('frequency','주3~4회')}} >주3~4회</Button>
-      <Button className="btn btn-primary" onClick={() => {add('frequency','주5회 이상')}} >주5회 이상</Button> 
+      <Button className="btn btn-primary" onClick={() => {add('frequency','안함'); Submit2();}} >하지 않음</Button> 
+      <Button className="btn btn-primary" onClick={() => {add('frequency','주1~2회'); Submit2();}} >주1~2회</Button> 
+      <Button className="btn btn-primary" onClick={() => {add('frequency','주3~4회'); Submit2();}} >주3~4회</Button>
+      <Button className="btn btn-primary" onClick={() => {add('frequency','주5회 이상'); Submit2();}} >주5회 이상</Button> 
       </div>
       </Fade>
 
@@ -281,9 +373,9 @@ function emailReject(e){
       <div className='servey-title'>
       <h4>식단관리의 목적이 무엇인가요?</h4>
       </div>
-      <Button className="btn btn-primary" onClick={() => {add('goal','근력증진')}} >근력증진</Button> 
-      <Button className="btn btn-primary" onClick={() => {add('goal','건강유지')}} >건강유지</Button> 
-      <Button className="btn btn-primary" onClick={() => {add('goal','질병치료')}} >질병치료</Button>
+      <Button className="btn btn-primary" onClick={() => {add('goal','근력증진'); Submit3();}} >근력증진</Button> 
+      <Button className="btn btn-primary" onClick={() => {add('goal','건강유지'); Submit3();}} >건강유지</Button> 
+      <Button className="btn btn-primary" onClick={() => {add('goal','질병치료'); Submit3();}} >질병치료</Button>
       </div>
       </Fade>
 
@@ -357,7 +449,7 @@ function emailReject(e){
        value='해당 없음'
        onClick={()=> {getCheckboxValue()}}/> 해당 없음
        </div>
-       <Button className="btn" onClick={() => {add('sickness',sickness)}} >확인</Button> 
+       <Button className="btn" onClick={() => {add('sickness',sickness); Submit4();}} >확인</Button> 
        </div>
       </div>
       </Fade>
@@ -425,7 +517,7 @@ function emailReject(e){
        value='해당 없음'
        onClick={()=> {getCheckboxValue2()}}/> 해당 없음
        </div>
-       <Button className="btn" onClick={() => {add('p_sickness',psickness)}} >확인</Button> 
+       <Button className="btn" onClick={() => {add('p_sickness',psickness); Submit5();}} >확인</Button> 
        </div>
       </div>
       </Fade>
@@ -433,7 +525,7 @@ function emailReject(e){
       }
 
       { page === 12
-      ? <FinalLoading userName={userName} servey={servey}  page={page} setPage={setPage} />
+      ? <FinalLoading userName={userName} servey={survey}  page={page} setPage={setPage} />
       : null
       } 
 
@@ -455,7 +547,7 @@ function emailReject(e){
       </div>
         <input onChange={(e) =>{setInputText(e.target.value); emailCheck(e)} }></input>
         <Button className="btn btn-primary" id='emailInput' onClick={(e) => {emailReject(e)}} >확인</Button> 
-        <Button className="btn" onClick={() => {console.log(servey)}} >저장된 값 보기</Button> 
+        <Button className="btn" onClick={() => {console.log(survey)}} >저장된 값 보기</Button> 
       </div>
       </Fade>
       :null
@@ -467,7 +559,7 @@ function emailReject(e){
       <div className='servey-title'>
       <h4>결과 확인</h4>
       </div>
-        <Button className="btn" onClick={() => {console.log(servey)}} >저장된 값 보기</Button> 
+        <Button className="btn" onClick={() => {console.log(survey)}} >저장된 값 보기</Button> 
       </div>
       :null
       }

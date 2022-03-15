@@ -38,10 +38,8 @@ import NoticePage from './components/notice/NoticePage';
 import MyEditor from './components/notice/MyEditor';
 import NoticeView from './components/notice/NoticeView';
 import NoticeEdit from './components/notice/NoticeEdit';
-<<<<<<< HEAD
-=======
 
->>>>>>> 2ed35051530e14900c6c1766e6b1b999a625ba31
+
 
 function App() {
 
