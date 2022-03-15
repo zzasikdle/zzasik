@@ -19,6 +19,10 @@
     display: inline-block;
     width:900px;
 }
+
+.content hr {
+    background-color: #000000;
+  }
 /*글쓰기 버튼*/
 .writeBtn{
     width: 60px;
@@ -72,18 +76,18 @@ border-radius: 2px !important;
 }
 
 .view-info{
-    margin-top: 5px;
+    margin-top: 10px;
     font-size: 15px;
     color: #a59f9f;
 }
 
 .view-content{
     text-align: left;
-    padding: 100px 0 100px 0;
+    padding: 100px 0;
 }
 
 .noticeBtn{
-    width: 65px;
+    width: 70px;
     height: 30px;
     padding-top: 30px;
     margin-left: 5px;
