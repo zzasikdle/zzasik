@@ -15,7 +15,7 @@
     <result property="imageFilename" column="imageFilename" />
     <result property="teacher_id" column="teacher_id" />
      <result property="writedate" column="writedate" />
-
+ 
   </resultMap> 
   
 
