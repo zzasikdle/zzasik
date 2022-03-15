@@ -1,9 +1,17 @@
 /**/
+
+.myhome-title{
+    display: flex;
+    float: left;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
 .content{
     display:flex;
     float: left;
     margin-top: 70px;
 }
+
 
 /*박스*/
 .box{
@@ -17,6 +25,7 @@
 .box_header h2{
     margin: 15px 0px 20px 25px;
     font-size: 24px;
+    font-weight: 600;
 }
 
 /*마이페이지*/
@@ -35,7 +44,7 @@
 .profile #edit{
     font-size: 16px;
     float: right;
-	margin: 16px 10px 0 200px;
+	margin: 16px 0px 0 210px;
 	color: blue;
 	font-weight: 500;
 	text-decoration: none;

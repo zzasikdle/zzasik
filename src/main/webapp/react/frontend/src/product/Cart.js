@@ -1,43 +1,56 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { baseUrl } from "../config";
+
 const Cart = () => {
+
+    const [cartList, setCartList] = useState([]);
+    const id = sessionStorage.getItem("user_id");
+    const {user_id} = useParams();
+
+    useEffect(() => {
+        async function call() {
+            await axios
+            .get(baseUrl+'/cart/listProducts', {params:{user_id:id}})
+            .then((response)=>{
+                setCartList(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+        }
+        call();      
+    }, []);
+
+    let result = [];
+
     return(
         <div>
-            <h1>장바구니</h1>
-            <table>
-                <tbody>
-                    <tr><input type="checkbox" name="product" value={product.pro_code} /></tr>
-                    { product.pro_img !== null ?
-                        <>
-                            <tr>
-                                <td>이미지</td>
-                                <td>
-                                    { product.pro_img !== "undefined" ?
-                                        <img src={product.pro_img} alt="preview" style={{width:"300px"}} />
-                                        :
-                                        <img src='/image/no_image_1.png' />
-                                    }
-                                </td>
-                            </tr>
-                        </>
-                        : null
-                    }
-                    
-                    <tr>
-                        <td style={{ width: "150px", align: "center"}}>상품명</td>
-                        <td><input type="text" name="pro_name" defaultValue={product.pro_name} disabled={disabled} onChange={(e) => {setName(e.target.value)}} /></td>
-                    </tr>
-                    <tr>
-                        <td>가격</td>
-                        <td><input type="text" name="pro_price" defaultValue={product.pro_price} disabled={disabled} onChange={(e) => {setPrice(e.target.value)}} /></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="button" onClick={minus} value="-" />
-                            <input type="number" name="quantity" defaultValue="1" />
-                            <input type="button" onClick={plus} value="+" />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div id="wrapper">
+                {cartList.length === 0 ?
+                <div>
+                    <p style={{textAlign:"center"}}>
+                        <b><span style={{fontSize:"9pt"}}></span></b>
+                    </p>
+                    장바구니에 상품이 없습니다.
+                </div>
+                :
+                cartList.map((cart, key) => {
+                    return(
+                        <ul id="productul" style={{float:"left"}}>
+                        <li id="productli" style={{textAlign:"center"}} key={key}>
+                            <Link to={`/shop/product/view/${cart.pro_code}`} style={{textDecoration:"none"}}>
+                                <div>상품코드 : {cart.pro_code}</div>
+                                <div>수량 : {cart.quantity}</div>
+                            </Link>
+                        </li>
+                        </ul>
+                        )
+                })
+                }
+                </div>
         </div>
     )
 }

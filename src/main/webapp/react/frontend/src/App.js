@@ -23,11 +23,9 @@ import Join from './components/member/Join';
 import MypageRoute from './MypageRoute';
 import MemberList from './mypage/admin/component/MemberList'
 
-<<<<<<< HEAD
 //Servey
 import Servey from './components/Servey'
 
-=======
 //board
 import WriteBoard from './components/board/writeboard';
 import BoardList from './components/board/boardList';
@@ -40,7 +38,7 @@ import NoticePage from './components/notice/NoticePage';
 import MyEditor from './components/notice/MyEditor';
 import NoticeView from './components/notice/NoticeView';
 import NoticeEdit from './components/notice/NoticeEdit';
->>>>>>> 818b1873374c8618844641269618d19ee843c9df
+
 
 function App() {
 

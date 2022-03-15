@@ -79,7 +79,7 @@ public class ProductController {
 		} else {
 			System.out.println("새 상품 등록");
 			map.put("message", "상품을 추가했습니다.");
-			map.put("path", "/admin/product/list");
+			map.put("path", "/admin/product");
 		}
 		resEnt = new ResponseEntity(map, responseHeader, HttpStatus.CREATED);
 		return resEnt;
@@ -115,7 +115,7 @@ public class ProductController {
 		} else {
 			System.out.println(pro_code + "번 상품 수정");
 			map.put("message", "상품을 수정했습니다.");
-			map.put("path", "/admin/product/list");
+			map.put("path", "/admin/product");
 		}
 		resEnt = new ResponseEntity(map, responseHeader, HttpStatus.CREATED);
 		return resEnt;
@@ -140,7 +140,7 @@ public class ProductController {
 		} else {
 			System.out.println(pro_code + "번 상품 삭제");
 			map.put("message", "글을 삭제했습니다.");
-			map.put("path", "/admin/product/list");
+			map.put("path", "/admin/product");
 		}
 		resEnt = new ResponseEntity(map, responseHeader, HttpStatus.CREATED);
 		return resEnt;

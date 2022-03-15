@@ -15,10 +15,10 @@ public interface ProductDAO {
 	public List<ProductVO> selectProductList();
 	public int insertProduct(@RequestBody ProductVO params);
 	public int insertProduct(Map<String, Object> productMap);
-	public ProductVO selectProductOne(int pro_num);
+	public ProductVO selectProductOne(int pro_code);
 	public int updateProduct(Map<String, Object> productMap);
-	public int deleteProduct(int pro_num);
-	public int updateCount(int pro_num);
-	public int updateAvail(int pro_num);
+	public int deleteProduct(int pro_code);
+	public int updateCount(int pro_code);
+	public int updateAvail(int pro_code);
 	public int selectTotalCount();
 }
