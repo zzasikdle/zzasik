@@ -23,6 +23,8 @@ public interface BoardDAO {
 	public List selectTeacherBoard(String user_id) throws DataAccessException;
 	public void delBoard (Map delMap) throws DataAccessException;
 	public void modifyBoard(Map boardMap) throws DataAccessException;
+	public List userList(String Board_code) throws DataAccessException;
+	
 	
 	
 }

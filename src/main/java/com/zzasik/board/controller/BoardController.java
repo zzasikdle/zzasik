@@ -214,6 +214,17 @@ public ResponseEntity modifyBoard(MultipartHttpServletRequest multipartRequest, 
  }
 
 
+//강사회원검색
+@GetMapping("/board/searchboard")
+public List<BoardVO> searchboard(@RequestParam("board_code")String  board_code, HttpServletRequest request, 
+		HttpServletResponse response) throws Exception {
+	System.out.println(board_code);
+	
+	List<BoardVO> TeacheruserList =  boardService.TeacheruserList(board_code);
+	
+	return TeacheruserList;
+}
+
 
 
  

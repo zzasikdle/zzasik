@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import './viewboard.css';
+import TeacherBoard from "./teacherBoard";
 
 
 const ViewBoard = () => {
@@ -21,6 +22,7 @@ const ViewBoard = () => {
                 .get(baseUrl + '/board/viewBoard', { params: { board_code: board_code } })
                 .then((response) => {
                     setBoard(response.data);
+                   
 
 
                 })
