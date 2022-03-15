@@ -154,7 +154,7 @@ public List<BoardVO> teacherBoard(@RequestParam("user_id") String user_id ,HttpS
 	
 	return teahcerList;
 }
-
+ 
 //게시글 삭제하기
 @GetMapping(value="/board/delBoard")
 public void delBoard(@RequestParam("board_code") String board_code )throws Exception {
