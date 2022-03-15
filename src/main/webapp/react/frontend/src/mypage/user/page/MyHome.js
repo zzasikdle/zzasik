@@ -12,6 +12,11 @@ export default function MyHome(){
     const user_id = sessionStorage.getItem("user_id");
     const user_name = sessionStorage.getItem("user_name");
 
+    var userType;
+    if(sessionStorage.getItem('classification')===1) userType = "회원";
+    else userType = "코치";
+
+
     const [modalOn , setModalOn] = useState(false);
     const onOpenModal = ()=>{
         setModalOn(!modalOn);
@@ -67,7 +72,7 @@ export default function MyHome(){
                     <div className="profile_content">
                         <img src='/img/profile.png'/>
                         <p style={{fontSize:17,fontWeight: 600,margin:20}}>{user_name}</p>
-                        <span>회원님 반갑습니다!</span>
+                        <span>{userType}님 반갑습니다!</span>
                     </div>
                 </div>
                 <button className='delAccount' onClick={onOpenModal} >회원 탈퇴</button>
