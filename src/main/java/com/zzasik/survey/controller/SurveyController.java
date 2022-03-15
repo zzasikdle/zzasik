@@ -29,7 +29,7 @@ public class SurveyController {
 	@Autowired
 	private SurveyVO surveyVO;
 
-	@PostMapping("/survey1.do")
+	@PostMapping("/survey1")
 	public Map<String,Object> survey1(@RequestBody Map<String,Object> paramMap,HttpServletRequest request,
 			HttpServletResponse response)throws Exception {
 		int height = (Integer)paramMap.get("height");
@@ -53,7 +53,7 @@ public class SurveyController {
 		return null;
 	}
 	
-	@PostMapping("/survey2.do")
+	@PostMapping("/survey2")
 	public Map<String,Object> survey2(@RequestBody Map<String,Object> paramMap,HttpServletRequest request,
 			HttpServletResponse response)throws Exception {
 		String frequency = (String)paramMap.get("frequency");
@@ -73,7 +73,7 @@ public class SurveyController {
 		return null;
 	}
 	
-	@PostMapping("/survey3.do")
+	@PostMapping("/survey3")
 	public Map<String,Object> survey3(@RequestBody Map<String,Object> paramMap,HttpServletRequest request,
 			HttpServletResponse response)throws Exception {
 		String goal = (String)paramMap.get("goal");
@@ -90,38 +90,46 @@ public class SurveyController {
 		return null;
 	}
 	
-	@PostMapping("/survey4.do")
+	@PostMapping("/survey4")
 	public Map<String,Object> survey4(@RequestBody Map<String,Object> paramMap,HttpServletRequest request,
 			HttpServletResponse response)throws Exception {
 		String sickness = (String)paramMap.get("sickness");
-		String sickness2 = (String)paramMap.get("sickness2");
-		String sickness3 = (String)paramMap.get("sickness3");
+		
+		String[] arr = sickness.split(" ");
+		
+		String sick1 = arr[0];
+		String sick2 = arr[1];
+		String sick3 = arr[2];
 		
 		HttpSession session = request.getSession();
 		@SuppressWarnings("unchecked")
 		ArrayList<String> arrList = (ArrayList<String>) session.getAttribute("arrList");
 		
 		SurveyLogic surveyLogic = new SurveyLogic();
-		arrList = surveyLogic.Logic3(arrList, sickness, sickness2, sickness3);
+		arrList = surveyLogic.Logic3(arrList, sick1, sick2, sick3);
 		
 		session.setAttribute("arrList", arrList);
 		
 		return null;
 	}
 	
-	@PostMapping("/survey5.do")
+	@PostMapping("/survey5")
 	public Map<String,Object> survey5(@RequestBody Map<String,Object> paramMap,HttpServletRequest request,
 			HttpServletResponse response)throws Exception {
 		String p_sickness = (String)paramMap.get("p_sickness");
-		String p_sickness2 = (String)paramMap.get("p_sickness2");
-		String p_sickness3 = (String)paramMap.get("p_sickness3");
+		
+		String[] arr = p_sickness.split(" ");
+		
+		String p_sick1 = arr[0];
+		String p_sick2 = arr[1];
+		String p_sick3 = arr[2];
 		
 		HttpSession session = request.getSession();
 		@SuppressWarnings("unchecked")
 		ArrayList<String> arrList = (ArrayList<String>) session.getAttribute("arrList");
 		
 		SurveyLogic surveyLogic = new SurveyLogic();
-		arrList = surveyLogic.Logic4(arrList, p_sickness, p_sickness2, p_sickness3);
+		arrList = surveyLogic.Logic4(arrList, p_sick1, p_sick2, p_sick3);
 		
 		double c = Math.random();
 		
