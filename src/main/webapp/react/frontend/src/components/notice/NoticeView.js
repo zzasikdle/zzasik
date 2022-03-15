@@ -67,10 +67,15 @@ const NoticeView = () => {
                 <hr/>
                 <div className="view-content" dangerouslySetInnerHTML={{__html: notice.notice_content}}/>
                 <hr/>
-                <button onClick={onClickList}>목록</button>
-                <button><Link to={`/notice/edit/${notice.notice_code}`} style={{textDecorationLine:"none",color:"black"}}>수정</Link></button>
-                <button onClick={onClickDel}>삭제</button>
-                
+                <button className="noticeBtn" onClick={onClickList}>목록</button>
+                {sessionStorage.getItem('classification')==='0'?
+                    <>
+                        <button className="noticeBtn"><Link to={`/notice/edit/${notice.notice_code}`} style={{textDecorationLine:"none",color:"black"}}>수정</Link></button>
+                        <button className="noticeBtn" onClick={onClickDel}>삭제</button>
+                    </>
+                    :
+                    null
+                }     
             </div>
         </div>
 }
