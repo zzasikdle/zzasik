@@ -2,12 +2,12 @@ import React ,{useState, useEffect} from 'react';
 import {Button,ProgressBar,Spinner,Form } from 'react-bootstrap';
 import Fade from 'react-reveal/Fade';
 
-function Servey() {
+function Survay() {
     
 
    
 
- const [servey,setServey] = useState(new Map());
+ const [Survay,setSurvay] = useState(new Map());
  const [inputText,setInputText] = useState('');
  const [userName,setUserName] = useState('');
  const [progress,setProgress] = useState(1);
@@ -19,7 +19,7 @@ function Servey() {
 
 
  const add = (key, value) => {
-  setServey((prev) => new Map([...prev,[key,value]]));
+  setSurvay((prev) => new Map([...prev,[key,value]]));
   const nowPage = page + 1;
   setPage(nowPage);
  };
@@ -119,12 +119,12 @@ function emailReject(e){
 
 
     return(
-      <div className="servey">
+      <div className="Survay">
 
       { page === 0 
       ?    
-      <div className='servey-btn'>
-        <div className='servey-title'>
+      <div className='Survay-btn'>
+        <div className='Survay-title'>
         <h4>당신의 성별은 어떻게 되세요?</h4>
         </div>
       <Button className="btn" onClick={() => {add('gender','여자')}} >여자</Button> 
@@ -138,8 +138,8 @@ function emailReject(e){
       { page === 1
       ?  
       <Fade bottom>  
-      <div className='servey-input'>
-      <div className='servey-title'>
+      <div className='Survay-input'>
+      <div className='Survay-title'>
         <h4>당신의 나이는 어떻게 되세요?</h4>
         {check === false
 
@@ -162,8 +162,8 @@ function emailReject(e){
       { page === 2
       ?
       <Fade bottom>  
-      <div className='servey-input'>
-      <div className='servey-title'>
+      <div className='Survay-input'>
+      <div className='Survay-title'>
       <h4>이름을 알려주세요!</h4>
       </div>
         <input onChange={(e) =>{setInputText(e.target.value)} } name="userName"></input>
@@ -184,9 +184,9 @@ function emailReject(e){
 
       ?
       <Fade bottom>  
-      <div className='servey-input'>
-      <div className='servey-title'>
-      <h4>{ servey.get('userName')}님, 반갑습니다</h4>
+      <div className='Survay-input'>
+      <div className='Survay-title'>
+      <h4>{ Survay.get('userName')}님, 반갑습니다</h4>
       <h4> {userName}님의 신장을 알려주세요. </h4>
       {check === false
         ? 
@@ -212,8 +212,8 @@ function emailReject(e){
 
       ?
       <Fade bottom>
-      <div className='servey-input'>
-      <div className='servey-title'>
+      <div className='Survay-input'>
+      <div className='Survay-title'>
       <h4>감사합니다. 실례지만 몸무게도 알려주세요!</h4>
       {check === false
         ? <p >숫자만 입력해 주세요.</p>
@@ -243,8 +243,8 @@ function emailReject(e){
 
       ? 
       <Fade bottom>
-      <div className='servey-input'>
-      <div className='servey-title'>
+      <div className='Survay-input'>
+      <div className='Survay-title'>
       <h4>평소에 운동이나 직업에 관한 활동량이 어떻게 되시나요?</h4>
       </div>
       <Button className="btn btn-primary" onClick={() => {add('activity',1)}} >가벼운 활동</Button> 
@@ -259,8 +259,8 @@ function emailReject(e){
       
       ?
       <Fade bottom>
-      <div className='servey-btn'>
-      <div className='servey-title'>
+      <div className='Survay-btn'>
+      <div className='Survay-title'>
       <h4>평소에 운동을 하신다면 빈도가 어떻게 되시나요?</h4>
       </div>
       <Button className="btn btn-primary" onClick={() => {add('frequency','안함')}} >하지 않음</Button> 
@@ -277,8 +277,8 @@ function emailReject(e){
       
       ?
       <Fade bottom>
-      <div className='servey-btn'>
-      <div className='servey-title'>
+      <div className='Survay-btn'>
+      <div className='Survay-title'>
       <h4>식단관리의 목적이 무엇인가요?</h4>
       </div>
       <Button className="btn btn-primary" onClick={() => {add('goal','근력증진')}} >근력증진</Button> 
@@ -303,55 +303,55 @@ function emailReject(e){
       { page === 10
       ? 
       <Fade bottom>
-      <div className='servey-btn'>
-      <div className='servey-title'>
+      <div className='Survay-btn'>
+      <div className='Survay-title'>
       <h4>현재 겪고 계신 질환 중에 해당되는 사항이 있으신가요?</h4>
       </div>
       
-      <div className='servey-checkbox-wrap'>
-      <div className='servey-checkbox'>
+      <div className='Survay-checkbox-wrap'>
+      <div className='Survay-checkbox'>
       <input type='checkbox'
        name='sickness' 
        value='당뇨병'
        onClick={()=> {getCheckboxValue()}}/> 당뇨병
        </div>
-      <div className='servey-checkbox'>
+      <div className='Survay-checkbox'>
       <input type='checkbox'
        name='sickness' 
        value='저혈압'
        onClick={()=> {getCheckboxValue()}}/> 저혈압
        </div>
-      <div className='servey-checkbox'>
+      <div className='Survay-checkbox'>
       <input type='checkbox'
        name='sickness' 
        value='고혈압'
        onClick={()=> {getCheckboxValue()}}/> 고혈압
        </div>
-      <div className='servey-checkbox'>
+      <div className='Survay-checkbox'>
       <input type='checkbox'
        name='sickness' 
        value='신장질환'
        onClick={()=> {getCheckboxValue()}}/> 신장질환
        </div>
-      <div className='servey-checkbox'>
+      <div className='Survay-checkbox'>
       <input type='checkbox'
        name='sickness' 
        value='빈혈'
        onClick={()=> {getCheckboxValue()}}/> 빈혈
        </div>
-      <div className='servey-checkbox'>
+      <div className='Survay-checkbox'>
       <input type='checkbox'
        name='sickness' 
        value='통풍'
        onClick={()=> {getCheckboxValue()}}/> 통풍
        </div>
-       <div className='servey-checkbox'>
+       <div className='Survay-checkbox'>
       <input type='checkbox'
        name='sickness' 
        value='심장병'
        onClick={()=> {getCheckboxValue()}}/> 심장병
        </div>
-      <div className='servey-checkbox'>
+      <div className='Survay-checkbox'>
       <input type='checkbox'
        name='sickness' 
        value='해당 없음'
@@ -371,55 +371,55 @@ function emailReject(e){
 { page === 11
       ? 
       <Fade bottom>
-      <div className='servey-btn'>
-      <div className='servey-title'>
+      <div className='Survay-btn'>
+      <div className='Survay-title'>
       <h4>과거에 겪으신 질환 중에 해당되는 사항이 있으신가요?</h4>
       </div>
       
-      <div className='servey-checkbox-wrap'>
-      <div className='servey-checkbox'>
+      <div className='Survay-checkbox-wrap'>
+      <div className='Survay-checkbox'>
       <input type='checkbox'
        name='p_sickness' 
        value='당뇨병'
        onClick={()=> {getCheckboxValue2()}}/> 당뇨병
        </div>
-      <div className='servey-checkbox'>
+      <div className='Survay-checkbox'>
       <input type='checkbox'
        name='p_sickness' 
        value='저혈압'
        onClick={()=> {getCheckboxValue2()}}/> 저혈압
        </div>
-      <div className='servey-checkbox'>
+      <div className='Survay-checkbox'>
       <input type='checkbox'
        name='p_sickness' 
        value='고혈압'
        onClick={()=> {getCheckboxValue2()}}/> 고혈압
        </div>
-      <div className='servey-checkbox'>
+      <div className='Survay-checkbox'>
       <input type='checkbox'
        name='p_sickness' 
        value='신장질환'
        onClick={()=> {getCheckboxValue2()}}/> 신장질환
        </div>
-      <div className='servey-checkbox'>
+      <div className='Survay-checkbox'>
       <input type='checkbox'
        name='p_sickness' 
        value='빈혈'
        onClick={()=> {getCheckboxValue2()}}/> 빈혈
        </div>
-      <div className='servey-checkbox'>
+      <div className='Survay-checkbox'>
       <input type='checkbox'
        name='p_sickness' 
        value='통풍'
        onClick={()=> {getCheckboxValue2()}}/> 통풍
        </div>
-       <div className='servey-checkbox'>
+       <div className='Survay-checkbox'>
       <input type='checkbox'
        name='p_sickness' 
        value='심장병'
        onClick={()=> {getCheckboxValue2()}}/> 심장병
        </div>
-      <div className='servey-checkbox'>
+      <div className='Survay-checkbox'>
       <input type='checkbox'
        name='p_sickness' 
        value='해당 없음'
@@ -433,15 +433,15 @@ function emailReject(e){
       }
 
       { page === 12
-      ? <FinalLoading userName={userName} servey={servey}  page={page} setPage={setPage} />
+      ? <FinalLoading userName={userName} Survay={Survay}  page={page} setPage={setPage} />
       : null
       } 
 
       { page === 13
       ? 
       <Fade bottom>
-      <div className='servey-input'>
-      <div className='servey-title'>
+      <div className='Survay-input'>
+      <div className='Survay-title'>
       <h4>고객님의 결과 확인을 위해 이메일을 남겨주세요!</h4>
 
         {check === false
@@ -455,7 +455,7 @@ function emailReject(e){
       </div>
         <input onChange={(e) =>{setInputText(e.target.value); emailCheck(e)} }></input>
         <Button className="btn btn-primary" id='emailInput' onClick={(e) => {emailReject(e)}} >확인</Button> 
-        <Button className="btn" onClick={() => {console.log(servey)}} >저장된 값 보기</Button> 
+        <Button className="btn" onClick={() => {console.log(Survay)}} >저장된 값 보기</Button> 
       </div>
       </Fade>
       :null
@@ -463,11 +463,11 @@ function emailReject(e){
 
       { page === 14
       ?
-      <div className='servey-input'>
-      <div className='servey-title'>
+      <div className='Survay-input'>
+      <div className='Survay-title'>
       <h4>결과 확인</h4>
       </div>
-        <Button className="btn" onClick={() => {console.log(servey)}} >저장된 값 보기</Button> 
+        <Button className="btn" onClick={() => {console.log(Survay)}} >저장된 값 보기</Button> 
       </div>
       :null
       }
@@ -504,8 +504,8 @@ function Loading(props) {
   },[]);
 
   return(
-    <div className='servey-btn'>
-    <div className='servey-title'>
+    <div className='Survay-btn'>
+    <div className='Survay-title'>
       <h4>잠시만 기다려 주세요...</h4>
       <Spinner animation="border" />
     </div>
@@ -565,8 +565,8 @@ function FinalLoading(props){
   },[]);
 
   return(
-    <div className='servey-btn'>
-    <div className='servey-title'>
+    <div className='Survay-btn'>
+    <div className='Survay-title'>
       <h4>{props.userName}님께 꼭 맞는 식단을 찾고 있어요!</h4>
       <ProgressBar now={finalProgress} />
       <Spinner animation="border" />
@@ -579,4 +579,4 @@ function FinalLoading(props){
 
 
 
-export default Servey;
+export default Survay;
