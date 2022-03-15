@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzasik.product.dao.ProductDAO">
+	<resultMap type="productVO" id="productResult">
+		<result property="pro_code" column="pro_code" />
+		<result property="pro_name" column="pro_name" />
+		<result property="pro_class" column="pro_class" />
+		<result property="pro_available" column="pro_available" />
+		<result property="pro_price" column="pro_price" />
+		<result property="pro_img" column="pro_img" />
+		<result property="pro_detail" column="pro_detail" />
+		<result property="pro_count" column="pro_count" />
+	</resultMap>
+	
+	<sql id="productColumns">
+		pro_code,
+		pro_name,
+		pro_class,
+		pro_available,
+		pro_price,
+		pro_img,
+		pro_detail
+	</sql>
+	
+	<!-- 상품 목록 -->
+	<select id="selectProductList" parameterType="productVO" resultMap="productResult">
+	SELECT *
+	FROM producttbl
+	ORDER BY pro_code DESC
+	</select>
+	
+	<!-- 상품 추가 -->
+	<insert id="insertProduct" parameterType="java.util.Map">
+	INSERT INTO producttbl ( <include refid="productColumns" /> )
+	VALUES (
+		#{pro_code}, #{pro_name}, #{pro_class}, #{pro_available}, #{pro_price},
+		#{pro_img}, #{pro_detail}
+	)
+	</insert>
+	
+	<!-- 상품 상세 정보 -->
+	<select id="selectProductOne" resultMap="productResult">
+	SELECT *
+	FROM producttbl
+	WHERE pro_code = #{pro_code}
+	</select>
+	
+	<!-- 상품 정보 수정 -->
+	<update id="updateProduct">
+	UPDATE producttbl
+	SET pro_name = #{pro_name}, pro_class = #{pro_class},
+	pro_available = #{pro_available}, pro_price = #{pro_price},
+	pro_img = #{pro_img}, pro_detail = #{pro_detail}
+	WHERE pro_code = #{pro_code}
+	</update>
+	
+	<!-- 상품 삭제 -->
+	<delete id="deleteProduct">
+	DELETE
+	FROM producttbl
+	WHERE pro_code = #{pro_code}
+	</delete>
+	
+	<!-- 조회수 증가 -->
+	<update id="updateCount">
+	UPDATE producttbl
+	SET pro_count = pro_count + 1
+	WHERE pro_code = #{pro_code}
+	</update>
+	
+	<!-- 수량 감소 -->
+	<update id="updateAvail">
+	UPDATE producttbl
+	SET pro_available = pro_available - #{pro_available}
+	WHERE pro_code = #{pro_code}
+	</update>
+	
+	<select id="selectTotalCount" resultType="int">
+	SELECT count(*)
+	FROM producttbl
+	</select>
+	
+	<!-- 검색 -->
+
+</mapper>

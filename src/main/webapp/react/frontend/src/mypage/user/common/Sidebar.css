@@ -10,9 +10,14 @@
 }
 
 .sidebar-item {
-    margin-top: 5px;
+    margin-top: 25px;
     align-items: center;
     width: 200px;
     display: flex;
     flex-direction: column;
+}
+
+.sidebar-item img{
+   
+    margin: 10px 20px;
 }
