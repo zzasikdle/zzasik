@@ -1,5 +1,8 @@
 package com.zzasik.board.vo;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 import org.springframework.stereotype.Component;
 
 @Component("BoardVO")
@@ -13,9 +16,16 @@ public class BoardVO {
 	private String teacher_name;
 	private String imageFilename;
 	private String teacher_id;
+	private Timestamp writedate;
 	
 	
 	
+	public Timestamp getWritedate() {
+		return writedate;
+	}
+	public void setWritedate(Timestamp writedate) {
+		this.writedate = writedate;
+	}
 	public String getTeacher_id() {
 		return teacher_id;
 	}

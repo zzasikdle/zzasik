@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- 
 <mapper namespace="com.zzasik.board.dao.BoardDAO">
+
 <resultMap id="BoardsResult" type="BoardVO">
  <result property="user_id" column="user_id"/>
     <result property="board_code" column="board_code" />
@@ -14,10 +14,11 @@
     <result property="teacher_name" column="teacher_name" />
     <result property="imageFilename" column="imageFilename" />
     <result property="teacher_id" column="teacher_id" />
-
+     <result property="writedate" column="writedate" />
+ 
   </resultMap> 
   
-
+ 
   <select id="selectAllBoardsList" resultMap="BoardsResult">
     <![CDATA[
       SELECT * FROM boardtbl
@@ -27,8 +28,8 @@
     <select id="addNewBoard" parameterType="java.util.Map">
 
      	<![CDATA[
-		INSERT into boardtbl(user_id,teacher_name,board_code,board_title,board_content,meal_type,board_price,imageFilename)
-		VALUES (#{user_id},#{teacher_name},#{board_code}, #{board_title}, #{board_content},	#{meal_type}, #{board_price},#{imageFilename})
+		INSERT into boardtbl(user_id,teacher_name,board_code,board_title,board_content,meal_type,board_price,imageFilename,writedate)
+		VALUES (#{user_id},#{teacher_name},#{board_code}, #{board_title}, #{board_content},	#{meal_type}, #{board_price},#{imageFilename},#{writedate})
 	]]>   
   </select>
   
@@ -56,8 +57,28 @@
 	
 	  <select id="selectTeacherBoard" resultType="BoardVO" parameterType="String">
     <![CDATA[
-      SELECT board_title, user_id , board_content  from boardtbl where user_id = #{user_id}; 
+      SELECT board_title, user_id , board_content , board_code ,meal_type from boardtbl where user_id = #{user_id}; 
     ]]>
   </select>
   
+   <select id="delBoard" parameterType="java.util.Map">
+
+     	<![CDATA[
+		delete  from boardtbl where board_code = #{board_code}
+	]]>   
+  </select>
+  
+     <select id="modifyBoard" parameterType="java.util.Map">
+     	<![CDATA[
+		UPDATE boardtbl SET  board_title=#{board_title},board_content=#{board_content},meal_type=#{meal_type},board_price=#{board_price},imageFilename=#{imageFilename} WHERE board_code=#{board_code}
+	]]>   
+  </select>
+  
+  
+    <select id="userList" resultMap="BoardsResult">
+    <![CDATA[
+      SELECT user_id FROM joincart where board_code=#{board_code}
+    ]]>
+  </select> 
 </mapper>
+  
