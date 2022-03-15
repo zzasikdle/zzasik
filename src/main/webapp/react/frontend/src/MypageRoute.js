@@ -20,6 +20,7 @@ import Product from './mypage/admin/page/Product';
 
 import Sidebar from './mypage/user/common/Sidebar';
 import Sidebar_Admin from './mypage/admin/common/Sidebar';
+import Sidebar_Teacher from './mypage/teacher/common/Sidebar';
 
 import './MypageRoute.css';
 import MyAddress from './mypage/user/page/MyAddress';
@@ -36,7 +37,10 @@ function MypageRoute() {
     <div className='myhome-mainbar' ></div>
     <div className='myhome-container'>
       <div className='myhome-wrap'>
-        {sessionStorage.getItem('classification')==='0' ? <Sidebar_Admin/> : <Sidebar/>} 
+        {sessionStorage.getItem('classification')==='0' ? <Sidebar_Admin/> :
+         sessionStorage.getItem('classification')==='1' ? <Sidebar/>:
+         <Sidebar_Teacher/>
+        }
         <main>
           <Route path='/myhome' exact component={MyHome}/>
           <Route path='/myhome/edit' component={Edit}/>
