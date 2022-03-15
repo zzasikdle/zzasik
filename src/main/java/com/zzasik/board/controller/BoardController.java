@@ -226,6 +226,18 @@ public List<BoardVO> searchboard(@RequestParam("board_code")String  board_code, 
 }
 
 
+//강의수락 버튼
+@GetMapping(value="/board/subinsert")
+public void subinsert(@RequestParam("user_id") String user_id) throws Exception {
+	System.out.println("user_id:"+user_id);
+	Map<String,Object> joinMap = new HashMap<String,Object>();
+	joinMap.put("user_id", user_id);
+	System.out.println(joinMap);
+	boardService.suganginsert(joinMap);
+	System.out.println("----------------완료 -------------");
+
+}
+
 
  
 } // end class()

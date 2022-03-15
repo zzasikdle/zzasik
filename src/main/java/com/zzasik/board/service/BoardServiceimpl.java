@@ -74,4 +74,11 @@ public class BoardServiceimpl implements BoardService {
 		return userList;
 	}
 	
+	@Override
+	public void suganginsert(Map joinMap) throws Exception {
+		System.out.println("----------------Service ÁøÀÔ -------------");
+		boardDAO.suganginsert(joinMap);
+		
+	}
+	
 }// end class() 

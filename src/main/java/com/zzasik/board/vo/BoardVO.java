@@ -17,6 +17,15 @@ public class BoardVO {
 	private String imageFilename;
 	private String teacher_id;
 	private Timestamp writedate;
+	private String breakfast;
+	private String Lunch;
+	private String dinner;
+	private String snack_1;
+	private String snack_2;
+	private String snack_3;
+	private int calorie;
+	private String coaching_answer;
+	
 	
 	
 	
@@ -82,6 +91,54 @@ public class BoardVO {
 	}
 	
 	
+	public String getBreakfast() {
+		return breakfast;
+	}
+	public void setBreakfast(String breakfast) {
+		this.breakfast = breakfast;
+	}
+	public String getLunch() {
+		return Lunch;
+	}
+	public void setLunch(String lunch) {
+		Lunch = lunch;
+	}
+	public String getDinner() {
+		return dinner;
+	}
+	public void setDinner(String dinner) {
+		this.dinner = dinner;
+	}
+	public String getSnack_1() {
+		return snack_1;
+	}
+	public void setSnack_1(String snack_1) {
+		this.snack_1 = snack_1;
+	}
+	public String getSnack_2() {
+		return snack_2;
+	}
+	public void setSnack_2(String snack_2) {
+		this.snack_2 = snack_2;
+	}
+	public String getSnack_3() {
+		return snack_3;
+	}
+	public void setSnack_3(String snack_3) {
+		this.snack_3 = snack_3;
+	}
+	public int getCalorie() {
+		return calorie;
+	}
+	public void setCalorie(int calorie) {
+		this.calorie = calorie;
+	}
+	public String getCoaching_answer() {
+		return coaching_answer;
+	}
+	public void setCoaching_answer(String coaching_answer) {
+		this.coaching_answer = coaching_answer;
+	}
 	public BoardVO() {
 		// TODO Auto-generated constructor stub
 	}
