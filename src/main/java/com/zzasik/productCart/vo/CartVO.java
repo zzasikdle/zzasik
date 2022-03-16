@@ -1,5 +1,7 @@
 package com.zzasik.productCart.vo;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.zzasik.product.vo.ProductVO;
@@ -10,7 +12,7 @@ public class CartVO {
 	private int pro_code;
 	private int quantity;
 	
-	private ProductVO productVO;
+	private List<ProductVO> productList;
 	
 	public String getUser_id() {
 		return user_id;
@@ -29,5 +31,11 @@ public class CartVO {
 	}
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+	public List<ProductVO> getProductList() {
+		return productList;
+	}
+	public void setProductList(List<ProductVO> productList) {
+		this.productList = productList;
 	}
 }
