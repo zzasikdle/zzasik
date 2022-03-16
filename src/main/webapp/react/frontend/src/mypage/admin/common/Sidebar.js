@@ -10,7 +10,6 @@ function Sidebar(){
     const menus = [
         { name: "관리자 페이지",path:"/admin"},
         { name: "공지사항 관리",path:"/admin/notice"},
-        { name: "고객센터 관리",path:"/admin/cs"},
         { name: "상품 관리",path:"/admin/product"},
         { name: "코칭 서비스 관리",path:"/admin/lesson"}
     ];
