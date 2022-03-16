@@ -25,6 +25,7 @@ public interface BoardDAO {
 	public void modifyBoard(Map boardMap) throws DataAccessException;
 	public List userList(String Board_code) throws DataAccessException;
 	public void suganginsert(Map joinMap) throws DataAccessException;
+	public int countJoinUser(Map checkmap) throws DataAccessException;
 	
 	
 	
