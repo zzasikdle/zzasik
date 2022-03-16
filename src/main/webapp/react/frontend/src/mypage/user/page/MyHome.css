@@ -8,6 +8,7 @@
     display:flex;
     float: left;
     margin-top: 70px;
+    padding: 0 0 110px 0;
 }
 
 
@@ -17,13 +18,29 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 .box_header {
-   display: flex;
+   display:flow-root;
 }
 
 .box_header h2{
     margin: 15px 0px 20px 25px;
     font-size: 24px;
     font-weight: 600;
+    float: left;
+}
+
+/*박스 헤더 오른쪽 버튼*/
+.manage{
+    font-size: 16px;
+    float: right;
+    margin: 12px;
+	color: blue;
+	font-weight: 500;
+	text-decoration: none;
+}
+
+.arrow{
+    width: 14px;
+    height: 14px;
 }
 
 /*마이페이지*/
@@ -37,15 +54,6 @@
 
 .profile_content{
     text-align: center;
-}
-
-.profile #edit{
-    font-size: 16px;
-    float: right;
-	margin: 16px 0px 0 210px;
-	color: blue;
-	font-weight: 500;
-	text-decoration: none;
 }
 
 /*회원 탈퇴 버튼*/

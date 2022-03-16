@@ -24,6 +24,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.zzasik.member.service.MemberService;
+import com.zzasik.member.vo.AddressVO;
+import com.zzasik.member.vo.MemberVO;
+import com.zzasik.myhome.service.MyHomeService;
 import com.zzasik.product.service.ProductService;
 import com.zzasik.product.vo.ProductVO;
 
@@ -162,4 +166,5 @@ public class ProductController {
 		//productService.updateAvail(pro_code);
 		return product;
 	}
+	
 }

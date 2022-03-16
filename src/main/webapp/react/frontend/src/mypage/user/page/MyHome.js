@@ -15,7 +15,7 @@ export default function MyHome(){
     const user_name = sessionStorage.getItem("user_name");
 
     var userType;
-    if(sessionStorage.getItem('classification')===1) userType = "회원";
+    if(sessionStorage.getItem('classification')==1) userType = "회원";
     else userType = "코치";
 
 
@@ -85,7 +85,7 @@ $(function(){
                 <div className='box profile'>
                     <div className='box_header'>
                         <h2>내 정보</h2>
-                        <Link to='/myhome/edit' id='edit'>내 정보 수정</Link>   <img style={{height:17,width:17,marginTop:13}} src='/img/arrow.png'/>
+                        <Link to='/myhome/edit' className='manage'>내 정보 수정<img className="arrow" src='/img/arrow.png'/></Link>
                     </div>
                     <div className="profile_content">
                         <img src='/img/profile.png'/>

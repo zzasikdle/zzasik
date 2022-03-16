@@ -3,14 +3,23 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import React, {useState} from 'react';
 import './MemberList.css';
+import Pagination from "../../../components/notice/Pagination";
+
+//jquery 추가
+import $ from "jquery";
 
 const MemberList = () => {
 
     const baseUrl = "http://localhost:8090";
 
     const [ memberList,setMemberList] = useState([]);
+    const [ addressList,setAddressList] = useState([]);
 
     const [ classification , setClassification] = useState('');
+
+    const [ limit, setLimit] = useState(10);    //한 페이지당 표시할 게시물 개수
+    const [ page, setPage] = useState(1);
+    const offset = (page - 1) * limit;
 
 
     useEffect(()=>{
@@ -23,7 +32,30 @@ const MemberList = () => {
         .catch((error) => {
             console.log(error);
         })
+
     },[]);
+
+    const getAddress = async(user_id) => {    
+        axios.get(baseUrl + '/member/listAddress' , {params:{user_id:user_id}})
+            .then((response) => {
+                setAddressList(response.data);
+                })
+            .catch((error)=> {
+                console.log(error);
+            })
+
+        $(".j_modal").attr("style","display:block");
+        $(".modal_content").css({
+                "top": (($(window).height()-$(".modal_content").outerHeight())/2+$(window).scrollTop())+"px",
+                "left": (($(window).width()-$(".modal_content").outerWidth())/2+$(window).scrollLeft())+"px"
+                //팝업창을 가운데로 띄우기 위해 현재 화면의 가운데 값과 스크롤 값을 계산하여 팝업창 CSS 설정     
+        });    
+
+    }
+
+    $("#btn_close_modal").on("click",function(){
+        $(".j_modal").attr("style","display:none");
+    });
 
     /* 회원 권한 수정 */
 
@@ -81,13 +113,13 @@ const MemberList = () => {
                             </p></td>
                     </tr>
                     :
-                    memberList.map((member,key) => {
+                    memberList.slice(offset, offset + limit).map((member,key) => {
                         return(
                             <tr>
                                 <td id='id'>{member.user_id}</td>
                                 <td id='name'>{member.user_name}</td>
                                 <td id='birth'>{member.birth}</td>
-                                <td id='addr_1'>{member.addr_1}</td>
+                                <td id='addr_1'> <button onClick={() => getAddress(member.user_id)}>보기</button></td>
                                 <td id='phone'>{member.phone}</td>
                                 <td id='classification'>{member.classification}</td>
                                 <td id='modify'>
@@ -103,6 +135,23 @@ const MemberList = () => {
                     }
                 </tbody>
             </table>
+            <footer>
+            <Pagination
+                total={memberList.length}
+                limit={limit}
+                page={page}
+                setPage={setPage}
+            />
+            </footer>
+            <div class = "j_modal">
+                <div class= "modal_content">
+                    <div class= "modal_title">
+                        <h3 style={{color:"black",fontSize:25,margin:17}}>회원 주소</h3>
+                        <img src='/img/close.png' id="btn_close_modal" style={{width:30,height:30,marginLeft:230}}/>
+                    </div>
+                </div>	
+                <div class="modal_layer"></div>
+            </div>
         </div>
     )
 }

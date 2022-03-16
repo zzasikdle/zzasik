@@ -245,9 +245,11 @@ const Join = () => {
       }
 
     return (
-        <>
+        <div className='join-wrap'>
+            <div className='join-box'>
+        <h4>JOIN</h4>
         <div id="joinForm">
-                <div className="formbox" style={{paddingTop:40}}>
+                <div className="formbox">
                     <h3 class="join_title">아이디</h3>
                     <input
                     class="join_input"
@@ -320,7 +322,7 @@ const Join = () => {
                 <br/>
 
                 <div className="formbox">
-                    <h3 class="join_title">주소1</h3>
+                    <h3 class="join_title">우편번호</h3>
                     <input
                         class="join_input"
                         type="text"
@@ -334,7 +336,7 @@ const Join = () => {
                 <button id="postCodeBtn" type='button' onClick={onChangeOpenPost} >우편번호찾기</button>
                 <br/>
                 <div className="formbox">
-                    <h3 class="join_title">주소2</h3>
+                    <h3 class="join_title">주소</h3>
                     <input
                         class="join_input"
                         type="text"
@@ -346,7 +348,7 @@ const Join = () => {
                 </div>
 
                 <div className="formbox">
-                    <h3 class="join_title">주소3</h3>
+                    <h3 class="join_title">상세주소</h3>
                     <input
                         class="join_input"
                         type="text"
@@ -382,9 +384,9 @@ const Join = () => {
                         />
                 </div>
                     
-                    <p><button id="joinBtn" onClick={handleJoin}
+                    <button id="joinBtn" onClick={handleJoin}
                         disabled={!(isId && isName && isEmail && isPassword && isPasswordConfirm && isUserAddress)}
-                    >회원가입</button></p>
+                    >JOIN</button>
 
             </div>
             <div class = "j_modal">
@@ -399,7 +401,8 @@ const Join = () => {
                 </div>	
                 <div class="modal_layer"></div>
             </div>
-        </>
+            </div>
+        </div>
     )
 };
 

@@ -11,27 +11,27 @@ function Footer() {
 
 <div className="footer-logo">ZZASIK</div>
 <div className="footer-about">
-  <p>ABOUT</p>
-  <small>우리회사는 이렇게 탄생해서 이렇게 어쩌고 하고 있어요 글이 길어져도 깨지면 안되겠죠 높이와 너비는 유동적으로 늘어나야겠지요</small>
+  <p>SLOGAN</p>
+  <a>식단관리는 최고의 건강관리이다</a>
   </div>
 <div className="footer-company">
   <p>COMPANY</p>
-  <small>* About us</small>
-  <small>* Portfolio</small>
-  <small>* Shop</small>
+  <small>* 본사 위치</small>
+  <small>* 오프라인 매장</small>
   </div>
 <div className="footer-account">
   <p>ACCOUNT</p>
-  <small><Link to="/member/login">* Sign in</Link></small>
-  <small><Link to="/member/Join">* Sign up</Link></small>
-  <small>* View Account</small>
+  <small><Link to="/member/login">* 로그인</Link></small>
+  <small><Link to="/member/Join">* 가입</Link></small>
+  <small>* 회원 약관</small>
 </div>
 <div className="footer-contactus">
   <p>CONTACT US</p>
   <p>Email</p>
   <small>ZZASIK@gamil.com</small>
   <p>Phone</p>
-  <small>010-9999-9999</small>
+  <small>02-1234-1234</small>
+  <small>010-1234-1234</small>
 
 </div>
 <div className="footer-footer">© 2022 designed & developed by ZZASIK, all rights reserved.</div>

@@ -13,7 +13,6 @@ import Edit from './mypage/user/component/Edit';
 
 
 import Admin from './mypage/admin/page/Admin';
-import Cs from './mypage/admin/page/Cs';
 import Lesson from './mypage/admin/page/Lesson';
 import Notice from './mypage/admin/page/Notice';
 import Product from './mypage/admin/page/Product';
@@ -59,7 +58,6 @@ function MypageRoute() {
           <Route path='/myhome/myCart' component={MyCart}/>
           <Route path='/admin' exact component={Admin}/>
           <Route path='/admin/notice' component={Notice}/>
-          <Route path='/admin/cs' component={Cs}/>
           <Route path='/admin/product' component={Product}/>
           <Route path='/admin/lesson' component={Lesson}/>
           <Route path='/teacher' exact component={Teacher}/>
