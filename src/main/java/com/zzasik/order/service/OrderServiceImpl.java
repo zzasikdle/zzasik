@@ -29,8 +29,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public OrderVO CheckProduct(int order_id) {
-		return orderDAO.selectOrderOne(order_id);
+	public OrderVO CheckProduct(int order_code) {
+		return orderDAO.selectOrderOne(order_code);
 	}
 
 	@Override
@@ -44,6 +44,19 @@ public class OrderServiceImpl implements OrderService {
 	public List<OrderVO> getOrderList(String user_id) {
 		List<OrderVO> orderList = orderDAO.selectOrderList(user_id);		
 		return orderList;
+	}
+
+	@Override
+	public boolean deleteProduct(int order_code) {
+		int queryResult = 0;
+		
+		OrderVO order = orderDAO.selectOrderOne(order_code);
+		
+		if(order != null) {
+			queryResult = orderDAO.deleteOrder(order_code);
+		}
+		
+		return (queryResult == 1) ? true : false;
 	}
 
 }
