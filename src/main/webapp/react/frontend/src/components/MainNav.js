@@ -43,6 +43,8 @@ function MainNav(props) {
     <Rotate>
     <Navbar.Brand href="/">ZZASIK</Navbar.Brand>
     </Rotate>
+       
+
     <Navbar.Toggle aria-controls="offcanvasNavbar" />
     <Navbar.Offcanvas
       id="offcanvasNavbar"
@@ -55,7 +57,7 @@ function MainNav(props) {
       <Offcanvas.Body>
         <Nav className="justify-content-end flex-grow-1 pe-3">
           <Nav.Link href="/">홈으로</Nav.Link>
-          <Nav.Link href="#action2">나의 식단 찾기</Nav.Link>
+          <Nav.Link href="/survey">나의 식단 찾기</Nav.Link>
           {sessionStorage.getItem('success')==='true'?
                     <Nav.Link href="/" onClick={onLogout} ><h6>{sessionStorage.getItem('user_name')}님 로그아웃</h6></Nav.Link>
                     :
@@ -77,10 +79,9 @@ function MainNav(props) {
                     <>
                     <NavDropdown title="관리자페이지" id="offcanvasNavbarDropdown">
                     <NavDropdown.Item href="/admin">회원 정보</NavDropdown.Item>
-                    <NavDropdown.Item href="#action3">공지사항 관리</NavDropdown.Item>
-                    <NavDropdown.Item href="#action4">고객센터 관리</NavDropdown.Item>
-                    <NavDropdown.Item href="#action4">상품 관리</NavDropdown.Item>
-                    <NavDropdown.Item href="#action4">코칭 서비스 관리</NavDropdown.Item>
+                    <NavDropdown.Item href="/admin/notice">공지사항 관리</NavDropdown.Item>
+                    <NavDropdown.Item href="/admin/product">상품 관리</NavDropdown.Item>
+                    <NavDropdown.Item href="/admin/lesson">코칭 서비스 관리</NavDropdown.Item>
                     <NavDropdown.Item href="/" onClick={onLogout} >로그아웃</NavDropdown.Item>
 
                     <NavDropdown.Divider />
@@ -93,8 +94,7 @@ function MainNav(props) {
                     sessionStorage.getItem('classification')==='1'?
                     <>
                     <NavDropdown title="마이페이지" id="offcanvasNavbarDropdown">
-                    <NavDropdown.Item href="/myhome">나의 정보</NavDropdown.Item>
-                    <NavDropdown.Item href="#action3">식단 추천</NavDropdown.Item>
+                    <NavDropdown.Item href="/myhome">내 정보</NavDropdown.Item>
                     <NavDropdown.Item href="/myhome/myDiet">나의 식단</NavDropdown.Item>
                     <NavDropdown.Item href="/myhome/myLesson">나의 코칭 서비스</NavDropdown.Item>
                     <NavDropdown.Item href="/myhome/myOrder">주문내역</NavDropdown.Item>
@@ -110,7 +110,7 @@ function MainNav(props) {
                     :
                     <>
                     <NavDropdown title="마이페이지" id="offcanvasNavbarDropdown">
-                    <NavDropdown.Item href="/teacher">마이페이지</NavDropdown.Item>
+                    <NavDropdown.Item href="/teacher">내 정보</NavDropdown.Item>
                     <NavDropdown.Item href="/teacher/lesson">나의 코칭 서비스</NavDropdown.Item>
                     <NavDropdown.Item href="/teacher/signuplist">신청 내역</NavDropdown.Item>
                     <NavDropdown.Item href="/teacher/coaching">코칭 하기</NavDropdown.Item>

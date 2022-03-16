@@ -24,7 +24,10 @@ import MypageRoute from './MypageRoute';
 import MemberList from './mypage/admin/component/MemberList'
 
 //Servey
-import Servey from './components/Servey'
+
+import Survey from './components/Survey'
+
+
 //board
 import WriteBoard from './components/board/writeboard';
 import BoardList from './components/board/boardList';
@@ -49,7 +52,7 @@ function App() {
       <MainNav />   
 
       <Switch>
-      <Route path="/servey" component={Servey}/>
+      <Route path="/survey" component={Survey}/>
       
         <Route exact path="/">
           <Home />

@@ -18,71 +18,35 @@ function Question() {
 <Accordion>
   <Fade>
   <Accordion.Item eventKey="0">
-    <Accordion.Header>1. 연회비는요?</Accordion.Header>
+    <Accordion.Header>무료인가요?</Accordion.Header>
     <Accordion.Body>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.
+      짜식에서 제공하는 맞춤 식단관리는 무료입니다. <br/>
+      이후 식단 구매와 전문가 코칭 서비스는 유료서비스 입니다.
     </Accordion.Body>
   </Accordion.Item>
   </Fade>
   <Fade>
   <Accordion.Item eventKey="1">
-    <Accordion.Header>2. 배달은요?</Accordion.Header>
+    <Accordion.Header>저는 살을 찌우고 싶은데요?</Accordion.Header>
     <Accordion.Body>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.
+      걱정하지 마세요! <br/>
+      짜식들의 AI가 고객님의 체중과 생활패턴들을 분석해 건강한 체중 증가를 위한 식단도 추천합니다.
     </Accordion.Body>
   </Accordion.Item>
   </Fade>
   <Fade>
   <Accordion.Item eventKey="2">
-    <Accordion.Header>3. 교육은요?</Accordion.Header>
+    <Accordion.Header>운동은 됐고 식단관리만 받고 싶어요.</Accordion.Header>
     <Accordion.Body>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.
+      물론 가능합니다. 건강한 식습관을 만든후에, 운동은 천천히 생각해보세요.
     </Accordion.Body>
   </Accordion.Item>
   </Fade>
   <Fade>
   <Accordion.Item eventKey="3">
-    <Accordion.Header>4. 뭐는요?</Accordion.Header>
+    <Accordion.Header>배송은 얼마나 걸리나요?</Accordion.Header>
     <Accordion.Body>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.
-    </Accordion.Body>
-  </Accordion.Item>
-  </Fade>
-  <Fade>
-  <Accordion.Item eventKey="4">
-    <Accordion.Header>5. 나는요?</Accordion.Header>
-    <Accordion.Body>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.
+      주문 익일 받으실 수 있도록 최선을 다하겠습니다.
     </Accordion.Body>
   </Accordion.Item>
   </Fade>
