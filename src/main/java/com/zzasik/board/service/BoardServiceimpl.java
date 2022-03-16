@@ -90,4 +90,26 @@ public class BoardServiceimpl implements BoardService {
 		
 	}
 	
+	@Override
+	public List<BoardVO> CoachingList(String board_code) throws Exception {
+		List<BoardVO> coachingUserList = boardDAO.coachingList(board_code);
+		return coachingUserList;
+	}
+	
+	
+	
+	
+	@Override
+	public List<BoardVO> userdetailList(String user_id) throws Exception {
+		List<BoardVO> userdetailList = boardDAO.userlist(user_id);
+		return userdetailList;
+	}
+	
+	
+	@Override
+	public void addcoachingAnswer(Map CoachingMap) throws Exception {
+		boardDAO.addCoachingAnswer(CoachingMap);
+		
+	}
+	
 }// end class() 

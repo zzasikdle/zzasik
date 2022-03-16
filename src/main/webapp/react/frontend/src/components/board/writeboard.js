@@ -1,8 +1,7 @@
 import { Link  } from "react-router-dom";
 import axios from "axios";
 import React,{useState} from 'react';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 import './writeBoard.css';
 
 
@@ -22,6 +21,7 @@ const WriteBoard = ( ) => {
      const [meal_type, setMeal_type] = useState('');
      const [board_price , setBoard_price]= useState('');
      const [imageFilename , setImageFilename]= useState('');
+     const [board_period , setBoard_period]= useState('');
 
  
      const readURL = (e) => {
@@ -64,6 +64,7 @@ const WriteBoard = ( ) => {
         formData.append("meal_type",meal_type);
         formData.append("board_price",board_price);
         formData.append("imageFilename", imageFilename);
+        formData.append("board_period",board_period);
 
         console.log(Object.values(board_content))
        
@@ -112,6 +113,7 @@ const WriteBoard = ( ) => {
             <p class="mid_msg">상품 제목<input type="text" id="title" placeholder="제목"  name= "board_title" onChange={(e) => {setBoard_title(e.target.value)}}/></p>
             <p class="mid_msg">상품 타입<input type="text" class="type"placeholder="타입" name="meal_type"  onChange={(e) => {setMeal_type(e.target.value)}}/></p> 
             <p class="mid_msg">상품 가격<input type="text" class="price" placeholder="가격"  name="board_price" onChange={(e) => {setBoard_price(e.target.value)}}/></p>
+            <p class="mid_msg">일수<input type="text" class="price" placeholder="period"  name="board_period" onChange={(e) => {setBoard_period(e.target.value)}}/></p>
             </div>
             
             
@@ -158,3 +160,12 @@ const WriteBoard = ( ) => {
 };
 
 export default WriteBoard; 
+
+
+
+
+
+
+
+
+

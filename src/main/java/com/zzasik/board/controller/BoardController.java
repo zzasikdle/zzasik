@@ -256,7 +256,45 @@ public void subinsert(@RequestParam("user_id") String user_id , @RequestParam("b
 
 }
 
+//강사코칭검색
+@GetMapping("/board/coachingList")
+public List<BoardVO> coachingList(@RequestParam("board_code")String  board_code ,HttpServletRequest request, 
+		HttpServletResponse response) throws Exception {
+	System.out.println("board_code:" +board_code);
+	List<BoardVO> coachingList = boardService.CoachingList(board_code);
 
+	return coachingList;
+}
+
+
+//유저상세정보 검색
+@GetMapping("/board/userdetail")
+public List<BoardVO> userdetail(@RequestParam("user_id")String  user_id ,HttpServletRequest request, 
+		HttpServletResponse response) throws Exception {
+	
+	System.out.println("#####################userdetail진입##########################################");
+	System.out.println("user_id:"+ user_id);
+	List<BoardVO> userdetailList = boardService.userdetailList(user_id);
+
+	return userdetailList;
+}
+
+@PostMapping(value = "/board/coachingAnswer")
+public Map<String,Object> coachingAnswer(MultipartHttpServletRequest multipartRequest,  HttpServletResponse response) throws Exception {
+	multipartRequest.setCharacterEncoding("utf-8");
+
+	Map<String,Object> CoachingMap = new HashMap<String,Object>();
+	Enumeration enu = multipartRequest.getParameterNames();
+	while (enu.hasMoreElements()) {
+		String name = (String) enu.nextElement();
+		String value = multipartRequest.getParameter(name);
+		System.out.printf("%s %s\n", name, value);
+		CoachingMap.put(name, value);
+	}
+	boardService.addcoachingAnswer(CoachingMap);
+	
+	return CoachingMap;
+}
  
 } // end class()
 	

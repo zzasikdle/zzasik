@@ -25,11 +25,21 @@
      <result property="snack_2" column="snack_2" />
      <result property="snack_3" column="snack_3" />
      <result property="calorie" column="calorie" />
-     
+     <result property="board_period" column="board_period" />
      <result property="coaching_answer" column="coaching_answer" />
+     
+     <result property="user_name" column="user_name" />
+     <result property="user_pwd" column="user_pwd" />
+     <result property="birth" column="birth" />
+     <result property="phone" column="phone" />
+     <result property="email" column="email" />
+     <result property="survey_code" column="survey_code" />
+     
+   
      
  
   </resultMap> 
+  
   
  
   <select id="selectAllBoardsList" resultMap="BoardsResult">
@@ -41,8 +51,8 @@
     <select id="addNewBoard" parameterType="java.util.Map">
 
      	<![CDATA[
-		INSERT into boardtbl(user_id,teacher_name,board_code,board_title,board_content,meal_type,board_price,imageFilename,writedate)
-		VALUES (#{user_id},#{teacher_name},#{board_code}, #{board_title}, #{board_content},	#{meal_type}, #{board_price},#{imageFilename},#{writedate})
+		INSERT into boardtbl(user_id,teacher_name,board_code,board_title,board_content,meal_type,board_price,imageFilename,writedate,board_period)
+		VALUES (#{user_id},#{teacher_name},#{board_code}, #{board_title}, #{board_content},	#{meal_type}, #{board_price},#{imageFilename},#{writedate},#{board_period})
 	]]>   
   </select>
   
@@ -92,8 +102,8 @@
     <![CDATA[
     select joincart.user_id, joincart.joindate
 	from joincart left join coachingtbl
-	on joincart.board_code = coachingtbl.board_code
-	where joincart.board_code=#{board_code} and joincart.userstatus=0 and coachingtbl.board_code is null;
+	on joincart.user_id = coachingtbl.user_id
+	where joincart.user_id=#{user_id} and joincart.userstatus=0 and coachingtbl.user_id is null;
     ]]>
   </select> 
   
@@ -107,7 +117,32 @@
     <select id="countJoinUser" resultType="int" parameterType="String">
 
      	<![CDATA[
-	select count(*) from joincart where user_id=#{user_id} and board_code=#{board_code};
+	select count(*) from joincart where user_id=#{user_id} and board_code=#{board_code}
+	]]>   
+  </select>
+  
+   <select id="coachingList" resultType="BoardVO" parameterType="String">
+    <![CDATA[
+    SELECT * FROM coachingtbl where board_code = #{board_code}
+  
+    ]]>
+  </select> 
+  
+   <select id="userlist" resultType="BoardVO" parameterType="String">
+    <![CDATA[
+ select *from usertbl U
+	INNER JOIN coachingtbl C
+		ON U.user_id = C.user_id
+			where U.user_id=#{user_id};
+    ]]>
+  </select> 
+  
+     <select id="addCoachingAnswer" parameterType="java.util.Map">
+
+     	<![CDATA[
+		update coachingtbl 
+		set breakfast=#{breakfast},Lunch=#{Lunch} ,dinner=#{dinner} ,snack_1=#{snack_1} ,snack_2=#{snack_2} ,calorie=#{calorie} ,coaching_answer=#{coaching_answer} ,coaching_num=#{coaching_num}
+		where board_code= #{board_code} and user_id=#{user_id};
 	]]>   
   </select>
   

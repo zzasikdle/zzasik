@@ -25,27 +25,74 @@ public class BoardVO {
 	private String snack_3;
 	private int calorie;
 	private String coaching_answer;
-	private Date star_tdate;
+	private Date start_date;
 	private int userstatus;
-	;
+	private int board_period;
+	
+	
+	
+
+	private String user_name;
+	private Date birth;
+	private String phone;
+	private String email;
+	private String survey_code;
 	
 	
 	
 	
 	
+	public Date getStart_date() {
+		return start_date;
+	}
+	public void setStart_date(Date start_date) {
+		this.start_date = start_date;
+	}
 	
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+	public Date getBirth() {
+		return birth;
+	}
+	public void setBirth(Date birth) {
+		this.birth = birth;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getSurvey_code() {
+		return survey_code;
+	}
+	public void setSurvey_code(String survey_code) {
+		this.survey_code = survey_code;
+	}
+	public int getBoard_period() {
+		return board_period;
+	}
+	public void setBoard_period(int board_period) {
+		this.board_period = board_period;
+	}
 	public int getUserstatus() {
 		return userstatus;
 	}
 	public void setUserstatus(int userstatus) {
 		this.userstatus = userstatus;
 	}
-	public Date getStar_tdate() {
-		return star_tdate;
-	}
-	public void setStar_tdate(Date star_tdate) {
-		this.star_tdate = star_tdate;
-	}
+
+	
 	public Date getJoindate() {
 		return joindate;
 	}
@@ -169,6 +216,7 @@ public class BoardVO {
 		this.meal_type = meal_type;
 		this.board_price = board_price;
 		this.teacher_name = teacher_name;
+		
 	}
 	
 	
