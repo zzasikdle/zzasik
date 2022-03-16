@@ -12,22 +12,33 @@ function Sidebar(){
     //신청 내역 -> 코칭 서비스 별로 신청 내역 보여주기
     //코칭 하기 -> 코칭 서비스 선택 -> 회원 목록 나옴 -> 회원 선택 -> 글 입력 폼, 회원에게 보낸 글 히스토리
 
+    const mypage = ["/teacher","/myhome/edit","/myhome/myAddress","/myhome/addAddress"];
+    const lesson = ["/teacher/lesson"];
+    const signuplist= ["/teacher/signuplist"];
+    const coaching = ["/teacher/coaching","/teacher/coachingform"];
 
     const menus = [
-        { name: "마이페이지",path:"/teacher"},
-        { name: "나의 코칭 서비스",path:"/teacher/lesson"},
-        { name: "신청 내역",path:"/teacher/signuplist"},
-        { name: "코칭 하기",path:"/teacher/coaching"}
+        { name: "마이페이지",path:mypage},
+        { name: "나의 코칭 서비스",path:lesson},
+        { name: "신청 내역",path:signuplist},
+        { name: "코칭 하기",path:coaching}
     ];
+
+    const checkPath = (pathName,path) => {
+        for(var i = 0; i < path.length; i++)
+            if(pathName === path[i]) return true; 
+        
+        return false;
+    }
 
     return(
         <div className="sidebar">
             {menus.map((menu,index) => {
                 return (
-                    <Link to={menu.path} key={index} style={{color: "gray", textDecoration: "none"}} activeStyle={{color: "black"}}>
+                    <Link to={menu.path[0]} key={index} style={{color: "gray", textDecoration: "none"}} activeStyle={{color: "black"}}>
                         <SidebarItem
                             menu={menu}
-                            isActive={pathName === menu.path ? true : false}	// 현재 URL pathname과 객체에 담긴 path값 일치 여부 확인
+                            isActive={checkPath(pathName,menu.path)}	// 현재 URL pathname과 객체에 담긴 path값 일치 여부 확인
                             />
                     </Link>
                 );
