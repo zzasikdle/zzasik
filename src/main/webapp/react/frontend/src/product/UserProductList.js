@@ -4,10 +4,13 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { baseUrl } from '../config'
+import { useHistory } from 'react-router-dom';
 
 const UserProductList = ( ) => {
 
     const [ productList, setProductList ] = useState([]);
+
+    const history = useHistory();
 
     useEffect(( ) => {
         axios
@@ -24,7 +27,7 @@ const UserProductList = ( ) => {
     let result = [];
 
     return (
-        <div id="con">
+        <div>
             <div id="wrapper">
                 {productList.length === 0 ?
                 <div>
