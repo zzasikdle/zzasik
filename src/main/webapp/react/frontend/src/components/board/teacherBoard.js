@@ -2,15 +2,18 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
  import './teacherBoard.css';
 
+
 const TeacherBoard = ( ) => {
     const baseUrl = "http://localhost:8090";
-
+    
     const [ teacherBoard, setTeacherBoard] = useState([]);
     const [selectBox, setselectBox]  = useState([]);
     const [userlist, setUserList]  = useState([]);
+    const [usersubit, setUsersubit]  = useState([]);
     
 
     useEffect(( ) => {
+        console.log(usersubit);
         async function call() {
             await axios
             .get(baseUrl + "/board/teacherBoard",{params:{user_id:sessionStorage.getItem('user_id')}})
@@ -54,11 +57,23 @@ const TeacherBoard = ( ) => {
 
 
 
+
     function userList(){
+      
+
         var i =0;
         var user_table = [];
         for(i=0; i<userlist.length; i++){
-            user_table.push(<td>{userlist[i].user_id}</td>)
+            
+            user_table.push(  
+                <tr>
+                <td>{userlist[i].user_id} </td>
+                <td>값</td>
+                <td type="button" onClick={sub_btn}>승인</td> 
+                </tr>
+                )
+
+          
         }
         return(
             user_table
@@ -70,7 +85,34 @@ const TeacherBoard = ( ) => {
     }
 
     const sub_btn = async () =>{
-        alert("^^")
+        alert("승인완료")
+        alert(usersubit);
+        console.log(usersubit);
+
+        await axios
+            .get(baseUrl + "/board/subinsert", {
+                params: 
+                { user_id : usersubit,
+                   
+                    
+
+                }
+            }
+
+            ).then((response) => {
+                
+             
+             
+
+            })
+
+            .catch((error) => {
+                console.log(error)
+               
+              
+
+
+            })
     }
 
 
@@ -98,6 +140,15 @@ const TeacherBoard = ( ) => {
 
             ).then((response) => {
                 setUserList(response.data)
+                
+
+                for(i=0; i<response.data.length; i++){
+                    setUsersubit(response.data[i].user_id);
+                  
+
+                    
+                }
+
              
              
 
@@ -155,7 +206,7 @@ const TeacherBoard = ( ) => {
                                 <option>목록</option>
                             {temp()}
                            
-                        </select>
+                            </select>
                         </a>
                         </a>
                      
@@ -179,14 +230,10 @@ const TeacherBoard = ( ) => {
                                    <th>신청</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
+                                <tbody>       
                                     {userList()}
-                                    <td>값</td>
-                                    <td type="button" onClick={sub_btn}>신청</td> 
-                                    </tr>
-
                                 </tbody>
+                                
                             
                         </table>
                    
@@ -218,12 +265,6 @@ const TeacherBoard = ( ) => {
 
     
 }
-
-
-
-
-
-
 
 
 export default TeacherBoard;

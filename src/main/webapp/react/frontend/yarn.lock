@@ -4024,6 +4024,8 @@
   "version" "10.0.0"
 
 "draft-js@^0.10.x || ^0.11.x", "draft-js@^0.11.7", "draft-js@^0.11.x":
+  "integrity" "sha512-ne7yFfN4sEL82QPQEn80xnADR8/Q6ALVworbC5UOSzOvjffmYfFsr3xSZtxbIirti14R7Y33EZC5rivpLgIbsg=="
+  "resolved" "https://registry.npmjs.org/draft-js/-/draft-js-0.11.7.tgz"
   "version" "0.11.7"
   dependencies:
     "fbjs" "^2.0.0"
@@ -4778,11 +4780,14 @@
 "fs.realpath@^1.0.0":
   "version" "1.0.0"
 
+<<<<<<< HEAD
+=======
 "fsevents@^2.1.2", "fsevents@^2.3.2", "fsevents@~2.3.2":
   "integrity" "sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA=="
   "resolved" "https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz"
   "version" "2.3.2"
 
+>>>>>>> refs/heads/main
 "function-bind@^1.1.1":
   "version" "1.1.1"
 
@@ -8187,11 +8192,14 @@
     "uncontrollable" "^7.2.1"
     "warning" "^4.0.3"
 
+<<<<<<< HEAD
+=======
 "react-circular-progressbar@^2.0.4":
   "integrity" "sha512-OfX0ThSxRYEVGaQSt0DlXfyl5w4DbXHsXetyeivmoQrh9xA9bzVPHNf8aAhOIiwiaxX2WYWpLDB3gcpsDJ9oww=="
   "resolved" "https://registry.npmjs.org/react-circular-progressbar/-/react-circular-progressbar-2.0.4.tgz"
   "version" "2.0.4"
 
+>>>>>>> refs/heads/main
 "react-daum-postcode@^3.0.1":
   "version" "3.0.1"
   dependencies:
@@ -8242,6 +8250,8 @@
     "scheduler" "^0.20.2"
 
 "react-draft-wysiwyg@^1.14.7":
+  "integrity" "sha512-D4X8F/ourvQZuqHzCQ6Vs6Tnt6TbGH58kvHQxC+aZGq+45ko2EyatL6G5C/paMaNKDZq2JRe7yAzykneMLpNOg=="
+  "resolved" "https://registry.npmjs.org/react-draft-wysiwyg/-/react-draft-wysiwyg-1.14.7.tgz"
   "version" "1.14.7"
   dependencies:
     "classnames" "^2.2.6"
