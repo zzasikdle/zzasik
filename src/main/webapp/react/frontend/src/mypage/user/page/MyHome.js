@@ -2,7 +2,9 @@ import './MyHome.css';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-// import Modal from './Modal';
+
+//jquery 추가
+import $ from "jquery";
 
 /* 마이페이지 */
 export default function MyHome(){
@@ -42,8 +44,8 @@ export default function MyHome(){
 
     }
 
-    const Modal  = (props) => {
-        const { children, onClick } = props;
+    const Modal  = () => {
+        
 
         return (
             
@@ -58,7 +60,23 @@ export default function MyHome(){
           )
     }
 
-
+//주소찾기 모달창
+$(function(){ 
+    //주소찾기 버튼 클릭시, 모달창 띄움
+    $("#delAccoutBtn").on("click",function(){
+        $(".j_modal").attr("style","display:block");
+        $(".modal_content").css({
+            "top": (($(window).height()-$(".modal_content").outerHeight())/2+$(window).scrollTop())+"px",
+            "left": (($(window).width()-$(".modal_content").outerWidth())/2+$(window).scrollLeft())+"px"
+            //팝업창을 가운데로 띄우기 위해 현재 화면의 가운데 값과 스크롤 값을 계산하여 팝업창 CSS 설정     
+        }); 
+    });
+    
+    $("#btn_close_modal").on("click",function(){
+        $(".j_modal").attr("style","display:none");
+        
+    });
+});
     
     return (
         <div>
@@ -75,10 +93,20 @@ export default function MyHome(){
                         <span>{userType}님 반갑습니다!</span>
                     </div>
                 </div>
-                <button className='delAccount' onClick={onOpenModal} >회원 탈퇴</button>
-                {modalOn ? <Modal ></Modal> : ''}
+                <button className='delAccount' id="delAccoutBtn"  >회원 탈퇴</button>
+                {/* {modalOn ? <Modal ></Modal> : ''} */}
                 
-                <please />
+                <div class = "j_modal">
+                    <div class= "delAccountContent">
+                        <div class= "delAccountTitle">
+                            <h3 style={{color:"black",fontSize:18,margin:20}}>탈퇴 하시겠습니까?</h3>
+                        </div>
+                        <button className="btn_model" onClick={deleteId} >탈퇴</button>
+                        <button className="btn_model" id="btn_close_modal">취소</button>
+                    </div>	
+                    <div class="modal_layer"></div>
+                </div>
+                
             </div>
         </div>
     );
