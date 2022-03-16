@@ -43,6 +43,8 @@ function MainNav(props) {
     <Rotate>
     <Navbar.Brand href="/">ZZASIK</Navbar.Brand>
     </Rotate>
+       
+
     <Navbar.Toggle aria-controls="offcanvasNavbar" />
     <Navbar.Offcanvas
       id="offcanvasNavbar"
@@ -55,7 +57,7 @@ function MainNav(props) {
       <Offcanvas.Body>
         <Nav className="justify-content-end flex-grow-1 pe-3">
           <Nav.Link href="/">홈으로</Nav.Link>
-          <Nav.Link href="#action2">나의 식단 찾기</Nav.Link>
+          <Nav.Link href="/survey">나의 식단 찾기</Nav.Link>
           {sessionStorage.getItem('success')==='true'?
                     <Nav.Link href="/" onClick={onLogout} ><h6>{sessionStorage.getItem('user_name')}님 로그아웃</h6></Nav.Link>
                     :

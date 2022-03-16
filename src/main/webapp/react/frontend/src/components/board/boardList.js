@@ -1,7 +1,8 @@
+import './boardList.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link,useParams} from 'react-router-dom';
-import './boardList.css';
+
 
 const BoardList = ( ) => {
     const baseUrl = "http://localhost:8090";

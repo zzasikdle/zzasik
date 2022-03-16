@@ -39,7 +39,7 @@ const WriteBoard = ( ) => {
 
     const writeBtn = async()=>{
         console.log(JSON.stringify(board_content));
-        const objcontent = JSON.stringify(board_content);
+    
         const formData = new FormData();
         formData.append("user_id",sessionStorage.getItem('user_id'));
         formData.append("teacher_name",sessionStorage.getItem('user_name'));

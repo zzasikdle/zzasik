@@ -67,7 +67,7 @@ public ResponseEntity addNewBoard(MultipartHttpServletRequest multipartRequest, 
 		System.out.printf("%s %s\n", name, value);
 		boardMap.put(name, value);
 	}
-	
+	  
 	String imageFilename = upload(multipartRequest);
 	boardMap.put("board_code", 0);
 	boardMap.put("imageFilename", imageFilename);
@@ -154,8 +154,80 @@ public List<BoardVO> teacherBoard(@RequestParam("user_id") String user_id ,HttpS
 	
 	return teahcerList;
 }
+ 
+//게시글 삭제하기
+@GetMapping(value="/board/delBoard")
+public void delBoard(@RequestParam("board_code") String board_code )throws Exception {
+	System.out.println("board_code="+board_code);
+	Map<String,Object> delMap = new HashMap<String,Object>();
+	delMap.put("board_code", board_code);
+	boardService.delBoard(delMap);
 
+}
+ 
+//수정하기
+@PostMapping(value = "/board/modifyBoard")
+public ResponseEntity modifyBoard(MultipartHttpServletRequest multipartRequest,  HttpServletResponse response) throws Exception {
+	multipartRequest.setCharacterEncoding("utf-8");
+	System.out.println("----------------수정 컨트롤러 -------------------");
+	Map<String,Object> boardMap = new HashMap<String,Object>();
+	Enumeration enu = multipartRequest.getParameterNames();
+	while (enu.hasMoreElements()) {
+		String name = (String) enu.nextElement();
+		String value = multipartRequest.getParameter(name);
+		System.out.printf("%s %s\n", name, value);
+		boardMap.put(name, value);
+	}
+	 
+	String imageFilename = upload(multipartRequest);
+	String board_code = (String) boardMap.get("board_code");
+	boardMap.put("imageFilename", imageFilename);
+	Map<String, String> map = new HashMap<String, String>();
+	ResponseEntity resEnt = null;
+	HttpHeaders responseHeaders = new HttpHeaders();
+	responseHeaders.add("Content-Type", "application/json; charset=utf-8");
 	
+	try {
+		boardService.modifyBoard(boardMap);
+		if (imageFilename != null && imageFilename.length() != 0) {
+			File srcFile = new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + imageFilename);
+			File destDir = new File(ARTICLE_IMAGE_REPO + "\\" + board_code);
+			FileUtils.moveFileToDirectory(srcFile, destDir, true);
+			
+			String originalFileName = (String) boardMap.get("originalFileName");
+			File oldFile = new File(ARTICLE_IMAGE_REPO + "\\" + board_code + "\\" + originalFileName);
+			oldFile.delete();
+		}
+		map.put("message", "수정완료 .");
+		map.put("path", "/board/list/"+Integer.parseInt(board_code));
+		resEnt = new ResponseEntity(map, responseHeaders, HttpStatus.CREATED);
+	} catch (Exception e) {
+		File srcFile = new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + imageFilename);
+		srcFile.delete();
+		map.put("message", "오류가 발생했습니다. 다시 시도해 주세요.");
+		map.put("path", "/");
+		resEnt = new ResponseEntity(map, responseHeaders, HttpStatus.CREATED);
+		e.printStackTrace();
+	}
+	return resEnt;
+	
+ }
+
+
+//강사회원검색
+@GetMapping("/board/searchboard")
+public List<BoardVO> searchboard(@RequestParam("board_code")String  board_code, HttpServletRequest request, 
+		HttpServletResponse response) throws Exception {
+	System.out.println(board_code);
+	
+	List<BoardVO> TeacheruserList =  boardService.TeacheruserList(board_code);
+	
+	return TeacheruserList;
+}
+
+
+
+ 
 } // end class()
 	
 	
