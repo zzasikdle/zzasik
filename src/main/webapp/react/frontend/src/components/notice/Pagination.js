@@ -33,7 +33,7 @@ function Pagination({ total, limit, page, setPage }) {
     justify-content: center;
     align-items: center;
     gap: 6px;
-    margin: 16px;
+    margin-bottom: 50px;
   `;
   
   const Button = styled.button`
