@@ -82,6 +82,7 @@ $(function(){
         <div>
             <h1 className="myhome-title">마이페이지</h1>
             <div className='content'>
+            <div style={{display:"flex",flexDirection:"row"}}>
                 <div className='box profile'>
                     <div className='box_header'>
                         <h2>내 정보</h2>
@@ -93,7 +94,12 @@ $(function(){
                         <span>{userType}님 반갑습니다!</span>
                     </div>
                 </div>
+                <div className='box' style={{width:300,height:150,display:"inline-block"}}>
+                    <div className='box_header'>
+                            <h2>회원 탈퇴</h2>
+                    </div>
                 <button className='delAccount' id="delAccoutBtn"  >회원 탈퇴</button>
+                </div>
                 {/* {modalOn ? <Modal ></Modal> : ''} */}
                 
                 <div class = "j_modal">
@@ -106,7 +112,7 @@ $(function(){
                     </div>	
                     <div class="modal_layer"></div>
                 </div>
-                
+                </div>
             </div>
         </div>
     );
