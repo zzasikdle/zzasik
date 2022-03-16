@@ -100,10 +100,11 @@
   
     <select id="userList" resultMap="BoardsResult">
     <![CDATA[
-    select joincart.user_id, joincart.joindate
-	from joincart left join coachingtbl
-	on joincart.user_id = coachingtbl.user_id
-	where joincart.user_id=#{user_id} and joincart.userstatus=0 and coachingtbl.user_id is null;
+select J.user_id, J.joindate
+from joincart J left 
+outer join coachingtbl C 
+on c.user_id = j.user_id
+where c.user_id is null and j.board_code=#{board_code}
     ]]>
   </select> 
   
