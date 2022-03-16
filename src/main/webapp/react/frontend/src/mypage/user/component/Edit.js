@@ -123,7 +123,7 @@ function Edit(){
    //회원가입 폼 가져오기 
    return (
         <>
-           <h1>마이페이지</h1>
+           <h1 className='myhome-title'>마이페이지</h1>
            <div className='box profile-edit'>
                <div className='box_header'>
                 <h2>내 정보 수정</h2>

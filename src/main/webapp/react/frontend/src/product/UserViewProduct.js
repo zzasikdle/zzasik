@@ -94,17 +94,17 @@ const UserViewProduct = ( ) => {
     }
 
     const backToList = () => {
-        history.push("/shop/product")
+        history.push("/shop")
     }
 
     return (
-        <div>
+        <div id="con">
             <h1>user product view</h1>
             <table>
                 <tbody>
                     { product.pro_img !== null ?
                         <>
-                            <tr>
+                            <tr id="imagetr">
                                 <td>이미지</td>
                                 <td>
                                     { product.pro_img !== "undefined" ?
