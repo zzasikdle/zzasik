@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { Link } from 'react-router-dom';
+import {Button,InputGroup,FormControl } from 'react-bootstrap';
+
 
 
 const Login = ( ) => {
@@ -55,11 +57,17 @@ const Login = ( ) => {
     }
         
     return (
-        <div id="loginForm">
-            <p><FontAwesomeIcon icon={faUser} /> <input type="search" placeholder="아이디" onChange={handleId} value={user_id} /></p>
-            <p><FontAwesomeIcon icon={faLock} /> <input type="password" placeholder="비밀번호" onChange={handlePwd} value={user_pwd}/></p>
-            <p><button className="LoginBtn" onClick={handleSubmit}>로그인</button></p>
-            <Link className="joinBtn" to="/member/Join">회원가입</Link>
+        <div className='loginForm'>
+            <div className='login-div'>
+                <div className='login-head'>
+                <h4>로그인</h4>
+                </div>
+            <p><FontAwesomeIcon icon={faUser} className='login-icon' /> <input type="text" placeholder="ID" onChange={handleId} value={user_id} className="login-input" /></p>
+            <p><FontAwesomeIcon icon={faLock} className='login-icon' /> <input type="password" placeholder="PW" onChange={handlePwd} value={user_pwd} className="login-input"/></p>
+            <Button className="login-btn" onClick={handleSubmit}>LOGIN</Button>
+            <Link to="/member/Join"><Button className="login-btn join">JOIN</Button></Link>
+
+            </div>
         </div>
     );
 };

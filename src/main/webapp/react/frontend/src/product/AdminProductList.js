@@ -31,15 +31,13 @@ const AdminProductList = ( ) => {
     let result = [];
 
     return (
-        <div id="con">
+        <div>
             <div className='leftBtn'>
-                {console.log("classification:" + (sessionStorage.classification))}
-                {sessionStorage.classification === "0" ?
+                {/* {sessionStorage.classification === 0 ? */}
                     <>
                         <input type="button" value="글쓰기" onClick={writeProduct} />
-                        <button><Link to='/admin/product/new'>글쓰기</Link></button>
                     </>
-                : null }
+                {/* : null } */}
             </div>
 
             <div id="wrapper">
@@ -63,8 +61,8 @@ const AdminProductList = ( ) => {
                                         <img src="/image/no_image_1.png" />
                                     }
                                 </div>                                
-                                <div>{product.pro_name}</div>
-                                <div>{product.pro_price}</div>
+                                <div style={{color:"black"}}>{product.pro_name}</div>
+                                <div style={{fontSize:"20px", fontWeight:"bold", color:"firebrick"}}>{product.pro_price}</div>
                             </Link>
                         </li>
                         </ul>

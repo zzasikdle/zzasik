@@ -8,6 +8,10 @@ div {
     display: block;
 }
 
+h1{
+    margin-top: 15px;
+}
+
 p{
     display: block;
     margin-block-start: 1em;
@@ -30,6 +34,7 @@ td, th{
     letter-spacing: -1px;
     border: 0;
     border-top: 1px solid #e5e5e5;
+    height: 10px;
 }
 
 .thcell{
@@ -38,7 +43,7 @@ td, th{
 
 
 .tdcell{
-    padding: 32px 0 32px 30px;
+    padding: 32px 0 4px 30px;
 }
 
 .contxt_tit{
@@ -50,6 +55,7 @@ td, th{
 .contxt_desc{
     line-height: 19px;
     padding-top: 10px;
+    margin-bottom: 2px;
     color: #8e8e8e;
 }
 
@@ -65,11 +71,32 @@ td, th{
     padding-top: 27px;
     color: #333;
 }
+.btn_model{
+    display: inline-block;
+    font-size: 12px;
+    position: relative;
+    padding: 0 13px;
+    margin-top: 7px;
+    margin-left: 10px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 0;
+    line-height: 33px;
+    color: #222;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: top;
+}
+.btn_model.init{
+    margin-left: 3px;
+    margin-top: 10px;
+}
+.btn_model.phone{
+    margin-top: -2px;
     
-.btn2 {
-    border: 1px solid #bfbfbf;
-    background: #fff;
-    }
+}
+
+
 
 .country_code {
         font-size: 12px;
@@ -102,3 +129,48 @@ td, th{
     width: 110px;
 }
 
+select::-ms-expand { 
+	display: none;
+}
+.select {
+    -o-appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 57px;
+    height: 33px;
+    border: 1px solid rgb(209, 202, 202);
+    border-radius: 3px;
+    text-align: center;
+    margin-left: 10px;
+  }
+
+
+#user_name{
+    width: 120px;
+    height: 33px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    border: 1px solid rgb(209, 202, 202);
+    border-radius: 3px;
+}
+#user_name:hover{
+    background-color: rgb(236, 242, 248);
+}
+
+#telNo1Second,#telNo1Third{
+    width: 57px;
+    height: 33px;
+    border: 1px solid rgb(209, 202, 202);
+    border-radius: 3px;
+}
+.select:hover,#telNo1Second:hover ,#telNo1Third:hover{
+    background-color: rgb(236, 242, 248);
+}
+
+.links{
+    color: #000;
+}
+.btn_model:hover{
+    background-color: rgb(220, 236, 250);
+}
