@@ -94,7 +94,7 @@ const UserViewProduct = ( ) => {
     }
 
     const backToList = () => {
-        history.push("/shop/product")
+        history.push("/shop")
     }
 
     return (
