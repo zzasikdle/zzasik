@@ -16,7 +16,7 @@ public class BoardVO {
 	private String teacher_name;
 	private String imageFilename;
 	private String teacher_id;
-	private Timestamp writedate;
+	private Date joindate;
 	private String breakfast;
 	private String Lunch;
 	private String dinner;
@@ -25,15 +25,32 @@ public class BoardVO {
 	private String snack_3;
 	private int calorie;
 	private String coaching_answer;
+	private Date star_tdate;
+	private int userstatus;
+	;
 	
 	
 	
 	
-	public Timestamp getWritedate() {
-		return writedate;
+	
+	
+	public int getUserstatus() {
+		return userstatus;
 	}
-	public void setWritedate(Timestamp writedate) {
-		this.writedate = writedate;
+	public void setUserstatus(int userstatus) {
+		this.userstatus = userstatus;
+	}
+	public Date getStar_tdate() {
+		return star_tdate;
+	}
+	public void setStar_tdate(Date star_tdate) {
+		this.star_tdate = star_tdate;
+	}
+	public Date getJoindate() {
+		return joindate;
+	}
+	public void setJoindate(Date joindate) {
+		this.joindate = joindate;
 	}
 	public String getTeacher_id() {
 		return teacher_id;

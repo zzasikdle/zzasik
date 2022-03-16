@@ -14,7 +14,9 @@
     <result property="teacher_name" column="teacher_name" />
     <result property="imageFilename" column="imageFilename" />
     <result property="teacher_id" column="teacher_id" />
-     <result property="writedate" column="writedate" />
+     <result property="joindate" column="joindate" />
+     <result property="start_date" column="start_date" />
+      <result property="usertsatus" column="usertsatus" />
      
      <result property="breakfast" column="breakfast" />
      <result property="Lunch" column="Lunch" />
@@ -23,7 +25,9 @@
      <result property="snack_2" column="snack_2" />
      <result property="snack_3" column="snack_3" />
      <result property="calorie" column="calorie" />
+     
      <result property="coaching_answer" column="coaching_answer" />
+     
  
   </resultMap> 
   
@@ -58,8 +62,8 @@
 	   <select id="joinBoard" parameterType="java.util.Map">
 
      	<![CDATA[
-		INSERT into joincart(user_id,board_code,teacher_id)
-		VALUES (#{user_id},#{board_code},#{teacher_id})
+		INSERT into joincart(user_id,board_code,teacher_id,joindate)
+		VALUES (#{user_id},#{board_code},#{teacher_id},current_date())
 	]]>   
   </select>
 	
@@ -86,18 +90,18 @@
   
     <select id="userList" resultMap="BoardsResult">
     <![CDATA[
-    select joincart.user_id
+    select joincart.user_id, joincart.joindate
 	from joincart left join coachingtbl
-	on joincart.user_id = coachingtbl.user_id
-	where coachingtbl.user_id is null and joincart.board_code=#{board_code};
+	on joincart.board_code = coachingtbl.board_code
+	where joincart.board_code=#{board_code} and joincart.userstatus=0 and coachingtbl.board_code is null;
     ]]>
   </select> 
   
      <select id="suganginsert" parameterType="java.util.Map">
 
      	<![CDATA[
-		INSERT into coachingtbl(user_id,board_code)
-		VALUES (#{user_id},#{board_code})
+		INSERT into coachingtbl(user_id,board_code,start_date)
+		VALUES (#{user_id},#{board_code},current_date())
 	]]>   
   </select>
     <select id="countJoinUser" resultType="int" parameterType="String">

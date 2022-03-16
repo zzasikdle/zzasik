@@ -7,8 +7,6 @@ import './SignUpList.css';
 //신청 내역
 const SignUpList = () => {
 
- 
-
     const baseUrl = "http://localhost:8090";
     const [signupList, setSignUpList] = useState([]);
     const [teacherBoard, setTeacherBoard] = useState([]);
@@ -30,8 +28,8 @@ const SignUpList = () => {
                 .then((response) => {
                     console.log(response.data);
                     setTeacherBoard(response.data);
-                    console.log(setTeacherBoard.board_code)
-
+                  
+                  
                 })
                 .catch((error) => {
                     console.log(error);
@@ -62,6 +60,7 @@ const SignUpList = () => {
             }
 
             ).then((response) => {
+                console.log(response.data)
              
                 setUserList(response.data)
                 for (i = 0; i < response.data.length; i++) {
@@ -127,7 +126,7 @@ const SignUpList = () => {
             }
 
             ).then((response) => {
-                document.location.href = '/'
+                document.location.href = '/teacher/signuplist'
                 alert("승인완료")
 
 
@@ -191,7 +190,7 @@ const SignUpList = () => {
                         <tbody>
                             <tr>
                                 <td>{user.user_id}</td>
-                                <td>날짜</td>
+                                <td>{user.joindate}</td>
                                 <td>미 승인</td>
                                 <td>
                                     <button onClick={e =>onClickHandler(user.user_id)}>승인</button></td>
