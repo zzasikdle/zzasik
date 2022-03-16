@@ -63,7 +63,7 @@ const ProductList = () => {
                         return(
                             <tr>
                                 <td>{product.pro_code}</td>
-                                <td><Link to={`/product/${product.pro_code}`}>{product.pro_name}</Link></td>
+                                <td><Link to={`/product/view/${product.pro_code}`}>{product.pro_name}</Link></td>
                                 <td>{product.pro_class}</td>
                                 <td>{product.pro_available}</td>
                                 <td>{product.pro_price}</td>

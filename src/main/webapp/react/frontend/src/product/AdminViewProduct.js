@@ -114,7 +114,7 @@ const AdminViewProduct = ( ) => {
                     {console.log("dd:" + (product.pro_img !== undefined && product.pro_img !== null))}
                     { product.pro_img !== null ?
                         <>
-                            <tr>
+                            <tr id="imagetr">
                                 <td>이미지</td>
                                 <td>
                                     { product.pro_img !== undefined ?
@@ -142,14 +142,12 @@ const AdminViewProduct = ( ) => {
                     }
                     
                     <tr>
-                        <td style={{ width: "150px", align: "center", backgroundColor: "#FF9933" }}>글번호</td>
-                        <td>
-                            <input type="text" value={product.pro_code} disabled />
+                        <td style={{height:"10px"}}>
                             <input type="hidden" name="pro_code" value={product.pro_code} />
                         </td>
                     </tr>
                     <tr>
-                        <td style={{ width: "150px", align: "center", backgroundColor: "#FF9933" }}>제목</td>
+                        <td style={{ width: "150px", align: "center" }}>제목</td>
                         <td><input type="text" name="pro_name" defaultValue={product.pro_name} disabled={disabled} onChange={(e) => {setName(e.target.value)}} /></td>
                     </tr>
                     <tr> 
@@ -165,7 +163,7 @@ const AdminViewProduct = ( ) => {
                         <td><input type="text" name="pro_price" defaultValue={product.pro_price} disabled={disabled} onChange={(e) => {setPrice(e.target.value)}} /></td>
                     </tr>
                     <tr>
-                        <td>내용</td>
+                        <td style={{position:"relative", top:"-250px"}}>내용</td>
                         <td><textarea rows="10" cols="65" name="pro_detail" defaultValue={product.pro_detail} disabled={disabled} onChange={(e) => {setDetail(e.target.value)}}></textarea></td>
                     </tr>
                     <tr id="tr_btn_modify" style={{ width: "150px" }} >
@@ -178,8 +176,8 @@ const AdminViewProduct = ( ) => {
 
                     <tr id="tr_btn" >
                         <td colSpan="2" style={{ align: "center" }}>
-                            <input type="button" value="수정하기" onClick={fn_enable} />
-                            <input type="button" value="삭제하기" onClick={fn_remove} />
+                                <input type="button" value="수정하기" onClick={fn_enable} />
+                                <input type="button" value="삭제하기" onClick={fn_remove} />
                             <input type="button" value="리스트로 돌아가기" onClick={backToList} />
                         </td>
                     </tr>

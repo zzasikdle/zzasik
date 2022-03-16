@@ -1,6 +1,7 @@
 #con{
     position: absolute;
     top: 80px;
+    width: 100%;
 }
 
 table{
@@ -11,7 +12,8 @@ table{
 
 tr{
     font-size: 17px;
-    height: 35px;
+    height: 40px;
+    line-height: 40px;
 }
 
 #imagetr{
@@ -21,6 +23,8 @@ tr{
 
 #imagetr td{
     height: 320px;
+    vertical-align: middle;
+    text-align: center;
 }
 
 .image{

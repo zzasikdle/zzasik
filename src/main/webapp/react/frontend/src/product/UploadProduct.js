@@ -64,7 +64,7 @@ const UploadProduct = ( ) => {
                         <td>상품 이미지</td>
                     </tr>
                     <tr id="imagetr">
-                        <td style={{width:"450px", height:"450px", border:"3px solid gray"}}><FilePreview image={image} /></td>
+                        <td style={{width:"400px", height:"400px", border:"3px solid gray"}}><FilePreview image={image} style={{margin:"0 auto"}} /></td>
                         <td><InputFile name="pro_img" onLoadFile={onLoadFile} onFileChange={uploadFile} /></td>
                         <td><input type="button" value="삭제하기" onClick={onDeleteFile} /></td>
                     </tr>
@@ -85,7 +85,7 @@ const UploadProduct = ( ) => {
                         <td><input type="text" name="pro_available" onChange={(e) => {setAvail(e.target.value)}} /></td>
                     </tr>
                     <tr>
-                        <td className='title'>소개</td>
+                        <td className='title' style={{position:"relative", top:"-250px"}}>소개</td>
                         <td><textarea rows="10" cols="65" name="pro_detail" onChange={(e) => {setDetail(e.target.value)}}></textarea></td>
                     </tr>
                     <tr>

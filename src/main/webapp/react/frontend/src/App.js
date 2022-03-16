@@ -45,6 +45,8 @@ import NoticeEdit from './components/notice/NoticeEdit';
 import AdminProductList from './product/AdminProductList';
 import UploadProduct from './product/UploadProduct';
 import AdminViewProduct from './product/AdminViewProduct';
+import UserProductList from './product/UserProductList';
+import UserViewProduct from './product/UserViewProduct';
 
 
 function App() {
@@ -81,6 +83,9 @@ function App() {
         <Route exact path="/product"><AdminProductList/></Route>
         <Route exact path="/product/new"><UploadProduct/></Route>
         <Route path="/product/view/:pro_code"><AdminViewProduct/></Route>
+        
+        <Route exact path="/shop"><UserProductList/></Route>
+        <Route path="/shop/view/:pro_code"><UserViewProduct/></Route>
         
         <MypageRoute/>
 
