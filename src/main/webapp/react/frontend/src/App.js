@@ -25,13 +25,12 @@ import MemberList from './mypage/admin/component/MemberList'
 
 //Servey
 import Servey from './components/Servey'
-
 //board
 import WriteBoard from './components/board/writeboard';
 import BoardList from './components/board/boardList';
 import ViewBoard from './components/board/viewboard';
 import TeacherBoard from './components/board/teacherBoard';
-
+import ModifyBoard from './components/board/ModifyBoard';
 
 //Notice
 import NoticePage from './components/notice/NoticePage';
@@ -64,6 +63,7 @@ function App() {
         <Route path="/board/list" component={BoardList} />
         <Route path="/board/viewboard/:board_code" component={ViewBoard} />
         <Route path="/board/teacherBoard" component={TeacherBoard} />
+        <Route path="/board/modifyBoard/:board_code" component={ModifyBoard} />
         
         <Route exact path="/notice"><NoticePage/></Route>
         <Route exact path="/notice/new"><MyEditor/></Route>
