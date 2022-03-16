@@ -44,19 +44,19 @@ public class CartController {
 	private ProductVO productVO;
 	
 	@GetMapping(value="/cart/listProducts")
-	public List openCart(@RequestParam("user_id") String user_id) {
+	public List<CartVO> openCart(@RequestParam("user_id") String user_id) {
 		List<CartVO> cartList = cartService.getCartList(user_id);
-		List<Object> list = Collections.emptyList();
 		
 		for(CartVO cart : cartList) {
 			if(cart != null) {
-				System.out.println(cart);
-				
-				ProductVO product = productService.getProductDetail(cart.getPro_code());
-				System.out.println(product.getPro_name());
+				System.out.println(cart.getUser_id());
+				System.out.println(cart.getPro_code());
+				List<ProductVO> list = cart.getProductList();
+				for(ProductVO product : list) {
+					System.out.println(product.getPro_name());
+				}
 			}
 		}
-		
 		return cartList;
 	}
 	

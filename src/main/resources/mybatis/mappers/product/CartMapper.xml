@@ -5,6 +5,18 @@
 		<result property="user_id" column="user_id" />
 		<result property="pro_code" column="pro_code" />
 		<result property="quantity" column="quantity" />
+		<collection property="productList" resultMap="productResult"></collection>
+	</resultMap>
+	
+	<resultMap type="productVO" id="productResult">
+		<result property="pro_code" column="pro_code" />
+		<result property="pro_name" column="pro_name" />
+		<result property="pro_class" column="pro_class" />
+		<result property="pro_available" column="pro_available" />
+		<result property="pro_price" column="pro_price" />
+		<result property="pro_img" column="pro_img" />
+		<result property="pro_detail" column="pro_detail" />
+		<result property="pro_count" column="pro_count" />
 	</resultMap>
 	
 	<sql id="cartColumns">
