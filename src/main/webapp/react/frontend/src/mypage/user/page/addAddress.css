@@ -3,6 +3,10 @@
     width: 1000px;
     height: 500px;
 }
+.box.container.Address{
+    margin: 70px;
+}
+
 
 .setting_popup_title:first-child {
     margin-top: 5px;
@@ -72,7 +76,8 @@ tr {
 }
 .tbl_delivery_info th.cell_title {
     width: 98px;
-    padding: 5px 0 0 12px;
+    padding: 5px 0 12px 12px;
+    margin-bottom: 10px;
     font-weight: normal;
     line-height: 32px;
     text-align: left;
@@ -196,5 +201,57 @@ p {
     border-radius: 0;
     -webkit-font-smoothing: antialiased;
     cursor: pointer;
+}
+
+.modalBox{
+    width: 60%;
+    height: 65%;
+     
+}
+.modalBox_item{
+    display: inline-block;
+    padding: 43px 43px ;
+}
+#head{
+    padding-bottom: 10px;
+}
+
+.modalBox_item input {
+    margin: 20px 20px 20px 100px; 
+    height: 50px;
+    border: 1px solid rgb(219, 212, 212);
+    border-radius: 10px;
+}
+
+.modalBox_item button {
+    margin: 0 20px 0 20px;
+    padding: 0 5px 0 5px;
+    transform: translateX(-50%);
+    height:40px;
+    background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+    background-position: left;
+    background-size: 200%;
+    border-radius: 10px;
+    color:white;
+    font-weight: bold;
+    border:none;
+    cursor:pointer;
+    transition: 0.4s;
+    display:inline;
+}
+.modalBox_item button:hover{
+    background-position: right;
+}
+
+#addressCodeBtn{
+    margin-left: 5px;
+    height: 33px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-weight: bold;
+}
+#addressCodeBtn:hover{
+    background-color: #e4f7e9;
 }
 

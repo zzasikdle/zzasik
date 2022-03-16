@@ -136,7 +136,7 @@ const Join = () => {
     setUserAddress(true); // 주소 입력 완료.
     setIsOpenPost(false); // 주소 클릭 시팝업 창 자동 닫힘. 
 
-    $(".modal").attr("style","display:none"); //모달창 닫힘.
+    $(".j_modal").attr("style","display:none"); //모달창 닫힘.
   };
 
   const postCodeStyle = {
@@ -151,7 +151,7 @@ const Join = () => {
     $(function(){ 
         //우편번호찾기 버튼 클릭시, 모달창 띄움
         $("#postCodeBtn").on("click",function(){
-            $(".modal").attr("style","display:block");
+            $(".j_modal").attr("style","display:block");
             $(".modal_content").css({
                  "top": (($(window).height()-$(".modal_content").outerHeight())/2+$(window).scrollTop())+"px",
                  "left": (($(window).width()-$(".modal_content").outerWidth())/2+$(window).scrollLeft())+"px"
@@ -160,7 +160,7 @@ const Join = () => {
         });
         
         $("#btn_close_modal").on("click",function(){
-            $(".modal").attr("style","display:none");
+            $(".j_modal").attr("style","display:none");
             onChangeOpenPost();
         });
      });
@@ -245,9 +245,11 @@ const Join = () => {
       }
 
     return (
-        <>
+        <div className='join-wrap'>
+            <div className='join-box'>
+        <h4>JOIN</h4>
         <div id="joinForm">
-                <div className="formbox" style={{paddingTop:40}}>
+                <div className="formbox">
                     <h3 class="join_title">아이디</h3>
                     <input
                     class="join_input"
@@ -320,7 +322,7 @@ const Join = () => {
                 <br/>
 
                 <div className="formbox">
-                    <h3 class="join_title">주소1</h3>
+                    <h3 class="join_title">우편번호</h3>
                     <input
                         class="join_input"
                         type="text"
@@ -334,7 +336,7 @@ const Join = () => {
                 <button id="postCodeBtn" type='button' onClick={onChangeOpenPost} >우편번호찾기</button>
                 <br/>
                 <div className="formbox">
-                    <h3 class="join_title">주소2</h3>
+                    <h3 class="join_title">주소</h3>
                     <input
                         class="join_input"
                         type="text"
@@ -346,7 +348,7 @@ const Join = () => {
                 </div>
 
                 <div className="formbox">
-                    <h3 class="join_title">주소3</h3>
+                    <h3 class="join_title">상세주소</h3>
                     <input
                         class="join_input"
                         type="text"
@@ -382,12 +384,12 @@ const Join = () => {
                         />
                 </div>
                     
-                    <p><button id="joinBtn" onClick={handleJoin}
+                    <button id="joinBtn" onClick={handleJoin}
                         disabled={!(isId && isName && isEmail && isPassword && isPasswordConfirm && isUserAddress)}
-                    >회원가입</button></p>
+                    >JOIN</button>
 
             </div>
-            <div class = "modal">
+            <div class = "j_modal">
                 <div class= "modal_content">
                     <div class= "modal_title">
                         <h3 style={{color:"black",fontSize:25,margin:17}}>우편번호찾기</h3>
@@ -399,7 +401,8 @@ const Join = () => {
                 </div>	
                 <div class="modal_layer"></div>
             </div>
-        </>
+            </div>
+        </div>
     )
 };
 

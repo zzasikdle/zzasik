@@ -1,3 +1,4 @@
+
 @import './_val.scss';
 
 @font-face {
@@ -21,25 +22,25 @@
   font-size: 16px;
 }
 
+//nav
 .main-nav{
-  opacity: 0;
-  transition-duration: 2s;
+  opacity: 0.5;
+  transition-duration: 1s;
+  color: $mainColor;
+}
+
+.offcanvas{
+  font-family: 'AppleSDG';
 }
 
 .main-nav-fixed{
   opacity: 1;
-  transition-duration: 2s;
-}
-
-.ani-enter{
-  opacity: 0.1;
-}
-
-.ani-enter{
-  opacity: 0.1;
+  transition-duration: 1s;
 }
 
 
+
+//main
 .main {
   background : linear-gradient(
     rgba(0,0,0,0.2),
@@ -50,6 +51,8 @@
   height: 100vh;
   color: white;
   float: left;
+  position: relative;
+
 
  
 
@@ -57,16 +60,27 @@
     font-size: 5em;
     position: relative;
     top: 50vh;
+    
 
   }
 
+
   p{
+    position: relative;
     font-size: 14px;
+    top: 50vh;
+  }
+
+  .main-text-acc{
+    font-size: 23px;
+    color: $mainColor;
   }
 
   .btn{
+    background-color: $mainColor;
     margin: 20px;
     padding: 20px;
+    border: 0;
     border-radius: 20px;
     font-size: 30px;
     font-weight: 600;
@@ -75,6 +89,204 @@
     top: 55vh;
   }
 }
+
+
+//Login
+.loginForm{
+  background-image: url(../public/img/merit2.jpeg);
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  border: 1px solid transparent;
+
+  .login-div{
+    background-color: rgba(255,255,255,0.2);
+    backdrop-filter: blur(8px);
+    margin: auto;
+    width: 30%;
+    height: 40vh;
+    margin-top: 30vh;
+  }
+
+  .login-head{
+    color: white;
+    font-size: 30px;
+    height: 25%;
+    vertical-align: center;
+
+    h4{
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    }
+  .login-icon{
+    color: white;
+  }
+  .login-input{
+    text-align: center;
+    border: 1px solid gray;
+    padding: 5px;
+    width: 40%;
+    height: 40px;
+    margin: 5px;
+
+  }
+
+  .login-btn{
+    background-color: $mainColor;
+    width: 6rem;
+    margin: auto;
+    margin-top: 5px;
+    margin-left: 5px;
+    padding: 5 10px;
+    border: 0;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+
+  .login-btn:hover{
+    color: black;
+  }
+
+  .join{
+    display: inline;
+  }
+}
+
+
+
+
+//join
+
+.join-wrap{
+  background-image: url(../public/img/merit4.jpeg);
+  width: 100vw;
+  background-size: cover;
+  border: 1px solid transparent;
+  padding-top: 100px;
+  padding-bottom: 100px;
+
+  .join-box{
+    margin: auto;
+    background-color: rgba(255,255,255,0.2);
+    backdrop-filter: blur(8px);
+    width: 60%;
+    padding: 50px;
+    height: 90%;
+  }
+  
+  .error{
+    color: red;
+  }
+
+  .success{
+    color: green;
+  }
+
+  button{
+    width: 20%;
+    height: 40px;
+    background-color: $mainColor;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    margin: 10px;
+    font-size: 20px;
+  }
+
+  #joinBtn{
+    width: 60%;
+    height: 60px;
+    font-size: 28px;
+    font-weight: 500;
+
+  }
+  h4{
+    color: white;
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  .formbox{
+    width: 60%;
+    margin: auto;
+  }
+
+  .join_title{
+    color: black;
+    margin: 10px;
+  }
+
+  .formbox{
+    h3{
+      text-align: left;
+    }
+  }
+
+  input{
+    text-align: center;
+    width: 100%;
+    height: 3rem;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+}
+
+
+//modal
+.j_modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width:100%;
+  height:100%;
+  z-index:1;
+  display:none;
+  
+}
+
+.modal_content {
+  width:450px;
+  height:580px;
+  margin: 100px auto;
+  background: white;
+}
+
+.modal_layer {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.5);
+  z-index:-1;
+}
+.modal_title {
+  width: 100%;
+  padding-top: 10px;
+  padding-left: 20px;
+  float:left;
+  display: flex;
+    align-items: center; 
+    color: white;
+}
+
+.modal_title h1{
+  padding-right: 590px;
+}
+
+.j_modal #location {
+  padding-top: 10px;
+  padding-left: 150px;
+}
+
 
 
 .main-merit {
@@ -97,6 +309,7 @@
   p{
     margin-top:40px;
     color: black;
+    margin-bottom: 20px;
   }
 
   
@@ -139,6 +352,7 @@
     p{
       margin-top:50px;
       color: grey;
+      
     }
 
  
@@ -188,6 +402,7 @@
     p{
       margin-top: 50px;
       color: grey;
+      margin-bottom: 20px;
     }
 
   
@@ -202,6 +417,11 @@
     float:left;
     color: white;
     text-align:left;
+
+
+    p{
+      margin-bottom: 5px;
+    }
     small{
       width: 100%;
       color: grey;
@@ -270,6 +490,88 @@
   }
 
 
+ 
+
+  .Survey{
+    width: 100%;
+    height: 100vh;
+    background-image: url(../public/img/merit4.jpeg);
+    background-size: cover;
+    border: 1px solid transparent;
+    
+
+
+    .Survey-title{
+      color: white;
+      display: block;
+      margin-top: 40vh;
+
+      h4{
+        font-size: 2rem;
+        margin: 20px;
+      }
+    }
+
+    .btn{
+      width: 13rem;
+      display: block;
+      margin: auto;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      background-color: $mainColor;
+      border: 0;
+      border-radius: 5px;
+      font-size: 20px;
+      
+    }
+
+    .Survey-input{
+      input{
+        padding: 10px;
+        display: block;
+        margin: auto;
+        width: 15rem;
+        text-align: center;
+        border: 0;
+        border-radius: 5px;
+        outline: none;
+        color: $mainColor;
+        font-weight: 600;
+      }
+
+      .alert-white{
+        color: white;
+      }
+      .alert-red{
+        color: red;
+      }
+
+      .alert-none{
+        color: transparent;
+      }
+    }
+
+
+    .Survey-checkbox-wrap{
+      display: block;
+      margin: auto;
+      margin-top: 40px;
+      width: 30vw;
+
+    }
+    .Survey-checkbox{
+      color: white;
+      margin: auto;
+      width: 15vw;
+      font-size: 20px;
+      text-align: left;
+      float: left;
+    }
+
+  }
+
+  
+
 
 
 
@@ -329,5 +631,3 @@
     margin-top:40px;
   }
 }
-
- 

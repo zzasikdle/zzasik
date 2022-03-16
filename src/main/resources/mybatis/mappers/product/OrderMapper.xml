@@ -56,3 +56,55 @@
 	</delete>
 	
 </mapper>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzasik.order.dao.OrderDAO">
+	<resultMap type="orderVO" id="orderResult">
+		<result property="order_code" column="order_code" />
+		<result property="order_time" column="order_time" />
+		<result property="order_status" column="order_status" />
+		<result property="order_price" column="order_price" />
+		<result property="user_id" column="user_id" />
+		<result property="quantity" column="quantity" />
+		<result property="pro_code" column="pro_code" />
+	</resultMap>
+	
+	<resultMap type="payVO" id="payResult">
+	<result property="pay_time" column="pay_time" />
+		<result property="user_id" column="user_id" />
+		<result property="order_code" column="order_code" />
+	</resultMap>
+	
+	<sql id="orderColumns">
+		order_code,
+		order_time,
+		order_status,
+		order_price,
+		user_id,
+		quantity,
+		pro_code
+	</sql>
+	
+	<insert id="insertOrder">
+	INSERT INTO ordertbl ( <include refid="orderColumns" /> )
+	VALUES(#{order_code}, #{order_time}, "결제 전", #{order_price}, #{user_id}, #{quantity}, #{pro_code})
+	</insert>
+	
+	<select id="selectOrderOne" resultMap="orderResult">
+	SELECT *
+	FROM ordertbl
+	WHERE order_code = #{order_code}
+	</select>
+	
+	<select id="selectOrderCode" resultType="int">
+	SELECT MAX(order_code)
+	FROM ordertbl
+	</select>
+	
+	<select id="selectOrderList" resultMap="orderResult">
+	SELECT *
+	FROM ordertbl
+	WHERE user_id = #{user_id}
+	</select>
+	
+</mapper>
