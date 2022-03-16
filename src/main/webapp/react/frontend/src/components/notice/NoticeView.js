@@ -57,16 +57,16 @@ const NoticeView = () => {
     return<div className="notice-container">
             <div className='title-box'>짜식 공지사항</div>
             <div className='content'>  
-            <hr style={{border:"1px solid #000000"}}/>
+            <hr style={{height:2}}/>
                 <div className="view-header">
                     {notice.notice_title}
                     <div className="view-info">
                         작성자 관리자 | 작성일 {notice.notice_regdate}
                     </div>
                 </div>
-                <hr/>
+                <hr style={{height:1}}/>
                 <div className="view-content" dangerouslySetInnerHTML={{__html: notice.notice_content}}/>
-                <hr/>
+                <hr style={{height:1}}/>
                 <button className="noticeBtn" onClick={onClickList}>목록</button>
                 {sessionStorage.getItem('classification')==='0'?
                     <>

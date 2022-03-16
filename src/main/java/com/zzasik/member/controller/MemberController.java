@@ -47,39 +47,41 @@ public class MemberController {
 	public  Map<String, Object> loginCheck(@RequestBody MemberVO memberVO , HttpServletRequest request) throws Exception {
 		// json 형태로 받기위해서 RequestBody로 함. 
 		// object로 한 이유: 다양한 형태의 값을받기위함.
-		
+		Map<String, Object> map = new HashMap<String, Object>();
 		boolean success = true ;
 		
 		
 		// 해시 비밀번호 일치 여부
-		MemberVO hashedPwd = memberService.findPasswordById(memberVO);
-		if(!passwordEncoder.matches(memberVO.getUser_pwd(), hashedPwd.getUser_pwd() )  ) {
-			System.out.println("wrong password");
-			success = false;
+		try {
+			MemberVO hashedPwd = memberService.findPasswordById(memberVO);
+			if(!passwordEncoder.matches(memberVO.getUser_pwd(), hashedPwd.getUser_pwd() )  ) {
+				System.out.println("wrong password");
+				success = false;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 		
-		// id만 가지고 유저 정보 가져오기 . 어차피 비밀번호는 해시로 일치여부 걸렀음.
-		MemberVO dto = memberService.login(memberVO);
-		
-		//boolean success =  dto != null ? true : false;
-		
-		//현수님 요청
-		HttpSession session = request.getSession();
-		session.setAttribute("survey_code", dto.getSurvey_code());
-		//현수님 요청
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("user_id", memberVO.getUser_id());
-		map.put("success", success);
-		map.put("user_name", dto.getUser_name());
-		map.put("phone", dto.getPhone());
-		map.put("classification", dto.getClassification());
-		map.put("survey_code", dto.getSurvey_code());
-		
-		if(success) {		  
-		    map.put("user_name", dto.getUser_name());
-		}		
+			try {
+				// id만 가지고 유저 정보 가져오기 . 어차피 비밀번호는 해시로 일치여부 걸렀음.
+				MemberVO dto = memberService.login(memberVO);
+				
+				HttpSession session = request.getSession();
+				session.setAttribute("survey_code", dto.getSurvey_code());
+				map.put("user_id", memberVO.getUser_id());
+				map.put("success", success);
+				map.put("user_name", dto.getUser_name());
+				map.put("phone", dto.getPhone());
+				map.put("classification", dto.getClassification());
+				map.put("survey_code", dto.getSurvey_code());
+				if(success) {		  
+				    map.put("user_name", dto.getUser_name());
+				}
+			}catch (Exception e) {
+				success = false;
+				map.put("message", "존재하지 않는 아이디 또는 비밀번호 입니다.");
+				e.printStackTrace();
+			}		
 		return map;
 	}
 	
@@ -151,18 +153,18 @@ public class MemberController {
 	@PostMapping("/member/modMemberPhone")
 	public  Map<String, Object> modMemberPhone(@RequestBody MemberVO memberVO ) throws Exception {
 	
-		String user_id = memberVO.getUser_id();  // �꽭�뀡�뿉�꽌 諛쏆븘�삩 �븘�씠�뵒.
-		String phone = memberVO.getPhone();// 諛붽씀怨좎옄 �븯�뒗 �씠由�.
+		String user_id = memberVO.getUser_id();  
+		String phone = memberVO.getPhone();
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		try {
 			
 			int modResult = memberService.modMemberPhone(memberVO);		//family�뿉 �뜲�씠�꽣 insert 
-			map.put("message", "�쑕���쟾�솕踰덊샇媛� 蹂�寃� �릺�뿀�뒿�땲�떎."); 
+			map.put("message", "휴대전화 번호가 변경 되었습니다."); 
 			
 		}catch (Exception e) {
-			map.put("message", "�쑕���쟾�솕踰덊샇媛� 蹂�寃쎌뿉 �떎�뙣 �븯���뒿�땲�떎."); 
+			map.put("message", "휴대전화 번호가 변경에 실패하였습니다."); 
 				e.printStackTrace();
 			}
 		return map; 
@@ -175,9 +177,9 @@ public class MemberController {
 	  
 		MemberVO memberVO = new MemberVO();
 		memberVO.setUser_id(user_id);
-		System.out.println("�뀒�뒪�듃以묒엯�땲�떎." + memberVO.getUser_id());
+	
 		List<AddressVO> AddressList = memberService.listAddress(memberVO);	
-	    System.out.println(AddressList);
+	  
 			
 	   return AddressList;
 		
@@ -195,12 +197,10 @@ public class MemberController {
 		memberVO.setUser_id(user_id);
 		memberVO.setAddr_receiver(addr_receiver);
 		
-		System.out.println(memberVO.getUser_id());
-		System.out.println(memberVO.getAddr_receiver());
+		
 
 		AddressVO addressVO = new AddressVO();
 		addressVO = memberService.getAddress(memberVO);
-		System.out.println(addressVO.getAddr_receiver());
 		
 	   return addressVO;
 	}
@@ -209,16 +209,7 @@ public class MemberController {
 	@PostMapping("/member/updateAddress") 
 	public  Map<String, Object> updateAddress(@RequestBody AddressVO addressVO ) throws Exception {
 		
-		System.out.println(addressVO.getUser_id());
-		System.out.println(addressVO.getAddr_receiver());
-		System.out.println(addressVO.getAddr_Revisedreceiver());
-		System.out.println(addressVO.getAddr_1());
-		System.out.println(addressVO.getAddr_2());
-		System.out.println(addressVO.getAddr_3());
-		
-		
-		
-		
+	
 		int addResult = memberService.updateAddress(addressVO); // 배송지 저장.
 		
 		

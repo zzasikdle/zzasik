@@ -1,8 +1,6 @@
 /**/
 
 .myhome-title{
-    display: flex;
-    float: left;
     font-weight: 600;
     letter-spacing: 1px;
 }
