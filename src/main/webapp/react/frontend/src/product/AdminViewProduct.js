@@ -2,7 +2,7 @@ import './AdminViewProduct.css';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import { baseUrl } from "../config";
 
 import FilePreview from "./FilePreview";
@@ -103,7 +103,7 @@ const AdminViewProduct = ( ) => {
     }
 
     const backToList = () => {
-        history.push("/admin/product");
+        history.push("/admin/product")
     }
 
     return (
@@ -178,12 +178,12 @@ const AdminViewProduct = ( ) => {
 
                     <tr id="tr_btn" >
                         <td colSpan="2" style={{ align: "center" }}>
-                            {sessionStorage.classification === 0 ?
+                            {/* {sessionStorage.classification === 0 ? */} {/* 현재 접속해있는 사용자의 권한이 admin이면 보이게 하기 */}
                                 <>
                                     <input type="button" value="수정하기" onClick={fn_enable} />
                                     <input type="button" value="삭제하기" onClick={fn_remove} />
                                 </>
-                                : null}
+                                {/* : null} */}
 
                             <input type="button" value="리스트로 돌아가기" onClick={backToList} />
                         </td>

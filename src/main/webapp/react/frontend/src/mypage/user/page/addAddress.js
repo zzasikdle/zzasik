@@ -3,6 +3,8 @@ import { useRef, useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
 import './addAddress.css';
 
+//jquery 추가
+import $ from "jquery";
 
 
 const AddAddress = () => {
@@ -116,16 +118,35 @@ const AddAddress = () => {
     setIsAddress(fullAddress); // 전체 주소.
     setUserAddress(true); // 주소 입력 완료.
     setIsOpenPost(false); // 주소 클릭 시팝업 창 자동 닫힘. 
+
+    $(".j_modal").attr("style","display:none"); //모달창 닫힘.
   };
 
   const postCodeStyle = {
     display: "block",
-    position: "absolute",
-    top: "50%",
+    margin: "auto",
     width: "400px",
     height: "500px",
     padding: "7px",
   };
+
+  //주소찾기 모달창
+  $(function(){ 
+        //주소찾기 버튼 클릭시, 모달창 띄움
+        $("#addressCodeBtn").on("click",function(){
+            $(".j_modal").attr("style","display:block");
+            $(".modal_content").css({
+                "top": (($(window).height()-$(".modal_content").outerHeight())/2+$(window).scrollTop())+"px",
+                "left": (($(window).width()-$(".modal_content").outerWidth())/2+$(window).scrollLeft())+"px"
+                //팝업창을 가운데로 띄우기 위해 현재 화면의 가운데 값과 스크롤 값을 계산하여 팝업창 CSS 설정     
+            }); 
+        });
+        
+        $("#btn_close_modal").on("click",function(){
+            $(".j_modal").attr("style","display:none");
+            onChangeOpenPost();
+        });
+    });
 
     //유효성 검사 ( 각 칸을 모두 적었는지 )
     const [isUserAddress ,setUserAddress] = useState(false);
@@ -240,7 +261,7 @@ const AddAddress = () => {
                                             ref={zoneRef} readOnly></input>
                                     </span>
                             
-                                    <button className="_search setting_btn green" onClick={onOpenModal} >주소검색</button>
+                                    <button className="_search setting_btn green" id="addressCodeBtn" onClick={onChangeOpenPost} >주소검색</button>
                                     {modalOn ? <Modal ></Modal> : ''}
 
                                     <p className="address_detail">
@@ -321,6 +342,19 @@ const AddAddress = () => {
             <div id="pop_footer">
                 <button onClick={closePage}>닫기</button>
                 <button onClick={addAddress}>저장</button>
+            </div>
+
+            <div class = "j_modal">
+                <div class= "modal_content">
+                    <div class= "modal_title">
+                        <h3 style={{color:"black",fontSize:25,margin:20}}>주소 검색</h3>
+                        <img src='/img/close.png' id="btn_close_modal" style={{width:30,height:30,marginLeft:230}}/>
+                    </div>
+                {isOpenPost  ? (
+                <DaumPostcode style={postCodeStyle} autoClose onComplete={handleComplete } />
+                ) : null}
+                </div>	
+                <div class="modal_layer"></div>
             </div>
         </>
     )

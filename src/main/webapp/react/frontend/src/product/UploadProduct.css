@@ -1,0 +1,14 @@
+table{
+    width: 90%;
+    margin: auto;
+    margin-top: 40px;
+}
+
+tr{
+    font-size: 17px;
+    height: 35px;
+}
+
+td.title{
+    float: left;
+}

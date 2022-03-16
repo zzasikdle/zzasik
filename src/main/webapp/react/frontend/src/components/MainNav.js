@@ -74,7 +74,8 @@ function MainNav(props) {
           <Nav.Link href="/writeboard">글쓰기</Nav.Link>
           <Nav.Link href="/board/teacherBoard">teacherBoard</Nav.Link>
           <Nav.Link href="/notice">공지사항</Nav.Link>
-          {sessionStorage.getItem('classification')==='0'?
+          {sessionStorage.getItem('success')==='true'?
+                    sessionStorage.getItem('classification')==='0'?
                     <>
                     <NavDropdown title="관리자페이지" id="offcanvasNavbarDropdown">
                     <NavDropdown.Item href="/admin">회원 정보</NavDropdown.Item>
@@ -91,7 +92,7 @@ function MainNav(props) {
                     </NavDropdown>
                     </>
                     :
-                    sessionStorage.getItem('success')==='true'?
+                    sessionStorage.getItem('classification')==='1'?
                     <>
                     <NavDropdown title="마이페이지" id="offcanvasNavbarDropdown">
                     <NavDropdown.Item href="/myhome">나의 정보</NavDropdown.Item>
@@ -100,6 +101,21 @@ function MainNav(props) {
                     <NavDropdown.Item href="/myhome/myLesson">나의 코칭 서비스</NavDropdown.Item>
                     <NavDropdown.Item href="/myhome/myOrder">주문내역</NavDropdown.Item>
                     <NavDropdown.Item href="/myhome/myCart">장바구니</NavDropdown.Item>
+                    <NavDropdown.Item href="/" onClick={onLogout} >로그아웃</NavDropdown.Item>
+
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action5">
+                      Something else here
+                    </NavDropdown.Item>
+                    </NavDropdown>
+                    </>
+                    :
+                    <>
+                    <NavDropdown title="마이페이지" id="offcanvasNavbarDropdown">
+                    <NavDropdown.Item href="/teacher">마이페이지</NavDropdown.Item>
+                    <NavDropdown.Item href="/teacher/lesson">나의 코칭 서비스</NavDropdown.Item>
+                    <NavDropdown.Item href="/teacher/signuplist">신청 내역</NavDropdown.Item>
+                    <NavDropdown.Item href="/teacher/coaching">코칭 하기</NavDropdown.Item>
                     <NavDropdown.Item href="/" onClick={onLogout} >로그아웃</NavDropdown.Item>
 
                     <NavDropdown.Divider />
