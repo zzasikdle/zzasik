@@ -49,4 +49,10 @@
 	WHERE user_id = #{user_id}
 	</select>
 	
+	<delete id="deleteOrder">
+	DELETE
+	FROM ordertbl
+	WHERE order_code = #{order_code}
+	</delete>
+	
 </mapper>

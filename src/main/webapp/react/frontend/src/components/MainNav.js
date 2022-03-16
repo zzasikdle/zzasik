@@ -69,7 +69,7 @@ function MainNav(props) {
                     null
           }
           <Nav.Link href="#action2">짜식들</Nav.Link>
-          
+          <Nav.Link href="/shop">상품 shop</Nav.Link>
           <Nav.Link href="/board/list">게시판 리스트</Nav.Link>
           <Nav.Link href="/writeboard">글쓰기</Nav.Link>
           <Nav.Link href="/board/teacherBoard">teacherBoard</Nav.Link>

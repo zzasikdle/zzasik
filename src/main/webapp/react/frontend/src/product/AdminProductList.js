@@ -13,7 +13,7 @@ const AdminProductList = ( ) => {
     const history = useHistory();
 
     const writeProduct = ( ) => {
-        history.push("/admin/product/new");
+        history.push("/product/new");
     }
 
     useEffect(( ) => {
@@ -31,13 +31,9 @@ const AdminProductList = ( ) => {
     let result = [];
 
     return (
-        <div>
+        <div id="con">
             <div className='leftBtn'>
-                {/* {sessionStorage.classification === 0 ? */}
-                    <>
-                        <input type="button" value="글쓰기" onClick={writeProduct} />
-                    </>
-                {/* : null } */}
+                    <input type="button" value="글쓰기" onClick={writeProduct} />
             </div>
 
             <div id="wrapper">
@@ -53,12 +49,12 @@ const AdminProductList = ( ) => {
                     return(
                         <ul id="productul" style={{float:"left"}}>
                         <li id="productli" style={{textAlign:"center"}} key={key}>
-                            <Link to={`/admin/product/view/${product.pro_code}`} style={{textDecoration:"none"}}>
+                            <Link to={`/product/view/${product.pro_code}`} style={{textDecoration:"none"}}>
                                 <div>
                                     { product.pro_img !== "undefined" ?
-                                        <img src={product.pro_img} />
+                                        <img src={product.pro_img} className='image' />
                                     :
-                                        <img src="/image/no_image_1.png" />
+                                        <img src="/image/no_image_1.png" className='image' />
                                     }
                                 </div>                                
                                 <div style={{color:"black"}}>{product.pro_name}</div>

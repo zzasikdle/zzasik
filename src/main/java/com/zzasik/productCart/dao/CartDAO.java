@@ -16,4 +16,7 @@ public interface CartDAO {
 	public int insertCart(Map<String, Object> cartMap);
 	public int deleteCart(String user_id, int pro_code);
 	public int selectTotalCount();
+	public int selectCountCart(Map<String, Object> CartMap);
+	public int updateCart(Map<String, Object> cartMap);
+	public int modifyCart(Map<String, Object> cartMap);
 }
