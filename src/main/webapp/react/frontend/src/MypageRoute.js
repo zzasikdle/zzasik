@@ -71,7 +71,7 @@ function MypageRoute() {
           <Route path='/teacher/lesson' exact component={T_Lesson}/>
           <Route path='/teacher/signuplist' exact component={T_SignUpList}/>
           <Route path='/teacher/coaching' exact component={T_Coaching}/>
-          <Route path='/teacher/coachingform' exact component={T_CoachingForm}/>
+          <Route path='/teacher/coachingform/:board_code/:user_id' exact component={T_CoachingForm}/>
         </main>
       </div>
     </div>
@@ -79,6 +79,5 @@ function MypageRoute() {
       
   );
 }
-
 
 export default MypageRoute;
