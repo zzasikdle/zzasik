@@ -5,11 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -99,5 +103,28 @@ public class OrderController {
 		System.out.println(order.getOrder_price());
 		System.out.println("=========");
 		return order;
+	}
+	
+	@DeleteMapping(value="/order/removeOrder")
+	public ResponseEntity deleteOrder(@RequestParam("order_code") int order_code,
+			HttpServletRequest request, HttpServletResponse response) {
+		
+		ResponseEntity resEnt = null;
+		
+		HttpHeaders responseHeader = new HttpHeaders();
+		responseHeader.add("Content-Type", "application/json; charset=utf-8");
+		
+		Map<String, String> map = new HashMap<String, String>();
+		
+		boolean isDeleted = orderService.deleteProduct(order_code);
+		if(isDeleted == false) {
+			System.out.println("상품 삭제 실패");
+			map.put("path", "/");
+		} else {
+			System.out.println(order_code + "번 주문 삭제");
+			map.put("path", "/");
+		}
+		resEnt = new ResponseEntity(map, responseHeader, HttpStatus.CREATED);
+		return resEnt;
 	}
 }

@@ -7,7 +7,8 @@ import com.zzasik.order.vo.OrderVO;
 
 public interface OrderService {
 	public boolean AddOrder(Map<String, Object> orderMap);
-	public OrderVO CheckProduct(int order_id);
+	public OrderVO CheckProduct(int order_code);
 	public String GetMaxOrderCode();
 	public List<OrderVO> getOrderList(String user_id);
+	public boolean deleteProduct(int order_code);
 }
