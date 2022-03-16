@@ -3,3 +3,15 @@
     float: right;
     padding: 30px;
 }
+
+/*회원 정보, 회원 수행 메시지 박스*/
+.smallbox{
+    width: 400px;
+    height: 400px;
+    margin: auto;
+}
+
+/*코칭 글 작성 박스*/
+.coachform{
+    margin: 100px auto;
+}
