@@ -14,7 +14,6 @@ const UploadProduct = ( ) => {
     const [pro_available, setAvail] = useState();
     const [pro_price, setPrice] = useState();
     const [pro_detail, setDetail] = useState();
-    const [sel_name, setSeller] = useState();
     const [pro_img, setImg] = useState();
 
     const [image, setImage] = useState('');
@@ -56,7 +55,7 @@ const UploadProduct = ( ) => {
     }
 
     return (
-        <div>
+        <div id="con">
             <h1>상품 등록</h1>
             <hr />
             <table>
@@ -64,7 +63,7 @@ const UploadProduct = ( ) => {
                     <tr>
                         <td>상품 이미지</td>
                     </tr>
-                    <tr>
+                    <tr id="imagetr">
                         <td style={{width:"450px", height:"450px", border:"3px solid gray"}}><FilePreview image={image} /></td>
                         <td><InputFile name="pro_img" onLoadFile={onLoadFile} onFileChange={uploadFile} /></td>
                         <td><input type="button" value="삭제하기" onClick={onDeleteFile} /></td>
@@ -91,8 +90,8 @@ const UploadProduct = ( ) => {
                     </tr>
                     <tr>
                         <td>
-                            <Link to="product/list" onClick={handleWrite}>글쓰기</Link>
-                            <Link to="product/list">취소</Link>
+                            <Link to="/product" onClick={handleWrite}>글쓰기</Link>
+                            <Link to="/product">취소</Link>
                         </td>
                     </tr>
                 </tbody>

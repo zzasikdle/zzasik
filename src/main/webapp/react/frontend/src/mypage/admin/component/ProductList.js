@@ -28,7 +28,7 @@ const ProductList = () => {
         <div className="box table-section">
             <div className="box_header">
                 <h2>상품 목록</h2>
-                <Link to='/' className='manage'>관리하기<img className="arrow" src='/img/arrow.png'/></Link>
+                <Link to='/product' className='manage'>관리하기<img className="arrow" src='/img/arrow.png'/></Link>
             </div>
             <table class="tb" style={{cellspacing:"0",border:"1"}}>
                 <colgroup>
@@ -63,7 +63,7 @@ const ProductList = () => {
                         return(
                             <tr>
                                 <td>{product.pro_code}</td>
-                                <td><Link to={`/notice/${product.pro_code}`}>{product.pro_name}</Link></td>
+                                <td><Link to={`/product/${product.pro_code}`}>{product.pro_name}</Link></td>
                                 <td>{product.pro_class}</td>
                                 <td>{product.pro_available}</td>
                                 <td>{product.pro_price}</td>

@@ -1,3 +1,8 @@
+#con{
+    position: absolute;
+    top: 80px;
+}
+
 table{
     width: 90%;
     margin: auto;
@@ -7,6 +12,20 @@ table{
 tr{
     font-size: 17px;
     height: 35px;
+}
+
+#imagetr{
+    height: 350px;
+    vertical-align: middle;
+}
+
+#imagetr td{
+    height: 320px;
+}
+
+.image{
+    width: 300px;
+    height: 300px;
 }
 
 td.title{
