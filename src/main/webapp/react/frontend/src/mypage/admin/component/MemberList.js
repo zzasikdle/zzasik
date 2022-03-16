@@ -71,7 +71,7 @@ const MemberList = () => {
              user_id:user_id , classification : classification
          })
          .then( (response)=> {
-             alert('회원권한이 수정 되었습니다.');
+             alert('회원 권한이 수정 되었습니다.');
              document.location.href='/admin'; 
          })
          .catch((error)=> {
