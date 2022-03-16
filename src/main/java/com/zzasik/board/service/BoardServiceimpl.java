@@ -81,4 +81,13 @@ public class BoardServiceimpl implements BoardService {
 		
 	}
 	
+	
+	@Override
+	public int joincheck(Map checkmap) throws Exception {
+		int joinchk =boardDAO.countJoinUser(checkmap);
+		
+		return joinchk;
+		
+	}
+	
 }// end class() 
