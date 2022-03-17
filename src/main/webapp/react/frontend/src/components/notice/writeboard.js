@@ -13,6 +13,7 @@ import './writeBoard.css';
 
 
 const WriteBoard = ( ) => {
+    
      const baseUrl = "http://localhost:8090";
      const [board_content ,     setBoard_cotent]= useState('');
      const [board_title, setBoard_title] = useState('');
@@ -22,6 +23,7 @@ const WriteBoard = ( ) => {
 
  
      const readURL = (e) => {
+
       
         if(e.target.files && e.target.files[0]){
             let reader = new FileReader();
@@ -35,9 +37,10 @@ const WriteBoard = ( ) => {
      
     }
 
-   
+               
 
     const writeBtn = async()=>{
+        alert("cc")
         console.log(JSON.stringify(board_content));
         const objcontent = JSON.stringify(board_content);
         const formData = new FormData();
@@ -50,12 +53,6 @@ const WriteBoard = ( ) => {
         formData.append("imageFilename", imageFilename);
 
         console.log(Object.values(board_content))
-       
-        
-    
-      
-    
-
         await axios
         .post(baseUrl+"/board/addNewBoard", formData,{
             headers: { "Content-Type": "multipart/form-data; boundary=${formData._boundary" }
@@ -73,8 +70,9 @@ const WriteBoard = ( ) => {
             alert(error);
             
         })
-
-    } 
+        }
+        
+    
     return (
         <div class="fir_div">
         <div id="write_form">
@@ -82,10 +80,9 @@ const WriteBoard = ( ) => {
             <br/>
             <br/>
             <br/>
-            <br/>
-           
+            <br/> 
             <div class="text_div">
-            <p class="head_msg">짜식 상품 등록👍🏻</p>
+            <p class="head_msg">짜식 상품 등록👍🏻👍🏻👍🏻👍🏻</p> 
             <hr ></hr>
          <div class="proimage_text">상품이미지</div>
             <p id="proimage"><img  id="preview" /></p>
@@ -130,6 +127,7 @@ const WriteBoard = ( ) => {
 
            
                 <Link to="/"  onClick={writeBtn}><button class="click">글쓰기</button></Link>
+             
 
 <p><input type="hidden" class="board_content" placeholder="내용"  name="board_content" onChange={(e) => {setBoard_cotent(e.target.value)}}/></p>
 <p><input type="hidden" placeholder="강사이름"value={sessionStorage.getItem('user_name')} name="teacher_name" /></p>

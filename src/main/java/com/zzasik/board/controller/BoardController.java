@@ -288,12 +288,25 @@ public Map<String,Object> coachingAnswer(MultipartHttpServletRequest multipartRe
 	while (enu.hasMoreElements()) {
 		String name = (String) enu.nextElement();
 		String value = multipartRequest.getParameter(name);
-		System.out.printf("%s %s\n", name, value);
+		System.out.printf("name:%s value:%s\n", name, value);
 		CoachingMap.put(name, value);
+		
+		
 	}
-	boardService.addcoachingAnswer(CoachingMap);
+	System.out.println(CoachingMap.get("coaching_num"));
+	if (CoachingMap.get("coaching_num").equals("1") ) {
+		System.out.println("1일차 입니다. ");
+		boardService.addcoachingAnswer(CoachingMap);
+		
+	}else {
+		System.out.println("1일차 이상입니다. ");
+		boardService.addSeocndcoachingAnswer(CoachingMap);
+		}
 	
-	return CoachingMap;
+	
+//	return CoachingMap;
+	return null;
+
 }
  
 } // end class()

@@ -111,8 +111,8 @@ where c.user_id is null and j.board_code=#{board_code}
      <select id="suganginsert" parameterType="java.util.Map">
 
      	<![CDATA[
-		INSERT into coachingtbl(user_id,board_code,start_date)
-		VALUES (#{user_id},#{board_code},current_date())
+		INSERT into coachingtbl(user_id,board_code,start_date,coaching_num)
+		VALUES (#{user_id},#{board_code},current_date(),1)
 	]]>   
   </select>
     <select id="countJoinUser" resultType="int" parameterType="String">
@@ -124,7 +124,12 @@ where c.user_id is null and j.board_code=#{board_code}
   
    <select id="coachingList" resultType="BoardVO" parameterType="String">
     <![CDATA[
-    SELECT * FROM coachingtbl where board_code = #{board_code}
+   SELECT * 
+from coachingtbl AS C
+INNER JOIN boardtbl AS B
+ON C.board_code = B.board_code 
+WHERE C.board_code=#{board_code}
+group by C.user_id;
   
     ]]>
   </select> 
@@ -144,6 +149,14 @@ where c.user_id is null and j.board_code=#{board_code}
 		update coachingtbl 
 		set breakfast=#{breakfast},Lunch=#{Lunch} ,dinner=#{dinner} ,snack_1=#{snack_1} ,snack_2=#{snack_2} ,calorie=#{calorie} ,coaching_answer=#{coaching_answer} ,coaching_num=#{coaching_num}
 		where board_code= #{board_code} and user_id=#{user_id};
+	]]>   
+  </select>
+  
+       <select id="addSecondCoachingAnswer" parameterType="java.util.Map">
+
+     	<![CDATA[
+insert into coachingtbl( breakfast, Lunch, dinner, snack_1, snack_2,  calorie, coaching_answer, start_date, user_id, board_code, useranswer, coaching_num )
+values (#{breakfast}, #{Lunch}, #{dinner}, #{snack_1}, #{snack_2}, #{calorie}, #{coaching_answer}, #{start_date}, #{user_id}, #{board_code}, #{useranswer},#{coaching_num});
 	]]>   
   </select>
   
