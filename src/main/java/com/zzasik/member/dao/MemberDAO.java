@@ -39,4 +39,6 @@ public interface MemberDAO {
 	
 	public AddressVO getAddress(MemberVO memberVO) throws DataAccessException;
 	
+	public void modSurveyCode(MemberVO memberVO) throws Exception;
+	
 }
