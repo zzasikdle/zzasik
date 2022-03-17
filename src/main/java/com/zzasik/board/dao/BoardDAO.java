@@ -29,6 +29,7 @@ public interface BoardDAO {
 	public List coachingList(String board_code) throws DataAccessException;
 	public List userlist(String user_id) throws DataAccessException;
 	public void addCoachingAnswer(Map CoachingMap)throws DataAccessException;
+	public void addSecondCoachingAnswer(Map CoachingMap)throws DataAccessException;
 	
 	
 	
