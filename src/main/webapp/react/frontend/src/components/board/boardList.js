@@ -39,6 +39,7 @@ const BoardList = ( ) => {
             .then((response) => {
                 console.log(response.data);
                 setBoardList(response.data);
+                console.log(boardList)
             })
             .catch((error) => {
                 console.log(error);
