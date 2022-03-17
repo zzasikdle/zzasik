@@ -192,6 +192,7 @@ function Submit1(e) {
              console.log(error);
          });
  }
+ console.log(code);
  Submit1();
 // 로그인 후 빈칸으로 초기화 
 }

@@ -109,6 +109,21 @@
     color: #F9B514;
 }
 
+.send_content {
+    width:550px;
+    height:550px;
+    margin: 100px auto;
+    background: white;
+}
+ 
+.send-editor {
+    text-decoration: none;
+    height: 200px !important;
+    border: 1px solid #f1f1f1 !important;
+    padding: 5px !important;
+    border-radius: 2px !important;
+}
+
 /*진행된 식단 버튼 리스트*/
 .dayBtn {
     width: 100px;
