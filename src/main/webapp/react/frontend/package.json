@@ -17,9 +17,16 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.0",
     "babel-plugin-macros": "^3.1.0",
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'main' of https://github.com/zzasikdle/zzasik.git
     "bootstrap": "5.1.3",
+<<<<<<< HEAD
 
+    "bootstrap": "^5.1.3",
+=======
+>>>>>>> branch 'main' of https://github.com/zzasikdle/zzasik.git
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
     "history": "5",
@@ -29,20 +36,29 @@
     "node-sass": "^7.0.1",
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.2",
+    "react-circular-progressbar": "^2.0.4",
     "react-daum-postcode": "^3.0.1",
     "react-dom": "^17.0.2",
+<<<<<<< HEAD
 
 
-  
-
-    "react-draft-wysiwyg": "^1.14.7",
-
-
- 
-
-    "react-loading": "^2.0.3",
     "react-native-progress": "^5.0.0",
 
+=======
+>>>>>>> branch 'main' of https://github.com/zzasikdle/zzasik.git
+    "react-draft-wysiwyg": "^1.14.7",
+<<<<<<< HEAD
+
+
+=======
+    "react-loading": "^2.0.3",
+>>>>>>> branch 'main' of https://github.com/zzasikdle/zzasik.git
+    "react-native-progress": "^5.0.0",
+<<<<<<< HEAD
+    "react-draft-wysiwyg": "^1.14.7",
+
+=======
+>>>>>>> branch 'main' of https://github.com/zzasikdle/zzasik.git
     "react-reveal": "^1.2.2",
     "react-router-dom": "^5.3.0",
     "react-scripts": "5.0.0",

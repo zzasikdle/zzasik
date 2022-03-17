@@ -14,7 +14,7 @@ import com.zzasik.survey.vo.SurveyVO;
 @Repository("surveyDAO")
 public interface SurveyDAO {
 	
-	public int addSurvey(@RequestBody Map<String,Object> resultMap) throws DataAccessException;
+	public void addSurvey(SurveyVO surveyVO) throws DataAccessException;
 	
 	public SurveyVO selectSurvey(int code)throws DataAccessException;
 	

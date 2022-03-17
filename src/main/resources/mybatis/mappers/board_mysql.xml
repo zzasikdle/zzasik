@@ -14,9 +14,32 @@
     <result property="teacher_name" column="teacher_name" />
     <result property="imageFilename" column="imageFilename" />
     <result property="teacher_id" column="teacher_id" />
-     <result property="writedate" column="writedate" />
+     <result property="joindate" column="joindate" />
+     <result property="start_date" column="start_date" />
+      <result property="usertsatus" column="usertsatus" />
+     
+     <result property="breakfast" column="breakfast" />
+     <result property="Lunch" column="Lunch" />
+     <result property="dinner" column="dinner" />
+     <result property="snack_1" column="snack_1" />
+     <result property="snack_2" column="snack_2" />
+     <result property="snack_3" column="snack_3" />
+     <result property="calorie" column="calorie" />
+     <result property="board_period" column="board_period" />
+     <result property="coaching_answer" column="coaching_answer" />
+     
+     <result property="user_name" column="user_name" />
+     <result property="user_pwd" column="user_pwd" />
+     <result property="birth" column="birth" />
+     <result property="phone" column="phone" />
+     <result property="email" column="email" />
+     <result property="survey_code" column="survey_code" />
+     
+   
+     
  
   </resultMap> 
+  
   
  
   <select id="selectAllBoardsList" resultMap="BoardsResult">
@@ -28,8 +51,8 @@
     <select id="addNewBoard" parameterType="java.util.Map">
 
      	<![CDATA[
-		INSERT into boardtbl(user_id,teacher_name,board_code,board_title,board_content,meal_type,board_price,imageFilename,writedate)
-		VALUES (#{user_id},#{teacher_name},#{board_code}, #{board_title}, #{board_content},	#{meal_type}, #{board_price},#{imageFilename},#{writedate})
+		INSERT into boardtbl(user_id,teacher_name,board_code,board_title,board_content,meal_type,board_price,imageFilename,writedate,board_period)
+		VALUES (#{user_id},#{teacher_name},#{board_code}, #{board_title}, #{board_content},	#{meal_type}, #{board_price},#{imageFilename},#{writedate},#{board_period})
 	]]>   
   </select>
   
@@ -49,15 +72,15 @@
 	   <select id="joinBoard" parameterType="java.util.Map">
 
      	<![CDATA[
-		INSERT into joincart(user_id,board_code,teacher_id)
-		VALUES (#{user_id},#{board_code},#{teacher_id})
+		INSERT into joincart(user_id,board_code,teacher_id,joindate)
+		VALUES (#{user_id},#{board_code},#{teacher_id},current_date())
 	]]>   
   </select>
 	
 	
 	  <select id="selectTeacherBoard" resultType="BoardVO" parameterType="String">
     <![CDATA[
-      SELECT board_title, user_id , board_content , board_code ,meal_type from boardtbl where user_id = #{user_id}; 
+      SELECT board_title, user_id , board_content , board_code ,meal_type, imageFilename from boardtbl where user_id = #{user_id}; 
     ]]>
   </select>
   
@@ -77,8 +100,52 @@
   
     <select id="userList" resultMap="BoardsResult">
     <![CDATA[
-      SELECT user_id FROM joincart where board_code=#{board_code}
+select J.user_id, J.joindate
+from joincart J left 
+outer join coachingtbl C 
+on c.user_id = j.user_id
+where c.user_id is null and j.board_code=#{board_code}
     ]]>
   </select> 
+  
+     <select id="suganginsert" parameterType="java.util.Map">
+
+     	<![CDATA[
+		INSERT into coachingtbl(user_id,board_code,start_date)
+		VALUES (#{user_id},#{board_code},current_date())
+	]]>   
+  </select>
+    <select id="countJoinUser" resultType="int" parameterType="String">
+
+     	<![CDATA[
+	select count(*) from joincart where user_id=#{user_id} and board_code=#{board_code}
+	]]>   
+  </select>
+  
+   <select id="coachingList" resultType="BoardVO" parameterType="String">
+    <![CDATA[
+    SELECT * FROM coachingtbl where board_code = #{board_code}
+  
+    ]]>
+  </select> 
+  
+   <select id="userlist" resultType="BoardVO" parameterType="String">
+    <![CDATA[
+ select *from usertbl U
+	INNER JOIN coachingtbl C
+		ON U.user_id = C.user_id
+			where U.user_id=#{user_id};
+    ]]>
+  </select> 
+  
+     <select id="addCoachingAnswer" parameterType="java.util.Map">
+
+     	<![CDATA[
+		update coachingtbl 
+		set breakfast=#{breakfast},Lunch=#{Lunch} ,dinner=#{dinner} ,snack_1=#{snack_1} ,snack_2=#{snack_2} ,calorie=#{calorie} ,coaching_answer=#{coaching_answer} ,coaching_num=#{coaching_num}
+		where board_code= #{board_code} and user_id=#{user_id};
+	]]>   
+  </select>
+  
 </mapper>
   

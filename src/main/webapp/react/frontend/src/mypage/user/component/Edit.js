@@ -110,8 +110,8 @@ function Edit(){
                 <p className="btn_area_btm">
                     <div>
                         <p><input id="user_name" type="text" maxlength="14" /></p>
-
                         <button class="btn_model" onClick={ () => submitName(document.getElementById("user_name").value)}>수정완료</button>
+                        <button class="btn_model" onClick={onClickName}>수정취소</button>
                     </div>
                 </p>
             </div>
@@ -123,7 +123,7 @@ function Edit(){
    //회원가입 폼 가져오기 
    return (
         <>
-           <h1>마이페이지</h1>
+           <h1 className='myhome-title'>마이페이지</h1>
            <div className='box profile-edit'>
                <div className='box_header'>
                 <h2>내 정보 수정</h2>
@@ -136,9 +136,9 @@ function Edit(){
                    </th>
                    <td>
                        <div className="tdcell"><p class="contxt_tit" >{sessionStorage.getItem("user_name")}</p>
-                            <p class="contxt_desc" >이름이나 생년월일, 성별 등의 정보가 변경되었다면 정보를 수정할 수 있습니다.</p>   
+                            <p class="contxt_desc" >이름이 변경되었다면 정보를 수정할 수 있습니다.</p>   
                             
-                            <button className="btn_model" onClick={onClickName}>수정하기</button>
+                            <button className="btn_model init" onClick={onClickName}>수정하기</button>
                             {showing ? <NameModify /> : null}
                         
                         </div>
@@ -188,7 +188,7 @@ function Edit(){
     
                     <p className="btn_area_btm">
                         {/* <button class="btn2" id="b_txt_phoneNo_cncl" onClick={changeDisplay} >수정취소</button> */}
-                        <p id="p_phoneNo"><button className="btn_model" onClick={submitPhone}>수정완료</button></p>
+                        <p id="p_phoneNo"><button className="btn_model phone" onClick={submitPhone}>수정완료</button></p>
                     </p>
                 </div>               
                         </div>

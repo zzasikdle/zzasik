@@ -33,10 +33,31 @@
 	WHERE c.user_id = #{user_id}
 	</select>
 	
+	<!-- 기존 장바구니 상품과 겹치는지 확인 -->
+	<select id="selectCountCart" resultType="int">
+	SELECT count(*)
+	FROM product_cart
+	WHERE user_id = #{user_id} AND pro_code = #{pro_code}
+	</select>
+	
 	<!-- 장바구니 상품 추가 -->
 	<insert id="insertCart" parameterType="java.util.Map">
 	INSERT INTO product_cart (user_id, pro_code, quantity)
 	VALUES (#{user_id}, #{pro_code}, #{quantity})
+	</insert>
+	
+	<!-- 장바구니 상품 추가 (같은 상품이 있을 때) -->
+	<insert id="updateCart" parameterType="java.util.Map">
+	UPDATE product_cart
+	SET quantity = quantity + #{quantity}
+	WHERE user_id = #{user_id} AND pro_code = #{pro_code}
+	</insert>
+	
+	<!-- 장바구니 수량 수정 -->
+	<insert id="modifyCart" parameterType="java.util.Map">
+	UPDATE product_cart
+	SET quantity = #{quantity}
+	WHERE user_id = #{user_id} AND pro_code = #{pro_code}
 	</insert>
 	
 	<!-- 장바구니 상품 삭제 -->

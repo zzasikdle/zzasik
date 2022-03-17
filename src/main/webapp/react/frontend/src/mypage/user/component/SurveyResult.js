@@ -7,10 +7,13 @@ import './SurveyResult.css';
 /* 설문 결과 -> 추천 상품 리스트 보여주기 */
 const SurveyResult = () => {
     const [ surveyList,setSurveyList] = useState([]);
+    const survey_code = sessionStorage.getItem("survey_code");
 
     useEffect(()=>{
         axios
-        .get('/mypage/surveyresult')
+        .get('/mypage/surveyresult',{
+            survey_code : survey_code
+        })
         .then((response)=>{
             console.log(response.data);
             setSurveyList(response.data);
