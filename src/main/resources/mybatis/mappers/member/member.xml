@@ -110,7 +110,14 @@
 			WHERE user_id = #{user_id}
 	</delete>
 	
-
+	<!-- 설문 코드 등록 -->
+	<update id="modSurveyCode" parameterType="memberVO">
+		<![CDATA[ 
+			UPDATE usertbl 
+			SET survey_code = #{survey_code}
+			WHERE user_id = #{user_id} 
+		]]>
+	</update>
 	
 	
 </mapper>

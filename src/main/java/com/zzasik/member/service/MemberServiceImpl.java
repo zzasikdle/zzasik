@@ -127,4 +127,10 @@ public class MemberServiceImpl implements MemberService {
 		AddressVO addressVO = memberDAO.getAddress(memberVO);
 		return addressVO;
 	}
+	@Override
+	public void modSurveyCode(MemberVO memberVO) throws Exception {
+		
+		memberDAO.modSurveyCode(memberVO);
+		
+	}
 }
