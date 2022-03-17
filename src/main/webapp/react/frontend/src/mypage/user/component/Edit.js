@@ -110,8 +110,8 @@ function Edit(){
                 <p className="btn_area_btm">
                     <div>
                         <p><input id="user_name" type="text" maxlength="14" /></p>
-
-                        <button class="btn2" onClick={ () => submitName(document.getElementById("user_name").value)}>수정완료</button>
+                        <button class="btn_model" onClick={ () => submitName(document.getElementById("user_name").value)}>수정완료</button>
+                        <button class="btn_model" onClick={onClickName}>수정취소</button>
                     </div>
                 </p>
             </div>
@@ -123,7 +123,7 @@ function Edit(){
    //회원가입 폼 가져오기 
    return (
         <>
-           <h1>마이페이지</h1>
+           <h1 className='myhome-title'>마이페이지</h1>
            <div className='box profile-edit'>
                <div className='box_header'>
                 <h2>내 정보 수정</h2>
@@ -131,14 +131,14 @@ function Edit(){
                
                <tr>
                    <th>
-                       <div className="thcell"></div>
-                        <span>사용자 이름 </span>
+                       <div className="thcell">사용자 이름</div>
+                        
                    </th>
                    <td>
                        <div className="tdcell"><p class="contxt_tit" >{sessionStorage.getItem("user_name")}</p>
-                            <p class="contxt_desc" >이름이나 생년월일, 성별 등의 정보가 변경되었다면 정보를 수정할 수 있습니다.</p>   
+                            <p class="contxt_desc" >이름이 변경되었다면 정보를 수정할 수 있습니다.</p>   
                             
-                            <button class="btn2" onClick={onClickName}>수정하기</button>
+                            <button className="btn_model init" onClick={onClickName}>수정하기</button>
                             {showing ? <NameModify /> : null}
                         
                         </div>
@@ -148,22 +148,19 @@ function Edit(){
                <tr>
                    <th>
                        <div className="thcell">휴대전화</div>
-                        
                    </th>
                    <td>
                        <div className="tdcell"><p class="contxt_tit" id="phoneNO">{sessionStorage.getItem("phone")}</p>
                             <p className="contxt_desc">아이디, 비밀번호 찾기 등 본인확인이 필요한 경우 또는 유료 결제 등 짜식들로부터 알림을 받을 때 사용할 휴대전화입니다.</p>   
                             <div id="d_phoneNo" style={{display:"block"}}>
                 <tr>
-                    <th className="cell_title">연락처
-                        <em className="mark_necessity">
-                            <span className="blind" >필수입력</span>
-                        </em>
-                    </th>                
+                    <td className="cell_title">
+                    <p className="contxt_desc">연락처</p>
+                    </td>                
     
                     <td>
                         <span className="_tel1box setting_selectbox" style={{width:"68px"}}>
-                            <select onChange={handleCodeNo}>
+                            <select className="select"onChange={handleCodeNo}>
                                 <option selected >선택</option>
                                 <option value="010" >010</option>
                                 <option value="011">011</option>
@@ -177,12 +174,12 @@ function Edit(){
                             </select>
                         </span>
                             <span className="hyphen">  -  </span>
-                            <span className="_editable_input _input basic_input" style={{width: "48px"}}>
+                            <span className="_editable_input" style={{width: "48px"}}>
                                 <label for="telNo1Second" className="lb_text blind">연락처 두번째자리 입력</label>
                                 <input type="text" id="telNo1Second" className="ip_text" maxlength="4" onChange={handleSecondPhone}></input>
                             </span>
                                 <span className="hyphen">  -  </span>
-                            <span className="_editable_input _input basic_input" style={{width: "48px"}}>
+                            <span className="_editable_input" style={{width: "48px"}}>
                                 <label for="telNo1Third" className="lb_text blind" >연락처 세번째자리 입력</label>
                                 <input type="text" id="telNo1Third"  className="ip_text" maxlength="4"  onChange={handleThirdPhone} ></input>
                             </span>
@@ -191,7 +188,7 @@ function Edit(){
     
                     <p className="btn_area_btm">
                         {/* <button class="btn2" id="b_txt_phoneNo_cncl" onClick={changeDisplay} >수정취소</button> */}
-                        <p id="p_phoneNo"><button onClick={submitPhone}>수정완료</button></p>
+                        <p id="p_phoneNo"><button className="btn_model phone" onClick={submitPhone}>수정완료</button></p>
                     </p>
                 </div>               
                         </div>
@@ -206,7 +203,7 @@ function Edit(){
                    <td>
                        <div className="tdcell">
                             <p className="contxt_desc">내가 저장한 배송지 및 최근 사용한 배송지를 관리할 수 있습니다.</p>   
-                            <button class="btn2" ><Link to= '/myhome/myAddress' className="links">조회하기</Link></button>
+                            <button className="btn_model" ><Link to= '/myhome/myAddress' className="links">조회하기</Link></button>
                        </div>
                    </td>
                </tr>

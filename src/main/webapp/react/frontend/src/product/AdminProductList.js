@@ -13,7 +13,7 @@ const AdminProductList = ( ) => {
     const history = useHistory();
 
     const writeProduct = ( ) => {
-        history.push("/admin/product/new");
+        history.push("/product/new");
     }
 
     useEffect(( ) => {
@@ -33,13 +33,7 @@ const AdminProductList = ( ) => {
     return (
         <div id="con">
             <div className='leftBtn'>
-                {console.log("classification:" + (sessionStorage.classification))}
-                {sessionStorage.classification === "0" ?
-                    <>
-                        <input type="button" value="글쓰기" onClick={writeProduct} />
-                        <button><Link to='/admin/product/new'>글쓰기</Link></button>
-                    </>
-                : null }
+                    <input type="button" value="글쓰기" onClick={writeProduct} />
             </div>
 
             <div id="wrapper">
@@ -55,16 +49,16 @@ const AdminProductList = ( ) => {
                     return(
                         <ul id="productul" style={{float:"left"}}>
                         <li id="productli" style={{textAlign:"center"}} key={key}>
-                            <Link to={`/admin/product/view/${product.pro_code}`} style={{textDecoration:"none"}}>
+                            <Link to={`/product/view/${product.pro_code}`} style={{textDecoration:"none"}}>
                                 <div>
                                     { product.pro_img !== "undefined" ?
-                                        <img src={product.pro_img} />
+                                        <img src={product.pro_img} className='image' />
                                     :
-                                        <img src="/image/no_image_1.png" />
+                                        <img src="/image/no_image_1.png" className='image' />
                                     }
                                 </div>                                
-                                <div>{product.pro_name}</div>
-                                <div>{product.pro_price}</div>
+                                <div style={{color:"black"}}>{product.pro_name}</div>
+                                <div style={{fontSize:"20px", fontWeight:"bold", color:"firebrick"}}>{product.pro_price}</div>
                             </Link>
                         </li>
                         </ul>

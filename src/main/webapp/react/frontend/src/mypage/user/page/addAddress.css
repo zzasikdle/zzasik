@@ -3,6 +3,10 @@
     width: 1000px;
     height: 500px;
 }
+.box.container.Address{
+    margin: 70px;
+}
+
 
 .setting_popup_title:first-child {
     margin-top: 5px;
@@ -72,7 +76,8 @@ tr {
 }
 .tbl_delivery_info th.cell_title {
     width: 98px;
-    padding: 5px 0 0 12px;
+    padding: 5px 0 12px 12px;
+    margin-bottom: 10px;
     font-weight: normal;
     line-height: 32px;
     text-align: left;
@@ -238,4 +243,15 @@ p {
     background-position: right;
 }
 
+#addressCodeBtn{
+    margin-left: 5px;
+    height: 33px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-weight: bold;
+}
+#addressCodeBtn:hover{
+    background-color: #e4f7e9;
+}
 

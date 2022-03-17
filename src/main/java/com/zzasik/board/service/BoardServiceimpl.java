@@ -56,7 +56,60 @@ public class BoardServiceimpl implements BoardService {
 	}
 	
 	
+	public void delBoard(Map delMap) throws Exception {	
+		boardDAO.delBoard(delMap);
+	}
+	
+	
+	@Override
+	public void modifyBoard(Map boardMap) throws Exception {
+		boardDAO.modifyBoard(boardMap);
+		
+	}
+	
+	
+	@Override
+	public List<BoardVO> TeacheruserList(String board_code) throws Exception {
+		List<BoardVO> userList = boardDAO.userList(board_code);
+		return userList;
+	}
+	
+	@Override
+	public void suganginsert(Map joinMap) throws Exception {
+		System.out.println("----------------Service ¡¯¿‘ -------------");
+		boardDAO.suganginsert(joinMap);
+		
+	}
+	
+	
+	@Override
+	public int joincheck(Map checkmap) throws Exception {
+		int joinchk =boardDAO.countJoinUser(checkmap);
+		
+		return joinchk;
+		
+	}
+	
+	@Override
+	public List<BoardVO> CoachingList(String board_code) throws Exception {
+		List<BoardVO> coachingUserList = boardDAO.coachingList(board_code);
+		return coachingUserList;
+	}
 	
 	
 	
-}
+	
+	@Override
+	public List<BoardVO> userdetailList(String user_id) throws Exception {
+		List<BoardVO> userdetailList = boardDAO.userlist(user_id);
+		return userdetailList;
+	}
+	
+	
+	@Override
+	public void addcoachingAnswer(Map CoachingMap) throws Exception {
+		boardDAO.addCoachingAnswer(CoachingMap);
+		
+	}
+	
+}// end class() 
