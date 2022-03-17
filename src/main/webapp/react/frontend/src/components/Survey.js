@@ -13,20 +13,67 @@ function Survey() {
  const[frequency,setFrequency] = useState('');
  const[goal,setGoal] = useState('');
 
- const handleGender = (text1) => {
-  setGender(text1);
+ const [code,setCode] = useState('');
+ const baseUrl = "http://localhost:8090";
+
+ const [Survey,setSurvey] = useState(new Map());
+ const [inputText,setInputText] = useState('');
+ const [userName,setUserName] = useState('');
+ const [progress,setProgress] = useState(1);
+ const [page,setPage] = useState(0);
+ const [sickness,setSickness] = useState('');
+ const [psickness,setPsickness] = useState('');
+ const [check,setCheck] = useState(false);
+
+
+ //next page
+ const next = () => {
+  const nowPage = page+1;
+  setPage(nowPage);
 }
 
+ //handle
+
+const handleName =() =>{
+
+}
+
+ const handleGender = (text1) => {
+  setGender(text1);
+  next();
+}
+
+function ageReject(e) {
+}
 const handleAge = (e) => {
- setAge(e.target.value);
+  if(check === true){
+    setAge(inputText);
+    setCheck(false);
+    next();
+  }else{
+    e.preventDefault();
+  }
+ 
 }
 
 const handleHeight = (e) => {
- setHeight(e.target.value);
+  if(check === true){
+    setHeight(inputText);
+    setCheck(false);
+    next();
+  }else{
+    e.preventDefault();
+  }
 }
 
 const handleWeight = (e) => {
- setWeight(e.target.value);
+  if(check === true){
+    setWeight(inputText);
+    setCheck(false);
+    next();
+  }else{
+    e.preventDefault();
+  }
 }
 
 const handleActivity = (text2) => {
@@ -43,20 +90,9 @@ const handleGoal = (text4) => {
   setGoal(text4);
  }
 
- const [code,setCode] = useState('');
- const baseUrl = "http://localhost:8090";
-
- const [Survey,setSurvey] = useState(new Map());
- const [inputText,setInputText] = useState('');
- const [userName,setUserName] = useState('');
- const [progress,setProgress] = useState(1);
- const [page,setPage] = useState(0);
- const [sickness,setSickness] = useState('');
- const [psickness,setPsickness] = useState('');
- const [check,setCheck] = useState(false);
 
 
-
+//
  const add = (key, value) => {
   setSurvey((prev) => new Map([...prev,[key,value]]));
   const nowPage = page + 1;
@@ -88,6 +124,23 @@ function getCheckboxValue2()  {
   });
   setPsickness(result);
 }
+  //
+
+
+
+  //input check
+  function nameCheck(e){
+    const checkText = e.target.value;
+    const nameStyle = /^[가-힣a-zA-Z]+$/;
+  
+    if(nameStyle.test(checkText)){
+      setCheck(true);
+    }else{
+      setCheck(false);
+    }
+  
+  }
+
   
 
 function intCheck(e){
@@ -112,30 +165,11 @@ function emailCheck(e){
   }
 }
 
-
-function ageReject(e) {
+function nameReject(e){
   if(check == true){
-    add('age', inputText);
+    setUserName(inputText.slice(1));
     setCheck(false);
-  }else{
-    e.preventDefault();
-  }
-}
-
-function heightReject(e) {
-
-  if(check == true){
-    add('height', inputText);
-    setCheck(false);
-  }else{
-    e.preventDefault();
-  }
-}
-
-function weightReject(e){
-  if(check == true){
-    add('wieght', inputText);
-    setCheck(false);
+    next();
   }else{
     
     e.preventDefault();
@@ -152,10 +186,8 @@ function emailReject(e){
     e.preventDefault();
   }
 }
-const next = () => {
-  const nowPage = page+1;
-  setPage(nowPage);
-}
+
+
 
 function Submit1(e) {
        console.log(gender);
@@ -180,26 +212,54 @@ function Submit1(e) {
     return(
       <div className="Survey">
 
-      { page === 0 
+    { page === 0
+      ?
+      <Fade bottom>  
+      <div className='Survey-input'>
+      <div className='Survey-title'>
+      <h4>안녕하세요, 성함을 알려주시겠어요?</h4>
+        {check === false
+        ? 
+        <div>
+        <p>올바른 성함을 입력해주세요.</p>
+        </div>
+        : <p className='alert-none'>공백</p>
+        }
+      </div>
+      
+        <input onChange={(e) =>{setInputText(e.target.value); nameCheck(e)} }></input>
+    
+        <Button type="submit" className="btn btn-primary" onClick={(e) => {nameReject(e);}} >확인</Button> 
+      </div>
+      </Fade>
+      :null
+      }
+
+
+
+      { page === 1
       ?    
       <div className='Survey-btn'>
         <div className='Survey-title'>
-        <h4>당신의 성별은 어떻게 되세요?</h4>
+        <h4>{userName}님, 반갑습니다</h4>
+        <h4>{userName}님의 성별은 무엇인가요?</h4>
         </div>
-      <Button className="btn" onClick={() => {handleGender("여성"); next();}} >여성</Button> 
-      <Button className="btn" onClick={() => {handleGender("남성"); next();}} >남성</Button> 
+      <Button className="btn" onClick={() => {handleGender("여성")}} >여성</Button> 
+      <Button className="btn" onClick={() => {handleGender("남성")}} >남성</Button> 
       </div>
       : null
       }
        
 
-       
-      { page === 1
+   
+
+
+      { page === 2
       ?  
       <Fade bottom>  
       <div className='Survey-input'>
       <div className='Survey-title'>
-        <h4>당신의 나이는 어떻게 되세요?</h4>
+        <h4>{userName}님의 나이는요?</h4>
         {check === false
 
         ? 
@@ -209,34 +269,16 @@ function Submit1(e) {
         : <p className='alert-none'>공백</p>
         }
         </div>
-        <input  onChange={handleAge} value={age}></input>
+        <input  onChange={(e) =>{setInputText(e.target.value); intCheck(e);}}></input>
     
-        <Button className="btn btn-primary" onClick={next} >확인</Button>
+        <Button className="btn btn-primary" onClick={(e)=> {handleAge(e)}} >확인</Button>
       </div>
       </Fade>
       :null
       }
      
       
-      { page === 2
-      ?
-      <Fade bottom>  
-      <div className='Survey-input'>
-      <div className='Survey-title'>
-      <h4>이름을 알려주세요!</h4>
-      </div>
-        <input onChange={(e) =>{setInputText(e.target.value)} } name="userName"></input>
-    
-        <Button type="submit" className="btn btn-primary" onClick={() => {add('userName', inputText);
-      function SliceName(){
-        setUserName(inputText.slice(1));
-      };
-      SliceName();
-      }} >확인</Button> 
-      </div>
-      </Fade>
-      :null
-      }
+  
         
 
       { page === 3
@@ -245,8 +287,9 @@ function Submit1(e) {
       <Fade bottom>  
       <div className='Survey-input'>
       <div className='Survey-title'>
-      <h4>{ Survey.get('userName')}님, 반갑습니다</h4>
+      
       <h4> {userName}님의 신장을 알려주세요. </h4>
+
       {check === false
         ? 
         <div>
@@ -256,9 +299,9 @@ function Submit1(e) {
         : <p className='alert-none'>공백</p>
         }
       </div>
-        <input onChange={handleHeight} value={height}></input>
+        <input onChange={(e)=>{setInputText(e.target.value); intCheck(e)}}></input>
     
-        <Button className="btn btn-primary" onClick={next}  >확인</Button> 
+        <Button className="btn btn-primary" onClick={(e)=>{handleHeight(e)}}  >확인</Button> 
       </div>
       </Fade>
 
@@ -275,12 +318,16 @@ function Submit1(e) {
       <div className='Survey-title'>
       <h4>감사합니다. 실례지만 몸무게도 알려주세요!</h4>
       {check === false
-        ? <p >숫자만 입력해 주세요.</p>
+        ? 
+        <div>
+        <p >숫자만 입력해 주세요.</p>
+        <p>예 ) 180.3</p>
+        </div>
         : <p className='alert-none'>공백</p>
         }
       </div>
-        <input onChange={handleWeight} value={weight}></input>
-        <Button className="btn btn-primary"  onClick={next} >확인</Button> 
+        <input onChange={(e)=>{setInputText(e.target.value); intCheck(e)}}></input>
+        <Button className="btn btn-primary"  onClick={(e)=>{handleWeight(e)}} >확인</Button> 
       </div>
       </Fade>
 
@@ -292,7 +339,7 @@ function Submit1(e) {
       
       ? 
       
-      <Loading progress={progress} setProgress={setProgress} page={page} setPage={setPage} loading={25}/>
+      <Loading progress={progress} setProgress={setProgress} page={page} setPage={setPage} loading={32}/>
       
       :null
       }
@@ -343,6 +390,8 @@ function Submit1(e) {
       <Button className="btn btn-primary" onClick={() => {handleGoal('근력증진'); next();}} >근력증진</Button> 
       <Button className="btn btn-primary" onClick={() => {handleGoal('건강유지'); next();}} >건강유지</Button> 
       <Button className="btn btn-primary" onClick={() => {handleGoal('질병치료'); next();}} >질병치료</Button>
+      <Button className="btn btn-primary" onClick={() => {handleGoal('다이어트'); next();}} >다이어트</Button>
+
       </div>
       </Fade>
 
@@ -350,12 +399,8 @@ function Submit1(e) {
       }
 
 
-
-      
-
-
       { page === 9
-      ? <Loading progress={progress} setProgress={setProgress} page={page} setPage={setPage} loading={50}/>
+      ? <Loading progress={progress} setProgress={setProgress} page={page} setPage={setPage} loading={75}/>
       :null
       }
 
@@ -492,35 +537,38 @@ function Submit1(e) {
       }
 
       { page === 12
-      ? <FinalLoading userName={userName} Survey={Survey}  page={page} setPage={setPage} />
+      ? <Loading progress={progress} setProgress={setProgress} page={page} setPage={setPage} loading={100}/>
+      :null
+      }
+
+
+
+
+      { page === 13
+      ? <FinalLoading userName={userName} page={page} setPage={setPage} />
       : null
       } 
 
-      { page === 13
+      { page === 14
       ? 
       <Fade bottom>
       <div className='Survey-input'>
       <div className='Survey-title'>
-      <h4>고객님의 결과 확인을 위해 이메일을 남겨주세요!</h4>
-
-        {check === false
-
-        ? 
-        <div>
-        <p>이메일을 올바르게 입력해주세요.</p>
-        </div>
-        : <p className='alert-none'>공백</p>
-        }
+      <h4>결과를 확인하세요!</h4>
       </div>
-        <input onChange={(e) =>{setInputText(e.target.value); emailCheck(e)} }></input>
-        <Button className="btn btn-primary" id='emailInput' onClick={(e) => {emailReject(e)}} >확인</Button> 
-        <Button className="btn" onClick={() => {Submit1(); next();}} >저장된 값 보기</Button> 
+
+
+      
+        <Button className="btn" onClick={() => {Submit1(); next();}} >결과확인</Button>
+        <Button className="btn" onClick={() => {console.log(gender,age,height,weight,activity,frequency,goal,userName,sickness,psickness)}} >저장된 값 보기2</Button> 
+
       </div>
+      
       </Fade>
       :null
       }
 
-      { page === 14
+      { page === 15
       ?
       <div className='Survey-input'>
       <div className='Survey-title'>
@@ -531,7 +579,7 @@ function Submit1(e) {
       :null
       }
 
-      { page === 15
+      { page === 16
       ? null
       :null
       }
@@ -579,7 +627,7 @@ function Loading(props) {
 function FinalLoading(props){
   
   const [finalProgress,setFinalProgress] = useState(0);
-  const [progressText,setProgressText] = useState('최적화된 식단 검색중..');
+  const [progressText,setProgressText] = useState(props.userName+'님의 설문을 분석하고 있습니다..');
 
   useEffect(()=> {
     let timer1 = setTimeout(()=> {
@@ -590,20 +638,20 @@ function FinalLoading(props){
 
     let timer2 = setTimeout(()=> {
 
-     setProgressText('공장 갈구는중...');
+     setProgressText('최적화된 식단을 검색중입니다..');
      setFinalProgress(40);
     }, 1500);
 
 
     let timer3 = setTimeout(()=> {
 
-      setProgressText('계란 구워 삶는 중....');
+      setProgressText('최적화된 식단을 검색중입니다..');
       setFinalProgress(72);
      }, 3000);
 
      let timer4 = setTimeout(()=> {
 
-      setProgressText('개발자 조지는 중....');
+      setProgressText('코드를 생성하고 있습니다..');
       setFinalProgress(92);
      }, 5000);
 
