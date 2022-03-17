@@ -112,4 +112,10 @@ public class BoardServiceimpl implements BoardService {
 		
 	}
 	
+	@Override
+	public void addSeocndcoachingAnswer(Map CoachingMap) throws Exception {
+		boardDAO.addSecondCoachingAnswer(CoachingMap);
+		
+	}
+	
 }// end class() 

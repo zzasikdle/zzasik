@@ -19,10 +19,14 @@ li#productli {
     border: 3px solid lightgray;
 }
 
+<<<<<<< HEAD
+/* img {
+=======
 .image{
+>>>>>>> refs/heads/main
     width: 300px;
     height: 300px;
-}
+} */
 
 .leftBtn {
     width: 100%;
