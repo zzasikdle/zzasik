@@ -194,15 +194,16 @@ function Submit1(e) {
        console.log(activity);
  const Submit1 = async() => { //await 키워드가 비동기 코드를 호출할 수 있게 하기 위해서 async()로 함수를 먼저 비동기함수로 만든다.
      await axios
-         .post(baseUrl+'/Survey1', {gender:gender, age:age, height:height, weight:weight, activity:activity, 
+         .post(baseUrl+'/survey1', {gender:gender, age:age, height:height, weight:weight, activity:activity, 
                                     frequency:frequency, goal:goal, sickness:sickness, p_sickness:psickness})
          .then((response)=>{
-          setCode(response.data.Survey_code);
+          setCode(response.data.survey_code);
          })
          .catch((error) => {
              console.log(error);
          });
  }
+ console.log(code);
  Submit1();
 // 로그인 후 빈칸으로 초기화 
 }

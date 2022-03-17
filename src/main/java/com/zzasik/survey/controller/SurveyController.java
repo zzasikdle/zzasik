@@ -31,13 +31,13 @@ public class SurveyController {
 
 	@Autowired
 	private SurveyService surveyService;
-	
+
 	@Autowired
 	private MemberService memberService;
-	
+
 	@Autowired
 	private SurveyVO surveyVO;
-	
+
 	@Autowired
 	private AnswerVO answerVO;
 
@@ -154,9 +154,35 @@ public class SurveyController {
 		double c = Math.random();
 		
 		int code = (int)(c*100000);
-		String result1 = (String)arrList.get(0);
-		String result2 = (String)arrList.get(1);
-		String result3 = (String)arrList.get(2);
+		
+		String result1 = null;
+		String result2 = null;
+		String result3 = null;
+		
+		try {
+			if (arrList.get(0) != null) {
+				result1 = (String) arrList.get(0);
+				try {
+					if (arrList.get(1) != null) {
+						result2 = (String) arrList.get(1);
+						try {
+							if(arrList.get(2) !=null) {
+								result3 = (String) arrList.get(2);
+							}
+						}catch (IndexOutOfBoundsException e) {
+							result3 = null;
+						}
+					}
+				} catch (IndexOutOfBoundsException e) {
+					result2 = null;
+					result3 = null;
+				}
+			}
+		}catch(IndexOutOfBoundsException e) {
+			result1 = "맞춤식단";
+		}
+
+		System.out.println(code);
 		
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		resultMap.put("survey_code", code);
@@ -181,7 +207,7 @@ public class SurveyController {
 		
 		return resultMap;
 	}
-	
+
 //	@PostMapping("/survey2")
 //	public Map<String,Object> survey2(@RequestBody AnswerVO answerVO,HttpServletRequest request,
 //			HttpSession session,
@@ -291,23 +317,23 @@ public class SurveyController {
 //		
 //		return resultMap;
 //	}
-	
+
 	@GetMapping("/mypage/surveyresult")
-	public List result(@RequestBody MemberVO memberVO,HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public List result(@RequestBody MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
 		System.out.println(memberVO.getSurvey_code());
 		System.out.println(memberVO.getUser_id());
-		
-		//없으면 업데이트
+
+		// 없으면 업데이트
 		memberService.modSurveyCode(memberVO);
-		
+
 		SurveyVO sur = surveyService.selectSurvey(memberVO.getSurvey_code());
 		String keyword1 = sur.getSurvey_result1();
 		String keyword2 = sur.getSurvey_result2();
 		String keyword3 = sur.getSurvey_result3();
-		
+
 		List surveylist = surveyService.surveylist(keyword1, keyword2, keyword3);
-		
+
 		return surveylist;
 	}
 }
