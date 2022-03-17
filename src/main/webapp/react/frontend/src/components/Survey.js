@@ -1,10 +1,13 @@
-import React ,{useState, useEffect} from 'react';
+import React ,{useState, useEffect, useRef} from 'react';
 import {Button,ProgressBar,Spinner,Form } from 'react-bootstrap';
 import Fade from 'react-reveal/Fade';
 import axios from 'axios'
+import { Link } from 'react-router-dom';
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 function Survey() {
- 
+
+
  const[gender,setGender] = useState('');
  const[age,setAge] = useState('');
  const[height,setHeight] = useState('');
@@ -25,6 +28,12 @@ function Survey() {
  const [psickness,setPsickness] = useState('');
  const [check,setCheck] = useState(false);
 
+ const[clicked,setClicked] = useState(false);
+
+ const[copy,setCopy] = useState("Copy");
+
+
+
 
  //next page
  const next = () => {
@@ -34,9 +43,6 @@ function Survey() {
 
  //handle
 
-const handleName =() =>{
-
-}
 
  const handleGender = (text1) => {
   setGender(text1);
@@ -93,11 +99,6 @@ const handleGoal = (text4) => {
 
 
 //
- const add = (key, value) => {
-  setSurvey((prev) => new Map([...prev,[key,value]]));
-  const nowPage = page + 1;
-  setPage(nowPage);
- };
 
 
  function getCheckboxValue()  {
@@ -155,16 +156,6 @@ function intCheck(e){
 
 }
 
-function emailCheck(e){
-  const checkText = e.target.value;
-  const emailStyle = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-  if(emailStyle.test(checkText)){
-    setCheck(true);
-  }else{
-    setCheck(false);
-  }
-}
-
 function nameReject(e){
   if(check == true){
     setUserName(inputText.slice(1));
@@ -177,16 +168,14 @@ function nameReject(e){
 }
 
 
-function emailReject(e){
-  if(check == true){
-    add('email', inputText)
-    setCheck(false);
+function copyClicked(e){
+  if(clicked === false){
+    setClicked(true);
+    setCopy("Copied");
   }else{
-    
     e.preventDefault();
   }
 }
-
 
 
 function Submit1(e) {
@@ -194,10 +183,10 @@ function Submit1(e) {
        console.log(activity);
  const Submit1 = async() => { //await 키워드가 비동기 코드를 호출할 수 있게 하기 위해서 async()로 함수를 먼저 비동기함수로 만든다.
      await axios
-         .post(baseUrl+'/Survey1', {gender:gender, age:age, height:height, weight:weight, activity:activity, 
+         .post(baseUrl+'/survey1', {gender:gender, age:age, height:height, weight:weight, activity:activity, 
                                     frequency:frequency, goal:goal, sickness:sickness, p_sickness:psickness})
          .then((response)=>{
-          setCode(response.data.Survey_code);
+          setCode(response.data.survey_code);
          })
          .catch((error) => {
              console.log(error);
@@ -560,8 +549,6 @@ function Submit1(e) {
 
       
         <Button className="btn" onClick={() => {Submit1(); next();}} >결과확인</Button>
-        <Button className="btn" onClick={() => {console.log(gender,age,height,weight,activity,frequency,goal,userName,sickness,psickness)}} >저장된 값 보기2</Button> 
-
       </div>
       
       </Fade>
@@ -570,11 +557,18 @@ function Submit1(e) {
 
       { page === 15
       ?
-      <div className='Survey-input'>
+      <div className='Survey-btn'>
       <div className='Survey-title'>
-      <h4>설문코드 : {code}</h4>
+      <h4 >설문코드 : {code}</h4>
+      <CopyToClipboard text="테스트코드" onCopy={()=>{copyClicked();}}>
+          <Button disabled={clicked} className={clicked === false ? 'btn btn-copy' : 'btn-copy btn-copy-clicked'}>{copy}</Button>
+      </CopyToClipboard>  
+
+      <p>발급된 코드를 입력하여 회원 가입을 해주세요! 
+        <br/>고객님께 맞춰진 완벽한 식단을 제공합니다.</p>
       </div>
-        <Button className="btn" onClick={() => {console.log(Survey)}} >저장된 값 보기</Button> 
+      <Link to={'/member/join'}><Button className="btn btn-primary btn-bug">가입 시작</Button> </Link>
+
       </div>
       :null
       }
@@ -666,7 +660,6 @@ function FinalLoading(props){
       props.setPage(props.page+1);
 
      }, 7500);
-
 
     return ()=> {clearTimeout(timer1,timer2,timer3,timer4,timer5,timer6);}
   },[]);
