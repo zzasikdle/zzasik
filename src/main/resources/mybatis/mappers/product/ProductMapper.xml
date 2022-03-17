@@ -26,6 +26,7 @@
 	<select id="selectProductList" parameterType="productVO" resultMap="productResult">
 	SELECT *
 	FROM producttbl
+	WHERE pro_available > 0
 	ORDER BY pro_code DESC
 	</select>
 	

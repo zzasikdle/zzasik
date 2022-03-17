@@ -13,13 +13,19 @@ import Edit from './mypage/user/component/Edit';
 
 
 import Admin from './mypage/admin/page/Admin';
-import Cs from './mypage/admin/page/Cs';
 import Lesson from './mypage/admin/page/Lesson';
 import Notice from './mypage/admin/page/Notice';
 import Product from './mypage/admin/page/Product';
 
+import Teacher from './mypage/teacher/page/Teacher';
+import T_Lesson from './mypage/teacher/page/T_Lesson';
+import T_SignUpList from './mypage/teacher/page/T_SignUpList';
+import T_Coaching from './mypage/teacher/page/T_Coaching';
+import T_CoachingForm from './mypage/teacher/page/T_CoachingForm';
+
 import Sidebar from './mypage/user/common/Sidebar';
 import Sidebar_Admin from './mypage/admin/common/Sidebar';
+import Sidebar_Teacher from './mypage/teacher/common/Sidebar';
 
 import './MypageRoute.css';
 import MyAddress from './mypage/user/page/MyAddress';
@@ -27,6 +33,11 @@ import addAddress from './mypage/user/page/addAddress';
 // import modAddress from './mypage/user/page/modAddress';
 import UpdateAddress from './mypage/user/page/UpdateAddress';
 
+import WriteBoard from './components/board/writeboard';
+import BoardList from './components/board/boardList';
+import ViewBoard from './components/board/viewboard';
+import TeacherBoard from './components/board/teacherBoard';
+import ModifyBoard from './components/board/ModifyBoard';
 
 function MypageRoute() {
   const user_id = sessionStorage.getItem('user_id');
@@ -36,8 +47,12 @@ function MypageRoute() {
     <div className='myhome-mainbar' ></div>
     <div className='myhome-container'>
       <div className='myhome-wrap'>
-        {sessionStorage.getItem('classification')==='0' ? <Sidebar_Admin/> : <Sidebar/>} 
+        {sessionStorage.getItem('classification')==='0' ? <Sidebar_Admin/> :
+         sessionStorage.getItem('classification')==='1' ? <Sidebar/>:
+         <Sidebar_Teacher/>
+        }
         <main>
+          <Route path='/writeboard' component={WriteBoard} />
           <Route path='/myhome' exact component={MyHome}/>
           <Route path='/myhome/edit' component={Edit}/>
           <Route path='/myhome/myAddress' component={MyAddress}/>
@@ -50,10 +65,13 @@ function MypageRoute() {
           <Route path='/myhome/myCart' component={MyCart}/>
           <Route path='/admin' exact component={Admin}/>
           <Route path='/admin/notice' component={Notice}/>
-          <Route path='/admin/cs' component={Cs}/>
           <Route path='/admin/product' component={Product}/>
           <Route path='/admin/lesson' component={Lesson}/>
-          
+          <Route path='/teacher' exact component={Teacher}/>
+          <Route path='/teacher/lesson' exact component={T_Lesson}/>
+          <Route path='/teacher/signuplist' exact component={T_SignUpList}/>
+          <Route path='/teacher/coaching' exact component={T_Coaching}/>
+          <Route path='/teacher/coachingform/:board_code/:user_id' exact component={T_CoachingForm}/>
         </main>
       </div>
     </div>
@@ -61,6 +79,5 @@ function MypageRoute() {
       
   );
 }
-
 
 export default MypageRoute;

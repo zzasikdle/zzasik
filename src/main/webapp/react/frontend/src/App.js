@@ -24,14 +24,16 @@ import MypageRoute from './MypageRoute';
 import MemberList from './mypage/admin/component/MemberList'
 
 //Servey
-import Servey from './components/Servey'
+
+import Survey from './components/Survey'
+
 
 //board
 import WriteBoard from './components/board/writeboard';
 import BoardList from './components/board/boardList';
 import ViewBoard from './components/board/viewboard';
 import TeacherBoard from './components/board/teacherBoard';
-
+import ModifyBoard from './components/board/ModifyBoard';
 
 //Notice
 import NoticePage from './components/notice/NoticePage';
@@ -39,6 +41,15 @@ import MyEditor from './components/notice/MyEditor';
 import NoticeView from './components/notice/NoticeView';
 import NoticeEdit from './components/notice/NoticeEdit';
 
+<<<<<<< HEAD
+=======
+//Product
+import AdminProductList from './product/AdminProductList';
+import UploadProduct from './product/UploadProduct';
+import AdminViewProduct from './product/AdminViewProduct';
+import UserProductList from './product/UserProductList';
+import UserViewProduct from './product/UserViewProduct';
+>>>>>>> branch 'main' of https://github.com/zzasikdle/zzasik.git
 
 
 function App() {
@@ -51,7 +62,7 @@ function App() {
       <MainNav />   
 
       <Switch>
-      <Route path="/servey" component={Servey}/>
+      <Route path="/survey" component={Survey}/>
       
         <Route exact path="/">
           <Home />
@@ -65,11 +76,20 @@ function App() {
         <Route path="/board/list" component={BoardList} />
         <Route path="/board/viewboard/:board_code" component={ViewBoard} />
         <Route path="/board/teacherBoard" component={TeacherBoard} />
+        <Route path="/board/modifyBoard/:board_code" component={ModifyBoard} />
         
         <Route exact path="/notice"><NoticePage/></Route>
         <Route exact path="/notice/new"><MyEditor/></Route>
         <Route path="/notice/edit/:notice_code"><NoticeEdit/></Route>
         <Route path="/notice/:notice_code"><NoticeView/></Route>
+        
+        <Route exact path="/product"><AdminProductList/></Route>
+        <Route exact path="/product/new"><UploadProduct/></Route>
+        <Route path="/product/view/:pro_code"><AdminViewProduct/></Route>
+        
+        <Route exact path="/shop"><UserProductList/></Route>
+        <Route path="/shop/view/:pro_code"><UserViewProduct/></Route>
+        
         <MypageRoute/>
 
       </Switch>

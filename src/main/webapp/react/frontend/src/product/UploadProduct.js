@@ -1,7 +1,7 @@
+import './UploadProduct.css';
 import axios from "axios";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { baseUrl } from "../config";
 import FilePreview from "./FilePreview";
 import InputFile from "./InputFile";
@@ -14,7 +14,6 @@ const UploadProduct = ( ) => {
     const [pro_available, setAvail] = useState();
     const [pro_price, setPrice] = useState();
     const [pro_detail, setDetail] = useState();
-    const [sel_name, setSeller] = useState();
     const [pro_img, setImg] = useState();
 
     const [image, setImage] = useState('');
@@ -56,40 +55,43 @@ const UploadProduct = ( ) => {
     }
 
     return (
-        <div>
-            <h1>upload product</h1>
+        <div id="con">
+            <h1>상품 등록</h1>
+            <hr />
             <table>
                 <tbody>
                     <tr>
-                        <td>상품명</td>
-                        <td><input type="text" name="pro_name" onChange={(e) => {setName(e.target.value)}} /></td>
+                        <td>상품 이미지</td>
                     </tr>
-                    <tr>
-                        <td>카테고리</td>
-                        <td><input type="text" name="pro_class" onChange={(e) => {setClass(e.target.value)}} /></td>
-                    </tr>
-                    <tr>
-                        <td>가격</td>
-                        <td><input type="text" name="pro_price" onChange={(e) => {setPrice(e.target.value)}} /></td>
-                    </tr>
-                    <tr>
-                        <td>수량</td>
-                        <td><input type="text" name="pro_available" onChange={(e) => {setAvail(e.target.value)}} /></td>
-                    </tr>
-                    <tr>
-                        <td>내용</td>
-                        <td><textarea rows="10" cols="65" name="pro_detail" onChange={(e) => {setDetail(e.target.value)}}></textarea></td>
-                    </tr>
-                    <tr>
-                        <td>이미지</td>
+                    <tr id="imagetr">
+                        <td style={{width:"400px", height:"400px", border:"3px solid gray"}}><FilePreview image={image} style={{margin:"0 auto"}} /></td>
                         <td><InputFile name="pro_img" onLoadFile={onLoadFile} onFileChange={uploadFile} /></td>
-                        <td><FilePreview image={image} /></td>
                         <td><input type="button" value="삭제하기" onClick={onDeleteFile} /></td>
                     </tr>
                     <tr>
+                        <td className='title'>상품명</td>
+                        <td><input type="text" name="pro_name" onChange={(e) => {setName(e.target.value)}} /></td>
+                    </tr>
+                    <tr>
+                        <td className='title'>카테고리</td>
+                        <td><input type="text" name="pro_class" onChange={(e) => {setClass(e.target.value)}} /></td>
+                    </tr>
+                    <tr>
+                        <td className='title'>가격</td>
+                        <td><input type="text" name="pro_price" onChange={(e) => {setPrice(e.target.value)}} /></td>
+                    </tr>
+                    <tr>
+                        <td className='title'>수량</td>
+                        <td><input type="text" name="pro_available" onChange={(e) => {setAvail(e.target.value)}} /></td>
+                    </tr>
+                    <tr>
+                        <td className='title' style={{position:"relative", top:"-250px"}}>소개</td>
+                        <td><textarea rows="10" cols="65" name="pro_detail" onChange={(e) => {setDetail(e.target.value)}}></textarea></td>
+                    </tr>
+                    <tr>
                         <td>
-                            <Link to="/admin/product" onClick={handleWrite}>글쓰기</Link>
-                            <Link to="/admin/product">취소</Link>
+                            <Link to="/product" onClick={handleWrite}>글쓰기</Link>
+                            <Link to="/product">취소</Link>
                         </td>
                     </tr>
                 </tbody>

@@ -4,10 +4,13 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { baseUrl } from '../config'
+import { useHistory } from 'react-router-dom';
 
 const UserProductList = ( ) => {
 
     const [ productList, setProductList ] = useState([]);
+
+    const history = useHistory();
 
     useEffect(( ) => {
         axios
@@ -38,7 +41,7 @@ const UserProductList = ( ) => {
                     return(
                         <ul id="productul" style={{float:"left"}}>
                         <li id="productli" style={{textAlign:"center"}} key={key}>
-                            <Link to={`/shop/product/view/${product.pro_code}`} style={{textDecoration:"none"}}>
+                            <Link to={`/shop/view/${product.pro_code}`} style={{textDecoration:"none"}}>
                                 <div>
                                     { product.pro_img !== "undefined" ?
                                         <img src={product.pro_img} />
@@ -46,8 +49,8 @@ const UserProductList = ( ) => {
                                         <img src="/image/no_image_1.png" />
                                     }
                                 </div>                                
-                                <div>{product.pro_name}</div>
-                                <div>{product.pro_price}</div>
+                                <div style={{color:"black"}}>{product.pro_name}</div>
+                                <div style={{fontSize:"20px", fontWeight:"bold", color:"firebrick"}}>{product.pro_price}</div>
                             </Link>
                         </li>
                         </ul>

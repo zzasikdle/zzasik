@@ -21,7 +21,7 @@
     table-layout:fixed;
     margin:auto;
 	margin-top: 40px;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     width:700px;
 	border-bottom:1px solid #999;
 	color:#666;
@@ -50,9 +50,4 @@
 	border-bottom: solid 1px #d2d2d2;
 	text-align: center;
 	line-height: 18px;
-}
-
-.manage{
-	font-size: 16px;
-	padding-left:700px;
 }

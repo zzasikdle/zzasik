@@ -4,6 +4,9 @@ import DaumPostcode from 'react-daum-postcode';
 import { useParams } from "react-router-dom";
 import './modAddress.css';
 
+//jquery 추가
+import $ from "jquery";
+
 const ModAddress = () => {
 
     const baseUrl = "http://localhost:8090";
@@ -79,7 +82,7 @@ const ModAddress = () => {
                                                 <input type="text" id="addressName" className="ip_text" onChange={handleAddr_1} value={isZoneCode}  maxLength="150"/>
                                                
                                             </span>
-                                            <button onClick={onChangeOpenPost}>주소검색</button>
+                                            <button id="addressCodeBtn" onClick={onChangeOpenPost} >주소검색</button>
                                                 {isOpenPost  ? (
                                                     <DaumPostcode style={postCodeStyle} autoClose onComplete={handleComplete } />
                                                     ) : null}<br/> 
@@ -160,6 +163,23 @@ const ModAddress = () => {
     height: "500px",
     padding: "7px",
   };
+
+  //주소찾기 모달창
+  $(function() {
+      //주소찾기 버튼 클릭 시 , 모달 창 띄움.
+      $("#addressCodeBtn").on("click" , function () {
+          $(".j_modal").attr("style" , "display:block");
+          $(".modal_content").css({
+            "top": (($(window).height()-$(".modal_content").outerHeight())/2+$(window).scrollTop())+"px",
+            "left": (($(window).width()-$(".modal_content").outerWidth())/2+$(window).scrollLeft())+"px"
+          });
+      });
+
+      $("#btn_close_modal").on("click", function(){
+          $(".j_modal").attr("style","display:none"); //모달숨기기
+          onChangeOpenPost(); // 주소api닫기
+      })
+  });
 
     //유효성 검사 ( 각 칸을 모두 적었는지 )
     const [isUserAddress ,setUserAddress] = useState(false);
@@ -297,8 +317,8 @@ const ModAddress = () => {
                                         <DaumPostcode style={postCodeStyle} autoClose onComplete={handleComplete } />
                                         ) : null}<br/> */}
 
-                                    <button className='popUp' onClick={onOpenModal} >주소검색</button>
-                                    {modalOn ? <Modal ></Modal> : ''}
+                                    <button className="_search setting_btn green" id="addressCodeBtn" onClick={onChangeOpenPost} >주소검색</button>
+                                    
 
 
 
@@ -375,12 +395,27 @@ const ModAddress = () => {
                 <div className="delivery_notice">
                     <p className="desc" >· 입력/수정하신 배송지는 배송지 목록에 저장됩니다.</p>
                 </div>
+                <div id="pop_footer">
+                    <button>닫기</button>
+                    <button onClick={updateAddress}>저장</button>
+                </div>
+            
             </div>
 
-            <div id="pop_footer">
-                <button>닫기</button>
-                <button onClick={updateAddress}>저장</button>
+            
+
+        <div class ="j_modal">
+            <div class="modal_content">
+                <div class="modal_title">
+                    <h3 style={{color:"black",fontSize:25,margin:20}}>주소 검색</h3>
+                    <img src='/img/close.png' id="btn_close_modal" style={{width:30,height:30,marginLeft:230}}/>
+                </div>
+            {isOpenPost ? (
+                <DaumPostcode style={postCodeStyle} autoClose onComplete={handleComplete } />
+            ) : null}
             </div>
+            <div class="modal_layer"></div>
+        </div>
         </>
     )
 }
