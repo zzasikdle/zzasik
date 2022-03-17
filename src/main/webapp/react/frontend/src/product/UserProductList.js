@@ -44,9 +44,9 @@ const UserProductList = ( ) => {
                             <Link to={`/shop/view/${product.pro_code}`} style={{textDecoration:"none"}}>
                                 <div>
                                     { product.pro_img !== "undefined" ?
-                                        <img src={product.pro_img} />
+                                        <img src={product.pro_img} className='image' />
                                     :
-                                        <img src="/image/no_image_1.png" />
+                                        <img src="/image/no_image_1.png" className='image' />
                                     }
                                 </div>                                
                                 <div style={{color:"black"}}>{product.pro_name}</div>

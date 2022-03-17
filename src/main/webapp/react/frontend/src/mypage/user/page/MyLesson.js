@@ -1,8 +1,68 @@
+import React, { useState} from 'react';
+import axios from 'axios';
+
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { EditorState, convertToRaw} from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
+
+//jquery 추가
+import $ from "jquery";
+
 export default function MyLesson(){
     const percentage = 66;
+    const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  
+    const onEditorStateChange = (editorState) => {
+      // editorState에 값 설정
+      setEditorState(editorState);
+    };
+  
+    const openSendModal = async() => {    
+        $(".j_modal").attr("style","display:block");
+        $(".send_content").css({
+                "top": (($(window).height()-$(".send_content").outerHeight())/2+$(window).scrollTop())+"px",
+                "left": (($(window).width()-$(".send_content").outerWidth())/2+$(window).scrollLeft())+"px"
+                //팝업창을 가운데로 띄우기 위해 현재 화면의 가운데 값과 스크롤 값을 계산하여 팝업창 CSS 설정     
+        });    
+
+    }
+
+    $("#btn_close_modal").on("click",function(){
+        $(".j_modal").attr("style","display:none");
+    });
+
+    // 보내기 클릭 시 작동
+  const onClickSend = () => {
+    if(window.confirm( "코치에게 작성한 메시지를 보내시겠습니까?" )){
+        //글 서버로 보내기
+       /* axios 
+        .get('/notice/new',{
+            params:{
+              title : inputValue,
+              editorToHtml: editorToHtml
+            }
+        })
+        .then(()=>{
+          alert("공지사항이 등록되었습니다.");
+          window.location.href="/notice";
+        })
+        .catch((error) => {
+            console.log(error);
+        })*/
+    }
+    else return false;
+    
+  };
+
+    //취소 버튼 클릭 시 작동
+    const onClickCancel = () => {
+        setEditorState("");
+        $(".j_modal").attr("style","display:none");
+    };
 
     return (
         <>
@@ -79,9 +139,46 @@ export default function MyLesson(){
                     </tr>
                 </div>
                 <div className="button-area">
-                        <button className="setting_btn green_bg" style={{float:"right"}}>코치에게 메시지 보내기</button>
+                        <button className="setting_btn green_bg" onClick={openSendModal} style={{float:"right"}}>코치에게 메시지 보내기</button>
                     </div>
                 </div>
+            </div>
+            <div class = "j_modal">
+                <div class= "send_content">
+                    <div class= "modal_title">
+                        <h3 style={{color:"black",fontSize:25,margin:17}}>메시지 보내기</h3>
+                    </div>
+                    <div style={{margin:50}}>
+                    <Editor
+                    // 에디터와 툴바 모두에 적용되는 클래스
+                    wrapperClassName="wrapper-class"
+                    // 에디터 주변에 적용된 클래스
+                    editorClassName="send-editor"
+                    // 툴바 주위에 적용된 클래스
+                    toolbarClassName="toolbar-class"
+                    // 툴바 설정
+                    toolbar={{
+                    // inDropdown: 해당 항목과 관련된 항목을 드롭다운으로 나타낼것인지
+                    list: { inDropdown: true },
+                    textAlign: { inDropdown: true },
+                    link: { inDropdown: true },
+                    history: { inDropdown: false },
+                    }} 
+                    placeholder="내용을 작성해주세요."
+                    // 한국어 설정
+                    localization={{
+                    locale: 'ko',
+                    }}
+                    // 초기값 설정
+                    editorState={editorState}
+                    // 에디터의 값이 변경될 때마다 onEditorStateChange 호출
+                    onEditorStateChange={onEditorStateChange}
+                />
+                <button className="noticeBtn" onClick={onClickSend}>보내기</button>
+                <button className="noticeBtn" onClick={onClickCancel} >취소</button>
+                    </div>
+                </div>	
+                <div class="modal_layer"></div>
             </div>
 
         </>

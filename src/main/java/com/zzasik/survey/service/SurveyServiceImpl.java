@@ -21,9 +21,9 @@ public class SurveyServiceImpl implements SurveyService{
 	private SurveyDAO surveyDAO;
 	
 	@Override
-	public int addSurvey(@RequestBody Map<String,Object> resultMap) throws Exception {
+	public void addSurvey(SurveyVO surveyVO) throws Exception {
 
-		return surveyDAO.addSurvey(resultMap);
+		surveyDAO.addSurvey(surveyVO);
 	}
 
 	@Override

@@ -8,7 +8,11 @@ import { Link } from 'react-router-dom';
 //jquery 추가
 import $ from "jquery";
 
-const Join = () => {
+const Join = (props) => {
+
+
+    //test
+    const [testCode,setTestCode] = useState('dfdf');
 
     const baseUrl = "http://localhost:8090";
 
@@ -376,9 +380,9 @@ const Join = () => {
                     <h3 class="join_title">설문조사 코드</h3>
                         <input
                             class="join_input"
-                            type="number"
+                            type="text"
                             min='1' max='10' step='1'
-                            onChange={handleSurveyCode} value={survey_code}
+                            onChange={handleSurveyCode} value={testCode}
                             title="input survey_code"
                             maxLength="50"
                         />
@@ -387,6 +391,7 @@ const Join = () => {
                     <button id="joinBtn" onClick={handleJoin}
                         disabled={!(isId && isName && isEmail && isPassword && isPasswordConfirm && isUserAddress)}
                     >JOIN</button>
+
 
             </div>
             <div class = "j_modal">

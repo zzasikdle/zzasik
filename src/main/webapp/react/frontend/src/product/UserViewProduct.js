@@ -108,9 +108,9 @@ const UserViewProduct = ( ) => {
                                 <td>이미지</td>
                                 <td>
                                     { product.pro_img !== "undefined" ?
-                                        <img src={product.pro_img} alt="preview" style={{width:"300px"}} />
+                                        <img src={product.pro_img} alt="preview" className='image' />
                                         :
-                                        <img src='/image/no_image_1.png' />
+                                        <img src='/image/no_image_1.png' className='image' />
                                     }
                                 </td>
                             </tr>
