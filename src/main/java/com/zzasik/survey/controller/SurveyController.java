@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.zzasik.member.service.MemberService;
+import com.zzasik.member.vo.MemberVO;
 import com.zzasik.survey.service.SurveyService;
 import com.zzasik.survey.vo.AnswerVO;
 import com.zzasik.survey.vo.SurveyVO;
@@ -29,6 +31,9 @@ public class SurveyController {
 
 	@Autowired
 	private SurveyService surveyService;
+	
+	@Autowired
+	private MemberService memberService;
 	
 	@Autowired
 	private SurveyVO surveyVO;
@@ -288,13 +293,15 @@ public class SurveyController {
 //	}
 	
 	@GetMapping("/mypage/surveyresult")
-	public List result(@RequestParam int survey_code,HttpServletRequest request,
+	public List result(@RequestBody MemberVO memberVO,HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=utf-8");
+		System.out.println(memberVO.getSurvey_code());
+		System.out.println(memberVO.getUser_id());
 		
-		//목록가져오는 서비스 필요
-		SurveyVO sur = surveyService.selectSurvey(survey_code);
+		//없으면 업데이트
+		memberService.modSurveyCode(memberVO);
+		
+		SurveyVO sur = surveyService.selectSurvey(memberVO.getSurvey_code());
 		String keyword1 = sur.getSurvey_result1();
 		String keyword2 = sur.getSurvey_result2();
 		String keyword3 = sur.getSurvey_result3();

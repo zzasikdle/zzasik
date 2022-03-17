@@ -26,7 +26,7 @@
 	]]>
   </select>
   
-  <select id="surveylist" resultMap="productResult" parameterType="productVO">
+  <select id="surveylist" parameterType="productVO" resultMap="productResult">
 		<![CDATA[
 			select pro_name, pro_class, pro_price, pro_img, pro_detail from producttbl
 			where pro_class like '%'||'${keyword1}'||'%'

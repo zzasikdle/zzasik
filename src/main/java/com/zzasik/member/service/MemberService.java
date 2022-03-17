@@ -33,4 +33,6 @@ public interface MemberService {
 	
 	public AddressVO getAddress(MemberVO memberVO) throws Exception;
 	
+	public void modSurveyCode(MemberVO memberVO) throws Exception;
+	
 }
