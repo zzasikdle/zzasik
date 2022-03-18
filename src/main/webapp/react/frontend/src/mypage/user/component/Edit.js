@@ -142,7 +142,7 @@ function Edit(){
                    </th>
                    <td>
                        <div className="tdcell"><p class="contxt_tit" id="phoneNO">{sessionStorage.getItem("phone")}</p>
-                            <p className="contxt_desc">아이디, 비밀번호 찾기 등 본인확인이 필요한 경우 또는 유료 결제 등 짜식들로부터 알림을 받을 때 사용할 휴대전화입니다.</p>   
+                            <p className="contxt_desc">유료 결제 등 짜식들로부터 알림을 받을 때 또는 본인확인이 필요한 경우 또는 사용할 휴대전화입니다.</p>   
                             <div id="d_phoneNo" style={{display:"block"}}>
                 <tr>
                     <td className="cell_title">

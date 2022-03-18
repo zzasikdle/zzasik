@@ -11,9 +11,6 @@ import $ from "jquery";
 const Join = (props) => {
 
 
-    //test
-    const [testCode,setTestCode] = useState('dfdf');
-
     const baseUrl = "http://localhost:8090";
 
     const [user_id, setId] = useState(''); 
@@ -378,11 +375,12 @@ const Join = (props) => {
                     <h3 class="join_title">설문조사 코드</h3>
                         <input
                             class="join_input"
-                            type="text"
-                            min='1' max='10' step='1'
-                            onChange={handleSurveyCode} value={testCode}
+                            type="number"
+                            min='1' max='1000' step='1'
+                            onChange={handleSurveyCode} 
                             title="input survey_code"
                             maxLength="50"
+                            placeholder="설문조사를 진행하신 후 발급받은 코드를 기입 해주세요."
                         />
                 </div>
                     
