@@ -16,7 +16,7 @@ import draftToHtml from 'draftjs-to-html';
 
 
 const WriteBoard = ( ) => {
-     const baseUrl = "http://localhost:8090";
+  const baseUrl = "http://49.50.160.29:3000/";
      const [board_content ,     setBoard_cotent]= useState('');
      const [board_title, setBoard_title] = useState('');
      const [meal_type, setMeal_type] = useState('');

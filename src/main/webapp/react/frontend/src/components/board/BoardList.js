@@ -6,7 +6,7 @@ import { Link} from 'react-router-dom';
 
 
 const BoardList = ( ) => {
-    const baseUrl = "http://localhost:8090";
+    const baseUrl = "http://49.50.160.29:3000/";
 
     const [ boardList, setBoardList] = useState([]);
     useEffect(( ) => {

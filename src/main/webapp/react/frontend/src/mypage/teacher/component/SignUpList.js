@@ -8,7 +8,7 @@ import Pagination from "../../../components/notice/Pagination";
 //신청 내역
 const SignUpList = () => {
 
-    const baseUrl = "http://localhost:8090";
+    const baseUrl = "http://49.50.160.29:3000/";
  
     const [teacherBoard, setTeacherBoard] = useState([]);
     const [selectBox, setselectBox] = useState([]);
