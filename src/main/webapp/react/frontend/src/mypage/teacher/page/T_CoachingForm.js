@@ -231,7 +231,7 @@ export default function T_CoachingForm() {
 
 
 
-                    <div class="countDay"><a  herf="#!" class="st_day">Day</a>{period - countDay + 1}</div>
+                    <div class="countDay"><p class="st_day">Day</p>{period - countDay + 1}</div>
                     <div class="Coaching_div">
                         <div class="temp_4"><p class="temp_5">아침</p><p  class="temp_6" ><input class="temp_input" onChange={(e) => { setbreakfast(e.target.value) }}></input></p></div>
                         <div class="temp_4"><p class="temp_5">점심</p><p class="temp_6" ><input class="temp_input" onChange={(e) => { setLunch(e.target.value) }}></input></p></div>
