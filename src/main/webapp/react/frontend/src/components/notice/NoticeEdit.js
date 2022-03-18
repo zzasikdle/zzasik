@@ -1,3 +1,5 @@
+/*eslint-disable*/
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import { useParams } from "react-router-dom";
@@ -17,7 +19,6 @@ import './NoticePage.css';
 /*공지사항 수정*/
 const NoticeEdit = () => {
 
-    const [notice,setNotice] = useState({});
     const [inputValue, setInputValue] = useState("");
     const {notice_code} = useParams();
     // useState로 상태관리하기 초기값은 EditorState.createEmpty()
@@ -33,7 +34,6 @@ const NoticeEdit = () => {
             }
         })
         .then((response)=>{
-            setNotice(response.data);
             setInputValue(response.data.notice_title);
 
             const blocksFromHtml = htmlToDraft(response.data.notice_content);
@@ -52,7 +52,6 @@ const NoticeEdit = () => {
             console.log(error);
         })
     },[]);
-    const rendered = useRef(false);
 
 
 

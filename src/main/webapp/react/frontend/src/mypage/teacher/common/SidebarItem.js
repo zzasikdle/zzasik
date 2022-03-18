@@ -21,16 +21,18 @@ function SidebarItem({menu,isActive}){
           if(isActive) img_src ='/img/meal_active.png';
           else img_src = '/img/meal.png';
           break;
+      default:
+        break;
      
     }
     return isActive === true ? (
         <div className="sidebar-item active">
-          <img src={img_src}/>
+          <img src={img_src} alt="my"/>
           <p style={{color:"#2374FA"}}>{menu.name}</p>
         </div>
       ) : (
         <div className="sidebar-item ">
-          <img src={img_src}/>
+          <img src={img_src} alt="my"/>
           <p>{menu.name}</p>
         </div>
       );

@@ -151,7 +151,7 @@ group by C.user_id;
 		where board_code= #{board_code} and user_id=#{user_id};
 	]]>   
   </select>
-  
+
        <select id="addSecondCoachingAnswer" parameterType="java.util.Map">
 
      	<![CDATA[
@@ -159,6 +159,31 @@ insert into coachingtbl( breakfast, Lunch, dinner, snack_1, snack_2,  calorie, c
 values (#{breakfast}, #{Lunch}, #{dinner}, #{snack_1}, #{snack_2}, #{calorie}, #{coaching_answer}, #{start_date}, #{user_id}, #{board_code}, #{useranswer},#{coaching_num});
 	]]>   
   </select>
+  
+   
+  <select id="selectUserBoardList" parameterType="String" resultType="BoardVO">
+  		<![CDATA[
+		select b.board_code,b.board_title,teacher_name,board_period
+		from joincart as j join boardtbl as b
+		on j.board_code = b.board_code
+		where j.user_id = #{user_id}
+		]]> 
+  </select>
+  
+  <select id="selectCoachings" parameterType="java.util.Map" resultType="BoardVO">
+	  	<![CDATA[
+		  	select * 
+			from coachingtbl
+			where user_id=#{user_id} and board_code=#{board_code}
+		]]>
+  </select>
+  
+  <select id="getStartDate" parameterType="java.util.Map" resultType="Date">
+	  	<![CDATA[
+		  	select start_date 
+			from coachingtbl
+			where user_id=#{user_id} and board_code=#{board_code} and coaching_num=0 
+		]]>
   
 </mapper>
   
