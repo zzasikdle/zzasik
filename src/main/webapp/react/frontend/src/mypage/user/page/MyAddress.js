@@ -130,15 +130,15 @@ const MyAddress  =() => {
                     
                 </div>
                 
+                <footer>
+                    <Pagination
+                        total={AddressList.length}
+                        limit={limit}
+                        page={page}
+                        setPage={setPage}
+                    />
+                </footer>
             </div>
-            <footer>
-                <Pagination
-                    total={AddressList.length}
-                    limit={limit}
-                    page={page}
-                    setPage={setPage}
-                />
-            </footer>
         </>
     )
 }

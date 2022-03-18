@@ -12,7 +12,8 @@
     margin-top: 5px;
 }
 .setting_popup_title .h_title {
-    font-size: 12px;
+    font-size: 25px;
+    margin-top: 10px;
     line-height: 45px;
     color: #222;
 }

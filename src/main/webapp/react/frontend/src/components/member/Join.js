@@ -396,7 +396,7 @@ const Join = (props) => {
                 <div class= "modal_content">
                     <div class= "modal_title">
                         <h3 style={{color:"black",fontSize:25,margin:17}}>우편번호찾기</h3>
-                        <img src='/img/close.png' id="btn_close_modal" style={{width:30,height:30,marginLeft:200}}/>
+                        <img className="closeBtnImg" src='/img/close.png' id="btn_close_modal" style={{width:30,height:30,marginLeft:200}}/>
                     </div>
                 {isOpenPost  ? (
                 <DaumPostcode style={postCodeStyle} autoClose onComplete={handleComplete } />
