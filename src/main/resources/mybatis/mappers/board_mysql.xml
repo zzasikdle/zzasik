@@ -184,6 +184,7 @@ values (#{breakfast}, #{Lunch}, #{dinner}, #{snack_1}, #{snack_2}, #{calorie}, #
 			from coachingtbl
 			where user_id=#{user_id} and board_code=#{board_code} and coaching_num=0 
 		]]>
+		</select>
   
 </mapper>
   
