@@ -1,6 +1,5 @@
 /*eslint-disable*/
 
-
 import axios from 'axios';
 import { useRef, useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
@@ -10,15 +9,15 @@ import './UpdateAddress.css';
 //jquery 추가
 import $ from "jquery";
 
-const UpdateAddress = () => {
+const UpdateAddressAdmin = () => {
 
     const baseUrl = "http://localhost:8090";
     
 
     const user_id = sessionStorage.getItem("user_id");
-    
-    const {addr_receiver} = useParams(); // 원래 receiver 
-    console.log(addr_receiver);
+
+    const {params} = useParams();
+
     /* 휴대전화 */
     const [ codeNo , setCodeNo] = useState('');
     const [ secondPhone , setSecondphone] = useState('');
@@ -121,10 +120,70 @@ const UpdateAddress = () => {
         setThirdphone(e.target.value);
     }
     
+    /* 관리자가 회원 배송지 정보 수정 */
+    // function addAddressAdmin(e) {
 
-    /* 회원이 자기 배송지 정보 수정.  */
+    //     // MemberList 에서 user_id 인자값을 props로 넘겨주면 그걸 받아다가 쓰기.
+        
+    //     // console.log({user_id_admin});
+    //     // console.log({addr_receiver_admin});
+    //     console.log("관리자 진입");
+        
+    //     // 인자 값 추출 하기.  : Link 로 인자 2개 보냈는데, useParams로는 1개밖에 받아오지 않아서 방법을 못 찾고 강제로 for문 돌려 찢어냄.220317
+    //     let user_id_admin = "";
+    //     let addr_receiver_admin="";
+        
+    //     var i;
+    //     for( i = 0  ; i<params.length ; i++){
+    //         if( params.substring(i,i+1) === "_"){
+    //             user_id_admin  = params.substring(0,i);
+    //             addr_receiver_admin = params.substring(i+1,params.length);
+    //             console.log(user_id_admin);
+    //             console.log(addr_receiver_admin);
+    //             return;
+    //         }
+    //     }
+
+    //     const addr_phone = codeNo + secondPhone + thirdPhone ; 
+
+    //     const addAddressAdmin = async() => {
+    //         await axios
+    //             .post(baseUrl + '/member/updateAddress' , 
+    //                 {
+    //                     user_id:user_id_admin, addr_title: addr_title.current.value,
+    //                     addr_receiver : addr_receiver_admin, // 원래 receiver , 이걸로 구별해준다.
+    //                     addr_Revisedreceiver :addr_Revisedreceiver.current.value,  // 바뀔 수령인
+    //                     addr_phone : addr_phone,
+    //                     addr_1 : zoneRef.current.value,
+    //                     addr_2 : addRef.current.value , addr_3: addDeRef.current.value
+    //                 }
+    //             )
+    //             .then( (response) => {
+    //                 alert(response.data.message);
+    //                 document.location.href='/admin';    
+    //             }
+    //             )
+    //             .catch((error) => {
+    //                 console.log(error);
+    //             })
+    //     }
+    //     addAddressAdmin();
+    // }
+
     function addAddress(e) {
         
+        let user_id_admin = "";
+        let addr_receiver_admin="";
+        var i;
+        for( i = 0  ; i<params.length ; i++){
+            if( params.substring(i,i+1) === "_"){
+                addr_receiver_admin  = params.substring(0,i);
+                user_id_admin = params.substring(i+1,params.length);
+                console.log(user_id_admin);
+                console.log(addr_receiver_admin);
+                //여기에 return 을 쓰니까 당연 함수가 종료되서 밑에가 안 나아가서 서버로 요청이 안 가지..바보야
+            }
+        }
         const addr_phone = codeNo + secondPhone + thirdPhone ; 
         
         const addAddress = async() => {
@@ -132,8 +191,8 @@ const UpdateAddress = () => {
             await axios
                 .post(baseUrl + '/member/updateAddress', 
                     {   
-                        user_id:user_id, addr_title: addr_title.current.value,
-                        addr_receiver : addr_receiver, // 원래 receiver , 이걸로 구별해준다.
+                        user_id:user_id_admin, addr_title: addr_title.current.value,
+                        addr_receiver : addr_receiver_admin, // 원래 receiver , 이걸로 구별해준다.
                         addr_Revisedreceiver :addr_Revisedreceiver.current.value,  // 바뀔 수령인
                         addr_phone : addr_phone,
                         addr_1 : zoneRef.current.value,
@@ -141,7 +200,7 @@ const UpdateAddress = () => {
                     })
                 .then( (response) => {
                     alert(response.data.message);
-                    document.location.href='/myhome/myAddress';
+                    document.location.href='/admin';
                     }
                 )
                 .catch((error) => {
@@ -157,7 +216,6 @@ const UpdateAddress = () => {
 
         addAddress(); // 함수 실행.
     } 
-
 
     return (
         <>
@@ -279,9 +337,8 @@ const UpdateAddress = () => {
                 </div>
 
                 <div id="pop_footer">
-                    <Link className="btn_model" to='/myhome/myAddress'>닫기</Link>
+                    <Link className="btn_model" to='/admin'>닫기</Link>
                     <button className="btn_model" onClick={addAddress}>저장</button>
-                
             </div>
             </div>
 
@@ -293,7 +350,6 @@ const UpdateAddress = () => {
                     <h3 style={{color:"black",fontSize:25,margin:20}}>주소 검색</h3>
                     <img src='/img/close.png' id="btn_close_modal" style={{width:30,height:30,marginLeft:230}}/>
                 </div>
-                
             {isOpenPost ? (
                 <DaumPostcode style={postCodeStyle} autoClose onComplete={handleComplete } />
             ) : null}
@@ -304,4 +360,4 @@ const UpdateAddress = () => {
     )
 }
 
-export default UpdateAddress;
+export default UpdateAddressAdmin;

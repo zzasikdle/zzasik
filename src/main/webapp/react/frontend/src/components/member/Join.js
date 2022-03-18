@@ -1,9 +1,9 @@
+/*eslint-disable*/
+
 import './Join.css';
 import axios from "axios";
 import { useState , useRef, useCallback } from "react";
 import DaumPostcode from "react-daum-postcode";
-import { useHref } from "react-router";
-import { Link } from 'react-router-dom'; 
 
 //jquery 추가
 import $ from "jquery";
@@ -19,8 +19,6 @@ const Join = (props) => {
     const [user_id, setId] = useState(''); 
     const [user_pwd, setPwd] = useState('');
     const [user_name, setName] = useState('');
-    const [addr_1, setAddr1] = useState('');
-    const [addr_2, setAddr2] = useState(''); 
     const [addr_3, setAddr3] = useState('');
     const [birth, setBirth] = useState('');
     const [phone, setPhone] = useState('');
