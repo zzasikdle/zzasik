@@ -2,7 +2,7 @@
 //no-unused-vars 경고 해결 완료
 /*eslint-disable*/
 
-
+import { baseUrl } from '../../../config';
 import './Edit.css';
 import React, {useState} from 'react';
 import axios from 'axios';
@@ -13,7 +13,7 @@ function Edit(){
     //로그인 연동 후 가져오기
    //const user_id = sessionStorage.getItem('user_id');
    
-   const baseUrl = "http://localhost:8090";
+   
    const user_id  = sessionStorage.getItem("user_id");
    
    const [user_name,setUserName] = useState('');
