@@ -33,10 +33,9 @@ import addAddress from './mypage/user/page/addAddress';
 // import modAddress from './mypage/user/page/modAddress';
 import UpdateAddress from './mypage/user/page/UpdateAddress';
 
-import WriteBoard from './components/board/writeboard';
-import BoardList from './components/board/boardList';
-import ViewBoard from './components/board/viewboard';
-import TeacherBoard from './components/board/teacherBoard';
+import WriteBoard from './components/board/Writeboard';
+import BoardList from './components/board/BoardList';
+import ViewBoard from './components/board/Viewboard';
 import ModifyBoard from './components/board/ModifyBoard';
 
 function MypageRoute() {
@@ -52,7 +51,7 @@ function MypageRoute() {
          <Sidebar_Teacher/>
         }
         <main>
-          <Route path='/writeboard' component={WriteBoard} />
+          <Route path='/Writeboard' component={WriteBoard} />
           <Route path='/myhome' exact component={MyHome}/>
           <Route path='/myhome/edit' component={Edit}/>
           <Route path='/myhome/myAddress' component={MyAddress}/>

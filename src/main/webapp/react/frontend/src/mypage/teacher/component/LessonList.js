@@ -1,3 +1,4 @@
+/*eslint no-undef: "off"*/
 import { useEffect} from "react";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -37,7 +38,7 @@ const LessonList = () => {
     
            
             call();
-        }, []);
+        }, [teacherBoard]);
 
         function boardList(){
       
