@@ -29,8 +29,8 @@ import Sidebar_Teacher from './mypage/teacher/common/Sidebar';
 import './MypageRoute.css';
 import MyAddress from './mypage/user/page/MyAddress';
 import addAddress from './mypage/user/page/addAddress';
-// import modAddress from './mypage/user/page/modAddress';
 import UpdateAddress from './mypage/user/page/UpdateAddress';
+import UpdateAddressAdmin from './mypage/user/page/UpdateAddressAdmin';
 
 
 function MypageRoute() {
@@ -50,8 +50,8 @@ function MypageRoute() {
           <Route path='/myhome/edit' component={Edit}/>
           <Route path='/myhome/myAddress' component={MyAddress}/>
           <Route path='/myhome/addAddress' component={addAddress}/>
-          {/* <Route path='/myhome/modAddress/:addr_receiver' component={modAddress}/> */}
           <Route path='/myhome/UpdateAddress/:addr_receiver' component={UpdateAddress}/>
+          <Route path='/myhome/UpdateAddressAdmin/:params' component={UpdateAddressAdmin}/>
           <Route path='/myhome/myDiet' component={MyDiet}/>
           <Route path='/myhome/myLesson' component={MyLesson}/>
           <Route path='/myhome/myOrder' component={MyOrder}/>

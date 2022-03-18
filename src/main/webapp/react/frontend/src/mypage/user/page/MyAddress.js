@@ -1,3 +1,4 @@
+/*eslint-disable*/
 
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -13,8 +14,6 @@ const MyAddress  =() => {
     
     const [ AddressList,  setAddressList] = useState([]); // 배열로 배송지 리스트 받아옴. 
     
-    const [addr_receiver , setAddr_receiver] = useState('');
-
     const [ limit, setLimit] = useState(4);    //한 페이지당 표시할 게시물 개수
     const [ page, setPage] = useState(1);
     const offset = (page - 1) * limit;
@@ -113,7 +112,6 @@ const MyAddress  =() => {
                                             <td className="cell_tel">{Address.addr_phone}</td>
                                             <td className="cell_edit">
                                                 <button className="_delete setting_btn type_h">
-                                                    {/* <Link to={`/myhome/modAddress/${Address.addr_receiver}`} id='modAddress'>수정</Link> */}
                                                     <Link to={`/myhome/updateAddress/${Address.addr_receiver}`} id='UpdateAddress'>수정</Link>
                                                 </button>
                                                 <button className="_delete setting_btn type_h" onClick={ () => deleteAddress(Address.addr_title)}>
