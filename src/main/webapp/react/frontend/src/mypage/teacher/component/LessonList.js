@@ -1,14 +1,18 @@
-import { useEffect, useRef } from "react";
+import { useEffect} from "react";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import React, {useState} from 'react';
 import './LessonList.css';
+import Pagination from "../../../components/notice/Pagination";
 
 const LessonList = () => {
 
     const baseUrl = "http://localhost:8090";
     const [ teacherBoard, setTeacherBoard] = useState([]);
     const user_id = sessionStorage.getItem("user_id");
+    const [ limit, setLimit] = useState(10);    //한 페이지당 표시할 게시물 개수
+    const [ page, setPage] = useState(1);
+    const offset = (page - 1) * limit;
 
     
     
@@ -58,38 +62,50 @@ const LessonList = () => {
 
     return (
         <>
-            <div>
-                <h2>나의 코칭 목록</h2>
+            <div class="haed_div">
+                <h2 class="head_title">나의 코칭 목록</h2>
             </div>
             {teacherBoard.length===0 ? 
             <div style={{padding:"100px 0"}}>등록된 코칭 서비스가 없습니다. 코칭 서비스를 등록해주세요 !</div>
             :
-            teacherBoard.map((board, key) => {
+           
+            teacherBoard.slice(offset, offset + limit).map((board,key) => {
                 return( 
               <Link to={`/board/viewboard/${board.board_code}`}>
                     <ul key={key} >
-                      
-                    
-                      <div>
-                      <div >meal_type:{board.meal_type}</div>
-                      <div > board_title:{board.board_title} </div>     
-                      <br/>                     
-                      </div>
+                        <table>
+                        <thead>
+                       <tr>
+                           <th>프로그램명</th>
+                          
+                       </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="boardTitle">{board.board_title}</td>
+                             
+                            </tr>
+                        </tbody>
+                        </table>
 
-                     
-                      <div>
-                     <div> <img class="image_box" src={`${baseUrl}/download?board_code=${board.board_code}&imageFilename=${board.imageFilename}`} id="preview" alt={board.imageFilename} /></div>
-                     </div>
-                
-                    
-                     
-                  
                     </ul>
                      </Link>
+                     
                   
                 )
             })
             }
+
+            <footer>
+            <Pagination
+                total={teacherBoard.length}
+                limit={limit}
+                page={page}
+                setPage={setPage}
+                
+            />
+            </footer>
+           <Link to={"/writeboard"}><div class="pathWriteBtn">글쓰기</div></Link>
                 
         </>
     )

@@ -1,0 +1,6 @@
+INDEX VERSION 1.4+D:\zzasik\zzasik\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2286656253.index
+2162926295.index
+3685786661.index
+2524524782.index
+1751835535.index

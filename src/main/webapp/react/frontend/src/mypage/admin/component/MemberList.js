@@ -1,19 +1,26 @@
+/*eslint-disable*/
+
+
 import { useEffect, useRef } from "react";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import React, {useState} from 'react';
 import './MemberList.css';
 import Pagination from "../../../components/notice/Pagination";
+import UpdateAddress from "../../user/page/UpdateAddress";
 
 //jquery 추가
 import $ from "jquery";
+import MyAddress from "../../user/page/MyAddress";
+
+
 
 const MemberList = () => {
 
     const baseUrl = "http://localhost:8090";
 
     const [ memberList,setMemberList] = useState([]);
-    const [ addressList,setAddressList] = useState([]);
+    const [ AddressList,setAddressList] = useState([]);
 
     const [ classification , setClassification] = useState('');
 
@@ -36,7 +43,7 @@ const MemberList = () => {
     },[]);
 
     const getAddress = async(user_id) => {    
-        axios.get(baseUrl + '/member/listAddress' , {params:{user_id:user_id}})
+         axios.get(baseUrl + '/member/listAddress' , {params:{user_id:user_id}})
             .then((response) => {
                 setAddressList(response.data);
                 })
@@ -52,10 +59,12 @@ const MemberList = () => {
         });    
 
     }
-
+    // 모달 창 닫기 버튼
     $("#btn_close_modal").on("click",function(){
         $(".j_modal").attr("style","display:none");
     });
+
+
 
     /* 회원 권한 수정 */
 
@@ -143,12 +152,92 @@ const MemberList = () => {
                 setPage={setPage}
             />
             </footer>
+
+
             <div class = "j_modal">
-                <div class= "modal_content">
-                    <div class= "modal_title">
+                <div class= "addressContent">
+                    <div class= "addresstitle">
                         <h3 style={{color:"black",fontSize:25,margin:17}}>회원 주소</h3>
-                        <img src='/img/close.png' id="btn_close_modal" style={{width:30,height:30,marginLeft:230}}/>
+                        <img src='/img/close.png' id="btn_close_modal" className="addressContentModal" style={{width:30,height:30,marginLeft:230}}/>
                     </div>
+                    
+                    <div className="delivery_list_area">
+                        <table className="tbl_delivery_list">
+                            <colgroup>
+                                <col className="cell_delivery"/>
+                                <col/>
+                                <col className="cell_tel"/>
+                                <col className="cell_edit"/>
+                            </colgroup>
+
+                            <thead>
+                                <tr>
+                                    <th scope="col" className="cell_delivery" >배송지</th>
+                                    <th scope="col">주소</th>
+                                    <th scope="col" className="cell_tel">연락처</th>
+                                    <th scope="col" className="cell_edit">수정 · 삭제</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                            {AddressList.length ===0 ? 
+                                <tr>
+                                    <td className="cell_delivery">
+                                        <strong className="nick"></strong>
+                                        
+                                    </td>
+
+                                    <td>
+                                        <span className="zipcode"></span>
+                                        등록된 배송지 정보가 없습니다.
+                                    </td>
+
+                                </tr>
+                                : 
+                                AddressList.slice(offset, offset + limit).map( (Address , key) => {
+                                    return (
+                                        <tr key={key} >
+                                            <td className="cell_delivery">
+                                                <strong className="nick">{Address.addr_title}</strong>
+                                                <span className="mark_default">{Address.addr_receiver}</span>
+                                            </td>
+
+                                            <td>
+                                                <span className="zipcode">{Address.addr_1}</span>
+                                                {Address.addr_2}
+                                                <br/>
+                                                {Address.addr_3}
+                                            </td>
+
+                                            <td className="cell_tel">{Address.addr_phone}</td>
+                                            <td className="cell_edit">
+                                                <button className="_delete setting_btn type_h">
+                                                    <Link to={`/myhome/UpdateAddressAdmin/${Address.addr_receiver+"_"+Address.user_id}?`} id='UpdateAddressAdmin'>수정</Link>
+                                                </button>
+                                                <button className="_delete setting_btn type_h" onClick={ () => MyAddress.deleteAddress(Address.addr_title)} >
+                                                    삭제
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            }
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                <footer>
+                    <Pagination
+                        total={AddressList.length}
+                        limit={limit}
+                        page={page}
+                        setPage={setPage}
+                    />
+                </footer>
                 </div>	
                 <div class="modal_layer"></div>
             </div>

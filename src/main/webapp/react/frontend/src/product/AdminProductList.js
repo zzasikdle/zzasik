@@ -1,3 +1,6 @@
+/*eslint-disable*/
+
+
 import './ProductList.css';
 import React from 'react';
 import { useEffect, useState } from 'react';

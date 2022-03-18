@@ -56,7 +56,7 @@ public class BoardController {
 		System.out.println(BoardsList);
 		return BoardsList;
 	}
-	 
+	  
 @PostMapping(value = "/board/addNewBoard")
 public ResponseEntity addNewBoard(MultipartHttpServletRequest multipartRequest,  HttpServletResponse response) throws Exception {
 	multipartRequest.setCharacterEncoding("utf-8");
@@ -289,12 +289,25 @@ public Map<String,Object> coachingAnswer(MultipartHttpServletRequest multipartRe
 	while (enu.hasMoreElements()) {
 		String name = (String) enu.nextElement();
 		String value = multipartRequest.getParameter(name);
-		System.out.printf("%s %s\n", name, value);
+		System.out.printf("name:%s value:%s\n", name, value);
 		CoachingMap.put(name, value);
+		
+		
 	}
-	boardService.addcoachingAnswer(CoachingMap);
+	System.out.println(CoachingMap.get("coaching_num"));
+	if (CoachingMap.get("coaching_num").equals("1") ) {
+		System.out.println("1ÀÏÂ÷ ÀÔ´Ï´Ù. ");
+		boardService.addcoachingAnswer(CoachingMap);
+		
+	}else {
+		System.out.println("1ÀÏÂ÷ ÀÌ»óÀÔ´Ï´Ù. ");
+		boardService.addSeocndcoachingAnswer(CoachingMap);
+		}
 	
-	return CoachingMap;
+	
+//	return CoachingMap;
+	return null;
+
 }
 
 //ìœ ì €ê°€ ì‹ ì²­í•œ board ì •ë³´ ëª¨ë‘ ê°€ì ¸ì˜¤ëŠ” í•¨ìˆ˜

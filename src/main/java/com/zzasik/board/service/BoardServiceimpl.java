@@ -130,4 +130,10 @@ public class BoardServiceimpl implements BoardService {
 		return boardDAO.getStartDate(map);
 	}
 	
+	@Override
+	public void addSeocndcoachingAnswer(Map CoachingMap) throws Exception {
+		boardDAO.addSecondCoachingAnswer(CoachingMap);
+		
+	}
+	
 }// end class() 

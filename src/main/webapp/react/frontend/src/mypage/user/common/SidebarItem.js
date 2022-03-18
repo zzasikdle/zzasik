@@ -1,3 +1,6 @@
+/*eslint-disable*/
+
+
 import React from "react";
 
 function SidebarItem({menu,isActive}){
