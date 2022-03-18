@@ -200,16 +200,15 @@ export default function T_CoachingForm() {
                         </div>
 
                         <div class="content_div_1">
-                            <div><a herf="#!"  class="text_a">아이디   :</a>{user_id}</div>
-                            <div><a herf="#!" class="text_a">이름   :</a>{userdetail.user_name}</div>
+                            <div><p class="text_a">아이디   :</p>{user_id}</div>
+                            <div><p herf="{() =>false}"class="text_a">이름   :</p>{userdetail.user_name}</div>
 
-                            <div><a herf="#!"class="text_a">이메일   :</a>{userdetail.email}</div>
-
-                            <div><a herf="#!"class="text_a">시작날짜   :</a>{userdetail.start_date}</div>
-
+                            <div><p  class="text_a">이메일   :</p>{userdetail.email}</div>
+                            <div><p  class="text_a">시작날짜   :</p>{userdetail.start_date}</div>
 
 
-                            <div><a herf="#!" class="text_a">종료일자   :</a> {endDate}</div>
+
+                            <div><p class="text_a">종료일자   :</p> {endDate}</div>
 
                             <div> 일차 {period - countDay + 1}</div>
                         </div>
@@ -234,13 +233,13 @@ export default function T_CoachingForm() {
 
                     <div class="countDay"><a  herf="#!" class="st_day">Day</a>{period - countDay + 1}</div>
                     <div class="Coaching_div">
-                        <div class="temp_4"><a  herf="#!"class="temp_5">아침</a><a herf="#!" class="temp_6" ><input class="temp_input" onChange={(e) => { setbreakfast(e.target.value) }}></input></a></div>
-                        <div class="temp_4"><a herf="#!" class="temp_5">점심</a><a  herf="#!"class="temp_6" ><input class="temp_input" onChange={(e) => { setLunch(e.target.value) }}></input></a></div>
-                        <div class="temp_4"><a herf="#!" class="temp_5">저녁</a><a herf="#!" class="temp_6" ><input class="temp_input" onChange={(e) => { setdinner(e.target.value) }} ></input></a></div>
-                        <div class="temp_4"><a  herf="#!"class="temp_5">간식</a><a herf="#!" class="temp_6" ><input class="temp_input" onChange={(e) => { setsnack_1(e.target.value) }}></input></a></div>
-                        <div class="temp_4"><a  herf="#!"class="temp_5">기타</a><a herf="#!" class="temp_6" ><input class="temp_input" onChange={(e) => { setsnack_2(e.target.value) }} ></input></a></div>
-                        <div class="temp_4"><a herf="#!" class="temp_5">총 칼로리</a><a  herf="#!"class="temp_6" ><input class="temp_input" onChange={(e) => { setcalorie(e.target.value) }}></input></a></div>
-                        <div class="temp_4"><a  herf="#!"class="temp_5">코멘트</a><a  herf="#!"class="temp_7" >
+                        <div class="temp_4"><p class="temp_5">아침</p><p  class="temp_6" ><input class="temp_input" onChange={(e) => { setbreakfast(e.target.value) }}></input></p></div>
+                        <div class="temp_4"><p class="temp_5">점심</p><p class="temp_6" ><input class="temp_input" onChange={(e) => { setLunch(e.target.value) }}></input></p></div>
+                        <div class="temp_4"><p class="temp_5">저녁</p><p class="temp_6" ><input class="temp_input" onChange={(e) => { setdinner(e.target.value) }} ></input></p></div>
+                        <div class="temp_4"><p class="temp_5">간식</p><p class="temp_6" ><input class="temp_input" onChange={(e) => { setsnack_1(e.target.value) }}></input></p></div>
+                        <div class="temp_4"><p class="temp_5">기타</p><p class="temp_6" ><input class="temp_input" onChange={(e) => { setsnack_2(e.target.value) }} ></input></p></div>
+                        <div class="temp_4"><p class="temp_5">총 칼로리</p><p class="temp_6" ><input class="temp_input" onChange={(e) => { setcalorie(e.target.value) }}></input></p></div>
+                        <div class="temp_4"><p class="temp_5">코멘트</p><p class="temp_7" >
                         <Editor
                             // 에디터와 툴바 모두에 적용되는 클래스
                             wrapperClassName="wrapper-class"
@@ -266,7 +265,7 @@ export default function T_CoachingForm() {
                             // 에디터의 값이 변경될 때마다 onEditorStateChange 호출
                             onEditorStateChange={onEditorStateChange}
                         />
-                            </a></div>
+                            </p></div>
                        
                     </div>
 
