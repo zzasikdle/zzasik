@@ -4,7 +4,7 @@ import React  from 'react';
 import { useEffect, useState } from "react";
 
  import './ModifyBoard.css';
-import { useNavigate, useParams } from "react-router";
+import {useParams } from "react-router";
 
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
