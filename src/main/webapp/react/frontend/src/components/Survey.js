@@ -1,3 +1,6 @@
+/*eslint-disable*/
+
+
 import React ,{useState, useEffect, useRef} from 'react';
 import {Button,ProgressBar,Spinner,Form } from 'react-bootstrap';
 import Fade from 'react-reveal/Fade';

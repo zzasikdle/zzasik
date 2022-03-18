@@ -1,3 +1,6 @@
+/*eslint-disable*/
+
+
 import React ,{useState, useEffect} from 'react'
 import {Nav,Navbar,Container,Offcanvas,NavDropdown,Form,FormControl,Button} from 'react-bootstrap';
 import {Link, Route, Switch} from 'react-router-dom';
