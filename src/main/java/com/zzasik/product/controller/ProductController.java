@@ -79,11 +79,11 @@ public class ProductController {
 		if(isRegistered == false) {
 			System.out.println("상품 등록 실패");
 			map.put("message", "오류가 발생했습니다. 다시 시도해주세요.");
-			map.put("path", "/admin/product/new");
+			map.put("path", "/product/new");
 		} else {
 			System.out.println("새 상품 등록");
 			map.put("message", "상품을 추가했습니다.");
-			map.put("path", "/admin/product");
+			map.put("path", "/product");
 		}
 		resEnt = new ResponseEntity(map, responseHeader, HttpStatus.CREATED);
 		return resEnt;
@@ -115,11 +115,11 @@ public class ProductController {
 		if(isUpdated == false) {
 			System.out.println("상품 수정 실패");
 			map.put("message", "오류가 발생했습니다. 다시 시도해주세요.");
-			map.put("path", "/admin/product/view/"+pro_code);
+			map.put("path", "/product/view/"+pro_code);
 		} else {
 			System.out.println(pro_code + "번 상품 수정");
 			map.put("message", "상품을 수정했습니다.");
-			map.put("path", "/admin/product");
+			map.put("path", "/product");
 		}
 		resEnt = new ResponseEntity(map, responseHeader, HttpStatus.CREATED);
 		return resEnt;
@@ -140,11 +140,11 @@ public class ProductController {
 		if(isDeleted == false) {
 			System.out.println("상품 삭제 실패");
 			map.put("message", "오류가 발생했습니다. 다시 시도해주세요.");
-			map.put("path", "/admin/product/view/"+pro_code);
+			map.put("path", "/product/view/"+pro_code);
 		} else {
 			System.out.println(pro_code + "번 상품 삭제");
 			map.put("message", "글을 삭제했습니다.");
-			map.put("path", "/admin/product");
+			map.put("path", "/product");
 		}
 		resEnt = new ResponseEntity(map, responseHeader, HttpStatus.CREATED);
 		return resEnt;

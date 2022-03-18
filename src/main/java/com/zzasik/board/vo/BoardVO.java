@@ -16,15 +16,88 @@ public class BoardVO {
 	private String teacher_name;
 	private String imageFilename;
 	private String teacher_id;
-	private Timestamp writedate;
+	private Date joindate;
+	private String breakfast;
+	private String Lunch;
+	private String dinner;
+	private String snack_1;
+	private String snack_2;
+	private String snack_3;
+	private int calorie;
+	private String coaching_answer;
+	private Date start_date;
+	private int userstatus;
+	private int board_period;
 	
 	
 	
-	public Timestamp getWritedate() {
-		return writedate;
+
+	private String user_name;
+	private Date birth;
+	private String phone;
+	private String email;
+	private String survey_code;
+	
+	
+	
+	
+	
+	public Date getStart_date() {
+		return start_date;
 	}
-	public void setWritedate(Timestamp writedate) {
-		this.writedate = writedate;
+	public void setStart_date(Date start_date) {
+		this.start_date = start_date;
+	}
+	
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+	public Date getBirth() {
+		return birth;
+	}
+	public void setBirth(Date birth) {
+		this.birth = birth;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getSurvey_code() {
+		return survey_code;
+	}
+	public void setSurvey_code(String survey_code) {
+		this.survey_code = survey_code;
+	}
+	public int getBoard_period() {
+		return board_period;
+	}
+	public void setBoard_period(int board_period) {
+		this.board_period = board_period;
+	}
+	public int getUserstatus() {
+		return userstatus;
+	}
+	public void setUserstatus(int userstatus) {
+		this.userstatus = userstatus;
+	}
+
+	
+	public Date getJoindate() {
+		return joindate;
+	}
+	public void setJoindate(Date joindate) {
+		this.joindate = joindate;
 	}
 	public String getTeacher_id() {
 		return teacher_id;
@@ -82,6 +155,54 @@ public class BoardVO {
 	}
 	
 	
+	public String getBreakfast() {
+		return breakfast;
+	}
+	public void setBreakfast(String breakfast) {
+		this.breakfast = breakfast;
+	}
+	public String getLunch() {
+		return Lunch;
+	}
+	public void setLunch(String lunch) {
+		Lunch = lunch;
+	}
+	public String getDinner() {
+		return dinner;
+	}
+	public void setDinner(String dinner) {
+		this.dinner = dinner;
+	}
+	public String getSnack_1() {
+		return snack_1;
+	}
+	public void setSnack_1(String snack_1) {
+		this.snack_1 = snack_1;
+	}
+	public String getSnack_2() {
+		return snack_2;
+	}
+	public void setSnack_2(String snack_2) {
+		this.snack_2 = snack_2;
+	}
+	public String getSnack_3() {
+		return snack_3;
+	}
+	public void setSnack_3(String snack_3) {
+		this.snack_3 = snack_3;
+	}
+	public int getCalorie() {
+		return calorie;
+	}
+	public void setCalorie(int calorie) {
+		this.calorie = calorie;
+	}
+	public String getCoaching_answer() {
+		return coaching_answer;
+	}
+	public void setCoaching_answer(String coaching_answer) {
+		this.coaching_answer = coaching_answer;
+	}
 	public BoardVO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -95,6 +216,7 @@ public class BoardVO {
 		this.meal_type = meal_type;
 		this.board_price = board_price;
 		this.teacher_name = teacher_name;
+		
 	}
 	
 	

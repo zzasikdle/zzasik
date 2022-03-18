@@ -1,12 +1,14 @@
 import { Link  } from "react-router-dom";
 import axios from "axios";
 import React,{useState} from 'react';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 import './writeBoard.css';
 
 
-
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { Editor } from 'react-draft-wysiwyg';
+import { EditorState, convertToRaw} from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
 
 
 
@@ -19,6 +21,7 @@ const WriteBoard = ( ) => {
      const [meal_type, setMeal_type] = useState('');
      const [board_price , setBoard_price]= useState('');
      const [imageFilename , setImageFilename]= useState('');
+     const [board_period , setBoard_period]= useState('');
 
  
      const readURL = (e) => {
@@ -35,19 +38,33 @@ const WriteBoard = ( ) => {
      
     }
 
+    // useState로 상태관리하기 초기값은 EditorState.createEmpty()
+  // EditorState의 비어있는 ContentState 기본 구성으로 새 개체를 반환 => 이렇게 안하면 상태 값을 나중에 변경할 수 없음.
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const [inputValue, setInputValue] = useState("");
+
+  const onEditorStateChange = (editorState) => {
+    // editorState에 값 설정
+    setEditorState(editorState);
+  };
+
+  // editorState의 현재 contentState 값을 원시 JS 구조로 변환시킨뒤, HTML 태그로 변환시켜준다.
+  const editorToHtml = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+
    
 
     const writeBtn = async()=>{
         console.log(JSON.stringify(board_content));
-    
+        const objcontent = JSON.stringify(board_content);
         const formData = new FormData();
         formData.append("user_id",sessionStorage.getItem('user_id'));
         formData.append("teacher_name",sessionStorage.getItem('user_name'));
-        formData.append("board_content",Object.values(board_content));
+        formData.append("board_content",editorToHtml);
         formData.append("board_title",board_title);
         formData.append("meal_type",meal_type);
         formData.append("board_price",board_price);
         formData.append("imageFilename", imageFilename);
+        formData.append("board_period",board_period);
 
         console.log(Object.values(board_content))
        
@@ -96,35 +113,38 @@ const WriteBoard = ( ) => {
             <p class="mid_msg">상품 제목<input type="text" id="title" placeholder="제목"  name= "board_title" onChange={(e) => {setBoard_title(e.target.value)}}/></p>
             <p class="mid_msg">상품 타입<input type="text" class="type"placeholder="타입" name="meal_type"  onChange={(e) => {setMeal_type(e.target.value)}}/></p> 
             <p class="mid_msg">상품 가격<input type="text" class="price" placeholder="가격"  name="board_price" onChange={(e) => {setBoard_price(e.target.value)}}/></p>
+            <p class="mid_msg">일수<input type="text" class="price" placeholder="period"  name="board_period" onChange={(e) => {setBoard_period(e.target.value)}}/></p>
             </div>
             
             
           
                 <div class="product">상품소개</div>
                  <div id="text_editor"> 
-                       <CKEditor 
-                    editor={ ClassicEditor }
-                    data="<p>Hello from CKEditor 5!</p>"
-                    onReady={ editor => {
-                        // You can store the "editor" and use when it is needed.
-                        console.log( 'Editor is ready to use!', editor );
-                        
-                    } }
-                    onChange={(event, editor) => {
-                        const data = editor.getData();
-                        console.log({ event, editor, data });
-                        setBoard_cotent({
-                          ...board_content,
-                          board_content: data
-                        })
-                      }}
-                    onBlur={ ( event, editor ) => {
-                        console.log( 'Blur.', editor );
-                    } }
-                    onFocus={ ( event, editor ) => {
-                        console.log( 'Focus.', editor );
-                    } }
-                />
+                 <Editor
+            // 에디터와 툴바 모두에 적용되는 클래스
+            wrapperClassName="wrapper-class"
+            // 에디터 주변에 적용된 클래스
+            editorClassName="editor"
+            // 툴바 주위에 적용된 클래스
+            toolbarClassName="toolbar-class"
+            // 툴바 설정
+            toolbar={{
+              // inDropdown: 해당 항목과 관련된 항목을 드롭다운으로 나타낼것인지
+              list: { inDropdown: true },
+              textAlign: { inDropdown: true },
+              link: { inDropdown: true },
+              history: { inDropdown: false },
+            }} 
+            placeholder="내용을 작성해주세요."
+            // 한국어 설정
+            localization={{
+              locale: 'ko',
+            }}
+            // 초기값 설정
+            editorState={editorState}
+            // 에디터의 값이 변경될 때마다 onEditorStateChange 호출
+            onEditorStateChange={onEditorStateChange}
+          />
                 </div>
 
 
@@ -140,3 +160,12 @@ const WriteBoard = ( ) => {
 };
 
 export default WriteBoard; 
+
+
+
+
+
+
+
+
+

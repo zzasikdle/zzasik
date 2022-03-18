@@ -12,7 +12,8 @@ import com.zzasik.order.vo.OrderVO;
 @Repository("orderDAO")
 public interface OrderDAO {
 	public int insertOrder(Map<String, Object> orderMap);
-	public OrderVO selectOrderOne(int order_id);
+	public OrderVO selectOrderOne(int order_code);
 	public int selectOrderCode();
 	public List<OrderVO> selectOrderList(String user_id);
+	public int deleteOrder(int order_code);
 }

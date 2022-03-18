@@ -1,3 +1,5 @@
+/*eslint-disable*/
+
 
 import React, {useState, useEffect} from 'react';
 
@@ -42,6 +44,15 @@ import NoticeView from './components/notice/NoticeView';
 import NoticeEdit from './components/notice/NoticeEdit';
 
 
+//Product
+import AdminProductList from './product/AdminProductList';
+import UploadProduct from './product/UploadProduct';
+import AdminViewProduct from './product/AdminViewProduct';
+import UserProductList from './product/UserProductList';
+import UserViewProduct from './product/UserViewProduct';
+
+
+
 function App() {
 
 
@@ -72,6 +83,14 @@ function App() {
         <Route exact path="/notice/new"><MyEditor/></Route>
         <Route path="/notice/edit/:notice_code"><NoticeEdit/></Route>
         <Route path="/notice/:notice_code"><NoticeView/></Route>
+        
+        <Route exact path="/product"><AdminProductList/></Route>
+        <Route exact path="/product/new"><UploadProduct/></Route>
+        <Route path="/product/view/:pro_code"><AdminViewProduct/></Route>
+        
+        <Route exact path="/shop"><UserProductList/></Route>
+        <Route path="/shop/view/:pro_code"><UserViewProduct/></Route>
+        
         <MypageRoute/>
 
       </Switch>

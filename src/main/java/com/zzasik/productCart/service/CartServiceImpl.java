@@ -44,4 +44,29 @@ public class CartServiceImpl implements CartService {
 		return (queryResult == 1) ? true : false;
 	}
 
+	@Override
+	public int countCart(Map<String, Object> CartMap) {
+		return cartDAO.selectCountCart(CartMap);
+	}
+
+	@Override
+	public boolean updateCart(Map<String, Object> CartMap) {	
+		int queryResult = 0;
+		
+		queryResult = cartDAO.updateCart(CartMap);
+		System.out.println(queryResult);
+		
+		return (queryResult == 1) ? true : false;
+	}
+
+	@Override
+	public boolean modifyCart(Map<String, Object> CartMap) {
+		int queryResult = 0;
+		
+		queryResult = cartDAO.modifyCart(CartMap);
+		System.out.println(queryResult);
+		
+		return (queryResult == 1) ? true : false;
+	}
+
 }

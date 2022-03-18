@@ -1,3 +1,6 @@
+/*eslint-disable*/
+
+
 import './ProductList.css';
 import React from 'react';
 import { useEffect, useState } from 'react';
@@ -27,7 +30,7 @@ const UserProductList = ( ) => {
     let result = [];
 
     return (
-        <div>
+        <div id="con">
             <div id="wrapper">
                 {productList.length === 0 ?
                 <div>
@@ -41,16 +44,16 @@ const UserProductList = ( ) => {
                     return(
                         <ul id="productul" style={{float:"left"}}>
                         <li id="productli" style={{textAlign:"center"}} key={key}>
-                            <Link to={`/shop/product/view/${product.pro_code}`} style={{textDecoration:"none"}}>
+                            <Link to={`/shop/view/${product.pro_code}`} style={{textDecoration:"none"}}>
                                 <div>
                                     { product.pro_img !== "undefined" ?
-                                        <img src={product.pro_img} />
+                                        <img src={product.pro_img} className='image' />
                                     :
-                                        <img src="/image/no_image_1.png" />
+                                        <img src="/image/no_image_1.png" className='image' />
                                     }
                                 </div>                                
-                                <div>{product.pro_name}</div>
-                                <div>{product.pro_price}</div>
+                                <div style={{color:"black"}}>{product.pro_name}</div>
+                                <div style={{fontSize:"20px", fontWeight:"bold", color:"firebrick"}}>{product.pro_price}</div>
                             </Link>
                         </li>
                         </ul>

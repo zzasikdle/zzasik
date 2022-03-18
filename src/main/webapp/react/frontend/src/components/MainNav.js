@@ -1,3 +1,6 @@
+/*eslint-disable*/
+
+
 import React ,{useState, useEffect} from 'react'
 import {Nav,Navbar,Container,Offcanvas,NavDropdown,Form,FormControl,Button} from 'react-bootstrap';
 import {Link, Route, Switch} from 'react-router-dom';
@@ -69,10 +72,8 @@ function MainNav(props) {
                     null
           }
           <Nav.Link href="#action2">짜식들</Nav.Link>
-          
+          <Nav.Link href="/shop">상품 shop</Nav.Link>
           <Nav.Link href="/board/list">게시판 리스트</Nav.Link>
-          <Nav.Link href="/writeboard">글쓰기</Nav.Link>
-          <Nav.Link href="/board/teacherBoard">teacherBoard</Nav.Link>
           <Nav.Link href="/notice">공지사항</Nav.Link>
           {sessionStorage.getItem('success')==='true'?
                     sessionStorage.getItem('classification')==='0'?
