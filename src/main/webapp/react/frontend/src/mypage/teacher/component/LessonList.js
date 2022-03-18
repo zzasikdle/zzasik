@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import { useEffect} from "react";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -10,9 +11,9 @@ const LessonList = () => {
     const baseUrl = "http://localhost:8090";
     const [ teacherBoard, setTeacherBoard] = useState([]);
     const user_id = sessionStorage.getItem("user_id");
-    const [ limit, setLimit] = useState(10);    //한 페이지당 표시할 게시물 개수
+    const [ limit] = useState(10);    //한 페이지당 표시할 게시물 개수
     const [ page, setPage] = useState(1);
-    const offset = (page - 1) * limit;
+    const offset = (page - 1) * limit; 
 
     
     
@@ -26,9 +27,6 @@ const LessonList = () => {
                     console.log(response.data);
                     setTeacherBoard(response.data);
                     console.log(teacherBoard)
-    
-                
-             
                 })
                 .catch((error) => {
                     console.log(error);
@@ -37,27 +35,9 @@ const LessonList = () => {
     
            
             call();
-        }, []);
+        }, [teacherBoard]);
 
-        function boardList(){
-      
-
-            var i =0;
-            var boardlist = [];
-            for(i=0; i<teacherBoard.length; i++){
-                
-                boardlist.push(  
-                    <tr>
-                    <td>{teacherBoard[i].board_title} </td>
-                    </tr>
-                    )
-    
-              
-            }
-            return(
-                boardlist
-            )
-        }
+        
 
 
     return (
