@@ -163,6 +163,7 @@ select::-ms-expand {
     height: 33px;
     border: 1px solid rgb(209, 202, 202);
     border-radius: 3px;
+    padding-top: 10px;
 }
 .select:hover,#telNo1Second:hover ,#telNo1Third:hover{
     background-color: rgb(236, 242, 248);
