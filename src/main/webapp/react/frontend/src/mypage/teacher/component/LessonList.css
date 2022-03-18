@@ -1,2 +1,12 @@
 .head_title{margin-top:10px;  font-size:40px;}
 .boardTitle{color: black; font-size: 19x;}
+.pathWriteBtn{
+    width: 70px;
+    height: 30px;
+    margin: auto;
+    color: #fff;
+    background: rgba(0,79,255,0.9);
+    font-size: 15px;
+    border: none;
+padding-top: 10px;
+margin-bottom: 10px;}

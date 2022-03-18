@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect} from "react";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import React, {useState} from 'react';
@@ -102,8 +102,10 @@ const LessonList = () => {
                 limit={limit}
                 page={page}
                 setPage={setPage}
+                
             />
             </footer>
+           <Link to={"/writeboard"}><div class="pathWriteBtn">글쓰기</div></Link>
                 
         </>
     )
