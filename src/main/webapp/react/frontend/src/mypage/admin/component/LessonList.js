@@ -6,7 +6,7 @@ import Pagination from "../../../components/notice/Pagination";
 
 const LessonList = () => {
     const [ lessonList,setLessonList] = useState([]);
-    const [ limit, setLimit] = useState(10);    //한 페이지당 표시할 게시물 개수
+    const [ limit] = useState(10);    //한 페이지당 표시할 게시물 개수
     const [ page, setPage] = useState(1);
     const offset = (page - 1) * limit;
 
@@ -28,7 +28,7 @@ const LessonList = () => {
         <div className="box table-section">
             <div className="box_header">
                 <h2>코칭 서비스 목록</h2>
-                <Link to='/' className='manage'>관리하기<img className="arrow" src='/img/arrow.png'/></Link>
+                <Link to='/' className='manage'>관리하기<img  alt="preview" className="arrow" src='/img/arrow.png'/></Link>
             </div>
             <table class="tb" style={{cellspacing:"0",border:"1"}}>
                 <colgroup>
