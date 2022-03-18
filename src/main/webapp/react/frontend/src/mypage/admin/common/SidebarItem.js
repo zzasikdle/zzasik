@@ -2,8 +2,6 @@ import React from "react";
 
 function SidebarItem({menu,isActive}){
 
-  var img_src;
-
     switch(menu.name){
       case "관리자 페이지": 
         break;
@@ -12,6 +10,8 @@ function SidebarItem({menu,isActive}){
       case "상품 관리":
         break;
       case "코칭 서비스 관리":
+        break;
+      default:
         break;
     }
     return isActive === true ? (

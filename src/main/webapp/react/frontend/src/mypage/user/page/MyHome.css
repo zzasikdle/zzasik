@@ -124,6 +124,21 @@
     border-radius: 2px !important;
 }
 
+.userboard-select{
+    margin: 20px 300px;
+    font-size: 17px;
+    width: 500px;
+    height: 55px;
+    padding: .8em .5em;
+    font-family: inherit;
+    background: url('/public/img/arrow2.png') no-repeat 95% 50%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid #999;
+    border-radius: 0px;
+}
+
 /*진행된 식단 버튼 리스트*/
 .dayBtn {
     width: 100px;
