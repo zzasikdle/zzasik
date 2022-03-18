@@ -31,10 +31,10 @@ import Survey from './components/Survey'
 
 
 //board
-import WriteBoard from './components/board/writeboard';
-import BoardList from './components/board/boardList';
-import ViewBoard from './components/board/viewboard';
-import TeacherBoard from './components/board/teacherBoard';
+import WriteBoard from './components/board/Writeboard';
+import BoardList from './components/board/BoardList';
+import ViewBoard from './components/board/Viewboard';
+
 import ModifyBoard from './components/board/ModifyBoard';
 
 //Notice
@@ -76,7 +76,7 @@ function App() {
         <Route path="/writeboard" component={WriteBoard} />
         <Route path="/board/list" component={BoardList} />
         <Route path="/board/viewboard/:board_code" component={ViewBoard} />
-        <Route path="/board/teacherBoard" component={TeacherBoard} />
+    
         <Route path="/board/modifyBoard/:board_code" component={ModifyBoard} />
         
         <Route exact path="/notice"><NoticePage/></Route>

@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from "react";
@@ -48,11 +49,6 @@ const NoticeView = () => {
             })
         }else return false;
     }
-
-    //수정 클릭 시 작동
-    const onClickEdit = () => {
-        window.location.href=`/notice/edit/{notice_code}`;
-    };
 
     return<div className="notice-container">
             <div className='title-box'>짜식 공지사항</div>

@@ -1,3 +1,4 @@
+/*eslint no-undef: "off"*/
 import { useEffect} from "react";
 import axios from 'axios';
 import React, { useState } from 'react';
@@ -8,14 +9,12 @@ import Pagination from "../../../components/notice/Pagination";
 const SignUpList = () => {
 
     const baseUrl = "http://localhost:8090";
-    const [signupList, setSignUpList] = useState([]);
+ 
     const [teacherBoard, setTeacherBoard] = useState([]);
     const [selectBox, setselectBox] = useState([]);
-    const user_id = sessionStorage.getItem("user_id");
     const [usersubit, setUsersubit] = useState([]);
     const [userlist, setUserList] = useState([]);
-    const [Selected, setSelected] = useState("");
-    const [ limit, setLimit] = useState(10);    //한 페이지당 표시할 게시물 개수
+    const [ limit] = useState(10);  //한 페이지당 표시할 게시물 개수 // eslint-disable-line no-unused-vars
     const [ page, setPage] = useState(1);
     const offset = (page - 1) * limit;
 
@@ -70,6 +69,7 @@ const SignUpList = () => {
                 for (i = 0; i < response.data.length; i++) {
                     setUsersubit(response.data[i].user_id);
                     console.log(i+"번:"+response.data[i].user_id)
+                    console.log(usersubit);
 
 
                 }
@@ -107,7 +107,7 @@ const SignUpList = () => {
 
     //수강확인 버튼 
     const onClickHandler = (name) =>{
-        var i = 0;
+        
         var search_boardNum = "";
         var index = selectBox.indexOf("]");
         search_boardNum = selectBox.substring(1, index);
@@ -161,7 +161,7 @@ const SignUpList = () => {
                 {Boardlist()}
 
             </select>
-            <img class="search" src='/img/search_1.png' onClick={search_btn} />
+            <img class="search" src='/img/search_1.png' onClick={search_btn} alt="preview" />
             <table class="tb" style={{ cellspacing: "0", border: "1" }}>
                 <colgroup>
                     <col width="150" />
