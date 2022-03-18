@@ -179,7 +179,7 @@ public class SurveyController {
 				}
 			}
 		}catch(IndexOutOfBoundsException e) {
-			result1 = "맞춤식단";
+			result1 = "없음";
 		}
 
 		System.out.println(code);
