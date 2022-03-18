@@ -10,7 +10,7 @@ import com.zzasik.survey.vo.SurveyVO;
 
 public interface SurveyService {
 	
-	public int addSurvey(@RequestBody Map<String,Object> resultMap) throws Exception;
+	public void addSurvey(SurveyVO surveyVO) throws Exception;
 	
 	public SurveyVO selectSurvey(int code)throws DataAccessException;
 	

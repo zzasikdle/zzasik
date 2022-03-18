@@ -21,6 +21,7 @@ import Teacher from './mypage/teacher/page/Teacher';
 import T_Lesson from './mypage/teacher/page/T_Lesson';
 import T_SignUpList from './mypage/teacher/page/T_SignUpList';
 import T_Coaching from './mypage/teacher/page/T_Coaching';
+import T_CoachingForm from './mypage/teacher/page/T_CoachingForm';
 
 import Sidebar from './mypage/user/common/Sidebar';
 import Sidebar_Admin from './mypage/admin/common/Sidebar';
@@ -32,6 +33,11 @@ import addAddress from './mypage/user/page/addAddress';
 import UpdateAddress from './mypage/user/page/UpdateAddress';
 import UpdateAddressAdmin from './mypage/user/page/UpdateAddressAdmin';
 
+import WriteBoard from './components/board/writeboard';
+import BoardList from './components/board/boardList';
+import ViewBoard from './components/board/viewboard';
+import TeacherBoard from './components/board/teacherBoard';
+import ModifyBoard from './components/board/ModifyBoard';
 
 function MypageRoute() {
   const user_id = sessionStorage.getItem('user_id');
@@ -46,6 +52,7 @@ function MypageRoute() {
          <Sidebar_Teacher/>
         }
         <main>
+          <Route path='/writeboard' component={WriteBoard} />
           <Route path='/myhome' exact component={MyHome}/>
           <Route path='/myhome/edit' component={Edit}/>
           <Route path='/myhome/myAddress' component={MyAddress}/>
@@ -64,7 +71,7 @@ function MypageRoute() {
           <Route path='/teacher/lesson' exact component={T_Lesson}/>
           <Route path='/teacher/signuplist' exact component={T_SignUpList}/>
           <Route path='/teacher/coaching' exact component={T_Coaching}/>
-          
+          <Route path='/teacher/coachingform/:board_code/:user_id' exact component={T_CoachingForm}/>
         </main>
       </div>
     </div>
@@ -72,6 +79,5 @@ function MypageRoute() {
       
   );
 }
-
 
 export default MypageRoute;

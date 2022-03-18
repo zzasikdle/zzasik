@@ -14,7 +14,6 @@ const UploadProduct = ( ) => {
     const [pro_available, setAvail] = useState();
     const [pro_price, setPrice] = useState();
     const [pro_detail, setDetail] = useState();
-    const [sel_name, setSeller] = useState();
     const [pro_img, setImg] = useState();
 
     const [image, setImage] = useState('');
@@ -56,7 +55,7 @@ const UploadProduct = ( ) => {
     }
 
     return (
-        <div>
+        <div id="con">
             <h1>상품 등록</h1>
             <hr />
             <table>
@@ -64,8 +63,8 @@ const UploadProduct = ( ) => {
                     <tr>
                         <td>상품 이미지</td>
                     </tr>
-                    <tr>
-                        <td style={{width:"450px", height:"450px", border:"3px solid gray"}}><FilePreview image={image} /></td>
+                    <tr id="imagetr">
+                        <td style={{width:"400px", height:"400px", border:"3px solid gray"}}><FilePreview image={image} style={{margin:"0 auto"}} /></td>
                         <td><InputFile name="pro_img" onLoadFile={onLoadFile} onFileChange={uploadFile} /></td>
                         <td><input type="button" value="삭제하기" onClick={onDeleteFile} /></td>
                     </tr>
@@ -86,13 +85,13 @@ const UploadProduct = ( ) => {
                         <td><input type="text" name="pro_available" onChange={(e) => {setAvail(e.target.value)}} /></td>
                     </tr>
                     <tr>
-                        <td className='title'>소개</td>
+                        <td className='title' style={{position:"relative", top:"-250px"}}>소개</td>
                         <td><textarea rows="10" cols="65" name="pro_detail" onChange={(e) => {setDetail(e.target.value)}}></textarea></td>
                     </tr>
                     <tr>
                         <td>
-                            <Link to="product/list" onClick={handleWrite}>글쓰기</Link>
-                            <Link to="product/list">취소</Link>
+                            <Link to="/product" onClick={handleWrite}>글쓰기</Link>
+                            <Link to="/product">취소</Link>
                         </td>
                     </tr>
                 </tbody>

@@ -5,10 +5,10 @@
 
 <mapper namespace="com.zzasik.survey.dao.SurveyDAO">
 	<resultMap id="surveyResult" type="surveyVO">
-   	  <result property="code" column="survey_code" />
-      <result property="result1" column="survey_result1" />
-      <result property="result2" column="survey_result2" />
-      <result property="result3" column="survey_result3" />
+   	  <result property="survey_code" column="survey_code" />
+      <result property="survey_result1" column="survey_result1" />
+      <result property="survey_result2" column="survey_result2" />
+      <result property="survey_result3" column="survey_result3" />
    </resultMap> 
    
    <resultMap id="productResult" type="productVO">
@@ -22,11 +22,11 @@
 	<select id="addSurvey" parameterType="surveyVO" >
 	<![CDATA[
 		insert into surveytbl(survey_code, survey_result1, survey_result2, survey_result3)
-		values(#{code}, #{result1}, #{result2}, #{result3})
+		values(#{survey_code}, #{survey_result1}, #{survey_result2}, #{survey_result3})
 	]]>
   </select>
   
-  <select id="surveylist" resultMap="productResult" parameterType="productVO">
+  <select id="surveylist" resultMap="productResult">
 		<![CDATA[
 			select pro_name, pro_class, pro_price, pro_img, pro_detail from producttbl
 			where pro_class like '%'||'${keyword1}'||'%'

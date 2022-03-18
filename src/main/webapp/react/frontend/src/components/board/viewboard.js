@@ -51,8 +51,8 @@ const ViewBoard = () => {
                 }
             }
 
-            ).then(() => {
-                alert(sessionStorage.getItem('user_id') + "님 신청완료 ^^ ")
+            ).then((response) => {
+               alert(response.data.message);
 
 
 
@@ -134,9 +134,7 @@ const ViewBoard = () => {
                     <div class="evenet_div_2"><a class="temp_3">제공</a><a class="temp_4">맞춤플랜 + 1:1피드백</a></div>
                     <div class="evenet_div_2"><a class="temp_3">유형</a><a class="temp_4">{board.meal_type}</a></div>
                     <div class="evenet_div_2"><a class="temp_3">코치</a><a class="temp_4">{board.teacher_name}강사님</a></div>
-                    <div class="join_btn"><button class="join_btn" onClick={joinBtn}>신청하기</button></div>
-                    <br />
-                    <br />
+
 
                     <div>
                     {
@@ -146,9 +144,14 @@ const ViewBoard = () => {
                     <div class="join_btn"><button class="join_btn" onClick={delBtn}>삭제하기</button></div>
                     </>
 
-                    :null
+                    : <div class="join_btn"><button class="join_btn" onClick={joinBtn}>신청하기</button></div>
                 }
                     </div>
+                   
+                    <br />
+                    <br />
+
+         
 
 
 

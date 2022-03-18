@@ -51,7 +51,7 @@ hr:not([size]) {
 #title{margin-left: 20px; width:800px; height: 50px;}
 .type{margin-left: 20px; width:140px; height: 30px;font-size: 10px} 
 .price{margin-left: 20px; width:140px; height:30px; font-size: 10px;}
-#text_editor{width: 1000px; background-color: blue;}
+#text_editor{width: 1000px; }
 /* .ck ck-editor__main{height:7000px;} */
 .ck.ck-editor__editable:not(.ck-editor__nested-editable) {
     min-height: 500px;

@@ -1,3 +1,6 @@
+/*eslint-disable*/
+
+
 import React ,{useState, useEffect} from 'react'
 import { Accordion } from 'react-bootstrap';
 import Fade from 'react-reveal/Fade';

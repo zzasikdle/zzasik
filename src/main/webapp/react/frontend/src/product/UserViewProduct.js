@@ -1,3 +1,6 @@
+/*eslint-disable*/
+
+
 import './AdminViewProduct.css';
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -94,23 +97,23 @@ const UserViewProduct = ( ) => {
     }
 
     const backToList = () => {
-        history.push("/shop/product")
+        history.push("/shop")
     }
 
     return (
-        <div>
+        <div id="con">
             <h1>user product view</h1>
             <table>
                 <tbody>
                     { product.pro_img !== null ?
                         <>
-                            <tr>
+                            <tr id="imagetr">
                                 <td>이미지</td>
                                 <td>
                                     { product.pro_img !== "undefined" ?
-                                        <img src={product.pro_img} alt="preview" style={{width:"300px"}} />
+                                        <img src={product.pro_img} alt="preview" className='image' />
                                         :
-                                        <img src='/image/no_image_1.png' />
+                                        <img src='/image/no_image_1.png' className='image' />
                                     }
                                 </td>
                             </tr>
