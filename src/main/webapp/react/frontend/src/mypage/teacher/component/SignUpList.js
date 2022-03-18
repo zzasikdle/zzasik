@@ -14,7 +14,7 @@ const SignUpList = () => {
     const [selectBox, setselectBox] = useState([]);
     const [usersubit, setUsersubit] = useState([]);
     const [userlist, setUserList] = useState([]);
-    const [ limit, setLimit] = useState(10);  //한 페이지당 표시할 게시물 개수 // eslint-disable-line no-unused-vars
+    const [ limit] = useState(10);  //한 페이지당 표시할 게시물 개수 // eslint-disable-line no-unused-vars
     const [ page, setPage] = useState(1);
     const offset = (page - 1) * limit;
 

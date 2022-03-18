@@ -127,11 +127,11 @@ const ViewBoard = () => {
                         <div class="event_div_1">
                             <div class="zzsik">ZZASIK</div>
                             <br />
-                            <div class="evenet_div_2"><a href="#!" class="temp_3">가격</a><a href="#!" class="temp_4">{board.board_price}원</a></div>
-                            <div class="evenet_div_2"><a href="#!" class="temp_3">카드혜택</a><a href="#!" class="temp_4">무이자할부 최대 6개월</a></div>
-                            <div class="evenet_div_2"><a href="#!" class="temp_3">제공</a><a href="#!"class="temp_4">맞춤플랜 + 1:1피드백</a></div>
-                            <div class="evenet_div_2"><a  href="#!"class="temp_3">유형</a><a href="#!" class="temp_4">{board.meal_type}</a></div>
-                            <div class="evenet_div_2"><a href="#!" class="temp_3">코치</a><a href="#!"  class="temp_4">{board.teacher_name}강사님</a></div>
+                            <div class="evenet_div_2"><p class="temp_3">가격</p><p class="temp_4">{board.board_price}원</p></div>
+                            <div class="evenet_div_2"><p class="temp_3">카드혜택</p><p class="temp_4">무이자할부 최대 6개월</p></div>
+                            <div class="evenet_div_2"><p class="temp_3">제공</p><p class="temp_4">맞춤플랜 + 1:1피드백</p></div>
+                            <div class="evenet_div_2"><p class="temp_3">유형</p><p  class="temp_4">{board.meal_type}</p></div>
+                            <div class="evenet_div_2"><p class="temp_3">코치</p><p   class="temp_4">{board.teacher_name}강사님</p></div>
 
 
                             <div>
