@@ -1,3 +1,6 @@
+/*eslint-disable*/
+
+
 import './AdminViewProduct.css';
 import axios from "axios";
 import { useEffect, useState } from "react";

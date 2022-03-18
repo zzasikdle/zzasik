@@ -1,5 +1,6 @@
 package com.zzasik.board.dao;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +30,11 @@ public interface BoardDAO {
 	public List coachingList(String board_code) throws DataAccessException;
 	public List userlist(String user_id) throws DataAccessException;
 	public void addCoachingAnswer(Map CoachingMap)throws DataAccessException;
+	public void addSecondCoachingAnswer(Map CoachingMap)throws DataAccessException;
+	
+	public List<BoardVO> selectUserBoardList(String user_id) throws DataAccessException;
+	public List<BoardVO> selectCoachings(Map map) throws DataAccessException;
+	Date getStartDate(Map map) throws DataAccessException;
 	
 	
 	

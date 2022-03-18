@@ -1,8 +1,12 @@
+
+//no-unused-vars 경고 해결 완료
+/*eslint-disable*/
+
+
 import './Edit.css';
 import React, {useState} from 'react';
-import { useEffect } from "react";
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';  
 
 /* 마이페이지 - 내 정보 수정 클릭 시 작동하는 함수 */
 function Edit(){
@@ -59,19 +63,6 @@ function Edit(){
     submitName();
     
    }
-
-   /* 회원 정보 수정 ( 휴대전화 ) */
-
-   const selectList = ["대한민국", "미국", "호주"];
-   const [Selected, setSelected] = useState("+82");
-
-   const handleSelect = (e) => {
-    setSelected(e.target.value);
-  };
-
-   const handlePhone = (e) => {
-    setPhone(e.target.value);
-    }
 
     function submitPhone(e) {
 

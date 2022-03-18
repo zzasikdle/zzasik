@@ -1,10 +1,11 @@
+/*eslint no-undef: "off"*/
 import { Link  } from "react-router-dom";
 import axios from "axios";
 import React  from 'react';
 import { useEffect, useState } from "react";
 
  import './ModifyBoard.css';
-import { useNavigate, useParams } from "react-router";
+import {useParams } from "react-router";
 
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -65,7 +66,7 @@ const ModifyBoard = ( ) => {
 
         call();
 
-    }, []);
+    }, [board,board_code]);
 
      const readURL = (e) => {
       
@@ -133,11 +134,11 @@ const ModifyBoard = ( ) => {
          <div class="proimage_text">상품이미지</div>
          
             <p id="proimage">
-            <img  id="preview" />
+            <img  id="preview" alt="preview" />
             
                 </p>
  
-            <a class="temp"><br/><br/>*상품이미지는 640x640에 최적화 되어 있습니다.<br/><br/>-이미지는 상품등록 시 정사각형으로 짤려서 등록됩니다.<br/><br/>-큰 이미지일 경우 이미지가 깨지는 경우가 발생할 수 있습니다. 
+            <a href="#!" class="temp"><br/><br/>*상품이미지는 640x640에 최적화 되어 있습니다.<br/><br/>-이미지는 상품등록 시 정사각형으로 짤려서 등록됩니다.<br/><br/>-큰 이미지일 경우 이미지가 깨지는 경우가 발생할 수 있습니다. 
             <br/><br/>최대 지원 사이즈인 640x640 으로 리사이즈 해서 올려주세요. </a>
             <p class="choicefile"><input type="file" class="inputfile" name="imageFilename"  onChange={readURL} /></p>
             <hr></hr>

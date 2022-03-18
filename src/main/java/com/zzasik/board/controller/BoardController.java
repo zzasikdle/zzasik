@@ -3,6 +3,7 @@ package com.zzasik.board.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
+import java.sql.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -55,7 +56,7 @@ public class BoardController {
 		System.out.println(BoardsList);
 		return BoardsList;
 	}
-	 
+	  
 @PostMapping(value = "/board/addNewBoard")
 public ResponseEntity addNewBoard(MultipartHttpServletRequest multipartRequest,  HttpServletResponse response) throws Exception {
 	multipartRequest.setCharacterEncoding("utf-8");
@@ -83,13 +84,13 @@ public ResponseEntity addNewBoard(MultipartHttpServletRequest multipartRequest, 
 			File destDir = new File(ARTICLE_IMAGE_REPO + "\\" + board_code);
 			FileUtils.moveFileToDirectory(srcFile, destDir, true);
 		}
-		map.put("message", "»õ±ÛÀ» Ãß°¡Çß½À´Ï´Ù.");
+		map.put("message", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
 		map.put("path", "/board/list");
 		resEnt = new ResponseEntity(map, responseHeaders, HttpStatus.CREATED);
 	} catch (Exception e) {
 		File srcFile = new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + imageFilename);
 		srcFile.delete();
-		map.put("message", "¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù. ´Ù½Ã ½ÃµµÇØ ÁÖ¼¼¿ä.");
+		map.put("message", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½Ãµï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½.");
 		map.put("path", "/");
 		resEnt = new ResponseEntity(map, responseHeaders, HttpStatus.CREATED);
 		e.printStackTrace();
@@ -98,7 +99,7 @@ public ResponseEntity addNewBoard(MultipartHttpServletRequest multipartRequest, 
 	
  }
 
-// ÀÌ¹ÌÁö ¾÷·ÎµåÇÏ±â
+// ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ï¿½Ï±ï¿½
 	private String upload(MultipartHttpServletRequest multipartRequest) throws Exception {
 		String imageFilename = null;
 		Iterator<String> fileNames = multipartRequest.getFileNames();
@@ -109,18 +110,18 @@ public ResponseEntity addNewBoard(MultipartHttpServletRequest multipartRequest, 
 			imageFilename = mFile.getOriginalFilename();
 			File file = new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + fileName);
 			if (mFile.getSize() != 0) { // File Null Check
-				if (!file.exists()) { // °æ·Î»ó¿¡ ÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾ÊÀ» °æ¿ì
-					file.getParentFile().mkdirs(); // °æ·Î¿¡ ÇØ´çÇÏ´Â µğ·ºÅä¸®µéÀ» »ı¼º
-					mFile.transferTo(new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + imageFilename)); // ÀÓ½Ã·Î ÀúÀåµÈ
-																											// multipartFileÀ»
-																											// ½ÇÁ¦ ÆÄÀÏ·Î Àü¼Û
+				if (!file.exists()) { // ï¿½ï¿½Î»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+					file.getParentFile().mkdirs(); // ï¿½ï¿½Î¿ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ä¸®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+					mFile.transferTo(new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + imageFilename)); // ï¿½Ó½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+																											// multipartFileï¿½ï¿½
+																											// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½
 				}
 			}
 
 		}
 		return imageFilename;
 	}
-//»ó¼¼º¸±â ÆäÀÌÁö
+//ï¿½ó¼¼ºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 @GetMapping(value="/board/viewBoard")
 public BoardVO viewBoard(@RequestParam("board_code")int board_code, HttpServletRequest request, 
 		HttpServletResponse response) throws Exception {
@@ -128,12 +129,12 @@ public BoardVO viewBoard(@RequestParam("board_code")int board_code, HttpServletR
 	return boardService.viewBoard(board_code);
 }
 
-//°¡ÀÔ½ÅÃ» ÇÏ±â
+//ï¿½ï¿½ï¿½Ô½ï¿½Ã» ï¿½Ï±ï¿½
 @GetMapping(value="/board/joinBoard")
 public Map<String, Object> joinBoard(@RequestParam("board_code") String board_code, @RequestParam("user_id") String user_id ,@RequestParam("teacher_id") String teacher_id) throws Exception {
 	System.out.println("board_code:"+board_code);
 	System.out.println("user_id:"+user_id);
-	System.out.println("**********************************joinBoard ÁøÀÔ*********************************");
+	System.out.println("**********************************joinBoard ï¿½ï¿½ï¿½ï¿½*********************************");
 	Map<String,Object> checkmap = new HashMap<String,Object>();
 	
 	checkmap.put("user_id", user_id);
@@ -147,10 +148,10 @@ public Map<String, Object> joinBoard(@RequestParam("board_code") String board_co
 		joinMap.put("board_code",board_code);
 		joinMap.put("teacher_id", teacher_id);	
 		boardService.joinBoard(joinMap);
-		joinMap.put("message", "½ÅÃ»¿Ï·á ^^");
+		joinMap.put("message", "ï¿½ï¿½Ã»ï¿½Ï·ï¿½ ^^");
 		
 	}else {
-		joinMap.put("message", "ÀÌ¹Ì ½ÅÃ»ÇÑ ÇÁ·Î±×·¥ÀÔ´Ï´Ù.");
+		joinMap.put("message", "ï¿½Ì¹ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½Ô´Ï´ï¿½.");
 	
 		
 	}
@@ -161,7 +162,7 @@ public Map<String, Object> joinBoard(@RequestParam("board_code") String board_co
 	
 }
 
-//teacherBoard º¸±â
+//teacherBoard ï¿½ï¿½ï¿½ï¿½
 @GetMapping(value="/board/teacherBoard")
 public List<BoardVO> teacherBoard(@RequestParam("user_id") String user_id ,HttpServletRequest request, 
 		HttpServletResponse response) throws Exception {
@@ -172,7 +173,7 @@ public List<BoardVO> teacherBoard(@RequestParam("user_id") String user_id ,HttpS
 	return teahcerList;
 }
  
-//°Ô½Ã±Û »èÁ¦ÇÏ±â
+//ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 @GetMapping(value="/board/delBoard")
 public void delBoard(@RequestParam("board_code") String board_code )throws Exception {
 	System.out.println("board_code="+board_code);
@@ -182,11 +183,11 @@ public void delBoard(@RequestParam("board_code") String board_code )throws Excep
 
 }
  
-//¼öÁ¤ÇÏ±â
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 @PostMapping(value = "/board/modifyBoard")
 public ResponseEntity modifyBoard(MultipartHttpServletRequest multipartRequest,  HttpServletResponse response) throws Exception {
 	multipartRequest.setCharacterEncoding("utf-8");
-	System.out.println("----------------¼öÁ¤ ÄÁÆ®·Ñ·¯ -------------------");
+	System.out.println("----------------ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ -------------------");
 	Map<String,Object> boardMap = new HashMap<String,Object>();
 	Enumeration enu = multipartRequest.getParameterNames();
 	while (enu.hasMoreElements()) {
@@ -215,13 +216,13 @@ public ResponseEntity modifyBoard(MultipartHttpServletRequest multipartRequest, 
 			File oldFile = new File(ARTICLE_IMAGE_REPO + "\\" + board_code + "\\" + originalFileName);
 			oldFile.delete();
 		}
-		map.put("message", "¼öÁ¤¿Ï·á .");
+		map.put("message", "ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ .");
 		map.put("path", "/board/list/"+Integer.parseInt(board_code));
 		resEnt = new ResponseEntity(map, responseHeaders, HttpStatus.CREATED);
 	} catch (Exception e) {
 		File srcFile = new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + imageFilename);
 		srcFile.delete();
-		map.put("message", "¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù. ´Ù½Ã ½ÃµµÇØ ÁÖ¼¼¿ä.");
+		map.put("message", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½Ãµï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½.");
 		map.put("path", "/");
 		resEnt = new ResponseEntity(map, responseHeaders, HttpStatus.CREATED);
 		e.printStackTrace();
@@ -231,7 +232,7 @@ public ResponseEntity modifyBoard(MultipartHttpServletRequest multipartRequest, 
  }
 
 
-//°­»çÈ¸¿ø°Ë»ö
+//ï¿½ï¿½ï¿½ï¿½È¸ï¿½ï¿½ï¿½Ë»ï¿½
 @GetMapping("/board/searchboard")
 public List<BoardVO> searchboard(@RequestParam("board_code")String  board_code, HttpServletRequest request, 
 		HttpServletResponse response) throws Exception {
@@ -243,7 +244,7 @@ public List<BoardVO> searchboard(@RequestParam("board_code")String  board_code, 
 }
 
 
-//°­ÀÇ¼ö¶ô ¹öÆ°
+//ï¿½ï¿½ï¿½Ç¼ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
 @GetMapping(value="/board/subinsert")
 public void subinsert(@RequestParam("user_id") String user_id , @RequestParam("board_code") int board_code) throws Exception {
 	System.out.println("user_id:"+user_id);
@@ -252,11 +253,11 @@ public void subinsert(@RequestParam("user_id") String user_id , @RequestParam("b
 	joinMap.put("board_code", board_code);
 	System.out.println(joinMap);
 	boardService.suganginsert(joinMap);
-	System.out.println("----------------¿Ï·á -------------");
+	System.out.println("----------------ï¿½Ï·ï¿½ -------------");
 
 }
 
-//°­»çÄÚÄª°Ë»ö
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äªï¿½Ë»ï¿½
 @GetMapping("/board/coachingList")
 public List<BoardVO> coachingList(@RequestParam("board_code")String  board_code ,HttpServletRequest request, 
 		HttpServletResponse response) throws Exception {
@@ -267,12 +268,12 @@ public List<BoardVO> coachingList(@RequestParam("board_code")String  board_code 
 }
 
 
-//À¯Àú»ó¼¼Á¤º¸ °Ë»ö
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 @GetMapping("/board/userdetail")
 public List<BoardVO> userdetail(@RequestParam("user_id")String  user_id ,HttpServletRequest request, 
 		HttpServletResponse response) throws Exception {
 	
-	System.out.println("#####################userdetailÁøÀÔ##########################################");
+	System.out.println("#####################userdetailï¿½ï¿½ï¿½ï¿½##########################################");
 	System.out.println("user_id:"+ user_id);
 	List<BoardVO> userdetailList = boardService.userdetailList(user_id);
 
@@ -288,13 +289,62 @@ public Map<String,Object> coachingAnswer(MultipartHttpServletRequest multipartRe
 	while (enu.hasMoreElements()) {
 		String name = (String) enu.nextElement();
 		String value = multipartRequest.getParameter(name);
-		System.out.printf("%s %s\n", name, value);
+		System.out.printf("name:%s value:%s\n", name, value);
 		CoachingMap.put(name, value);
+		
+		
 	}
-	boardService.addcoachingAnswer(CoachingMap);
+	System.out.println(CoachingMap.get("coaching_num"));
+	if (CoachingMap.get("coaching_num").equals("1") ) {
+		System.out.println("1ÀÏÂ÷ ÀÔ´Ï´Ù. ");
+		boardService.addcoachingAnswer(CoachingMap);
+		
+	}else {
+		System.out.println("1ÀÏÂ÷ ÀÌ»óÀÔ´Ï´Ù. ");
+		boardService.addSeocndcoachingAnswer(CoachingMap);
+		}
 	
-	return CoachingMap;
+	
+//	return CoachingMap;
+	return null;
+
 }
+
+//ìœ ì €ê°€ ì‹ ì²­í•œ board ì •ë³´ ëª¨ë‘ ê°€ì ¸ì˜¤ëŠ” í•¨ìˆ˜
+@GetMapping(value="/board/userBoardList")
+public List<BoardVO> userBoardList(@RequestParam("user_id") String user_id) throws Exception {
+	
+	List<BoardVO> boardlist =  boardService.getUserBoardList(user_id);
+	
+	return boardlist;
+}
+
+//nì¼ì°¨ ì‹ë‹¨ ì •ë³´ ê°€ì ¸ì˜¤ê¸°
+@GetMapping(value="/board/mealinfo")
+public List<BoardVO> getCoachingContents(@RequestParam("user_id") String user_id,@RequestParam("board_code") int board_code,@RequestParam("coaching_num") int coaching_num) throws Exception {
+	if(board_code==-1) return null;
+	
+	Map<String,Object> map = new HashMap<String,Object>();
+	map.put("user_id", user_id);
+	map.put("board_code", board_code);
+	map.put("coaching_num", coaching_num);
+	List<BoardVO> mealinfo =  boardService.getCoachingContents(map);
+	
+	return mealinfo;
+}
+
+//ì„œë¹„ìŠ¤ ì‹œì‘ ë‚ ì§œ ê°€ì ¸ì˜¤ê¸°
+@GetMapping(value="/board/startdate")
+public Date getStartDate(@RequestParam("user_id") String user_id,@RequestParam("board_code") int board_code) throws Exception {
+	Map<String,Object> map = new HashMap<String,Object>();
+	map.put("user_id", user_id);
+	map.put("board_code", board_code);
+	Date startdate =  boardService.getStartDate(map);
+	
+	return startdate;
+}
+
+
  
 } // end class()
 	

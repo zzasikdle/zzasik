@@ -2,7 +2,7 @@ import NoticeList from "./NoticeList";
 import { Link } from 'react-router-dom';
 
 /*공지사항 페이지*/
-function NoticeView(){
+function NoticePage(){
     return (
         
         <div className="notice-container">
@@ -21,4 +21,4 @@ function NoticeView(){
     )
 }
 
-export default NoticeView;
+export default NoticePage;

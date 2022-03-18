@@ -1,5 +1,6 @@
 package com.zzasik.board.service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -76,7 +77,7 @@ public class BoardServiceimpl implements BoardService {
 	
 	@Override
 	public void suganginsert(Map joinMap) throws Exception {
-		System.out.println("----------------Service ÁøÀÔ -------------");
+		System.out.println("----------------Service ï¿½ï¿½ï¿½ï¿½ -------------");
 		boardDAO.suganginsert(joinMap);
 		
 	}
@@ -109,6 +110,29 @@ public class BoardServiceimpl implements BoardService {
 	@Override
 	public void addcoachingAnswer(Map CoachingMap) throws Exception {
 		boardDAO.addCoachingAnswer(CoachingMap);
+		
+	}
+
+	@Override
+	public List<BoardVO> getUserBoardList(String user_id) throws Exception {
+		
+		return boardDAO.selectUserBoardList(user_id);
+		
+	}
+
+	@Override
+	public List<BoardVO> getCoachingContents(Map map) throws Exception {
+		return boardDAO.selectCoachings(map);
+	}
+
+	@Override
+	public Date getStartDate(Map map) throws Exception {
+		return boardDAO.getStartDate(map);
+	}
+	
+	@Override
+	public void addSeocndcoachingAnswer(Map CoachingMap) throws Exception {
+		boardDAO.addSecondCoachingAnswer(CoachingMap);
 		
 	}
 	

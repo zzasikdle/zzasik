@@ -1,22 +1,24 @@
+/*eslint-disable*/
+
 import './Join.css';
 import axios from "axios";
 import { useState , useRef, useCallback } from "react";
 import DaumPostcode from "react-daum-postcode";
-import { useHref } from "react-router";
-import { Link } from 'react-router-dom'; 
 
 //jquery 추가
 import $ from "jquery";
 
-const Join = () => {
+const Join = (props) => {
+
+
+    //test
+    const [testCode,setTestCode] = useState('dfdf');
 
     const baseUrl = "http://localhost:8090";
 
     const [user_id, setId] = useState(''); 
     const [user_pwd, setPwd] = useState('');
     const [user_name, setName] = useState('');
-    const [addr_1, setAddr1] = useState('');
-    const [addr_2, setAddr2] = useState(''); 
     const [addr_3, setAddr3] = useState('');
     const [birth, setBirth] = useState('');
     const [phone, setPhone] = useState('');
@@ -376,9 +378,9 @@ const Join = () => {
                     <h3 class="join_title">설문조사 코드</h3>
                         <input
                             class="join_input"
-                            type="number"
+                            type="text"
                             min='1' max='10' step='1'
-                            onChange={handleSurveyCode} value={survey_code}
+                            onChange={handleSurveyCode} value={testCode}
                             title="input survey_code"
                             maxLength="50"
                         />
@@ -387,6 +389,7 @@ const Join = () => {
                     <button id="joinBtn" onClick={handleJoin}
                         disabled={!(isId && isName && isEmail && isPassword && isPasswordConfirm && isUserAddress)}
                     >JOIN</button>
+
 
             </div>
             <div class = "j_modal">

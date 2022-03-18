@@ -111,8 +111,8 @@ where c.user_id is null and j.board_code=#{board_code}
      <select id="suganginsert" parameterType="java.util.Map">
 
      	<![CDATA[
-		INSERT into coachingtbl(user_id,board_code,start_date)
-		VALUES (#{user_id},#{board_code},current_date())
+		INSERT into coachingtbl(user_id,board_code,start_date,coaching_num)
+		VALUES (#{user_id},#{board_code},current_date(),1)
 	]]>   
   </select>
     <select id="countJoinUser" resultType="int" parameterType="String">
@@ -124,7 +124,12 @@ where c.user_id is null and j.board_code=#{board_code}
   
    <select id="coachingList" resultType="BoardVO" parameterType="String">
     <![CDATA[
-    SELECT * FROM coachingtbl where board_code = #{board_code}
+   SELECT * 
+from coachingtbl AS C
+INNER JOIN boardtbl AS B
+ON C.board_code = B.board_code 
+WHERE C.board_code=#{board_code}
+group by C.user_id;
   
     ]]>
   </select> 
@@ -146,6 +151,40 @@ where c.user_id is null and j.board_code=#{board_code}
 		where board_code= #{board_code} and user_id=#{user_id};
 	]]>   
   </select>
+
+       <select id="addSecondCoachingAnswer" parameterType="java.util.Map">
+
+     	<![CDATA[
+insert into coachingtbl( breakfast, Lunch, dinner, snack_1, snack_2,  calorie, coaching_answer, start_date, user_id, board_code, useranswer, coaching_num )
+values (#{breakfast}, #{Lunch}, #{dinner}, #{snack_1}, #{snack_2}, #{calorie}, #{coaching_answer}, #{start_date}, #{user_id}, #{board_code}, #{useranswer},#{coaching_num});
+	]]>   
+  </select>
+  
+   
+  <select id="selectUserBoardList" parameterType="String" resultType="BoardVO">
+  		<![CDATA[
+		select b.board_code,b.board_title,teacher_name,board_period
+		from joincart as j join boardtbl as b
+		on j.board_code = b.board_code
+		where j.user_id = #{user_id}
+		]]> 
+  </select>
+  
+  <select id="selectCoachings" parameterType="java.util.Map" resultType="BoardVO">
+	  	<![CDATA[
+		  	select * 
+			from coachingtbl
+			where user_id=#{user_id} and board_code=#{board_code}
+		]]>
+  </select>
+  
+  <select id="getStartDate" parameterType="java.util.Map" resultType="Date">
+	  	<![CDATA[
+		  	select start_date 
+			from coachingtbl
+			where user_id=#{user_id} and board_code=#{board_code} and coaching_num=0 
+		]]>
+		</select>
   
 </mapper>
   

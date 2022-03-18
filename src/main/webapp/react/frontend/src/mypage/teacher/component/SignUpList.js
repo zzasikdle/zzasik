@@ -1,20 +1,22 @@
-import { useEffect, useRef } from "react";
+/*eslint no-undef: "off"*/
+import { useEffect} from "react";
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import './SignUpList.css';
+import Pagination from "../../../components/notice/Pagination";
 
 //신청 내역
 const SignUpList = () => {
 
     const baseUrl = "http://localhost:8090";
-    const [signupList, setSignUpList] = useState([]);
+ 
     const [teacherBoard, setTeacherBoard] = useState([]);
     const [selectBox, setselectBox] = useState([]);
-    const user_id = sessionStorage.getItem("user_id");
     const [usersubit, setUsersubit] = useState([]);
     const [userlist, setUserList] = useState([]);
-    const [Selected, setSelected] = useState("");
+    const [ limit] = useState(10);  //한 페이지당 표시할 게시물 개수 // eslint-disable-line no-unused-vars
+    const [ page, setPage] = useState(1);
+    const offset = (page - 1) * limit;
 
 
 
@@ -67,6 +69,7 @@ const SignUpList = () => {
                 for (i = 0; i < response.data.length; i++) {
                     setUsersubit(response.data[i].user_id);
                     console.log(i+"번:"+response.data[i].user_id)
+                    console.log(usersubit);
 
 
                 }
@@ -75,7 +78,7 @@ const SignUpList = () => {
 
             .catch((error) => {
                 console.log(error)
-                alert("조회된 데이터가 없습니다.");
+                alert(error);
 
 
 
@@ -104,7 +107,7 @@ const SignUpList = () => {
 
     //수강확인 버튼 
     const onClickHandler = (name) =>{
-        var i = 0;
+        
         var search_boardNum = "";
         var index = selectBox.indexOf("]");
         search_boardNum = selectBox.substring(1, index);
@@ -154,11 +157,11 @@ const SignUpList = () => {
 
             </div>
             <select class="Board_list" onChange={(e) => { setselectBox(e.target.value) }} >
-                <option >코칭서비스</option>
+                <option class="board_list_option">코칭서비스</option>
                 {Boardlist()}
 
             </select>
-            <img class="search_img" src='/img/search_1.png' onClick={search_btn} />
+            <img class="search" src='/img/search_1.png' onClick={search_btn} alt="preview" />
             <table class="tb" style={{ cellspacing: "0", border: "1" }}>
                 <colgroup>
                     <col width="150" />
@@ -186,7 +189,8 @@ const SignUpList = () => {
                         </tr>
                     </tbody>
                     :
-                    userlist.map((user,key)=>{
+                    userlist.slice(offset, offset + limit).map((user,key) => {
+                 
                         return(
                         <tbody>
                             <tr>
@@ -194,7 +198,7 @@ const SignUpList = () => {
                                 <td>{user.joindate}</td>
                                 <td>미 승인</td>
                                 <td>
-                                    <button onClick={e =>onClickHandler(user.user_id)}>승인</button></td>
+                                    <button class="button_e"onClick={e =>onClickHandler(user.user_id)}>승인</button></td>
                                     <input type="hidden"value={user.user_id}></input>
                             </tr>
                         </tbody>
@@ -207,6 +211,14 @@ const SignUpList = () => {
                 }
 
             </table>
+            <footer>
+            <Pagination
+                total={teacherBoard.length}
+                limit={limit}
+                page={page}
+                setPage={setPage}
+            />
+            </footer>
 
         </>
     )
