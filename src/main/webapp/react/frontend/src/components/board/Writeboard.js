@@ -1,3 +1,4 @@
+/*eslint no-undef: "off"*/
 import { Link  } from "react-router-dom";
 import axios from "axios";
 import React,{useState} from 'react';
@@ -41,7 +42,7 @@ const WriteBoard = ( ) => {
     // useState로 상태관리하기 초기값은 EditorState.createEmpty()
   // EditorState의 비어있는 ContentState 기본 구성으로 새 개체를 반환 => 이렇게 안하면 상태 값을 나중에 변경할 수 없음.
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
-  const [inputValue, setInputValue] = useState("");
+  
 
   const onEditorStateChange = (editorState) => {
     // editorState에 값 설정
@@ -55,7 +56,7 @@ const WriteBoard = ( ) => {
 
     const writeBtn = async()=>{
         console.log(JSON.stringify(board_content));
-        const objcontent = JSON.stringify(board_content);
+    
         const formData = new FormData();
         formData.append("user_id",sessionStorage.getItem('user_id'));
         formData.append("teacher_name",sessionStorage.getItem('user_name'));
@@ -105,8 +106,8 @@ const WriteBoard = ( ) => {
             <p class="head_msg">짜식 상품 등록👍🏻</p>
             <hr ></hr>
          <div class="proimage_text">상품이미지</div>
-            <p id="proimage"><img  id="preview" /></p>
-            <a class="temp"><br/><br/>*상품이미지는 640x640에 최적화 되어 있습니다.<br/><br/>-이미지는 상품등록 시 정사각형으로 짤려서 등록됩니다.<br/><br/>-큰 이미지일 경우 이미지가 깨지는 경우가 발생할 수 있습니다. 
+            <p id="proimage"><img  alt ="preview" id="preview" /></p>
+            <a href="#!"class="temp"><br/><br/>*상품이미지는 640x640에 최적화 되어 있습니다.<br/><br/>-이미지는 상품등록 시 정사각형으로 짤려서 등록됩니다.<br/><br/>-큰 이미지일 경우 이미지가 깨지는 경우가 발생할 수 있습니다. 
             <br/><br/>최대 지원 사이즈인 640x640 으로 리사이즈 해서 올려주세요. </a>
             <p class="choicefile"><input type="file" class="inputfile" name="imageFilename"  onChange={readURL} /></p>
             <hr></hr>

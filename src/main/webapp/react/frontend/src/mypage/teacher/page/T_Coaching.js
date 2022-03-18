@@ -31,13 +31,13 @@ export default function T_Coaching() {
     }, []);
     const baseUrl = "http://localhost:8090";
     const [signupList, setSignUpList] = useState([]);
-    const user_id = sessionStorage.getItem("user_id");
-    const [userlist, setUserList] = useState([]);
+    
+ 
     const [selectBox, setselectBox] = useState([]);
     const [teacherBoard, setTeacherBoard] = useState([]);
     const [board_code, setBoard_code] = useState([]);
-    const [day, setDay] = useState([]);
-    const [limit, setLimit] = useState(10);
+ 
+    const [limit, setLimit] = useState(10); // eslint-disable-line no-unused-vars
     const [page, setPage] = useState(1);
     const offset = (page - 1) * limit;
 
@@ -58,7 +58,7 @@ export default function T_Coaching() {
     }
 
     const search_btn = async () => {
-        var i = 0;
+
         var search_boardNum = "";
         var index = selectBox.indexOf("]");
         search_boardNum = selectBox.substring(1, index);
@@ -126,7 +126,7 @@ export default function T_Coaching() {
                         {Boardlist()}
 
                     </select>
-                    <img class="search" src='/img/search_1.png' onClick={search_btn} />
+                    <img class="search" src='/img/search_1.png' onClick={search_btn} alt="preview" />
                     <table class="tb" style={{ cellspacing: "0", border: "1" }}>
 
                         <colgroup>
