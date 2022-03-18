@@ -26,7 +26,7 @@ import com.zzasik.survey.vo.AnswerVO;
 import com.zzasik.survey.vo.SurveyVO;
 
 @RestController("surveyController")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://49.50.160.29:3000")
 public class SurveyController {
 
 	@Autowired
