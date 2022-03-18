@@ -1,3 +1,6 @@
+/*eslint-disable*/
+
+
 import './Edit.css';
 import React, {useState} from 'react';
 import { useEffect } from "react";
