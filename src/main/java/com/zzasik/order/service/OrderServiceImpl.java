@@ -1,5 +1,6 @@
 package com.zzasik.order.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zzasik.order.dao.OrderDAO;
+import com.zzasik.order.vo.OrderDetailVO;
 import com.zzasik.order.vo.OrderVO;
 
 @Service("orderService")
@@ -23,6 +25,16 @@ public class OrderServiceImpl implements OrderService {
 		int queryResult = 0;
 		
 		queryResult = orderDAO.insertOrder(orderMap);
+		System.out.println(queryResult);
+		
+		return (queryResult == 1) ? true: false ;
+	}
+	
+	@Override
+	public boolean AddOrderDetail(Map<String, Object> orderMap) {
+		int queryResult = 0;
+		
+		queryResult = orderDAO.insertOrderDetail(orderMap);
 		System.out.println(queryResult);
 		
 		return (queryResult == 1) ? true: false ;
@@ -45,6 +57,12 @@ public class OrderServiceImpl implements OrderService {
 		List<OrderVO> orderList = orderDAO.selectOrderList(user_id);		
 		return orderList;
 	}
+	
+	@Override
+	public List selectOrderDetail(Map<String, Object> orderMap) {
+		List detailList = orderDAO.selectOrderDetail(orderMap);		
+		return detailList;
+	}
 
 	@Override
 	public boolean deleteProduct(int order_code) {
@@ -59,4 +77,23 @@ public class OrderServiceImpl implements OrderService {
 		return (queryResult == 1) ? true : false;
 	}
 
+	@Override
+	public boolean AddPay(Map<String, Object> orderMap) {
+		int queryResult = 0;
+		
+		queryResult = orderDAO.insertPay(orderMap);
+		System.out.println(queryResult);
+		
+		return (queryResult == 1) ? true: false ;
+	}
+
+	@Override
+	public boolean updateStatus1(int order_code) {
+		int queryResult = 0;
+		
+		queryResult = orderDAO.updateStatus1(order_code);
+		System.out.println(queryResult);
+		
+		return (queryResult == 1) ? true: false ;
+	}
 }

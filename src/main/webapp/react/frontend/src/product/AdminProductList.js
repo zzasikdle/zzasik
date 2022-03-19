@@ -1,3 +1,6 @@
+/*eslint-disable*/
+
+
 import './ProductList.css';
 import React from 'react';
 import { useEffect, useState } from 'react';
@@ -27,8 +30,6 @@ const AdminProductList = ( ) => {
             console.log(error);
         })
     }, []);
-
-    let result = [];
 
     return (
         <div id="con">

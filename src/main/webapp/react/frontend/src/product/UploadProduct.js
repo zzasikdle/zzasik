@@ -55,7 +55,7 @@ const UploadProduct = ( ) => {
     }
 
     return (
-        <div id="con">
+        <div>
             <h1>상품 등록</h1>
             <hr />
             <table>
@@ -64,7 +64,7 @@ const UploadProduct = ( ) => {
                         <td>상품 이미지</td>
                     </tr>
                     <tr id="imagetr">
-                        <td style={{width:"400px", height:"400px", border:"3px solid gray"}}><FilePreview image={image} style={{margin:"0 auto"}} /></td>
+                        <td style={{width:"450px", height:"450px", border:"3px solid gray"}}><FilePreview image={image} /></td>
                         <td><InputFile name="pro_img" onLoadFile={onLoadFile} onFileChange={uploadFile} /></td>
                         <td><input type="button" value="삭제하기" onClick={onDeleteFile} /></td>
                     </tr>
@@ -74,7 +74,25 @@ const UploadProduct = ( ) => {
                     </tr>
                     <tr>
                         <td className='title'>카테고리</td>
-                        <td><input type="text" name="pro_class" onChange={(e) => {setClass(e.target.value)}} /></td>
+                        <td>
+                            <select onChange={(e) => setClass(e.target.value)}>
+                                <option value="" selected>선택해주세요</option>
+                                <option value="다이어트식단">다이어트식단</option>
+                                <option value="저염식">저염식</option>
+                                <option value="고단백">고단백</option>
+                                <option value="저탄고지">저탄고지</option>
+                                <option value="40~50대 맞춤식단">40~50대 맞춤식단</option>
+                                <option value="60대 맞춤식단">60대 맞춤식단</option>
+                                <option value="저지방">저지방</option>
+                                <option value="당뇨식">당뇨식</option>
+                                <option value="고혈압식단">고혈압식단</option>
+                                <option value="저혈압식단">저혈압식단</option>
+                                <option value="빈혈맞춤식단">빈혈맞춤식단</option>
+                                <option value="신장질환식단">신장질환식단</option>
+                                <option value="고칼로리식단">고칼로리식단</option>
+                                <option value="저칼로리식단">저칼로리식단</option>
+                            </select>
+                        </td>
                     </tr>
                     <tr>
                         <td className='title'>가격</td>
@@ -85,13 +103,13 @@ const UploadProduct = ( ) => {
                         <td><input type="text" name="pro_available" onChange={(e) => {setAvail(e.target.value)}} /></td>
                     </tr>
                     <tr>
-                        <td className='title' style={{position:"relative", top:"-250px"}}>소개</td>
+                        <td className='title'>소개</td>
                         <td><textarea rows="10" cols="65" name="pro_detail" onChange={(e) => {setDetail(e.target.value)}}></textarea></td>
                     </tr>
                     <tr>
                         <td>
-                            <Link to="/product" onClick={handleWrite}>글쓰기</Link>
-                            <Link to="/product">취소</Link>
+                            <Link to="product/list" onClick={handleWrite}>글쓰기</Link>
+                            <Link to="product/list">취소</Link>
                         </td>
                     </tr>
                 </tbody>

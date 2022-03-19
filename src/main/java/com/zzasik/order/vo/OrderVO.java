@@ -1,10 +1,13 @@
 package com.zzasik.order.vo;
 
+import java.sql.Date;
+
 import org.springframework.stereotype.Component;
 
 @Component("orderVO")
 public class OrderVO {
 	private int order_code;
+	private Date order_time;
 	private String order_status;
 	private int order_price;
 	private String user_id;
@@ -16,6 +19,12 @@ public class OrderVO {
 	}
 	public void setOrder_code(int order_code) {
 		this.order_code = order_code;
+	}
+	public Date getOrder_time() {
+		return order_time;
+	}
+	public void setOrder_time(Date order_time) {
+		this.order_time = order_time;
 	}
 	public String getOrder_status() {
 		return order_status;

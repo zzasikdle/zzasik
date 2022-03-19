@@ -1,3 +1,6 @@
+/*eslint-disable*/
+
+
 import './ProductList.css';
 import React from 'react';
 import { useEffect, useState } from 'react';
@@ -10,8 +13,6 @@ const UserProductList = ( ) => {
 
     const [ productList, setProductList ] = useState([]);
 
-    const history = useHistory();
-
     useEffect(( ) => {
         axios
         .get(baseUrl + '/product/listProducts')
@@ -23,8 +24,6 @@ const UserProductList = ( ) => {
             console.log(error);
         })
     }, []);
-
-    let result = [];
 
     return (
         <div id="con">
