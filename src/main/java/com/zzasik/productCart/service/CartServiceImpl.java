@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.zzasik.product.vo.ProductVO;
 import com.zzasik.productCart.dao.CartDAO;
@@ -36,12 +37,23 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public boolean deleteCart(String user_id, int pro_code) {
+	public boolean deleteCart(Map<String, Object> map) {
 		int queryResult = 0;
 		
-		queryResult = cartDAO.deleteCart(user_id, pro_code);
+		queryResult = cartDAO.deleteCart(map);
+		System.out.println("queryResult : "+queryResult);
 		
 		return (queryResult == 1) ? true : false;
+	}
+	
+	@Override
+	public boolean deleteAllCart(String user_id) {
+		int queryResult = 0;
+		
+		queryResult = cartDAO.deleteAllCart(user_id);
+		System.out.println("queryResult : "+queryResult);
+		
+		return (queryResult > 0) ? true : false;
 	}
 
 	@Override
@@ -68,5 +80,4 @@ public class CartServiceImpl implements CartService {
 		
 		return (queryResult == 1) ? true : false;
 	}
-
 }

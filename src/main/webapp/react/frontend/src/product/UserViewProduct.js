@@ -45,6 +45,12 @@ const UserViewProduct = ( ) => {
     }, []);
 
     const goToCart = async() => {
+
+        if(sessionStorage.getItem("user_id") === null){
+            alert("로그인을 해주세요");
+            history.push("/login");
+        }
+
         const formData = new FormData();
         formData.append("user_id", sessionStorage.getItem("user_id"));
         formData.append("pro_code", pro_code);
@@ -69,11 +75,18 @@ const UserViewProduct = ( ) => {
     }
 
     const goToCheck = async( ) => {
+
+        if(sessionStorage.getItem("user_id") === null){
+            alert("로그인을 해주세요");
+            history.push("/login");
+        }
+
         const formData = new FormData();        
         formData.append("user_id", sessionStorage.getItem("user_id"));
         formData.append("pro_code", pro_code);
         formData.append("quantity", quantity);
         formData.append("order_price", (product.pro_price*quantity));
+        sessionStorage.setItem("order_price", (product.pro_price*quantity));
         console.log("=================");
         console.log(sessionStorage.getItem("user_id"));
         console.log(pro_code);
@@ -97,23 +110,23 @@ const UserViewProduct = ( ) => {
     }
 
     const backToList = () => {
-        history.push("/shop")
+        history.push("/shop/product")
     }
 
     return (
-        <div id="con">
+        <div>
             <h1>user product view</h1>
             <table>
                 <tbody>
                     { product.pro_img !== null ?
                         <>
-                            <tr id="imagetr">
+                            <tr>
                                 <td>이미지</td>
                                 <td>
                                     { product.pro_img !== "undefined" ?
-                                        <img src={product.pro_img} alt="preview" className='image' />
+                                        <img src={product.pro_img} alt="preview" style={{width:"300px"}} />
                                         :
-                                        <img src='/image/no_image_1.png' className='image' />
+                                        <img src='/image/no_image_1.png' />
                                     }
                                 </td>
                             </tr>
@@ -123,25 +136,25 @@ const UserViewProduct = ( ) => {
                     
                     <tr>
                         <td style={{ width: "150px", align: "center"}}>상품명</td>
-                        <td><input type="text" name="pro_name" value={product.pro_name} disabled={disabled} onChange={(e) => {setName(e.target.value)}} /></td>
+                        <td><input type="text" name="pro_name" value={product.pro_name} disabled={disabled} /></td>
                     </tr>
                     <tr> 
                         <td>카테고리</td>
-                        <td><input type="text" name="pro_class" value={product.pro_class} disabled={disabled} onChange={(e) => {setClass(e.target.value)}} /></td>
+                        <td><input type="text" name="pro_class" value={product.pro_class} disabled={disabled} /></td>
                     </tr>
                     <tr>
                         <td>가격</td>
-                        <td><input type="text" name="pro_price" value={product.pro_price} disabled={disabled} onChange={(e) => {setPrice(e.target.value)}} /></td>
+                        <td><input type="text" name="pro_price" value={product.pro_price} disabled={disabled} /></td>
                     </tr>
                     <tr>
                         <td>수량 선택</td>
                         <td>
-                            <input type="number" name="quantity" defaultValue="1" min="1" onChange={(e) => {setQuantity(e.target.value)}} />
+                            <input type="number" name="quantity" defaultValue="1" min="1" max={cart.productList[0].pro_available}  />
                         </td>
                     </tr>
                     <tr>
                         <td>내용</td>
-                        <td><textarea rows="10" cols="65" name="pro_detail" value={product.pro_detail} disabled={disabled} onChange={(e) => {setDetail(e.target.value)}}></textarea></td>
+                        <td><textarea rows="10" cols="65" name="pro_detail" value={product.pro_detail} disabled={disabled}></textarea></td>
                     </tr>
 
                     <tr id="tr_btn" >

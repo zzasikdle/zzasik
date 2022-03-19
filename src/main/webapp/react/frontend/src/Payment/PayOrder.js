@@ -1,12 +1,20 @@
+/*eslint-disable*/
+
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { baseUrl } from "../config";
+import Payment from "./Payment.js";
 
-const CheckProduct = ( ) => {
+const PayOrder = ( ) => {
+
+    const history = useHistory();
 
     const [order, setOrder] = useState({});
     const code = sessionStorage.getItem("order_code");
+    console.log(code);
 
     const user_id = sessionStorage.getItem("user_id");
     console.log("user_id : "+sessionStorage.getItem("user_id"));
@@ -31,6 +39,17 @@ const CheckProduct = ( ) => {
         call();      
     }, []);
 
+    const removeOrder = async() => {
+        await axios
+        .delete(`${baseUrl}/order/removeOrder?order_code=${code}`)
+        .then((response) => {
+            history.push(response.data.path);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
+    
     return(
         <>
         <div>
@@ -42,24 +61,25 @@ const CheckProduct = ( ) => {
                         <td>{order.order_code}</td>
                     </tr>
                     <tr>
-                        <td>상품명</td>
-                        <td>{order.pro_code}</td>
-                    </tr>
-                    <tr>
-                        <td>수량</td>
-                        <td>{order.quantity}</td>
-                    </tr>
-                    <tr>
                         <td>총 상품 가격</td>
-                        <td>{order.order_price}원</td>
+                        <td>{order.order_price}</td>
+                    </tr>
+                    <tr>
+                        <td>총 결제액</td>
+                        <td>{order.order_price}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <Link to="/order/pay">다음</Link>
-        <Link to="/">취소</Link>
+
+        <div>
+            <p>위 주문 내용을 확인하였으며, 회원 본인은 개인정보 이용 및 제공 및 결제에 동의합니다.</p>
+        </div>
+
+        <Link to="#" onClick={removeOrder}>취소</Link>
+        <Payment />
         </>
     )
 }
-
-export default CheckProduct;
+ 
+export default PayOrder;
