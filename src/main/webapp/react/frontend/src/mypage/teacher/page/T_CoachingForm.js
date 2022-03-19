@@ -36,11 +36,12 @@ export default function T_CoachingForm() {
 
 
     const [breakfast, setbreakfast] = useState({});
-    const [Lunch, setLunch] = useState({});
-    const [dinner, setdinner] = useState({});
-    const [snack_1, setsnack_1] = useState({});
-    const [snack_2, setsnack_2] = useState({});
-    const [calorie, setcalorie] = useState({});
+    const [Lunch, setLunch] = useState("");
+    const [dinner, setdinner] = useState("");
+    const [snack_1, setsnack_1] = useState("");
+    const [snack_2, setsnack_2] = useState("");
+    const [calorie, setcalorie] = useState("");
+    const [user_ans, Setuser_ans] = useState("");
 
 
     const nowmonth = String(moment().format('YYYY-MM-DD'));
@@ -59,42 +60,58 @@ export default function T_CoachingForm() {
 
 
     useEffect(() => {
+        let isSubscribed = true
         async function call() {
             await axios
                 .get(baseUrl + '/board/userdetail', { params: { user_id: user_id } })
                 .then((response) => {
-                    console.log(response.data)
+
+
+                   
+                    if(isSubscribed){
+                    //console.log(response.data)
 
                     setUserdetail(response.data[0]);
-                    console.log(userdetail)
+                    //console.log(userdetail)
 
-                    console.log("date_change :" + date_change);
-                    console.log("period :" + period);
+                    // console.log("date_change :" + date_change);
+                    // console.log("period :" + period);
 
 
 
                     setEndDate(moment(date_change).add(period, "d").format("YYYY-MM-DD"));
 
-                    console.log(endDate); //2022-04-15 
-                    console.log(countDay);
+                    // console.log(endDate); //2022-04-15 
+                    // console.log(countDay);
 
 
                     setCountDay(moment(endDate).diff(moment(nowmonth), 'days'));
 
                     setPercentage((period - countDay + 1) / period);
+                  
 
+                    Setuser_ans(response.data[(period - countDay-1)].user_answer);}
+                  
+                   
+                    
+              
+                   
 
+                 
+           
+             
                 })
                 .catch((error) => {
                     console.log(error);
                 })
+                return () => isSubscribed = false
         }
 
 
 
         call();
 
-
+        
     }, [countDay,date_change,endDate,nowmonth,period, user_id,userdetail]);
 
 
@@ -111,7 +128,7 @@ export default function T_CoachingForm() {
 
                 })
                 .catch((error) => {
-                    console.log(error);
+                    console.log(error); 
                 })
         }
 
@@ -217,7 +234,10 @@ export default function T_CoachingForm() {
                     <div className='box smallbox'>
                         <div className='box_header'>
                             <h2>회원 수행 메시지</h2>
+                           
+                           
                         </div>
+                        {user_ans}
 
                     </div>
                 </div> 

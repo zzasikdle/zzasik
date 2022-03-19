@@ -17,6 +17,7 @@
      <result property="joindate" column="joindate" />
      <result property="start_date" column="start_date" />
       <result property="usertsatus" column="usertsatus" />
+      <result property="user_answer" column="user_answer" />
      
      <result property="breakfast" column="breakfast" />
      <result property="Lunch" column="Lunch" />
@@ -27,6 +28,8 @@
      <result property="calorie" column="calorie" />
      <result property="board_period" column="board_period" />
      <result property="coaching_answer" column="coaching_answer" />
+     <result property="coaching_num" column="coaching_answer" />
+     
      
      <result property="user_name" column="user_name" />
      <result property="user_pwd" column="user_pwd" />
@@ -139,7 +142,7 @@ group by C.user_id;
  select *from usertbl U
 	INNER JOIN coachingtbl C
 		ON U.user_id = C.user_id
-			where U.user_id=#{user_id};
+			where U.user_id=#{user_id} ORDER BY coaching_num;
     ]]>
   </select> 
   
