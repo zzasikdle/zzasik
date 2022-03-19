@@ -1,0 +1,58 @@
+#MyDietbox{
+    height: 450px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin-top: 60px;
+}
+
+.MyDietBox_header {
+   display:flow-root;
+}
+
+.MyDietBox_header h2{
+    margin: 15px 0px 20px 25px;
+    font-size: 24px;
+    font-weight: 600;
+    float: left;
+}
+
+.surveyButton{
+    margin-top: 20px;
+    text-align: center;
+    width: 50%;
+    height: 4rem;
+    margin-bottom: 10px;
+    font-size: 16px;
+    margin-left: 13%;
+    background-color: #F2A74B;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    font-size: 20px;
+}
+.surveyButton:hover{
+    background-color: #fabb77;
+}
+
+#inputSurveyCode {
+    text-align: center;
+    margin-top: 100px;
+    width: 25%;
+    height: 4rem;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border: 1px solid rgb(128, 128, 128);
+    border-radius: 10px;
+    margin-right: 10px;
+}
+#buttonSurveyCode {
+    text-align: center;
+    margin-top: 100px;
+    width: 25%;
+    height: 4rem;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border: 1px solid rgb(100, 101, 104);
+    background-color: rgb(130, 141, 247);
+    border-radius: 10px;
+}
