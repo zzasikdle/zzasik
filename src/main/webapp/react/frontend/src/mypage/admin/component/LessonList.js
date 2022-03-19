@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import React, {useState} from 'react';
 import Pagination from "../../../components/notice/Pagination";
+import { baseUrl } from "../../../config";
 
 const LessonList = () => {
     const [ lessonList,setLessonList] = useState([]);
@@ -12,7 +13,7 @@ const LessonList = () => {
 
     useEffect(()=>{
         axios
-        .get('/board/listBoards')
+        .get(baseUrl+'/board/listBoards')
         .then((response)=>{
             console.log(response.data);
             setLessonList(response.data);

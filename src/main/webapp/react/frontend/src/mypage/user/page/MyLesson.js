@@ -2,6 +2,7 @@
 
 import React, {useState,useEffect} from 'react';
 import axios from 'axios';
+import { baseUrl } from "../../../config";
 
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -30,7 +31,7 @@ export default function MyLesson(){
     /* 유저가 신청한 서비스 모두 가져오기 */
     useEffect(() => {  
       axios
-        .get("/board/userBoardList", { params: { user_id: sessionStorage.getItem('user_id') } })
+        .get(baseUrl+"/board/userBoardList", { params: { user_id: sessionStorage.getItem('user_id') } })
         .then((response) => {
             if(response.data.length!==0){
                 setIsExist(true);
@@ -82,7 +83,7 @@ export default function MyLesson(){
 
         
         axios
-        .get("/board/viewBoard", { params: { board_code: optVal } })
+        .get(baseUrl+"/board/viewBoard", { params: { board_code: optVal } })
         .then((response) => {
             setCurrentBoard(response.data);
             getMealInfo(optVal);
@@ -96,7 +97,7 @@ export default function MyLesson(){
     //코칭 서비스 시작 날짜 가져오기
     const getStartDate = (board_code,board) => {
         axios
-        .get("/board/startdate", {
+        .get(baseUrl+"/board/startdate", {
              params: {
                 user_id : user_id,
                 board_code: board_code,
@@ -158,7 +159,7 @@ export default function MyLesson(){
     //coachingtbl에 등록된 식단 가져오기 
     const getMealInfo = (board_code) => {
         axios
-        .get("/board/mealinfo", {
+        .get(baseUrl+"/board/mealinfo", {
              params: {
                 user_id : user_id,
                 board_code: board_code,
@@ -178,7 +179,7 @@ export default function MyLesson(){
         if(window.confirm( "코치에게 작성한 메시지를 보내시겠습니까?")){
         //글 서버로 보내기
          axios 
-            .get('/board/sendtocoach',{
+            .get(baseUrl+'/board/sendtocoach',{
                 params:{
                 user_id : user_id,
                 board_code : currentBoard.board_code,

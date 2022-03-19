@@ -5,14 +5,13 @@ import './MyHome.css';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { baseUrl } from "../../../config";
 
 //jquery 추가
 import $ from "jquery";
 
 /* 마이페이지 */
 export default function MyHome(){
-
-    const baseUrl = "http://localhost:8090";
     
     const user_id = sessionStorage.getItem("user_id");
     const user_name = sessionStorage.getItem("user_name");
