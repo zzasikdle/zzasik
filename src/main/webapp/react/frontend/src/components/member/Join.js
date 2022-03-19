@@ -389,6 +389,7 @@ const Join = (props) => {
 
 
             </div>
+            </div>
             <div class = "j_modal">
                 <div class= "modal_content">
                     <div class= "modal_title">
@@ -400,7 +401,6 @@ const Join = (props) => {
                 ) : null}
                 </div>	
                 <div class="modal_layer"></div>
-            </div>
             </div>
         </div>
     )

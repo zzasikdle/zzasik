@@ -29,26 +29,15 @@ const SurveyResult = () => {
             <div class="list_card" >
                 <ul>
                 {surveyList.length===0 ?
-                    // <li className="item item1" >
-                    //     <img src="/img/logo4.png" style={{width:200,height:200}}/> 
-                    //     <p><Link to ="/" style={{textDecoration: "none",color:"#353535"}}>허닭 닭가슴살 소시지 그릴후랑크 100g 5종 혼합</Link></p>
-                    //     <strong>20,000 <span style={{fontSize:16}}>원</span></strong>
-                    // </li>
-                    <p>식단을 찾지 못하였습니다. 전문가와 상의 해보세요.</p>
+                    <p style={{margin:"200px auto",color:"#F9B514",fontWeight:700}}>식단을 찾지 못하였습니다.&ensp;전문가와 상의 해보세요.</p>
                     :
                     surveyList.map((product,key) => {
                         return(
-                        <>
-                            <div className="Surveybox">
-                                <li className="item item1" >
-                                    <p>{product.pro_name}</p>
-                                    <strong>{product.pro_class}</strong>
-                                    <p>{product.pro_available}<br/>{product.pro_price}</p>
-                                    <p>{product.pro_img}</p>
-                                    <a href="#">상품보기</a>
-                                </li>
-                            </div>
-                        </>
+                        <li className="item item1" >
+                            <img src={product.pro_img} style={{width:200,height:200}}/> 
+                            <p><Link to ={`/shop/view/${product.pro_code}`} style={{textDecoration: "none",color:"#353535"}}>{product.pro_name}</Link></p>
+                            <strong>{product.pro_price}<span style={{fontSize:16}}>원</span></strong>
+                        </li>
                         )
                     })
                     }
