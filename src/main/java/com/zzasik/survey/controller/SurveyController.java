@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.zzasik.member.service.MemberService;
+import com.zzasik.member.vo.AddressVO;
 import com.zzasik.member.vo.MemberVO;
 import com.zzasik.survey.service.SurveyService;
 import com.zzasik.survey.vo.AnswerVO;
@@ -27,6 +28,7 @@ import com.zzasik.survey.vo.SurveyVO;
 
 @RestController("surveyController")
 @CrossOrigin(origins = "http://49.50.160.29:3000")
+//@CrossOrigin("http://localhost:3000")
 public class SurveyController {
 
 	@Autowired
@@ -319,21 +321,38 @@ public class SurveyController {
 //	}
 
 	@GetMapping("/mypage/surveyresult")
-	public List result(@RequestBody MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
+	public List result(@RequestParam("survey_code") String survey_code , @RequestParam("user_id") String user_id)
 			throws Exception {
+		
+		MemberVO memberVO = new MemberVO();
+		
+		memberVO.setSurvey_code(Integer.parseInt(survey_code));
+		memberVO.setUser_id(user_id);
+		
 		System.out.println(memberVO.getSurvey_code());
 		System.out.println(memberVO.getUser_id());
+		
+		
+		
+		//  기본값 0 에서  업데이트 
+		memberService.modSurveyCode(memberVO); // 7 
 
-		// 없으면 업데이트
-		memberService.modSurveyCode(memberVO);
-
-		SurveyVO sur = surveyService.selectSurvey(memberVO.getSurvey_code());
-		String keyword1 = sur.getSurvey_result1();
-		String keyword2 = sur.getSurvey_result2();
-		String keyword3 = sur.getSurvey_result3();
-
-		List surveylist = surveyService.surveylist(keyword1, keyword2, keyword3);
-
+		// 코드에 따른 설문조사 결과 값들 가져오기.
+		SurveyVO sur = surveyService.selectSurvey(memberVO);
+//		String keyword1 = sur.getSurvey_result1();
+//		String keyword2 = sur.getSurvey_result2();
+//		String keyword3 = sur.getSurvey_result3();
+		
+		//System.out.println(keyword1 +" / "+ keyword2 +" / "+ keyword3);
+		
+		List surveylist = surveyService.surveylist(sur);
+		System.out.println(surveylist.get(0));
+		System.out.println(surveylist.get(1));
+		System.out.println(surveylist.get(2));
+		System.out.println(surveylist.get(3));
+		System.out.println(surveylist.get(4));
+		
 		return surveylist;
 	}
+	
 }
