@@ -2,7 +2,7 @@
 //no-unused-vars 경고 해결 완료
 /*eslint-disable*/
 
-
+import { baseUrl } from '../../../config';
 import './Edit.css';
 import React, {useState} from 'react';
 import axios from 'axios';
@@ -13,7 +13,7 @@ function Edit(){
     //로그인 연동 후 가져오기
    //const user_id = sessionStorage.getItem('user_id');
    
-   const baseUrl = "http://localhost:8090";
+   
    const user_id  = sessionStorage.getItem("user_id");
    
    const [user_name,setUserName] = useState('');
@@ -94,8 +94,11 @@ function Edit(){
 
     /* 창 보이기 / 안 보이기 */
     const [ showing , setShowing] = useState(false);
+    
+    
 
     const NameModify = () => {
+
         return (
             <div>
                 <p className="btn_area_btm">
@@ -115,7 +118,21 @@ function Edit(){
    return (
         <>
            <h1 className='myhome-title'>마이페이지</h1>
-           <div className='box profile-edit'>
+           <div className='editBox' 
+            style={ showing ? {
+                backgroundColor: "white",
+                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                margin: "50px 0 0 100px",
+                width: "1000px",
+                height: "612px"
+                } : {
+                backgroundColor: "white",
+                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                margin: "50px 0 0 100px",
+                width: "1000px",
+                height: "515px"
+                }
+                }>
                <div className='box_header'>
                 <h2>내 정보 수정</h2>
                </div>

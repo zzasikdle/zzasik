@@ -1,5 +1,13 @@
 ul,li{
-	list-style:none;
+	list-style-type:none;
+}
+
+.Surveybox{
+   
+   float: left;
+   background-color: white;
+   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+   margin-top: 60px;
 }
 
 .list_card {
@@ -8,6 +16,7 @@ ul,li{
 
 .list_card .item {
    display: inline-block;
+   margin-right: 55px;
    width: 200px;
    height: 300px;
    text-align: center;
@@ -30,7 +39,7 @@ ul,li{
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 180px;
-    height: 20px;
+    height: 44px;
     letter-spacing: -1px;
     margin-left: 10px;
 }

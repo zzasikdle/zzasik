@@ -27,13 +27,8 @@
     "html-to-draftjs": "^1.5.0",
     "http-proxy-middleware": "^2.0.3",
     "jquery": "^3.6.0",
-
     "moment": "^2.29.1",
-
-
-    
- 
-    
+    "node-sass": "^7.0.1",
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.2",
     "react-chartjs-2": "^4.0.1",
@@ -75,5 +70,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://49.50.160.29:8090"
+  "proxy": "http://localhost:8090"
 }

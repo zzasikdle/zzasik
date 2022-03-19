@@ -1,5 +1,6 @@
 /*eslint-disable*/
 
+import { baseUrl } from '../../config';
 import './Join.css';
 import axios from "axios";
 import { useState , useRef, useCallback } from "react";
@@ -10,8 +11,6 @@ import $ from "jquery";
 
 const Join = (props) => {
 
-
-    const baseUrl = "http://localhost:8090";
 
     const [user_id, setId] = useState(''); 
     const [user_pwd, setPwd] = useState('');

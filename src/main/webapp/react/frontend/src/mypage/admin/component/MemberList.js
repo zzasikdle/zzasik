@@ -1,6 +1,6 @@
 /*eslint-disable*/
 
-
+import { baseUrl } from "../../../config";
 import { useEffect, useRef } from "react";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -16,8 +16,6 @@ import MyAddress from "../../user/page/MyAddress";
 
 
 const MemberList = () => {
-
-    const baseUrl = "http://localhost:8090";
 
     const [ memberList,setMemberList] = useState([]);
     const [ AddressList,setAddressList] = useState([]);

@@ -1,5 +1,5 @@
 /*eslint-disable*/
-
+import { baseUrl } from '../../../config';
 import axios from 'axios';
 import { useRef, useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
@@ -10,8 +10,6 @@ import './UpdateAddress.css';
 import $ from "jquery";
 
 const UpdateAddressAdmin = () => {
-
-    const baseUrl = "http://localhost:8090";
     
 
     const user_id = sessionStorage.getItem("user_id");
