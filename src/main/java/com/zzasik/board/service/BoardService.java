@@ -1,6 +1,5 @@
 package com.zzasik.board.service;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +24,7 @@ public interface BoardService {
 	
 	public List<BoardVO> getUserBoardList(String user_id) throws Exception;
 	public List<BoardVO> getCoachingContents(Map map) throws Exception;
-	public Date getStartDate(Map map) throws Exception;
+	public BoardVO getStartDate(Map map) throws Exception;
+	public void sendMessageToCoach(Map map) throws Exception;
 	
 } 

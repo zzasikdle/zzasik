@@ -1,6 +1,5 @@
 package com.zzasik.board.service;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -126,13 +125,19 @@ public class BoardServiceimpl implements BoardService {
 	}
 
 	@Override
-	public Date getStartDate(Map map) throws Exception {
+	public BoardVO getStartDate(Map map) throws Exception {
 		return boardDAO.getStartDate(map);
 	}
 	
 	@Override
 	public void addSeocndcoachingAnswer(Map CoachingMap) throws Exception {
 		boardDAO.addSecondCoachingAnswer(CoachingMap);
+		
+	}
+
+	@Override
+	public void sendMessageToCoach(Map map) throws Exception {
+		boardDAO.updateUserAnswer(map);
 		
 	}
 	
