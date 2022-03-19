@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import './viewboard.css';
 const ViewBoard = () => {
-    const baseUrl = "http://localhost:8090";
+    const baseUrl = "http://49.50.160.29:3000/";
     const [board, setBoard] = useState({});
     const { board_code } = useParams();
 
