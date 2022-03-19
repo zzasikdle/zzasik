@@ -18,7 +18,7 @@ export default function T_CoachingForm() {
 
 
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
-    const [inputValue, setInputValue] = useState("");
+
 
     const onEditorStateChange = (editorState) => {
 
@@ -34,21 +34,22 @@ export default function T_CoachingForm() {
     const [userdetail, setUserdetail] = useState('');
     const [board, setBoard] = useState(String);
 
-    const [coaching_num, setcoaching_num] = useState({});
+
     const [breakfast, setbreakfast] = useState({});
-    const [Lunch, setLunch] = useState({});
-    const [dinner, setdinner] = useState({});
-    const [snack_1, setsnack_1] = useState({});
-    const [snack_2, setsnack_2] = useState({});
-    const [calorie, setcalorie] = useState({});
-    const [coaching_answer, setcoaching_answer] = useState({});
+    const [Lunch, setLunch] = useState("");
+    const [dinner, setdinner] = useState("");
+    const [snack_1, setsnack_1] = useState("");
+    const [snack_2, setsnack_2] = useState("");
+    const [calorie, setcalorie] = useState("");
+    const [user_ans, Setuser_ans] = useState("");
+
 
     const nowmonth = String(moment().format('YYYY-MM-DD'));
     const date_change = moment(userdetail.start_date).format('YYYY-MM-DD'); //시작 날짜 Date Type으로 변환
     const period = parseInt(board.board_period); // 기간 type String -> int로 변환
     const [endDate, setEndDate] = useState(Date);
     const [countDay, setCountDay] = useState(0);
-    const [percentage, setPercentage] = useState(0);
+    const [percentage, setPercentage] = useState(0);// eslint-disable-line no-unused-vars
 
 
 
@@ -59,43 +60,59 @@ export default function T_CoachingForm() {
 
 
     useEffect(() => {
+        let isSubscribed = true
         async function call() {
             await axios
                 .get(baseUrl + '/board/userdetail', { params: { user_id: user_id } })
                 .then((response) => {
-                    console.log(response.data)
+
+
+                   
+                    if(isSubscribed){
+                    //console.log(response.data)
 
                     setUserdetail(response.data[0]);
-                    console.log(userdetail)
+                    //console.log(userdetail)
 
-                    console.log("date_change :" + date_change);
-                    console.log("period :" + period);
+                    // console.log("date_change :" + date_change);
+                    // console.log("period :" + period);
 
 
 
                     setEndDate(moment(date_change).add(period, "d").format("YYYY-MM-DD"));
 
-                    console.log(endDate); //2022-04-15 
-                    console.log(countDay);
+                    // console.log(endDate); //2022-04-15 
+                    // console.log(countDay);
 
 
                     setCountDay(moment(endDate).diff(moment(nowmonth), 'days'));
 
                     setPercentage((period - countDay + 1) / period);
+                  
 
+                    Setuser_ans(response.data[(period - countDay-1)].user_answer);}
+                  
+                   
+                    
+              
+                   
 
+                 
+           
+             
                 })
                 .catch((error) => {
                     console.log(error);
                 })
+                return () => isSubscribed = false
         }
 
 
 
         call();
 
-
-    }, []);
+        
+    }, [countDay,date_change,endDate,nowmonth,period, user_id,userdetail]);
 
 
     useEffect(() => {
@@ -111,13 +128,13 @@ export default function T_CoachingForm() {
 
                 })
                 .catch((error) => {
-                    console.log(error);
+                    console.log(error); 
                 })
         }
 
         call();
 
-    }, []);
+    }, [board_code]);
 
 
 
@@ -169,7 +186,7 @@ export default function T_CoachingForm() {
             }
 
             ).then((response) => {
-                alert({ coaching_num } + "일차 입력완료")
+               
 
 
 
@@ -187,7 +204,7 @@ export default function T_CoachingForm() {
     return (
         <>
 
-            <h1 className="myhome-title">코칭 하기</h1>
+            <h1 className="myhome-title">코칭 하기</h1> 
             <div className='content'>
                 <div style={{ display: "flex", flexDirection: "row" }}>
                     <div className='box smallbox'>
@@ -200,16 +217,15 @@ export default function T_CoachingForm() {
                         </div>
 
                         <div class="content_div_1">
-                            <div><a class="text_a">아이디   :</a>{user_id}</div>
-                            <div><a class="text_a">이름   :</a>{userdetail.user_name}</div>
+                            <div><p class="text_a">아이디   :</p>{user_id}</div>
+                            <div><p herf="{() =>false}"class="text_a">이름   :</p>{userdetail.user_name}</div>
 
-                            <div><a class="text_a">이메일   :</a>{userdetail.email}</div>
-
-                            <div><a class="text_a">시작날짜   :</a>{userdetail.start_date}</div>
-
+                            <div><p  class="text_a">이메일   :</p>{userdetail.email}</div>
+                            <div><p  class="text_a">시작날짜   :</p>{userdetail.start_date}</div>
 
 
-                            <div><a class="text_a">종료일자   :</a> {endDate}</div>
+
+                            <div><p class="text_a">종료일자   :</p> {endDate}</div>
 
                             <div> 일차 {period - countDay + 1}</div>
                         </div>
@@ -218,10 +234,13 @@ export default function T_CoachingForm() {
                     <div className='box smallbox'>
                         <div className='box_header'>
                             <h2>회원 수행 메시지</h2>
+                           
+                           
                         </div>
+                        {user_ans}
 
                     </div>
-                </div>
+                </div> 
                 <div className='box coachform'>
                     <div class="coaching_div_1" className='box_header'>
                         <h2>코칭 글 작성</h2>
@@ -232,15 +251,15 @@ export default function T_CoachingForm() {
 
 
 
-                    <div class="countDay"><a class="st_day">Day</a>{period - countDay + 1}</div>
+                    <div class="countDay"><p class="st_day">Day</p>{period - countDay + 1}</div>
                     <div class="Coaching_div">
-                        <div class="temp_4"><a class="temp_5">아침</a><a class="temp_6" ><input class="temp_input" onChange={(e) => { setbreakfast(e.target.value) }}></input></a></div>
-                        <div class="temp_4"><a class="temp_5">점심</a><a class="temp_6" ><input class="temp_input" onChange={(e) => { setLunch(e.target.value) }}></input></a></div>
-                        <div class="temp_4"><a class="temp_5">저녁</a><a class="temp_6" ><input class="temp_input" onChange={(e) => { setdinner(e.target.value) }} ></input></a></div>
-                        <div class="temp_4"><a class="temp_5">간식</a><a class="temp_6" ><input class="temp_input" onChange={(e) => { setsnack_1(e.target.value) }}></input></a></div>
-                        <div class="temp_4"><a class="temp_5">기타</a><a class="temp_6" ><input class="temp_input" onChange={(e) => { setsnack_2(e.target.value) }} ></input></a></div>
-                        <div class="temp_4"><a class="temp_5">총 칼로리</a><a class="temp_6" ><input class="temp_input" onChange={(e) => { setcalorie(e.target.value) }}></input></a></div>
-                        <div class="temp_4"><a class="temp_5">코멘트</a><a class="temp_7" >
+                        <div class="temp_4"><p class="temp_5">아침</p><p  class="temp_6" ><input class="temp_input" onChange={(e) => { setbreakfast(e.target.value) }}></input></p></div>
+                        <div class="temp_4"><p class="temp_5">점심</p><p class="temp_6" ><input class="temp_input" onChange={(e) => { setLunch(e.target.value) }}></input></p></div>
+                        <div class="temp_4"><p class="temp_5">저녁</p><p class="temp_6" ><input class="temp_input" onChange={(e) => { setdinner(e.target.value) }} ></input></p></div>
+                        <div class="temp_4"><p class="temp_5">간식</p><p class="temp_6" ><input class="temp_input" onChange={(e) => { setsnack_1(e.target.value) }}></input></p></div>
+                        <div class="temp_4"><p class="temp_5">기타</p><p class="temp_6" ><input class="temp_input" onChange={(e) => { setsnack_2(e.target.value) }} ></input></p></div>
+                        <div class="temp_4"><p class="temp_5">총 칼로리</p><p class="temp_6" ><input class="temp_input" onChange={(e) => { setcalorie(e.target.value) }}></input></p></div>
+                        <div class="temp_4"><p class="temp_5">코멘트</p><p class="temp_7" >
                         <Editor
                             // 에디터와 툴바 모두에 적용되는 클래스
                             wrapperClassName="wrapper-class"
@@ -253,7 +272,7 @@ export default function T_CoachingForm() {
                                 // inDropdown: 해당 항목과 관련된 항목을 드롭다운으로 나타낼것인지
                                 list: { inDropdown: true },
                                 textAlign: { inDropdown: true },
-                                link: { inDropdown: true },
+                                link: { inDropdown: true }, 
                                 history: { inDropdown: false },
                             }}
                             placeholder="내용을 작성해주세요."
@@ -266,15 +285,8 @@ export default function T_CoachingForm() {
                             // 에디터의 값이 변경될 때마다 onEditorStateChange 호출
                             onEditorStateChange={onEditorStateChange}
                         />
-                            </a></div>
-                        {/* <div class="CoachingMsg">아침<input  class="input_msg" type="text" onChange={(e) => { setbreakfast(e.target.value) }} /></div>
-                        <div class="CoachingMsg">점심<input type="text" onChange={(e) => { setLunch(e.target.value) }} /></div>
-                        <div class="CoachingMsg">저녁<input type="text" onChange={(e) => { setdinner(e.target.value) }} /></div>
-
-
-                        <div class="CoachingMsg">간식<input type="text" onChange={(e) => { setsnack_1(e.target.value) }} /></div>
-                        <div class="CoachingMsg">간식<input type="text" onChange={(e) => { setsnack_2(e.target.value) }} /></div>
-                        <div class="CoachingMsg">총 칼로리<input type="text" onChange={(e) => { setcalorie(e.target.value) }} /></div> */}
+                            </p></div>
+                       
                     </div>
 
 

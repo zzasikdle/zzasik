@@ -1,5 +1,6 @@
 /*eslint-disable*/
 
+import { baseUrl } from '../../config';
 import './Join.css';
 import axios from "axios";
 import { useState , useRef, useCallback } from "react";
@@ -10,11 +11,6 @@ import $ from "jquery";
 
 const Join = (props) => {
 
-
-    //test
-    const [testCode,setTestCode] = useState('dfdf');
-
-    const baseUrl = "http://localhost:8090";
 
     const [user_id, setId] = useState(''); 
     const [user_pwd, setPwd] = useState('');
@@ -378,11 +374,12 @@ const Join = (props) => {
                     <h3 class="join_title">설문조사 코드</h3>
                         <input
                             class="join_input"
-                            type="text"
-                            min='1' max='10' step='1'
-                            onChange={handleSurveyCode} value={testCode}
+                            type="number"
+                            min='1' max='1000' step='1'
+                            onChange={handleSurveyCode} 
                             title="input survey_code"
                             maxLength="50"
+                            placeholder="설문조사를 진행하신 후 발급받은 코드를 기입 해주세요."
                         />
                 </div>
                     
@@ -396,7 +393,7 @@ const Join = (props) => {
                 <div class= "modal_content">
                     <div class= "modal_title">
                         <h3 style={{color:"black",fontSize:25,margin:17}}>우편번호찾기</h3>
-                        <img src='/img/close.png' id="btn_close_modal" style={{width:30,height:30,marginLeft:200}}/>
+                        <img className="closeBtnImg" src='/img/close.png' id="btn_close_modal" style={{width:30,height:30,marginLeft:200}}/>
                     </div>
                 {isOpenPost  ? (
                 <DaumPostcode style={postCodeStyle} autoClose onComplete={handleComplete } />

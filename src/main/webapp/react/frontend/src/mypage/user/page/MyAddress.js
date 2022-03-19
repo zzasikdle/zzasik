@@ -1,6 +1,6 @@
 /*eslint-disable*/
 
-
+import { baseUrl } from '../../../config';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './MyAddress.css';
@@ -9,7 +9,7 @@ import Pagination from "../../../components/notice/Pagination";
 
 const MyAddress  =() => {
 
-    const baseUrl = "http://localhost:8090";
+    
 
     const user_id = sessionStorage.getItem("user_id");
     
@@ -130,15 +130,15 @@ const MyAddress  =() => {
                     
                 </div>
                 
+                <footer>
+                    <Pagination
+                        total={AddressList.length}
+                        limit={limit}
+                        page={page}
+                        setPage={setPage}
+                    />
+                </footer>
             </div>
-            <footer>
-                <Pagination
-                    total={AddressList.length}
-                    limit={limit}
-                    page={page}
-                    setPage={setPage}
-                />
-            </footer>
         </>
     )
 }

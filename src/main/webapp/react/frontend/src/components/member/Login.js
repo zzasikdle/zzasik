@@ -1,4 +1,5 @@
 /*eslint-disable*/
+import { baseUrl } from '../../config';
 import './Login.css';
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -12,7 +13,7 @@ import {Button } from 'react-bootstrap';
 
 const Login = ( ) => {
     
-    const baseUrl = "http://localhost:8090";
+    
 
     const [user_id, setId] = useState(''); // state를 사용하는 이유: front 에서 정보를 저장하여 backend로 보내주기 위함.
     const [user_pwd, setPwd] = useState('');
