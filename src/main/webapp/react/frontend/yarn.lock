@@ -2961,6 +2961,11 @@
     "normalize-path" "^3.0.0"
     "picomatch" "^2.0.4"
 
+"app-styles@^1.0.4":
+  "integrity" "sha512-anxw1ky7gl9GY2zmGbb+3unr5QyoRatLahfSJFzvlMH/RxRHmJ7eysoDKsPeVxyMLGTNkOd6pFmfdq6i2/t/8g=="
+  "resolved" "https://registry.npmjs.org/app-styles/-/app-styles-1.0.4.tgz"
+  "version" "1.0.4"
+
 "aproba@^1.0.3 || ^2.0.0":
   "integrity" "sha512-lYe4Gx7QT+MKGbDsA+Z+he/Wtef0BiwDOlK/XkBrdfsh9J/jPPXbX0tE9x9cl27Tmu5gg3QUbUrQYa/y+KOHPQ=="
   "resolved" "https://registry.npmjs.org/aproba/-/aproba-2.0.0.tgz"

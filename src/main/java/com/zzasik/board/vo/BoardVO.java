@@ -38,10 +38,18 @@ public class BoardVO {
 	private String email;
 	private String survey_code;
 	
+	private int coaching_num;
 	
 	
 	
 	
+	
+	public int getCoaching_num() {
+		return coaching_num;
+	}
+	public void setCoaching_num(int coaching_num) {
+		this.coaching_num = coaching_num;
+	}
 	public Date getStart_date() {
 		return start_date;
 	}

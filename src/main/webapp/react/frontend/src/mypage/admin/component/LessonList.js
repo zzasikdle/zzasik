@@ -28,7 +28,7 @@ const LessonList = () => {
         <div className="box table-section">
             <div className="box_header">
                 <h2>코칭 서비스 목록</h2>
-                <Link to='/' className='manage'>관리하기<img className="arrow" src='/img/arrow.png'/></Link>
+                {/* <Link to='/' className='manage'>관리하기<img className="arrow" src='/img/arrow.png'/></Link> */}
             </div>
             <table class="tb" style={{cellspacing:"0",border:"1"}}>
                 <colgroup>
@@ -59,7 +59,7 @@ const LessonList = () => {
                         return(
                             <tr>
                                 <td>{lesson.board_code}</td>
-                                <td><Link to={`/notice/${lesson.board_code}`}>{lesson.board_title}</Link></td>
+                                <td><Link to={`/board/viewboard/${lesson.board_code}`}>{lesson.board_title}</Link></td>
                                 <td>{lesson.board_regdate}</td>
                                 <td>{lesson.user_id}</td>
                             </tr>

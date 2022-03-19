@@ -175,16 +175,24 @@ values (#{breakfast}, #{Lunch}, #{dinner}, #{snack_1}, #{snack_2}, #{calorie}, #
 		  	select * 
 			from coachingtbl
 			where user_id=#{user_id} and board_code=#{board_code}
+			order by coaching_num
 		]]>
   </select>
   
-  <select id="getStartDate" parameterType="java.util.Map" resultType="Date">
+  <select id="getStartDate" parameterType="java.util.Map" resultType="BoardVO">
 	  	<![CDATA[
 		  	select start_date 
 			from coachingtbl
-			where user_id=#{user_id} and board_code=#{board_code} and coaching_num=0 
+			where user_id=#{user_id} and board_code=#{board_code} and coaching_num=1
 		]]>
-		</select>
+	</select>
+	<update id="updateUserAnswer" parameterType="java.util.Map">
+		<![CDATA[
+			update coachingtbl 
+			set useranswer=#{useranswer}
+			where board_code= #{board_code} and user_id=#{user_id} and coaching_num=#{coaching_num};
+		]]>   
+	</update>
   
 </mapper>
   

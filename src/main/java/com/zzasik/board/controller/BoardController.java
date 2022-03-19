@@ -296,11 +296,11 @@ public Map<String,Object> coachingAnswer(MultipartHttpServletRequest multipartRe
 	}
 	System.out.println(CoachingMap.get("coaching_num"));
 	if (CoachingMap.get("coaching_num").equals("1") ) {
-		System.out.println("1���� �Դϴ�. ");
+		System.out.println("1���� �Դϴ�. ");
 		boardService.addcoachingAnswer(CoachingMap);
 		
 	}else {
-		System.out.println("1���� �̻��Դϴ�. ");
+		System.out.println("1���� �̻��Դϴ�. ");
 		boardService.addSeocndcoachingAnswer(CoachingMap);
 		}
 	
@@ -319,15 +319,14 @@ public List<BoardVO> userBoardList(@RequestParam("user_id") String user_id) thro
 	return boardlist;
 }
 
-//n일차 식단 정보 가져오기
+//식단 정보 모두 가져오기
 @GetMapping(value="/board/mealinfo")
-public List<BoardVO> getCoachingContents(@RequestParam("user_id") String user_id,@RequestParam("board_code") int board_code,@RequestParam("coaching_num") int coaching_num) throws Exception {
+public List<BoardVO> getCoachingContents(@RequestParam("user_id") String user_id,@RequestParam("board_code") int board_code) throws Exception {
 	if(board_code==-1) return null;
 	
 	Map<String,Object> map = new HashMap<String,Object>();
 	map.put("user_id", user_id);
 	map.put("board_code", board_code);
-	map.put("coaching_num", coaching_num);
 	List<BoardVO> mealinfo =  boardService.getCoachingContents(map);
 	
 	return mealinfo;
@@ -335,13 +334,25 @@ public List<BoardVO> getCoachingContents(@RequestParam("user_id") String user_id
 
 //서비스 시작 날짜 가져오기
 @GetMapping(value="/board/startdate")
-public Date getStartDate(@RequestParam("user_id") String user_id,@RequestParam("board_code") int board_code) throws Exception {
+public BoardVO getStartDate(@RequestParam("user_id") String user_id,@RequestParam("board_code") int board_code) throws Exception {
 	Map<String,Object> map = new HashMap<String,Object>();
 	map.put("user_id", user_id);
 	map.put("board_code", board_code);
-	Date startdate =  boardService.getStartDate(map);
 	
-	return startdate;
+	return boardService.getStartDate(map);
+}
+
+//유저 -> 코치 메시지 보내기 
+@GetMapping(value="/board/sendtocoach")
+public void sendMessageToCoach(@RequestParam("user_id") String user_id,@RequestParam("board_code") int board_code,@RequestParam("coaching_num") int coaching_num,@RequestParam("useranswer") String useranswer) throws Exception {
+	Map<String,Object> map = new HashMap<String,Object>();
+	map.put("user_id", user_id);
+	map.put("board_code", board_code);
+	map.put("coaching_num", coaching_num);
+	map.put("useranswer", useranswer);
+	
+	boardService.sendMessageToCoach(map);
+	
 }
 
 

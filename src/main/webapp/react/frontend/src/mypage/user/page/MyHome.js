@@ -16,6 +16,7 @@ export default function MyHome(){
     
     const user_id = sessionStorage.getItem("user_id");
     const user_name = sessionStorage.getItem("user_name");
+    const phone = sessionStorage.getItem("phone");
 
     var userType;
     if(sessionStorage.getItem('classification')==1) userType = "회원";
@@ -97,11 +98,19 @@ $(function(){
                         <span>{userType}님 반갑습니다!</span>
                     </div>
                 </div>
-                <div className='box' style={{width:300,height:150,display:"inline-block"}}>
-                    <div className='box_header'>
-                            <h2>회원 탈퇴</h2>
+                <div>
+                    <div className='box' style={{width:300,height:170,display:"inline-block",padding:30}}>
+                        <div className='shortinfo'>
+                            <div className='shortinfo-p'><p>회원 아이디</p><p>회원 이름  &ensp;</p><p>휴대전화&emsp;</p></div>
+                            <div><p>{user_id}</p><p>{user_name}</p><p>{phone}</p></div>
+                        </div>
                     </div>
-                <button className='delAccount' id="delAccoutBtn"  >회원 탈퇴</button>
+                    <div className='box' style={{width:300,height:150,display:"inline-block",marginTop:30}}>
+                        <div className='box_header'>
+                                <h2>회원 탈퇴</h2>
+                        </div>
+                    <button className='delAccount' id="delAccoutBtn"  >회원 탈퇴</button>
+                    </div>
                 </div>
                 {/* {modalOn ? <Modal ></Modal> : ''} */}
                 
