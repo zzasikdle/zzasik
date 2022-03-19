@@ -39,7 +39,6 @@ public class BoardVO {
 	private String phone;
 	private String email;
 	private String survey_code;
-	private String coaching_num;
 	 
 	
 	private int coaching_num;
@@ -50,12 +49,7 @@ public class BoardVO {
 	public void setCoaching_num(int coaching_num) {
 		this.coaching_num = coaching_num;
 	}
-	public String getCoaching_num() {
-		return coaching_num;
-	}
-	public void setCoaching_num(String coaching_num) {
-		this.coaching_num = coaching_num;
-	}
+	
 	public String getUser_answer() {
 		return user_answer;
 	}
