@@ -91,7 +91,7 @@ img{
     .evenet_div_2{width:300px; height:30px;}
 
     .temp_3{float: left; color:black;}
-    .temp_4{float:right; color:rgba(0, 0, 0, 0.527)}
+    .temp_p{float:right; color:rgba(0, 0, 0, 0.527)}
     .join_btn{text-align: center; width: 300px; height: 40px;
         border-radius: 4px;
         height: 48px;
@@ -109,4 +109,29 @@ img{
 
 
 }
-
+.update_btn{
+    margin-left: 0px;
+    border-radius: 4px;
+    height: 48px;
+    line-height: 48px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
+    background: #123;
+    color: #fff;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    font-weight: 800;
+    width: 150px;
+    float:left;
+margin-right: 10px;}
+    .delete_btn{border-radius: 4px;
+        height: 48px;
+        line-height: 48px;
+        box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
+        background: #123;
+        color: #fff;
+        text-align: center;
+        display: block;
+        text-decoration: none;
+        font-weight: 800;
+        width: 150px;}

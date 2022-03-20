@@ -4,12 +4,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import './viewboard.css';
+import { baseUrl } from '../../config'
 const ViewBoard = () => {
-    const baseUrl = "http://localhost:8090";
+
+  
     const [board, setBoard] = useState({});
     const { board_code } = useParams();
-
-
+   
+    
 
     useEffect(() => {
 
@@ -19,8 +21,6 @@ const ViewBoard = () => {
                 .get(baseUrl + '/board/viewBoard', { params: { board_code: board_code } })
                 .then((response) => {
                     setBoard(response.data);
-
-
 
                 })
                 .catch((error) => {
@@ -117,8 +117,7 @@ const ViewBoard = () => {
                 <div class="firimg_div">
                     <div class="secimg_div">
 
-                        <img class="head_img" src={`${baseUrl}/download?board_code=${board_code}&imageFilename=${board.imageFilename}`} alt={board.imageFilename} />
-
+                    <img class="head_img" src='/img/zzasik_image.png'alt="preview" />
                     </div>
                 </div>
                 <div class="content_box">
@@ -127,19 +126,19 @@ const ViewBoard = () => {
                         <div class="event_div_1">
                             <div class="zzsik">ZZASIK</div>
                             <br />
-                            <div class="evenet_div_2"><p class="temp_3">가격</p><p class="temp_4">{board.board_price}원</p></div>
-                            <div class="evenet_div_2"><p class="temp_3">카드혜택</p><p class="temp_4">무이자할부 최대 6개월</p></div>
-                            <div class="evenet_div_2"><p class="temp_3">제공</p><p class="temp_4">맞춤플랜 + 1:1피드백</p></div>
-                            <div class="evenet_div_2"><p class="temp_3">유형</p><p  class="temp_4">{board.meal_type}</p></div>
-                            <div class="evenet_div_2"><p class="temp_3">코치</p><p   class="temp_4">{board.teacher_name}강사님</p></div>
+                            <div class="evenet_div_2"><p class="temp_3">가격</p><p class="temp_p">{board.board_price}원</p></div>
+                            <div class="evenet_div_2"><p class="temp_3">카드혜택</p><p class="temp_p">무이자할부 최대 6개월</p></div>
+                            <div class="evenet_div_2"><p class="temp_3">제공</p><p class="temp_p">맞춤플랜 + 1:1피드백</p></div>
+                            <div class="evenet_div_2"><p class="temp_3">유형</p><p  class="temp_p">{board.meal_type}</p></div>
+                            <div class="evenet_div_2"><p class="temp_3">코치</p><p   class="temp_p">{board.teacher_name}강사님</p></div>
 
 
                             <div>
                                 {
                                     board.user_id === sessionStorage.getItem('user_id')
                                         ?
-                                        <>  <div class="join_btn"><button class="join_btn" onClick={modifyBtn}>수정하기</button></div>
-                                            <div class="join_btn"><button class="join_btn" onClick={delBtn}>삭제하기</button></div>
+                                        <>  <button class="update_btn" onClick={modifyBtn}>수정하기</button>
+                                            <button class="delete_btn" onClick={delBtn}>삭제하기</button>
                                         </>
 
                                         : <div class="join_btn"><button class="join_btn" onClick={joinBtn}>신청하기</button></div>
@@ -197,13 +196,14 @@ const ViewBoard = () => {
                     </div>
                     <div class="asdasd">
                         <div dangerouslySetInnerHTML={{ __html: codes }}></div>
+                        <img class="body_img" src={`${baseUrl}/download?board_code=${board_code}&imageFilename=${board.imageFilename}`} alt={board.imageFilename} />
 
                     </div>
                 </div>
             </div>
+            
 
-
-
+     
         </div>
 
     )
