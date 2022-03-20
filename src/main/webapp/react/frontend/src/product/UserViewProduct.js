@@ -149,7 +149,7 @@ const UserViewProduct = ( ) => {
                     <tr>
                         <td>수량 선택</td>
                         <td>
-                            <input type="number" name="quantity" defaultValue="1" min="1" max={cart.productList[0].pro_available}  />
+                            <input type="number" name="quantity" defaultValue="1" min="1" max={product.pro_available}  />
                         </td>
                     </tr>
                     <tr>
