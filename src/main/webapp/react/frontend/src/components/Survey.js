@@ -7,7 +7,11 @@ import Fade from 'react-reveal/Fade';
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 import { CopyToClipboard } from "react-copy-to-clipboard";
+<<<<<<< HEAD
 import {baseUrl} from "../config"
+=======
+import { baseUrl } from '../config';
+>>>>>>> b65412fd6a780a10fbe5a52e53d4b1e30ae4e147
 
 function Survey() {
 
@@ -21,7 +25,7 @@ function Survey() {
  const[goal,setGoal] = useState('');
 
  const [code,setCode] = useState('');
- const baseUrl = "http://localhost:8090";
+
 
  const [Survey,setSurvey] = useState(new Map());
  const [inputText,setInputText] = useState('');

@@ -3,15 +3,17 @@ import './boardList.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link} from 'react-router-dom';
+import { baseUrl } from "../../config";
 import Pagination from "../../components/notice/Pagination";
-import { baseUrl } from '../../config'
 
 const BoardList = ( ) => {
+
 
     const [ limit] = useState(10);    //한 페이지당 표시할 게시물 개수
     const [ page, setPage] = useState(1);
     const offset = (page - 1) * limit;
    
+
 
     const [ boardList, setBoardList] = useState([]);
     useEffect(( ) => {

@@ -136,20 +136,20 @@ public Map<String, Object> joinBoard(@RequestParam("board_code") String board_co
 	System.out.println("user_id:"+user_id);
 	System.out.println("**********************************joinBoard ����*********************************");
 	Map<String,Object> checkmap = new HashMap<String,Object>();
-	
+	 
 	checkmap.put("user_id", user_id);
 	checkmap.put("board_code", board_code);
 	int resultCheck=boardService.joincheck(checkmap);
 	System.out.println(resultCheck);
 	Map<String,Object> joinMap = new HashMap<String,Object>();
 	if (resultCheck==0){
-
+ 
 		joinMap.put("user_id", user_id);
 		joinMap.put("board_code",board_code);
 		joinMap.put("teacher_id", teacher_id);	
 		boardService.joinBoard(joinMap);
 		joinMap.put("message", "신청완료 ^^");
-		
+		  
 	}else {
 		joinMap.put("message", "이미 신청한 프로그램입니다.");
 	

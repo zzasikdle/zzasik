@@ -17,6 +17,7 @@ import { baseUrl } from '../../config'
 
 
 
+
 const WriteBoard = ( ) => {
      const [board_content ,     setBoard_cotent]= useState('');
      const [board_title, setBoard_title] = useState('');
