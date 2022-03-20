@@ -84,13 +84,13 @@ public ResponseEntity addNewBoard(MultipartHttpServletRequest multipartRequest, 
 			File destDir = new File(ARTICLE_IMAGE_REPO + "\\" + board_code);
 			FileUtils.moveFileToDirectory(srcFile, destDir, true);
 		}
-		map.put("message", "������ �߰��߽��ϴ�.");
+		map.put("message", "글쓰기 완료");
 		map.put("path", "/board/list");
 		resEnt = new ResponseEntity(map, responseHeaders, HttpStatus.CREATED);
 	} catch (Exception e) {
 		File srcFile = new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + imageFilename);
 		srcFile.delete();
-		map.put("message", "������ �߻��߽��ϴ�. �ٽ� �õ��� �ּ���.");
+		map.put("message", "오류발생");
 		map.put("path", "/");
 		resEnt = new ResponseEntity(map, responseHeaders, HttpStatus.CREATED);
 		e.printStackTrace();
@@ -148,17 +148,14 @@ public Map<String, Object> joinBoard(@RequestParam("board_code") String board_co
 		joinMap.put("board_code",board_code);
 		joinMap.put("teacher_id", teacher_id);	
 		boardService.joinBoard(joinMap);
-		joinMap.put("message", "��û�Ϸ� ^^");
+		joinMap.put("message", "신청완료 ^^");
 		
 	}else {
-		joinMap.put("message", "�̹� ��û�� ���α׷��Դϴ�.");
+		joinMap.put("message", "이미 신청한 프로그램입니다.");
 	
 		
 	}
 	return joinMap;
-	
-	
-	
 	
 }
 
@@ -270,14 +267,23 @@ public List<BoardVO> coachingList(@RequestParam("board_code")String  board_code 
 
 //���������� �˻�
 @GetMapping("/board/userdetail")
-public List<BoardVO> userdetail(@RequestParam("user_id")String  user_id ,HttpServletRequest request, 
+public List<BoardVO> userdetail(@RequestParam("user_id")String  user_id ,@RequestParam("board_code") String board_code ,HttpServletRequest request, 
 		HttpServletResponse response) throws Exception {
 	
-	System.out.println("#####################userdetail����##########################################");
+	System.out.println("#####################userdetail##########################################");
 	System.out.println("user_id:"+ user_id);
-	List<BoardVO> userdetailList = boardService.userdetailList(user_id);
+	System.out.println("board_code:"+ board_code);
+	
+	Map<String,Object> map = new HashMap<String,Object>();
+	map.put("user_id", user_id);
+	map.put("board_code", board_code);
+	System.out.println("user_detail"+map);
+	
+	List<BoardVO> userdetailList = boardService.userdetailList(map);
+
 
 	return userdetailList;
+
 }
 
 @PostMapping(value = "/board/coachingAnswer")
@@ -296,17 +302,17 @@ public Map<String,Object> coachingAnswer(MultipartHttpServletRequest multipartRe
 	}
 	System.out.println(CoachingMap.get("coaching_num"));
 	if (CoachingMap.get("coaching_num").equals("1") ) {
-		System.out.println("1���� �Դϴ�. ");
+		System.out.println("1입니다 ");
 		boardService.addcoachingAnswer(CoachingMap);
 		
 	}else {
-		System.out.println("1���� �̻��Դϴ�. ");
+		System.out.println("1이상입니다 ");
 		boardService.addSeocndcoachingAnswer(CoachingMap);
 		}
 	
 	
-//	return CoachingMap;
-	return null;
+return CoachingMap;
+
 
 }
 
@@ -343,6 +349,19 @@ public Date getStartDate(@RequestParam("user_id") String user_id,@RequestParam("
 	
 	return startdate;
 }
+
+@GetMapping(value="/board/userMessage")
+public List<BoardVO> userMessage(@RequestParam("user_id") String user_id,@RequestParam("board_code") int board_code, @RequestParam("coaching_num") int coaching_num) throws Exception {
+	Map<String,Object> map = new HashMap<String,Object>();
+	map.put("user_id", user_id);
+	map.put("board_code", board_code);
+	map.put("coaching_num", coaching_num);
+	System.out.println(map);
+	List<BoardVO> userMessage =  boardService.getuserMessage(map);
+	System.out.println(userMessage);	
+	return userMessage;
+} 
+
 
 
  
