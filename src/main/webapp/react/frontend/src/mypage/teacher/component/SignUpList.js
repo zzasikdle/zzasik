@@ -1,19 +1,21 @@
-/*eslint no-undef: "off"*/
+/*eslint-disable*/
 import { useEffect} from "react";
 import axios from 'axios';
 import React, { useState } from 'react';
 import './SignUpList.css';
 import Pagination from "../../../components/notice/Pagination";
+import { baseUrl } from '../../../config'
 
 //신청 내역
 const SignUpList = () => {
 
-    const baseUrl = "http://localhost:8090";
+   
  
     const [teacherBoard, setTeacherBoard] = useState([]);
     const [selectBox, setselectBox] = useState([]);
     const [usersubit, setUsersubit] = useState([]);
     const [userlist, setUserList] = useState([]);
+    const [isLoading, setLoad] = useState(true); 
     const [ limit] = useState(10);  //한 페이지당 표시할 게시물 개수 // eslint-disable-line no-unused-vars
     const [ page, setPage] = useState(1);
     const offset = (page - 1) * limit;
@@ -24,19 +26,20 @@ const SignUpList = () => {
 
     /* 신청 내역 가져오기 */
     useEffect(() => {
-        async function call() {
+        const call =async () => {
             await axios
                 .get(baseUrl + "/board/teacherBoard", { params: { user_id: sessionStorage.getItem('user_id') } })
                 .then((response) => {
                     console.log(response.data);
                     setTeacherBoard(response.data);
+                    setLoad(false);
                   
                   
                 })
                 .catch((error) => {
                     console.log(error);
                 })
-        }
+        };
 
 
         call();
@@ -93,6 +96,7 @@ const SignUpList = () => {
         var i = 0;
         var boardList = [];
         for (i = 0; i < teacherBoard.length; i++) {
+          
             boardList.push(<option>[{teacherBoard[i].board_code}]{teacherBoard[i].board_title}</option>)
 
         }
