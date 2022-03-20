@@ -5,14 +5,15 @@ import { Link } from 'react-router-dom';
 import React, {useState} from 'react';
 import './LessonList.css';
 import Pagination from "../../../components/notice/Pagination";
+import { baseUrl } from '../../../config'
 
 const LessonList = () => {
 
-    const baseUrl = "http://localhost:8090";
     const [ teacherBoard, setTeacherBoard] = useState([]);
     const user_id = sessionStorage.getItem("user_id");
     const [ limit] = useState(10);    //한 페이지당 표시할 게시물 개수
     const [ page, setPage] = useState(1);
+    const [isLoading, setLoad] = useState(true); 
     const offset = (page - 1) * limit; 
 
     
@@ -20,22 +21,23 @@ const LessonList = () => {
   
     /* 코칭 목록 가져오기 */
     useEffect(()=>{
-        async function call() {
+        const  call = async () => {
             await axios
             .get(baseUrl + "/board/teacherBoard",{params:{user_id:sessionStorage.getItem('user_id')}})
                 .then((response) => {
                     console.log(response.data);
                     setTeacherBoard(response.data);
+                    setLoad(false);
                     console.log(teacherBoard)
                 })
                 .catch((error) => {
                     console.log(error);
                 })
-                }
+                };
     
            
             call();
-        }, [teacherBoard]);
+        }, []);
 
         
 

@@ -1,4 +1,4 @@
-/*eslint no-undef: "off"*/
+/*eslint-disable*/
 import { Link  } from "react-router-dom";
 import axios from "axios";
 import React,{useState} from 'react';
@@ -10,13 +10,14 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertToRaw} from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
+import { faListSquares } from "@fortawesome/free-solid-svg-icons";
+import { baseUrl } from '../../config'
 
 
 
 
 
 const WriteBoard = ( ) => {
-     const baseUrl = "http://localhost:8090";
      const [board_content ,     setBoard_cotent]= useState('');
      const [board_title, setBoard_title] = useState('');
      const [meal_type, setMeal_type] = useState('');
@@ -55,6 +56,29 @@ const WriteBoard = ( ) => {
    
 
     const writeBtn = async()=>{
+      console.log(board_title);
+      if (board_title=="") {
+        alert("제목을 입력해주세요")
+        return false;
+      }
+      else if (meal_type=="") {
+        alert("타입을 입력해주세요")
+        return false;
+      }
+      else if (board_price=="") {
+        alert("가격을 입력해주세요")
+        return false;
+      }
+      else if (imageFilename=="") {
+        alert("사진등록 해주세요")
+        return false;
+      }
+      else if (board_period=="") {
+        alert("기간 입력해주세요")
+        return false;
+      }
+ 
+      else{
         console.log(JSON.stringify(board_content));
     
         const formData = new FormData();
@@ -66,14 +90,10 @@ const WriteBoard = ( ) => {
         formData.append("board_price",board_price);
         formData.append("imageFilename", imageFilename);
         formData.append("board_period",board_period);
+       
+
 
         console.log(Object.values(board_content))
-       
-        
-    
-      
-    
-
         await axios
         .post(baseUrl+"/board/addNewBoard", formData,{
             headers: { "Content-Type": "multipart/form-data; boundary=${formData._boundary" }
@@ -82,7 +102,7 @@ const WriteBoard = ( ) => {
        
         ).then((response)=>{
             
-            alert(response.data.message);
+            alert("등록완료");
               
           
         })
@@ -91,6 +111,7 @@ const WriteBoard = ( ) => {
             alert(error);
             
         })
+      }
 
     } 
     return (
@@ -105,12 +126,7 @@ const WriteBoard = ( ) => {
             <div class="text_div">
             <p class="head_msg">짜식 상품 등록👍🏻</p>
             <hr ></hr>
-         <div class="proimage_text">상품이미지</div>
-            <p id="proimage"><img  alt ="preview" id="preview" /></p>
-            <a href="#!"class="temp"><br/><br/>*상품이미지는 640x640에 최적화 되어 있습니다.<br/><br/>-이미지는 상품등록 시 정사각형으로 짤려서 등록됩니다.<br/><br/>-큰 이미지일 경우 이미지가 깨지는 경우가 발생할 수 있습니다. 
-            <br/><br/>최대 지원 사이즈인 640x640 으로 리사이즈 해서 올려주세요. </a>
-            <p class="choicefile"><input type="file" class="inputfile" name="imageFilename"  onChange={readURL} /></p>
-            <hr></hr>
+      
             <p class="mid_msg">상품 제목<input type="text" id="title" placeholder="제목"  name= "board_title" onChange={(e) => {setBoard_title(e.target.value)}}/></p>
             <p class="mid_msg">상품 타입<input type="text" class="type"placeholder="타입" name="meal_type"  onChange={(e) => {setMeal_type(e.target.value)}}/></p> 
             <p class="mid_msg">상품 가격<input type="text" class="price" placeholder="가격"  name="board_price" onChange={(e) => {setBoard_price(e.target.value)}}/></p>
@@ -148,9 +164,15 @@ const WriteBoard = ( ) => {
           />
                 </div>
 
+                   <div class="proimage_text">상품이미지</div>
+            <p id="writeimage"><img  alt ="preview" id="preview" /></p>
+            <p class="choicefile"><input type="file" class="inputfile" name="imageFilename"  onChange={readURL} /></p>
+            <hr></hr>
+
 
            
                 <Link to="/"  onClick={writeBtn}><button class="click">글쓰기</button></Link>
+           
 
 <p><input type="hidden" class="board_content" placeholder="내용"  name="board_content" onChange={(e) => {setBoard_cotent(e.target.value)}}/></p>
 <p><input type="hidden" placeholder="강사이름"value={sessionStorage.getItem('user_name')} name="teacher_name" /></p>
