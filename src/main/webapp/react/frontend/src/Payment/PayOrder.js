@@ -43,12 +43,14 @@ const PayOrder = ( ) => {
         await axios
         .delete(`${baseUrl}/order/removeOrder?order_code=${code}`)
         .then((response) => {
+			alert(response.data.message);
             history.push(response.data.path);
         })
         .catch((error) => {
             console.log(error);
         })
     }
+    
     
     return(
         <>

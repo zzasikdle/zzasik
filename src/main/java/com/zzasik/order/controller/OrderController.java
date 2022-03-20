@@ -27,6 +27,7 @@ import com.zzasik.myhome.service.MyHomeService;
 import com.zzasik.order.service.OrderService;
 import com.zzasik.order.vo.OrderDetailVO;
 import com.zzasik.order.vo.OrderVO;
+import com.zzasik.product.service.ProductService;
 import com.zzasik.product.vo.ProductVO;
 import com.zzasik.productCart.service.CartService;
 import com.zzasik.productCart.vo.CartVO;
@@ -40,6 +41,9 @@ public class OrderController {
 	
 	@Autowired
 	private CartService cartService;
+	
+	@Autowired
+	private ProductService productService;
 	
 	@Autowired
 	private MyHomeService myhomeService;
@@ -157,7 +161,7 @@ public class OrderController {
 		Map<String, String> map = new HashMap<String, String>();
 		
 		boolean IsAdd = orderService.AddPay(pmap);
-		System.out.println(IsAdd);
+		System.out.println("pp:"+IsAdd);
 		
 		if(IsAdd == false) {
 			System.out.println("상품 결제 실패");
@@ -174,6 +178,9 @@ public class OrderController {
 				dmap.put("user_id", user_id);
 				dmap.put("pro_code", list.get(i).getPro_code());
 				dmap.put("quantity", list.get(i).getQuantity());
+				
+				boolean isis = productService.updateAvail(dmap);
+				System.out.println("pp:"+isis);
 			}
 		}
 		resEnt = new ResponseEntity(map, responseHeader, HttpStatus.CREATED);
@@ -204,10 +211,18 @@ public class OrderController {
 		boolean isDeleted = orderService.deleteProduct(order_code);
 		if(isDeleted == false) {
 			System.out.println("주문 삭제 실패");
+<<<<<<< HEAD
+			map.put("message", "오류가 발생했습니다. 다시 시도해주세요.");
+=======
+>>>>>>> refs/remotes/origin/main
 			map.put("path", "/");
 		} else {
 			System.out.println(order_code + "번 주문 삭제");
+<<<<<<< HEAD
+			map.put("message", "주문이 취소되었습니다.");
+=======
       map.put("message", "주문이 취소되었습니다.");
+>>>>>>> refs/remotes/origin/main
 			map.put("path", "/");
 		}
 		resEnt = new ResponseEntity(map, responseHeader, HttpStatus.CREATED);
