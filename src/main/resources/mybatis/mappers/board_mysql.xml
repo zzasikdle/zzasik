@@ -73,8 +73,8 @@
 	   <select id="joinBoard" parameterType="java.util.Map">
 
      	<![CDATA[
-		INSERT into joincart(user_id,board_code,teacher_id,joindate)
-		VALUES (#{user_id},#{board_code},#{teacher_id},current_date())
+		INSERT into joincart(user_id,board_code,teacher_id)
+		VALUES (#{user_id},#{board_code},#{teacher_id})
 	]]>   
   </select>
 	
