@@ -1,12 +1,21 @@
 package com.zzasik.order.vo;
 
+import java.sql.Date;
+
 import org.springframework.stereotype.Component;
 
 @Component("payVO")
 public class PayVO {
+	private Date pay_time;
 	private String user_id;
 	private int order_code;
 	
+	public Date getPay_time() {
+		return pay_time;
+	}
+	public void setPay_time(Date pay_time) {
+		this.pay_time = pay_time;
+	}
 	public String getUser_id() {
 		return user_id;
 	}

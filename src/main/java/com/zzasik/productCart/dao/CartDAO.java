@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.zzasik.product.vo.ProductVO;
 import com.zzasik.productCart.vo.CartVO;
@@ -14,7 +15,8 @@ import com.zzasik.productCart.vo.CartVO;
 public interface CartDAO {
 	public List selectCartList(String user_id);
 	public int insertCart(Map<String, Object> cartMap);
-	public int deleteCart(String user_id, int pro_code);
+	public int deleteCart(Map<String, Object> map);
+	public int deleteAllCart(String user_id);
 	public int selectTotalCount();
 	public int selectCountCart(Map<String, Object> CartMap);
 	public int updateCart(Map<String, Object> cartMap);

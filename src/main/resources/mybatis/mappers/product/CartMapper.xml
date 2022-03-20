@@ -27,48 +27,71 @@
 
 	<!-- 장바구니 목록 -->
 	<select id="selectCartList" resultMap="cartResult">
+	<![CDATA[
 	SELECT *
 	FROM product_cart c
 	JOIN producttbl p ON c.pro_code = p.pro_code
 	WHERE c.user_id = #{user_id}
+	]]> 
 	</select>
 	
 	<!-- 기존 장바구니 상품과 겹치는지 확인 -->
 	<select id="selectCountCart" resultType="int">
+	<![CDATA[
 	SELECT count(*)
 	FROM product_cart
 	WHERE user_id = #{user_id} AND pro_code = #{pro_code}
+	]]>
 	</select>
 	
 	<!-- 장바구니 상품 추가 -->
 	<insert id="insertCart" parameterType="java.util.Map">
+	<![CDATA[
 	INSERT INTO product_cart (user_id, pro_code, quantity)
 	VALUES (#{user_id}, #{pro_code}, #{quantity})
+	]]>
 	</insert>
 	
 	<!-- 장바구니 상품 추가 (같은 상품이 있을 때) -->
 	<insert id="updateCart" parameterType="java.util.Map">
+	<![CDATA[
 	UPDATE product_cart
 	SET quantity = quantity + #{quantity}
 	WHERE user_id = #{user_id} AND pro_code = #{pro_code}
+	]]>
 	</insert>
 	
 	<!-- 장바구니 수량 수정 -->
 	<insert id="modifyCart" parameterType="java.util.Map">
+	<![CDATA[
 	UPDATE product_cart
 	SET quantity = #{quantity}
 	WHERE user_id = #{user_id} AND pro_code = #{pro_code}
+	]]>
 	</insert>
 	
 	<!-- 장바구니 상품 삭제 -->
-	<delete id="deleteCart">
+	<delete id="deleteCart" parameterType="java.util.Map">
+	<![CDATA[
 	DELETE
 	FROM product_cart
 	WHERE user_id = #{user_id} AND pro_code = #{pro_code}
+	]]>
+	</delete>
+	
+	<!-- 장바구니 상품 전체 삭제 -->
+	<delete id="deleteAllCart">
+	<![CDATA[
+	DELETE
+	FROM product_cart
+	WHERE user_id = #{user_id}
+	]]>
 	</delete>
 	
 	<select id="selectTotalCount" resultType="int">
+	<![CDATA[
 	SELECT count(*)
 	FROM product_cart
+	]]>
 	</select>
 </mapper>

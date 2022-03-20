@@ -1,14 +1,21 @@
+/*eslint-disable*/
+
+
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { baseUrl } from "../config";
 
-const OrderProduct = ( ) => {
+const CheckInfo = ( ) => {
+
+    const history = useHistory();
 
     const [ memInfomap, setMemInfomap ] = useState([]);
     const [ addressList, setAddressList ] = useState({});
 
     const id = sessionStorage.getItem("user_id");
+    const code = sessionStorage.getItem("order_code");
 
     useEffect(( ) => {
         axios
@@ -23,6 +30,17 @@ const OrderProduct = ( ) => {
             console.log(error);
         })
     }, []);
+
+    const removeOrder = async() => {
+        await axios
+        .delete(`${baseUrl}/order/removeOrder?order_code=${code}`)
+        .then((response) => {
+            history.push(response.data.path);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
 
     return(
         <>
@@ -67,13 +85,10 @@ const OrderProduct = ( ) => {
             </table>
         </div>
 
-        <div>
-            <p>위 주문 내용을 확인하였으며, 회원 본인은 개인정보 이용 및 제공 및 결제에 동의합니다.</p>
-        </div>
-
-        <Link to="#">결제하기</Link>
+        <Link to="/" onClick={removeOrder}>취소</Link>
+        <Link to="/order/pay">다음</Link>
         </>
     )
 }
 
-export default OrderProduct;
+export default CheckInfo;
