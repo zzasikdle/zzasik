@@ -40,13 +40,13 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	@Autowired
+	@Autowired 
 	private BoardVO boardVO;
 	
 	public BoardController() { 
 		
 	}
-  
+   
 
 	@GetMapping(value = "/board/listBoards")
 	@PostMapping(value = "/board/listBoards")
