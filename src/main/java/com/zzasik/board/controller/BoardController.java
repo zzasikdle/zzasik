@@ -238,7 +238,7 @@ public List<BoardVO> searchboard(@RequestParam("board_code")String  board_code, 
 	
 	return TeacheruserList;
 }
-
+ 
 
 //신청내역에서 회원 승인버튼 
 @GetMapping(value="/board/subinsert")
