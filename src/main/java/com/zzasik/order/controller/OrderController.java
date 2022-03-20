@@ -211,18 +211,11 @@ public class OrderController {
 		boolean isDeleted = orderService.deleteProduct(order_code);
 		if(isDeleted == false) {
 			System.out.println("주문 삭제 실패");
-<<<<<<< HEAD
 			map.put("message", "오류가 발생했습니다. 다시 시도해주세요.");
-=======
->>>>>>> refs/remotes/origin/main
 			map.put("path", "/");
 		} else {
 			System.out.println(order_code + "번 주문 삭제");
-<<<<<<< HEAD
 			map.put("message", "주문이 취소되었습니다.");
-=======
-      map.put("message", "주문이 취소되었습니다.");
->>>>>>> refs/remotes/origin/main
 			map.put("path", "/");
 		}
 		resEnt = new ResponseEntity(map, responseHeader, HttpStatus.CREATED);
