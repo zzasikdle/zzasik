@@ -23,10 +23,10 @@ public interface BoardDAO {
 	public List selectTeacherBoard(String user_id) throws DataAccessException;
 	public void delBoard (Map delMap) throws DataAccessException;
 	public void modifyBoard(Map boardMap) throws DataAccessException;
-	public List SignuserList(String board_code) throws DataAccessException;
+	public List SignuserList(int board_code) throws DataAccessException;
 	public void suganginsert(Map joinMap) throws DataAccessException;
 	public int countJoinUser(Map checkmap) throws DataAccessException;
-	public List coachingList(String board_code) throws DataAccessException;
+	public List coachingList(int board_code) throws DataAccessException;
 	public List userlist(Map map) throws DataAccessException;
 	public void addCoachingAnswer(Map CoachingMap)throws DataAccessException;
 	public void addSecondCoachingAnswer(Map CoachingMap)throws DataAccessException;

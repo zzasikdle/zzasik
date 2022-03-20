@@ -230,7 +230,7 @@ public ResponseEntity modifyBoard(MultipartHttpServletRequest multipartRequest, 
 
 //신청내역에서 회원리스트 출력 
 @GetMapping("/board/searchboard")
-public List<BoardVO> searchboard(@RequestParam("board_code")String  board_code, HttpServletRequest request, 
+public List<BoardVO> searchboard(@RequestParam("board_code")int  board_code, HttpServletRequest request, 
 		HttpServletResponse response) throws Exception {
 	System.out.println(board_code);
 	
@@ -255,7 +255,7 @@ public void subinsert(@RequestParam("user_id") String user_id , @RequestParam("b
 
 //코칭리스트에서 회원리스트 출력
 @GetMapping("/board/coachingList")
-public List<BoardVO> coachingList(@RequestParam("board_code")String  board_code ,HttpServletRequest request, 
+public List<BoardVO> coachingList(@RequestParam("board_code")int  board_code ,HttpServletRequest request, 
 		HttpServletResponse response) throws Exception {
 	System.out.println("board_code:" +board_code);
 	List<BoardVO> coachingList = boardService.CoachingList(board_code);

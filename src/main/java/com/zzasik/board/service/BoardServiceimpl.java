@@ -69,7 +69,7 @@ public class BoardServiceimpl implements BoardService {
 	
 	
 	@Override
-	public List<BoardVO> TeacheruserList(String board_code) throws Exception {
+	public List<BoardVO> TeacheruserList(int board_code) throws Exception {
 		List<BoardVO> userList = boardDAO.SignuserList(board_code);
 		return userList;
 	}
@@ -91,7 +91,7 @@ public class BoardServiceimpl implements BoardService {
 	}
 	
 	@Override
-	public List<BoardVO> CoachingList(String board_code) throws Exception {
+	public List<BoardVO> CoachingList(int board_code) throws Exception {
 		List<BoardVO> coachingUserList = boardDAO.coachingList(board_code);
 		return coachingUserList;
 	}
