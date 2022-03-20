@@ -73,7 +73,8 @@ const Cart = () => {
                 })
     }
 
-    const removeCart = async(e) => {        
+    const removeCart = async(e) => {       
+        console.log(e.target.hasAttribute("data-key")); 
         await axios
         .delete(`${baseUrl}/cart/removeProduct?user_id=${id}&pro_code=${e.target.getAttribute("data-key")}`)
         .then((response) => {
@@ -191,9 +192,7 @@ const Cart = () => {
                                         </td>
                                         <td>{(cart.productList[0].pro_price)}</td>
                                         <td>
-                                            <input type="button" id="delBtn" value={cart.pro_code} style={{display:"none"}} />
-                                            <input type="button" data-key={cart.pro_code} onClick={removeCart} className="deleteBtn" />
-                                        </td>
+                                            <input type="button" id="delBtn" data-key={cart.pro_code} value="삭제" onClick={removeCart} className="deleteBtn" />                                        </td>
                                     </tr>
                                 )
                             })
@@ -206,7 +205,7 @@ const Cart = () => {
                     <div id="totalPrice"></div>
                 </div>
 
-                <Link to="/shop/product">계속 쇼핑하기</Link>
+                <Link to="/shop">계속 쇼핑하기</Link>
                 <input type="button" value="결제하기" onClick={goToCheck} />
             </div>
         </div>

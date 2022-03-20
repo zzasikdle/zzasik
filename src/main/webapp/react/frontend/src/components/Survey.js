@@ -7,7 +7,9 @@ import Fade from 'react-reveal/Fade';
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 import { CopyToClipboard } from "react-copy-to-clipboard";
+
 import { baseUrl } from "../config";
+
 
 function Survey() {
 
@@ -21,7 +23,7 @@ function Survey() {
  const[goal,setGoal] = useState('');
 
  const [code,setCode] = useState('');
- 
+
 
  const [Survey,setSurvey] = useState(new Map());
  const [inputText,setInputText] = useState('');
@@ -564,8 +566,8 @@ function Submit1(e) {
       ?
       <div className='Survey-btn'>
       <div className='Survey-title'>
-      <h4 >설문코드 : {code}</h4>
-      <CopyToClipboard text="테스트코드" onCopy={()=>{copyClicked();}}>
+      <h4 >설문코드 : {code} </h4>
+      <CopyToClipboard text={code} onCopy={()=>{copyClicked();}}>
           <Button disabled={clicked} className={clicked === false ? 'btn btn-copy' : 'btn-copy btn-copy-clicked'}>{copy}</Button>
       </CopyToClipboard>  
 

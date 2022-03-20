@@ -1,68 +1,93 @@
-/*eslint-disable*/
-
-
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react"
+import { useHistory } from "react-router-dom";
 import { baseUrl } from "../config";
 
-const OrderView = ( ) => {
+const Payment = ( ) => {
+
+    const history = useHistory();
 
     const id = sessionStorage.getItem("user_id");
     const code = sessionStorage.getItem("order_code");
 
-    const [detailList, SetDetailList] = useState([]);
+    const [memInfomap, setMemInfomap] = useState([]);
+    const [addressList, setAddressList] = useState([]);
 
-    useEffect(() => {
-        async function call() {
-            await axios
-            .get(`${baseUrl}/order/viewOrder?user_id=${id}&order_code=${code}`)
-            .then((response)=>{
-                console.log(response.data);
-                SetDetailList(response.data);
+    useEffect(()=> {
+        const jquery = document.createElement("script");
+        jquery.src = "https://code.jquery.com/jquery-1.12.4.min.js";
+        const iamport = document.createElement("script");
+        iamport.src = "https://cdn.iamport.kr/js/iamport.payment-1.1.8.js";
+        document.head.appendChild(jquery);
+        document.head.appendChild(iamport);
+    }, []);
+
+    useEffect(( ) => {
+        axios
+        .get(baseUrl + '/order/userInfo', {params:{user_id:id}})
+        .then((response) => {
+            console.log(response.data);
+            setMemInfomap(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }, []);
+
+    const onClickPayment = () => {
+        const {IMP} = window;
+        IMP.init('imp71688402');
+
+        const name = memInfomap.user_name;
+        const tel = memInfomap.phone;
+        const email = memInfomap.email;
+        const price = sessionStorage.getItem("order_price");
+        console.log(price);
+
+        const data = {
+            pg: 'html5_inicis',                                     // PG사
+            pay_method: 'card',                                     // 결제수단
+            merchant_uid: `mid_${new Date().getTime()}`,            // 주문번호
+            amount: price,                              // 결제금액
+            name: "짜식 결제_"+code,                    // 주문명
+            buyer_name: name,                       // 구매자 이름
+            buyer_tel: tel,                            // 구매자 전화번호
+            buyer_email: email,                         // 구매자 이메일
+        };
+
+        IMP.request_pay(data, callback);
+    }
+
+    const callback = (response) => {
+        const {
+            success,
+            error_msg,
+            imp_uid,
+            merchant_uid,
+            pay_method,
+            status
+        } = response;
+        
+        if (success) {
+            axios
+            .get(`${baseUrl}/order/payOrder?user_id=${id}&order_code=${code}`)
+            .then((response) => {
+                alert('결제 성공');
+                history.push(response.data.path);
             })
             .catch((error) => {
                 console.log(error);
             })
+        } else {
+            alert(`결제 실패: ${error_msg}`);
         }
-        call();
-    }, []);
+    }
 
     return(
-        <div>
-            <h1>주문 상세보기</h1>
-            <hr />
-                <table>
-                    <thead>
-                        <tr>
-                            <th>상품</th>
-                            <th>상품명</th>
-                            <th>수량</th>
-                            <th>가격</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {detailList.length === 0 ?
-                            null
-                            :
-                            detailList.map((order, key) => {
-                                return(
-                                    <tr key={key}>
-                                        {console.log(order)}
-                                        <td><img src={order.productList[0].pro_img} style={{width:"100px", height:"100px"}} /></td>
-                                        <td>
-                                            <Link to={`/shop/product/view/${order.pro_code}`} style={{textDecoration:"none"}}>{order.productList[0].pro_name}</Link>
-                                        </td>
-                                        <td>{order.quantity}</td>
-                                        <td>{(order.productList[0].pro_price)}</td>
-                                    </tr>
-                                )
-                            })
-                        }
-                    </tbody>
-                </table>
-        </div>
-    )
+        <>
+            <button onClick={onClickPayment}>진짜 결제</button>
+        </>
+    );
 }
 
-export default OrderView;
+export default Payment;
