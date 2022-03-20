@@ -265,6 +265,7 @@ export default function MyLesson(){
                             mealList.length !== 0 ?
                                 mealList.map((meal,key)=>{
                                 if(key===0&&meal.breakfast===null) return <p style={{margin:"150px auto",color:"#F9B514",fontWeight:700}}>아직 진행된 식단이 없습니다</p>;
+                                else if(key+1===dayCount) return false;
                                 return(
                                     <li class="item"><button className="dayBtn" onClick={()=>onClickDayBtn(meal,key+1)}>{key+1}일차</button></li>
                                     )
