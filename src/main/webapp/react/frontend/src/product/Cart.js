@@ -183,7 +183,7 @@ const Cart = () => {
                                 return(
                                     <tr key={key}>
                                         {/* <td><input type="checkbox" value={cart.pro_code} /></td> */}
-                                        <td style={{align:"center", verticalAlign:"middle"}}><img src={cart.productList[0].pro_img} style={{width:"100px", height:"100px"}} /></td>
+                                        <td style={{align:"center", verticalAlign:"middle", width:"120px", height:"120px"}}><img src={cart.productList[0].pro_img} style={{width:"100px", height:"100px"}} /></td>
                                         <td style={{align:"center", verticalAlign:"middle"}}>
                                             <Link to={`/shop/view/${cart.pro_code}`} style={{textDecoration:"none"}}>{cart.productList[0].pro_name}</Link>
                                         </td>
