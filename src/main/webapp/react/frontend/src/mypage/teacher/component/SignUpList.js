@@ -59,7 +59,7 @@ const SignUpList = () => {
             .get(baseUrl + "/board/searchboard", {
                 params:
                 {
-                    user_id: sessionStorage.getItem('user_id'),
+                   
                     board_code:search_boardNum
 
                 }
