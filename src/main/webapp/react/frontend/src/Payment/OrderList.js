@@ -33,21 +33,21 @@ const OrderList = ( ) => {
         console.log(orderList[e]);
         const order_code = orderList[e].order_code;
         sessionStorage.setItem("order_code", order_code);
-        history.push(`/order/view/${order_code}`);
+        history.push(`/order/view/:${order_code}`);
     }
 
     return(
         <div>
-            <div>
+            <div style={{padding:"20px"}}>
                 <h1>주문내역</h1>
                 <hr />
                     <table>
                         <thead>
                             <tr>
-                                <th>주문번호</th>
-                                <th>날짜</th>
-                                <th>가격</th>
-                                <th>배송 상태</th>
+                                <th style={{align:"center"}}>주문번호</th>
+                                <th style={{align:"center"}}>날짜</th>
+                                <th style={{align:"center"}}>가격</th>
+                                <th style={{align:"center"}}>배송 상태</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -63,10 +63,10 @@ const OrderList = ( ) => {
                                 orderList.map((order, key) => {
                                     return(
                                             <tr id={key} key={key} onClick={(e) => goToDetail(e.target.getAttribute("id"))} style={{cursor:"pointer"}}>
-                                                <td id={key}>{order.order_code}</td>
-                                                <td id={key}>{order.order_time}</td>
-                                                <td id={key}>{order.order_price}</td>
-                                                <td id={key}>{order.order_status}</td>
+                                                <td id={key} style={{align:"center"}}>{order.order_code}</td>
+                                                <td id={key} style={{align:"center"}}>{order.order_time}</td>
+                                                <td id={key} style={{align:"center"}}>{order.order_price}</td>
+                                                <td id={key} style={{align:"center"}}>{order.order_status}</td>
                                             </tr>
                                     )
                                 })

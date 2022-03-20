@@ -1,3 +1,5 @@
+/*eslint-disable*/
+
 import './UploadProduct.css';
 import axios from "axios";
 import { useState } from "react";
@@ -108,8 +110,8 @@ const UploadProduct = ( ) => {
                     </tr>
                     <tr>
                         <td>
-                            <Link to="product/list" onClick={handleWrite}>글쓰기</Link>
-                            <Link to="product/list">취소</Link>
+                            <Link to="product/list" onClick={handleWrite}><button type='button'>글쓰기</button></Link>
+                            <Link to="product/list"><button type="button">취소</button></Link>
                         </td>
                     </tr>
                 </tbody>
