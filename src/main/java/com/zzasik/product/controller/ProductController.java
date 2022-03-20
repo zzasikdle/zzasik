@@ -143,7 +143,7 @@ public class ProductController {
 			map.put("path", "/product/view/"+pro_code);
 		} else {
 			System.out.println(pro_code + "번 상품 삭제");
-			map.put("message", "글을 삭제했습니다.");
+			map.put("message", "상품을 삭제했습니다.");
 			map.put("path", "/product");
 		}
 		resEnt = new ResponseEntity(map, responseHeader, HttpStatus.CREATED);
