@@ -101,7 +101,12 @@
   
     <select id="SignuserList" resultMap="BoardsResult">
     <![CDATA[
-SELECT user_id , joindate from joincart where board_code = #{board_code}
+SELECT J.user_id, J.joindate
+from joincart J
+ LEFT join coachingtbl C 
+ ON C.user_id = J.user_id AND C.board_code = #{board_code}
+ WHERE J.board_code = #{board_code} AND C.board_code is NULL
+
     ]]>
   </select> 
   
