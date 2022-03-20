@@ -31,7 +31,7 @@ import com.zzasik.product.vo.ProductVO;
 import com.zzasik.productCart.service.CartService;
 import com.zzasik.productCart.vo.CartVO;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("*")
 @RestController("orderController")
 public class OrderController {
 
