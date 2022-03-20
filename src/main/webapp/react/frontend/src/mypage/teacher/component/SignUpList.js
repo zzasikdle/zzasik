@@ -8,9 +8,6 @@ import { baseUrl } from '../../../config'
 
 //신청 내역
 const SignUpList = () => {
-
-   
- 
     const [teacherBoard, setTeacherBoard] = useState([]);
     const [selectBox, setselectBox] = useState([]);
     const [usersubit, setUsersubit] = useState([]);
@@ -35,16 +32,13 @@ const SignUpList = () => {
                     console.log(error);
                 })
         };
-
-
         call();
 
 
     }, []);
 
 //수강인원 검색버튼
-    const search_btn = async () => {
-        var i = 0;
+     const search_btn = async () => {
         var search_boardNum = "";
         var index = selectBox.indexOf("]");
         search_boardNum = selectBox.substring(1, index);
@@ -55,37 +49,27 @@ const SignUpList = () => {
                 params:
                 {
                     board_code:search_boardNum
-
                 }
             }
-
             ).then((response) => {
-                console.log(response.data)
+                console.log(response.data);
              
-                setUserList(response.data)
+                setUserList(response.data);
                 // for (i = 0; i < response.data.length; i++) {
                 //     setUsersubit(response.data[i].user_id);
                 //     console.log(i+"번:"+response.data[i].user_id)
                 //     console.log(usersubit);
 
 
-                // }
-
+                // } 
             })
 
             .catch((error) => {
                 console.log(error)
                 alert(error);
-
-
-
             })
         };
-
-
             
-
-
     function Boardlist() {
         var i = 0;
         var boardList = [];
@@ -105,25 +89,17 @@ const SignUpList = () => {
 
     //수강확인 버튼 
     const onClickHandler = (name) =>{
-        
         var search_boardNum = "";
         var index = selectBox.indexOf("]");
         search_boardNum = selectBox.substring(1, index);
-     
         console.log(name)
         console.log(search_boardNum)
-
         axios
             .get(baseUrl + "/board/subinsert", {
                 params:
                 {
                     user_id: name,
                     board_code:search_boardNum
-                        
-                   
-
-
-
                 }
             }
 

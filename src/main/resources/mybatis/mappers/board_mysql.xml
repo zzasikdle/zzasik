@@ -96,16 +96,17 @@
      	<![CDATA[
 		UPDATE boardtbl SET  board_title=#{board_title},board_content=#{board_content},meal_type=#{meal_type},board_price=#{board_price},imageFilename=#{imageFilename} WHERE board_code=#{board_code}
 	]]>   
-  </select>
+  </select> 
   
   
-    <select id="SignuserList" resultMap="BoardsResult">
+    <select id="SignuserList" resultMap="BoardsResult" parameterType="int">
     <![CDATA[
 SELECT J.user_id, J.joindate
 from joincart J
  LEFT join coachingtbl C 
- ON C.user_id = J.user_id AND C.board_code = #{board_code}
+ ON C.user_id = J.user_id AND C.board_code = #{board_code}  
  WHERE J.board_code = #{board_code} AND C.board_code is NULL
+
     ]]>
   </select> 
   
@@ -123,9 +124,9 @@ from joincart J
 	]]>   
   </select>
   
-   <select id="coachingList" resultType="BoardVO" parameterType="String">
+   <select id="coachingList" resultType="BoardVO" parameterType="int">
     <![CDATA[
-   SELECT * 
+  SELECT * 
 from coachingtbl AS C
 INNER JOIN boardtbl AS B
 ON C.board_code = B.board_code 
