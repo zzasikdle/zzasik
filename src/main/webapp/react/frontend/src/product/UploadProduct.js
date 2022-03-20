@@ -1,7 +1,6 @@
 /*eslint-disable*/
 
 
-
 import './UploadProduct.css';
 import axios from "axios";
 import { useState } from "react";
