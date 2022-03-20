@@ -8,6 +8,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.zzasik.member.vo.MemberVO;
 import com.zzasik.survey.vo.SurveyVO;
 
 @Mapper
@@ -16,7 +17,7 @@ public interface SurveyDAO {
 	
 	public void addSurvey(SurveyVO surveyVO) throws DataAccessException;
 	
-	public SurveyVO selectSurvey(int code)throws DataAccessException;
+	public SurveyVO selectSurvey(MemberVO memberVO)throws DataAccessException;
 	
-	public List surveylist(String keyword1, String keyword2, String keyword3) throws DataAccessException;
+	public List surveylist(SurveyVO surveyVO) throws DataAccessException;
 }

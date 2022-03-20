@@ -13,8 +13,6 @@ const UserProductList = ( ) => {
 
     const [ productList, setProductList ] = useState([]);
 
-    const history = useHistory();
-
     useEffect(( ) => {
         axios
         .get(baseUrl + '/product/listProducts')
@@ -26,8 +24,6 @@ const UserProductList = ( ) => {
             console.log(error);
         })
     }, []);
-
-    let result = [];
 
     return (
         <div id="con">

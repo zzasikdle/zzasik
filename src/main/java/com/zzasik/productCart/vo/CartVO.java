@@ -9,8 +9,8 @@ import com.zzasik.product.vo.ProductVO;
 @Component("cartVO")
 public class CartVO {
 	private String user_id;
-	private int pro_code;
-	private int quantity;
+	private String pro_code;
+	private String quantity;
 	
 	private List<ProductVO> productList;
 	
@@ -20,16 +20,16 @@ public class CartVO {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-	public int getPro_code() {
+	public String getPro_code() {
 		return pro_code;
 	}
-	public void setPro_code(int pro_code) {
+	public void setPro_code(String pro_code) {
 		this.pro_code = pro_code;
 	}
-	public int getQuantity() {
+	public String getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(int quantity) {
+	public void setQuantity(String quantity) {
 		this.quantity = quantity;
 	}
 	public List<ProductVO> getProductList() {

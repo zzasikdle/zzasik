@@ -12,6 +12,22 @@
 		<result property="pro_count" column="pro_count" />
 	</resultMap>
 	
+	<resultMap type="orderVO" id="orderResult">
+		<result property="order_code" column="order_code" />
+		<result property="order_time" column="order_time" />
+		<result property="order_status" column="order_status" />
+		<result property="order_price" column="order_price" />
+		<result property="user_id" column="user_id" />
+		<result property="quantity" column="quantity" />
+		<result property="pro_code" column="pro_code" />
+	</resultMap>
+	
+	<resultMap type="payVO" id="payResult">
+	<result property="pay_time" column="pay_time" />
+		<result property="user_id" column="user_id" />
+		<result property="order_code" column="order_code" />
+	</resultMap>
+	
 	<sql id="productColumns">
 		pro_code,
 		pro_name,
@@ -24,10 +40,9 @@
 	
 	<!-- 상품 목록 -->
 	<select id="selectProductList" parameterType="productVO" resultMap="productResult">
-	SELECT *
-	FROM producttbl
-	WHERE pro_available > 0
-	ORDER BY pro_code DESC
+	<![CDATA[
+	SELECT * FROM producttbl WHERE pro_available > 0 ORDER BY pro_code DESC
+	]]>
 	</select>
 	
 	<!-- 상품 추가 -->
@@ -41,46 +56,49 @@
 	
 	<!-- 상품 상세 정보 -->
 	<select id="selectProductOne" resultMap="productResult">
-	SELECT *
-	FROM producttbl
-	WHERE pro_code = #{pro_code}
+	<![CDATA[
+	SELECT * FROM producttbl WHERE pro_code = #{pro_code}
+	]]>
 	</select>
 	
 	<!-- 상품 정보 수정 -->
 	<update id="updateProduct">
+	<![CDATA[
 	UPDATE producttbl
-	SET pro_name = #{pro_name}, pro_class = #{pro_class},
-	pro_available = #{pro_available}, pro_price = #{pro_price},
-	pro_img = #{pro_img}, pro_detail = #{pro_detail}
+	SET pro_name = #{pro_name}, pro_class = #{pro_class}, pro_available = #{pro_available}, pro_price = #{pro_price}, pro_detail = #{pro_detail}
 	WHERE pro_code = #{pro_code}
+	]]>
 	</update>
 	
 	<!-- 상품 삭제 -->
 	<delete id="deleteProduct">
-	DELETE
-	FROM producttbl
-	WHERE pro_code = #{pro_code}
+	<![CDATA[
+	DELETE FROM producttbl WHERE pro_code = #{pro_code}
+	]]>
 	</delete>
 	
 	<!-- 조회수 증가 -->
 	<update id="updateCount">
-	UPDATE producttbl
-	SET pro_count = pro_count + 1
-	WHERE pro_code = #{pro_code}
+	<![CDATA[
+	UPDATE producttbl SET pro_count = pro_count + 1 WHERE pro_code = #{pro_code}
+	]]>
 	</update>
 	
 	<!-- 수량 감소 -->
 	<update id="updateAvail">
-	UPDATE producttbl
-	SET pro_available = pro_available - #{pro_available}
+	<![CDATA[
+	UPDATE producttbl SET pro_available = pro_available - (
+	SELECT quantity FROM ordertbl o JOIN paytbl p ON o.order_code = p.order_code
+	WHERE o.order_code = #{order_code} AND pro_code = #{pro_code}
+	)
 	WHERE pro_code = #{pro_code}
+	]]>
 	</update>
 	
 	<select id="selectTotalCount" resultType="int">
-	SELECT count(*)
-	FROM producttbl
+	<![CDATA[
+	SELECT count(*) FROM producttbl
+	]]>
 	</select>
-	
-	<!-- 검색 -->
 
 </mapper>

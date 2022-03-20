@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import { useParams } from "react-router-dom";
+import { baseUrl } from "../../config";
 import axios from 'axios';
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -28,7 +29,7 @@ const NoticeEdit = () => {
     //글 서버에서 가져오기
     useEffect(()=>{
         axios 
-        .get('/notice/view',{
+        .get(baseUrl+'/notice/view',{
             params:{
               notice_code: notice_code
             }
@@ -75,7 +76,7 @@ const NoticeEdit = () => {
       }else{
         //글 서버로 보내기
         axios 
-        .get('/notice/edit',{
+        .get(baseUrl+'/notice/edit',{
             params:{
               notice_code : notice_code,
               title : inputValue,

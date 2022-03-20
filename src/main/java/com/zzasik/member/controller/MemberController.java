@@ -27,7 +27,7 @@ import com.zzasik.member.service.MemberService;
 import com.zzasik.member.vo.AddressVO;
 import com.zzasik.member.vo.MemberVO;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "http://49.50.160.29:3000")
 @RestController
 public class MemberController {
 	
@@ -44,7 +44,7 @@ public class MemberController {
 	
 	/* 로그인 */
 	@PostMapping("/member/login")
-	public  Map<String, Object> loginCheck(@RequestBody MemberVO memberVO , HttpServletRequest request) throws Exception {
+	public  Map<String, Object> loginCheck(@RequestBody MemberVO memberVO) throws Exception {
 		// json 형태로 받기위해서 RequestBody로 함. 
 		// object로 한 이유: 다양한 형태의 값을받기위함.
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -66,8 +66,7 @@ public class MemberController {
 				// id만 가지고 유저 정보 가져오기 . 어차피 비밀번호는 해시로 일치여부 걸렀음.
 				MemberVO dto = memberService.login(memberVO);
 				
-				HttpSession session = request.getSession();
-				session.setAttribute("survey_code", dto.getSurvey_code());
+				
 				map.put("user_id", memberVO.getUser_id());
 				map.put("success", success);
 				map.put("user_name", dto.getUser_name());
@@ -105,7 +104,7 @@ public class MemberController {
 	@PostMapping("/member/memberIdCheck")
 	public  Map<String, Object> memberIdCheck(@RequestBody MemberVO memberVO ) throws Exception {
 	
-		
+		System.out.println(memberVO.getUser_id());
 		String user_id = memberVO.getUser_id(); 
 		
 		
@@ -205,11 +204,15 @@ public class MemberController {
 	   return addressVO;
 	}
 	
-	 // 배송지 수정
+	 // 배송지 수정 ( 회원이 자기 정보 수정 )
 	@PostMapping("/member/updateAddress") 
 	public  Map<String, Object> updateAddress(@RequestBody AddressVO addressVO ) throws Exception {
 		
-	
+		System.out.println("user_id_admin : "+addressVO.getUser_id()); // 정보 바꿀 회원 ID
+		System.out.println("addr_receiver_admin : "+addressVO.getAddr_receiver()); // 많은 배송지리스트중 수령인으로 분류하기.
+		System.out.println("Revisedreceiver"+addressVO.getAddr_Revisedreceiver()); // 새로 바꾼 수령인.
+		
+		
 		int addResult = memberService.updateAddress(addressVO); // 배송지 저장.
 		
 		

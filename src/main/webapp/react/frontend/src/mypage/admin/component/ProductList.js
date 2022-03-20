@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import React, {useState} from 'react';
 import Pagination from "../../../components/notice/Pagination";
+import { baseUrl } from "../../../config";
 
 const ProductList = () => {
     const [ productList,setProductList] = useState([]);
@@ -12,7 +13,7 @@ const ProductList = () => {
 
     useEffect(()=>{
         axios
-        .get('/product/listProducts')
+        .get(baseUrl+'/product/listProducts')
         .then((response)=>{
             console.log(response.data);
             setProductList(response.data);

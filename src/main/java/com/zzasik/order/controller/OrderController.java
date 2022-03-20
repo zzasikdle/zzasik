@@ -25,8 +25,11 @@ import com.zzasik.member.vo.AddressVO;
 import com.zzasik.member.vo.MemberVO;
 import com.zzasik.myhome.service.MyHomeService;
 import com.zzasik.order.service.OrderService;
+import com.zzasik.order.vo.OrderDetailVO;
 import com.zzasik.order.vo.OrderVO;
 import com.zzasik.product.vo.ProductVO;
+import com.zzasik.productCart.service.CartService;
+import com.zzasik.productCart.vo.CartVO;
 
 @CrossOrigin("http://localhost:3000")
 @RestController("orderController")
@@ -34,6 +37,9 @@ public class OrderController {
 
 	@Autowired
 	private OrderService orderService;
+	
+	@Autowired
+	private CartService cartService;
 	
 	@Autowired
 	private MyHomeService myhomeService;
@@ -57,6 +63,12 @@ public class OrderController {
 		return memInfomap;
 	}
 	
+	@GetMapping(value="/order/listOrder")
+	public List<OrderVO> getOrderList(@RequestParam("user_id") String user_id) {
+		List<OrderVO> orderList = orderService.getOrderList(user_id);
+		return orderList;
+	}
+	
 	@PostMapping(value="/order/addProduct")
 	public ResponseEntity AddOrder(MultipartHttpServletRequest multipartRequest) throws Exception {		
 		multipartRequest.setCharacterEncoding("utf-8");
@@ -75,6 +87,13 @@ public class OrderController {
 		HttpHeaders responseHeader = new HttpHeaders();
 		responseHeader.add("Content-Type", "application/json; charset=utf-8");
 		
+		String user_id = (String) orderMap.get("user_id");
+		String order_code = orderService.GetMaxOrderCode();
+		orderMap.put("order_code", order_code);
+		System.out.println(order_code);
+		
+		System.out.println("==="+orderMap.containsKey("pro_code"));
+		
 		boolean isRegistered = orderService.AddOrder(orderMap);
 		System.out.println(isRegistered);
 		
@@ -84,25 +103,82 @@ public class OrderController {
 			map.put("path", "/user/cart");
 		} else {
 			System.out.println("성공");
-			map.put("message", "상품 정보를 확인해주세요.");
+			map.put("message", "구매자 정보를 확인해주세요.");
 			map.put("path", "/order/check");
-			String order_code = orderService.GetMaxOrderCode();
 			map.put("order_code", order_code);
+			
+			if(orderMap.containsKey("pro_code")) {
+				boolean isis = orderService.AddOrderDetail(orderMap);
+				System.out.println("=="+isis);
+			} else {
+				List<CartVO> list = cartService.getCartList(user_id);
+				System.out.println(list);
+				
+				for(int i=0; i<list.size(); i++) {
+					Map<String, Object> detailMap = new HashMap<String, Object>();
+					detailMap.put("order_code", order_code);
+					detailMap.put("pro_code", list.get(i).getPro_code());
+					detailMap.put("quantity", list.get(i).getQuantity());
+					
+					boolean isis = orderService.AddOrderDetail(detailMap);
+					System.out.println(isis);
+				}
+			}
+			
+			cartService.deleteAllCart(user_id);
 		}
 		resEnt = new ResponseEntity(map, responseHeader, HttpStatus.CREATED);
 		return resEnt;
 	}
-	
+
 	@GetMapping(value="/order/checkProduct")
-	public OrderVO CheckProduct(@RequestParam("order_code") String order_code) {
-		System.out.println(order_code);
-		int code = Integer.parseInt(order_code);
-		OrderVO order = orderService.CheckProduct(code);
+	public OrderVO CheckProduct(@RequestParam("order_code") int order_code) {
+		OrderVO order = orderService.CheckProduct(order_code);
 		System.out.println("=========");
 		System.out.println(order.getOrder_code());
 		System.out.println(order.getOrder_price());
 		System.out.println("=========");
 		return order;
+	}
+	
+	@GetMapping(value="/order/payOrder")
+	public ResponseEntity PayProduct(@RequestParam("order_code") int order_code, @RequestParam("user_id") String user_id,
+			HttpServletRequest request, HttpServletResponse response) {
+				
+		ResponseEntity resEnt = null;
+		
+		HttpHeaders responseHeader = new HttpHeaders();
+		responseHeader.add("Content-Type", "application/json; charset=utf-8");
+		
+		Map<String, Object> pmap = new HashMap<String, Object>();
+		pmap.put("user_id", user_id);
+		pmap.put("order_code", order_code);
+		
+		Map<String, String> map = new HashMap<String, String>();
+		
+		boolean IsAdd = orderService.AddPay(pmap);
+		System.out.println(IsAdd);
+		
+		if(IsAdd == false) {
+			System.out.println("상품 결제 실패");
+			map.put("path", "/");
+		} else {
+			System.out.println(order_code + "번 주문 결제 완료");
+			orderService.updateStatus1(order_code);
+			map.put("path", "/myhome/myOrder");
+		}
+		resEnt = new ResponseEntity(map, responseHeader, HttpStatus.CREATED);
+		return resEnt;
+	}
+	
+	@GetMapping(value="/order/viewOrder")
+	public List PayProduct(@RequestParam("user_id") String user_id, @RequestParam("order_code") int order_code) {		
+		Map<String, Object> dmap = new HashMap<String, Object>();
+		dmap.put("user_id", user_id);
+		dmap.put("order_code", order_code);
+		
+		List detailList = orderService.selectOrderDetail(dmap);
+		return detailList;
 	}
 	
 	@DeleteMapping(value="/order/removeOrder")

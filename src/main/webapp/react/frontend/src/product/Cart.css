@@ -1,0 +1,8 @@
+.leftBtn {
+    float: left;
+    text-align: left;
+    margin-top: 20px;
+    margin-left: 20px;
+    padding: 0;
+    width: 70px;
+}

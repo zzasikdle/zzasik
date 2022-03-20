@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { baseUrl } from "../../config";
 import axios from 'axios';
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
@@ -14,7 +15,7 @@ const NoticeList = () => {
 
     useEffect(()=>{
         axios
-        .get('/notice')
+        .get(baseUrl+'/notice')
         .then((response)=>{
             console.log(response.data);
             setNoticeList(response.data);
