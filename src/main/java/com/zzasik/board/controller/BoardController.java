@@ -136,7 +136,7 @@ public Map<String, Object> joinBoard(@RequestParam("board_code") String board_co
 	System.out.println("user_id:"+user_id);
 	System.out.println("**********************************joinBoard 占쏙옙占쏙옙*********************************");
 	Map<String,Object> checkmap = new HashMap<String,Object>();
-	
+	 
 	checkmap.put("user_id", user_id);
 	checkmap.put("board_code", board_code);
 	int resultCheck=boardService.joincheck(checkmap);
