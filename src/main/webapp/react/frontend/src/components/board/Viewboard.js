@@ -4,8 +4,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import './viewboard.css';
+import { baseUrl } from "../../config";
 const ViewBoard = () => {
-    const baseUrl = "http://localhost:8090";
+
     const [board, setBoard] = useState({});
     const { board_code } = useParams();
 

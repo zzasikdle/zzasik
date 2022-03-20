@@ -10,13 +10,14 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertToRaw} from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
+import { baseUrl } from "../../config";
 
 
 
 
 
 const WriteBoard = ( ) => {
-     const baseUrl = "http://localhost:8090";
+   
      const [board_content ,     setBoard_cotent]= useState('');
      const [board_title, setBoard_title] = useState('');
      const [meal_type, setMeal_type] = useState('');
