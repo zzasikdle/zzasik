@@ -124,7 +124,7 @@ const UserViewProduct = ( ) => {
                                 <td>이미지</td>
                                 <td>
                                     { product.pro_img !== "undefined" ?
-                                        <img src={product.pro_img} alt="preview" style={{width:"300px"}} />
+                                        <img src={product.pro_img} alt="preview" className='image' />
                                         :
                                         <img src='/image/no_image_1.png' />
                                     }
@@ -149,7 +149,7 @@ const UserViewProduct = ( ) => {
                     <tr>
                         <td>수량 선택</td>
                         <td>
-                            <input type="number" name="quantity" defaultValue="1" min="1" max={product.pro_available}  />
+                            <input type="number" name="quantity" defaultValue="1" min="1" max={product.pro_available} onChange={(e) => {setQuantity(e.target.value)}}  />
                         </td>
                     </tr>
                     <tr>
