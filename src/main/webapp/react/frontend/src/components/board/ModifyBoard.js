@@ -33,11 +33,6 @@ const ModifyBoard = ( ) => {
 
   // editorState의 현재 contentState 값을 원시 JS 구조로 변환시킨뒤, HTML 태그로 변환시켜준다.
   const editorToHtml = draftToHtml(convertToRaw(editorState.getCurrentContent()));
-
-
-    
-    
-
      const [board_content , setBoard_cotent]= useState('');
      const [board_title, setBoard_title] = useState('');
      const [meal_type, setMeal_type] = useState('');

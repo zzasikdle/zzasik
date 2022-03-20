@@ -28,7 +28,7 @@ public class BoardServiceimpl implements BoardService {
 	
 	
 	
-	@Override
+	@Override 
 	public int addNewBoard(Map boardMap) throws Exception {
 		int board_code = boardDAO.selectNewBoardCode();
 		boardMap.put("board_code", board_code);
@@ -100,9 +100,9 @@ public class BoardServiceimpl implements BoardService {
 	
 	
 	@Override
-	public List<BoardVO> userdetailList(String user_id) throws Exception {
-		List<BoardVO> userdetailList = boardDAO.userlist(user_id);
-		return userdetailList;
+	public List<BoardVO> userdetailList(Map map) throws Exception {
+		List<BoardVO> userdetailList = boardDAO.userlist(map);
+		return userdetailList; 
 	}
 	
 	
@@ -138,7 +138,13 @@ public class BoardServiceimpl implements BoardService {
 	@Override
 	public void sendMessageToCoach(Map map) throws Exception {
 		boardDAO.updateUserAnswer(map);
+	}
+	
+	
+	@Override
+	public List<BoardVO> getuserMessage(Map map) throws Exception {
 		
+		return boardDAO.getUserMessage(map);
 	}
 	
 }// end class() 

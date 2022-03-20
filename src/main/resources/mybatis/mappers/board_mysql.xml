@@ -18,7 +18,6 @@
      <result property="start_date" column="start_date" />
       <result property="usertsatus" column="usertsatus" />
       <result property="user_answer" column="user_answer" />
-     
      <result property="breakfast" column="breakfast" />
      <result property="Lunch" column="Lunch" />
      <result property="dinner" column="dinner" />
@@ -28,8 +27,7 @@
      <result property="calorie" column="calorie" />
      <result property="board_period" column="board_period" />
      <result property="coaching_answer" column="coaching_answer" />
-     <result property="coaching_num" column="coaching_answer" />
-     
+     <result property="coaching_num" column="coaching_num" />
      
      <result property="user_name" column="user_name" />
      <result property="user_pwd" column="user_pwd" />
@@ -103,11 +101,11 @@
   
     <select id="userList" resultMap="BoardsResult">
     <![CDATA[
-select J.user_id, J.joindate
-from joincart J left 
-outer join coachingtbl C 
-on c.user_id = j.user_id
-where c.user_id is null and j.board_code=#{board_code}
+SELECT J.user_id, J.joindate
+from joincart J
+ LEFT join coachingtbl C 
+ ON C.user_id = J.user_id AND C.board_code = #{board_code}
+ WHERE J.board_code = #{board_code} AND C.board_code is NULL;
     ]]>
   </select> 
   
@@ -137,12 +135,12 @@ group by C.user_id;
     ]]>
   </select> 
   
-   <select id="userlist" resultType="BoardVO" parameterType="String">
+   <select id="userlist" resultType="BoardVO" parameterType="java.util.Map">
     <![CDATA[
  select *from usertbl U
 	INNER JOIN coachingtbl C
 		ON U.user_id = C.user_id
-			where U.user_id=#{user_id} ORDER BY coaching_num;
+			where U.user_id=#{user_id} and C.board_code=#{board_code};
     ]]>
   </select> 
   
@@ -158,8 +156,8 @@ group by C.user_id;
        <select id="addSecondCoachingAnswer" parameterType="java.util.Map">
 
      	<![CDATA[
-insert into coachingtbl( breakfast, Lunch, dinner, snack_1, snack_2,  calorie, coaching_answer, start_date, user_id, board_code, useranswer, coaching_num )
-values (#{breakfast}, #{Lunch}, #{dinner}, #{snack_1}, #{snack_2}, #{calorie}, #{coaching_answer}, #{start_date}, #{user_id}, #{board_code}, #{useranswer},#{coaching_num});
+insert into coachingtbl( breakfast, Lunch, dinner, snack_1, snack_2,  calorie, coaching_answer, start_date, user_id, board_code,coaching_num )
+values (#{breakfast}, #{Lunch}, #{dinner}, #{snack_1}, #{snack_2}, #{calorie}, #{coaching_answer}, #{start_date}, #{user_id}, #{board_code},#{coaching_num});
 	]]>   
   </select>
   
@@ -188,14 +186,15 @@ values (#{breakfast}, #{Lunch}, #{dinner}, #{snack_1}, #{snack_2}, #{calorie}, #
 			from coachingtbl
 			where user_id=#{user_id} and board_code=#{board_code} and coaching_num=1
 		]]>
-	</select>
-	<update id="updateUserAnswer" parameterType="java.util.Map">
-		<![CDATA[
-			update coachingtbl 
-			set useranswer=#{useranswer}
-			where board_code= #{board_code} and user_id=#{user_id} and coaching_num=#{coaching_num};
-		]]>   
-	</update>
+		</select>
+		
+		<select id="getUserMessage" parameterType="java.util.Map" resultType="BoardVO">
+	  	<![CDATA[
+		  	select *
+			from coachingtbl
+			where user_id=#{user_id} and board_code=#{board_code} and coaching_num=#{coaching_num}
+		]]>
+  </select>
   
 </mapper>
   

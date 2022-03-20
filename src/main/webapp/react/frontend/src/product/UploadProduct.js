@@ -103,7 +103,7 @@ const UploadProduct = ( ) => {
                         <td><input type="text" name="pro_available" onChange={(e) => {setAvail(e.target.value)}} /></td>
                     </tr>
                     <tr>
-                        <td className='title'>소개</td>
+                        <td className='title'>설명</td>
                         <td><textarea rows="10" cols="65" name="pro_detail" onChange={(e) => {setDetail(e.target.value)}}></textarea></td>
                     </tr>
                     <tr>

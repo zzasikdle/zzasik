@@ -14,7 +14,7 @@ function Footer() {
 <div className="footer-logo">ZZASIK</div>
 <div className="footer-about">
   <p>SLOGAN</p>
-  <a>식단관리는 최고의 건강관리이다</a>
+  <small>식단관리는 최고의 건강관리이다</small>
   </div>
 <div className="footer-company">
   <p>COMPANY</p>
