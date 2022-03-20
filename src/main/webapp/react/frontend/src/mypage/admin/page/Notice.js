@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 function Notice(){
     return (
         <>
-           <h1 className="myhome-title">공지사항</h1>
+           <h1 className="myhome-title">공지사항 관리</h1>
            <div className='content'>
                 <div className="box table-section">
                     <div className="box_header">

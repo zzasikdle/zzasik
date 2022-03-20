@@ -31,8 +31,6 @@ const AdminProductList = ( ) => {
         })
     }, []);
 
-    let result = [];
-
     return (
         <div id="con">
             <div className='leftBtn'>

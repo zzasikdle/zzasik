@@ -1,6 +1,7 @@
 import React, { useState} from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import axios from 'axios';
+import { baseUrl } from "../../config";
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
@@ -40,7 +41,7 @@ const MyEditor = () => {
       }else{
         //글 서버로 보내기
         axios 
-        .get('/notice/new',{
+        .get(baseUrl+'/notice/new',{
             params:{
               title : inputValue,
               editorToHtml: editorToHtml

@@ -42,7 +42,7 @@
 	<!-- 배송지 리스트 가져오기  -->
 	
 	<select id="listAddress" resultType="AddressVO" parameterType="memberVO">
-		SELECT addr_title , addr_receiver ,addr_phone ,addr_1 , addr_2, addr_3 from addresstbl where user_id = #{user_id}
+		SELECT user_id , addr_title , addr_receiver ,addr_phone ,addr_1 , addr_2, addr_3 from addresstbl where user_id = #{user_id}
 	</select>
 	
 	<!-- 배송지 리스트 가져오기 ( 배송지 수정 )  -->
@@ -53,7 +53,11 @@
 		AND addr_receiver = #{addr_receiver}
 	</select>
 	
-	<!-- 배송지 리스트 수정 ( 정보 수정에서 배송지 수정 시 저장 되는 로직 )  -->
+	
+	
+	
+	
+	<!-- 회원이 배송지 리스트 수정 ( 정보 수정에서 배송지 수정 시 저장 되는 로직 )  -->
 	<update id="updateAddress" parameterType="AddressVO">
 		<![CDATA[
 			UPDATE addresstbl

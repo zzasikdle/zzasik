@@ -1,5 +1,5 @@
 /*eslint-disable*/
-
+import { baseUrl } from '../../../config';
 import axios from 'axios';
 import { useRef, useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
@@ -10,8 +10,6 @@ import './UpdateAddress.css';
 import $ from "jquery";
 
 const UpdateAddressAdmin = () => {
-
-    const baseUrl = "http://localhost:8090";
     
 
     const user_id = sessionStorage.getItem("user_id");
@@ -348,7 +346,7 @@ const UpdateAddressAdmin = () => {
             <div class="modal_content">
                 <div class="modal_title">
                     <h3 style={{color:"black",fontSize:25,margin:20}}>주소 검색</h3>
-                    <img src='/img/close.png' id="btn_close_modal" style={{width:30,height:30,marginLeft:230}}/>
+                    <img className="closeBtnImg" src='/img/close.png' id="btn_close_modal" style={{width:30,height:30,marginLeft:230}}/>
                 </div>
             {isOpenPost ? (
                 <DaumPostcode style={postCodeStyle} autoClose onComplete={handleComplete } />

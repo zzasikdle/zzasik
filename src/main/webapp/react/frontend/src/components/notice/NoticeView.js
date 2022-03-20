@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { baseUrl } from "../../config";
 
 const NoticeView = () => {
     const [notice,setNotice] = useState({});
@@ -11,7 +12,7 @@ const NoticeView = () => {
     //글 서버에서 가져오기
     useEffect(()=>{
         axios 
-        .get('/notice/view',{
+        .get(baseUrl+'/notice/view',{
             params:{
               notice_code: notice_code
             }
@@ -33,7 +34,7 @@ const NoticeView = () => {
     const onClickDel = () => {
         if(window.confirm( "공지사항을 삭제하시겠습니까?" )){
             axios 
-            .get('/notice/del',{
+            .get(baseUrl+'/notice/del',{
                 params:{
                 notice_code: notice_code
                 }

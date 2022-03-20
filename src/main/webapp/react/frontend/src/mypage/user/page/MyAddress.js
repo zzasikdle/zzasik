@@ -1,6 +1,6 @@
 /*eslint-disable*/
 
-
+import { baseUrl } from '../../../config';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './MyAddress.css';
@@ -9,7 +9,7 @@ import Pagination from "../../../components/notice/Pagination";
 
 const MyAddress  =() => {
 
-    const baseUrl = "http://localhost:8090";
+    
 
     const user_id = sessionStorage.getItem("user_id");
     
@@ -48,7 +48,9 @@ const MyAddress  =() => {
 
     return(
         <>
-            <div className='box container' >
+        <h1 className='myhome-title'>마이페이지</h1>
+        <div className='content'>
+            <div className='box table-section' style={{padding:30}}>
                 <div id="content" className="delivery_setting">
 
                     <h2 className="setting_title" >배송지 목록</h2>
@@ -113,6 +115,7 @@ const MyAddress  =() => {
                                             <td className="cell_tel">{Address.addr_phone}</td>
                                             <td className="cell_edit">
                                                 <button className="_delete setting_btn type_h">
+                                                    {/* <Link to={`/myhome/modAddress/${Address.addr_receiver}`} id='modAddress'>수정</Link> */}
                                                     <Link to={`/myhome/updateAddress/${Address.addr_receiver}`} id='UpdateAddress'>수정</Link>
                                                 </button>
                                                 <button className="_delete setting_btn type_h" onClick={ () => deleteAddress(Address.addr_title)}>
@@ -129,18 +132,20 @@ const MyAddress  =() => {
                     
                     
                 </div>
-                
-            </div>
-            <footer>
+                <footer style={{paddingTop:20}}>
                 <Pagination
                     total={AddressList.length}
                     limit={limit}
                     page={page}
                     setPage={setPage}
                 />
-            </footer>
+                </footer>
+            </div>
+            
+        </div>
         </>
     )
+
 }
 
 export default MyAddress ; 

@@ -1,6 +1,5 @@
 package com.zzasik.board.dao;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -31,12 +30,12 @@ public interface BoardDAO {
 	public List userlist(Map map) throws DataAccessException;
 	public void addCoachingAnswer(Map CoachingMap)throws DataAccessException;
 	public void addSecondCoachingAnswer(Map CoachingMap)throws DataAccessException;
-	
 	public List<BoardVO> selectUserBoardList(String user_id) throws DataAccessException;
 	public List<BoardVO> selectCoachings(Map map) throws DataAccessException;
-	Date getStartDate(Map map) throws DataAccessException;
 	public List<BoardVO> getUserMessage(Map map)throws DataAccessException;
-	
+	public BoardVO getStartDate(Map map) throws DataAccessException;
+	public void updateUserAnswer(Map map) throws DataAccessException;
+
 	
 	
 	

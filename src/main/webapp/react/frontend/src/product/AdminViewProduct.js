@@ -24,7 +24,6 @@ const AdminViewProduct = ( ) => {
     const [pro_price, setPrice] = useState(product.pro_price);
     const [pro_detail, setDetail] = useState(product.pro_detail);
     const [pro_img, setImg] = useState('');
-    const [sel_name, setSeller] = useState(product.sel_name);
     const [disabled, setDisabled] = useState(true);
 
     const [image, setImage] = useState('');
@@ -77,8 +76,6 @@ const AdminViewProduct = ( ) => {
         setDisabled(true);
 
         await axios
-        /* .put(baseUrl+"/product/modifyProduct", formData,
-            {headers : {"Content-Type":"multipart/form-data; boundary=${formData._boundary"}}) */
         .put(`${baseUrl}/product/modifyProduct?pro_code=${pro_code}`, formData,
             {headers : {"Content-Type":"multipart/form-data; boundary=${formData._boundary"}})
         .then((response) => {
@@ -111,7 +108,7 @@ const AdminViewProduct = ( ) => {
 
     return (
         <div id="con">
-            <h1>upload product</h1>
+            <h1>상품 관리</h1>
             <table>
                 <tbody>
                     {console.log("dd:" + (product.pro_img !== undefined && product.pro_img !== null))}
@@ -150,7 +147,7 @@ const AdminViewProduct = ( ) => {
                         </td>
                     </tr>
                     <tr>
-                        <td style={{ width: "150px", align: "center" }}>제목</td>
+                        <td style={{ width: "150px", align: "center" }}>상품명</td>
                         <td><input type="text" name="pro_name" defaultValue={product.pro_name} disabled={disabled} onChange={(e) => {setName(e.target.value)}} /></td>
                     </tr>
                     <tr> 

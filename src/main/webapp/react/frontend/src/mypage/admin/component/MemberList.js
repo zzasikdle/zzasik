@@ -1,6 +1,6 @@
 /*eslint-disable*/
 
-
+import { baseUrl } from "../../../config";
 import { useEffect, useRef } from "react";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -17,14 +17,12 @@ import MyAddress from "../../user/page/MyAddress";
 
 const MemberList = () => {
 
-    const baseUrl = "http://localhost:8090";
-
     const [ memberList,setMemberList] = useState([]);
     const [ AddressList,setAddressList] = useState([]);
 
     const [ classification , setClassification] = useState('');
 
-    const [ limit, setLimit] = useState(10);    //한 페이지당 표시할 게시물 개수
+    const [ limit, setLimit] = useState(4);    //한 페이지당 표시할 게시물 개수
     const [ page, setPage] = useState(1);
     const offset = (page - 1) * limit;
 
@@ -88,6 +86,24 @@ const MemberList = () => {
          })
     }
 
+    /* 배송지 삭제 기능 */
+    const deleteAddress = async(user_id , addr_title) => {
+    
+        console.log(user_id);
+        console.log(addr_title);
+    
+
+        await axios
+         .post(baseUrl + '/member/deleteAddress',  {user_id:user_id , addr_title : addr_title})
+         .then( () => {
+            alert('배송지 삭제가 완료 되었습니다.');
+            document.location.href='/admin';
+         })
+         .catch((error)=> {
+            console.log(error);
+        })
+    }
+
     return (
         <div className="box table-section">
             <div className="box_header">
@@ -128,16 +144,16 @@ const MemberList = () => {
                                 <td id='id'>{member.user_id}</td>
                                 <td id='name'>{member.user_name}</td>
                                 <td id='birth'>{member.birth}</td>
-                                <td id='addr_1'> <button onClick={() => getAddress(member.user_id)}>보기</button></td>
+                                <td id='addr_1'> <button class="Addrbtn_model" onClick={() => getAddress(member.user_id)}>보기</button></td>
                                 <td id='phone'>{member.phone}</td>
                                 <td id='classification'>{member.classification}</td>
                                 <td id='modify'>
-                                <select onChange={handleChangeSelect}>
+                                <select className="select" onChange={handleChangeSelect}>
                                     <option selected >전체보기</option>
                                     <option value="1" >회원</option>
                                     <option value="2">전문가</option>
                                 </select>
-                                <button onClick={() => handleClass(member.user_id)}>수정</button></td>
+                                <button class="Addrbtn_model" onClick={() => handleClass(member.user_id)}>수정</button></td>
                             </tr>
                         )
                     })
@@ -157,8 +173,9 @@ const MemberList = () => {
             <div class = "j_modal">
                 <div class= "addressContent">
                     <div class= "addresstitle">
-                        <h3 style={{color:"black",fontSize:25,margin:17}}>회원 주소</h3>
-                        <img src='/img/close.png' id="btn_close_modal" className="addressContentModal" style={{width:30,height:30,marginLeft:230}}/>
+                        <h3>회원 주소
+                            <img src='/img/close.png' id="btn_close_modal" className="closeBtnImg" style={{width:30,height:30,marginRight:-550}}/>
+                        </h3>                    
                     </div>
                     
                     <div className="delivery_list_area">
@@ -215,7 +232,7 @@ const MemberList = () => {
                                                 <button className="_delete setting_btn type_h">
                                                     <Link to={`/myhome/UpdateAddressAdmin/${Address.addr_receiver+"_"+Address.user_id}?`} id='UpdateAddressAdmin'>수정</Link>
                                                 </button>
-                                                <button className="_delete setting_btn type_h" onClick={ () => MyAddress.deleteAddress(Address.addr_title)} >
+                                                <button className="_delete setting_btn type_h" onClick={ () => deleteAddress(Address.user_id, Address.addr_title)} >
                                                     삭제
                                                 </button>
                                             </td>

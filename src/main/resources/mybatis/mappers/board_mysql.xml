@@ -13,12 +13,10 @@
     <result property="board_price" column="board_price" />
     <result property="teacher_name" column="teacher_name" />
     <result property="imageFilename" column="imageFilename" />
-     <result property="imageFilename2" column="imageFilename2" />
     <result property="teacher_id" column="teacher_id" />
      <result property="joindate" column="joindate" />
      <result property="start_date" column="start_date" />
       <result property="usertsatus" column="usertsatus" />
-      
       <result property="user_answer" column="user_answer" />
      <result property="breakfast" column="breakfast" />
      <result property="Lunch" column="Lunch" />
@@ -178,14 +176,15 @@ values (#{breakfast}, #{Lunch}, #{dinner}, #{snack_1}, #{snack_2}, #{calorie}, #
 		  	select * 
 			from coachingtbl
 			where user_id=#{user_id} and board_code=#{board_code}
+			order by coaching_num
 		]]>
   </select>
   
-  <select id="getStartDate" parameterType="java.util.Map" resultType="Date">
+  <select id="getStartDate" parameterType="java.util.Map" resultType="BoardVO">
 	  	<![CDATA[
 		  	select start_date 
 			from coachingtbl
-			where user_id=#{user_id} and board_code=#{board_code} and coaching_num=0 
+			where user_id=#{user_id} and board_code=#{board_code} and coaching_num=1
 		]]>
 		</select>
 		

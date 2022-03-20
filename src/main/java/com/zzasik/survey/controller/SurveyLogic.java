@@ -214,6 +214,8 @@ public class SurveyLogic {
 			arrList.remove(String.valueOf("저혈압식단"));
 			arrList.remove(String.valueOf("신장질환식단"));
 			arrList.remove(String.valueOf("빈혈맞춤식단"));
+		}else if(sickness.equals("통풍")) {
+			arrList.remove(String.valueOf("고단백"));
 		}
 		
 		if(sickness2.equals("당뇨병")) {
@@ -231,6 +233,8 @@ public class SurveyLogic {
 			arrList.add("신장질환식단");
 		}else if(sickness2.equals("빈혈")) {
 			arrList.add("빈혈맞춤식단");
+		}else if(sickness2.equals("통풍")) {
+			arrList.remove(String.valueOf("고단백"));
 		}
 		
 		if(sickness3.equals("당뇨병")) {
@@ -248,6 +252,8 @@ public class SurveyLogic {
 			arrList.add("신장질환식단");
 		}else if(sickness3.equals("빈혈")) {
 			arrList.add("빈혈맞춤식단");
+		}else if(sickness3.equals("통풍")) {
+			arrList.remove(String.valueOf("고단백"));
 		}
 		
 		return arrList;
@@ -274,6 +280,8 @@ public class SurveyLogic {
 		}else if(p_sickness.equals("빈혈")) {
 			arrList.remove(String.valueOf("저염식"));
 			arrList.remove(String.valueOf("고칼로리식단"));
+		}else if(p_sickness.equals("통풍")) {
+			arrList.remove(String.valueOf("고단백"));
 		}
 		
 		if(p_sickness2.equals("당뇨병")) {
@@ -295,6 +303,8 @@ public class SurveyLogic {
 		}else if(p_sickness2.equals("빈혈")) {
 			arrList.remove(String.valueOf("저염식"));
 			arrList.remove(String.valueOf("고칼로리식단"));
+		}else if(p_sickness2.equals("통풍")) {
+			arrList.remove(String.valueOf("고단백"));
 		}
 		
 		if(p_sickness3.equals("당뇨병")) {
@@ -316,6 +326,8 @@ public class SurveyLogic {
 		}else if(p_sickness3.equals("빈혈")) {
 			arrList.remove(String.valueOf("저염식"));
 			arrList.remove(String.valueOf("고칼로리식단"));
+		}else if(p_sickness3.equals("통풍")) {
+			arrList.remove(String.valueOf("고단백"));
 		}
 		
 		return arrList;

@@ -6,28 +6,25 @@ div#wrapper {
 
 ul, li {
     list-style: none;
-}
+} 
 
 ul#productul {
     margin-left: 20px;
     margin-bottom: 0;
-    padding: 0;
+    padding: 0; 
 }
 
 li#productli {
     padding: 17px;
     border: 3px solid lightgray;
 }
-
-
-
 /*
 .image{
-
     width: 300px;
     height: 300px;
-} */
-
+}
+*/
+ 
 .leftBtn {
     width: 100%;
     text-align: left;

@@ -116,6 +116,14 @@ public class CartController {
 	public ResponseEntity deleteCart(@RequestParam("user_id") String user_id, @RequestParam("pro_code") int pro_code,
 			HttpServletRequest request, HttpServletResponse response) {
 		
+		System.out.println("장바구니 개별 삭제 테스트");
+		System.out.println("=="+user_id);
+		System.out.println("=="+pro_code);
+		
+		Map<String, Object> cmap = new HashMap<String, Object>();
+		cmap.put("user_id", user_id);
+		cmap.put("pro_code", pro_code);
+		
 		ResponseEntity resEnt = null;
 		
 		HttpHeaders responseHeader = new HttpHeaders();
@@ -123,14 +131,44 @@ public class CartController {
 		
 		Map<String, String> map = new HashMap<String, String>();
 		
-		boolean isDeleted = cartService.deleteCart(user_id, pro_code);
+		System.out.println("deleteCart service 전");
+		boolean isDeleted = cartService.deleteCart(cmap);
+		System.out.println("deleteCart service 후");
+		System.out.println(isDeleted);
 		if(isDeleted == false) {
 			System.out.println("장바구니 삭제 실패");
 			map.put("message", "오류가 발생했습니다. 다시 시도해주세요.");
 			map.put("path", "/user/cart");
 		} else {
 			System.out.println("상품 장바구니 삭제");
-			map.put("message", "글을 삭제했습니다.");
+			map.put("message", "장바구니 상품을 삭제했습니다.");
+			map.put("path", "/user/cart");
+		}
+		resEnt = new ResponseEntity(map, responseHeader, HttpStatus.CREATED);
+		return resEnt;
+	}
+	
+	@DeleteMapping(value="/cart/removeAllProduct")
+	public ResponseEntity deleteAllCart(@RequestParam("user_id") String user_id,
+			HttpServletRequest request, HttpServletResponse response) {
+		
+		System.out.println(user_id);
+		
+		ResponseEntity resEnt = null;
+		
+		HttpHeaders responseHeader = new HttpHeaders();
+		responseHeader.add("Content-Type", "application/json; charset=utf-8");
+		
+		Map<String, String> map = new HashMap<String, String>();
+		
+		boolean isDeleted = cartService.deleteAllCart(user_id);
+		if(isDeleted == false) {
+			System.out.println("장바구니 전체 삭제 실패");
+			map.put("message", "오류가 발생했습니다. 다시 시도해주세요.");
+			map.put("path", "/user/cart");
+		} else {
+			System.out.println("상품 장바구니 전체 삭제");
+			map.put("message", "장바구니 상품을 삭제했습니다.");
 			map.put("path", "/user/cart");
 		}
 		resEnt = new ResponseEntity(map, responseHeader, HttpStatus.CREATED);

@@ -16,7 +16,7 @@ import com.zzasik.member.vo.MemberVO;
 import com.zzasik.myhome.vo.NoticeVO;
 import com.zzasik.myhome.service.MyHomeService;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "http://49.50.160.29:3000")
 @RestController
 public class MyHomeController {
 	@Autowired

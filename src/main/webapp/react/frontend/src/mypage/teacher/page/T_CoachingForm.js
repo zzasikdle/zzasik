@@ -5,7 +5,7 @@ import axios from "axios";
 import { useEffect, useState,useLayoutEffect} from "react";
 import './T_CoachingForm.css';
 import { Link } from "react-router-dom";
-
+ 
 import moment from 'moment';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { Editor } from 'react-draft-wysiwyg';
@@ -315,7 +315,7 @@ export default function T_CoachingForm() {
                       
                     </div>
 
-
+ 
 
                     <div class="countDay"><p class="st_day">Day{Dday}</p></div>
                     <div class="Coaching_div">
@@ -372,4 +372,4 @@ export default function T_CoachingForm() {
         </>
     );
 
-}
+} 

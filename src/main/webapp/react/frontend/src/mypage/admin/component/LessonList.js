@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import React, {useState} from 'react';
 import Pagination from "../../../components/notice/Pagination";
+import { baseUrl } from "../../../config";
 
 const LessonList = () => {
     const [ lessonList,setLessonList] = useState([]);
@@ -12,7 +13,7 @@ const LessonList = () => {
 
     useEffect(()=>{
         axios
-        .get('/board/listBoards')
+        .get(baseUrl+'/board/listBoards')
         .then((response)=>{
             console.log(response.data);
             setLessonList(response.data);
@@ -28,7 +29,7 @@ const LessonList = () => {
         <div className="box table-section">
             <div className="box_header">
                 <h2>코칭 서비스 목록</h2>
-                <Link to='/' className='manage'>관리하기<img  alt="preview" className="arrow" src='/img/arrow.png'/></Link>
+                {/* <Link to='/' className='manage'>관리하기<img className="arrow" src='/img/arrow.png'/></Link> */}
             </div>
             <table class="tb" style={{cellspacing:"0",border:"1"}}>
                 <colgroup>
@@ -59,7 +60,7 @@ const LessonList = () => {
                         return(
                             <tr>
                                 <td>{lesson.board_code}</td>
-                                <td><Link to={`/notice/${lesson.board_code}`}>{lesson.board_title}</Link></td>
+                                <td><Link to={`/board/viewboard/${lesson.board_code}`}>{lesson.board_title}</Link></td>
                                 <td>{lesson.board_regdate}</td>
                                 <td>{lesson.user_id}</td>
                             </tr>
