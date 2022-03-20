@@ -206,11 +206,11 @@ const Cart = () => {
                     <div id="totalPrice"></div>
                 </div>
 
-                <Link to="/shop/product">계속 쇼핑하기</Link>
+                <Link to="/shop">계속 쇼핑하기</Link>
                 <input type="button" value="결제하기" onClick={goToCheck} />
             </div>
         </div>
     )
 }
 
-export default Cart;
+export default Cart;s

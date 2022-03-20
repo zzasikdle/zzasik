@@ -87,11 +87,11 @@ public class CartController {
 			if(isRegistered == false) {
 				System.out.println("장바구니 실패");
 				map.put("message", "오류가 발생했습니다. 다시 시도해주세요.");
-				map.put("path", "/shop/product");
+				map.put("path", "/shop");
 			} else {
 				System.out.println("장바구니 등록");
 				map.put("message", "장바구니에 상품을 추가했습니다.");
-				map.put("path", "/user/cart");
+				map.put("path", "/myhome/myCart");
 			}
 		} else {
 			boolean isUpdated = cartService.updateCart(cartMap);
@@ -100,11 +100,11 @@ public class CartController {
 			if(isUpdated == false) {
 				System.out.println("장바구니 실패");
 				map.put("message", "오류가 발생했습니다. 다시 시도해주세요.");
-				map.put("path", "/shop/product");
+				map.put("path", "/shop");
 			} else {
 				System.out.println("장바구니 등록");
 				map.put("message", "장바구니에 상품을 추가했습니다.");
-				map.put("path", "/user/cart");
+				map.put("path", "/myhome/myCart");
 			}
 		}
 		
@@ -138,11 +138,11 @@ public class CartController {
 		if(isDeleted == false) {
 			System.out.println("장바구니 삭제 실패");
 			map.put("message", "오류가 발생했습니다. 다시 시도해주세요.");
-			map.put("path", "/user/cart");
+			map.put("path", "/myhome/myCart");
 		} else {
 			System.out.println("상품 장바구니 삭제");
 			map.put("message", "장바구니 상품을 삭제했습니다.");
-			map.put("path", "/user/cart");
+			map.put("path", "/myhome/myCart");
 		}
 		resEnt = new ResponseEntity(map, responseHeader, HttpStatus.CREATED);
 		return resEnt;
@@ -165,11 +165,11 @@ public class CartController {
 		if(isDeleted == false) {
 			System.out.println("장바구니 전체 삭제 실패");
 			map.put("message", "오류가 발생했습니다. 다시 시도해주세요.");
-			map.put("path", "/user/cart");
+			map.put("path", "/myhome/myCart");
 		} else {
 			System.out.println("상품 장바구니 전체 삭제");
 			map.put("message", "장바구니 상품을 삭제했습니다.");
-			map.put("path", "/user/cart");
+			map.put("path", "/myhome/myCart");
 		}
 		resEnt = new ResponseEntity(map, responseHeader, HttpStatus.CREATED);
 		return resEnt;
@@ -205,7 +205,7 @@ public class CartController {
 			System.out.println("변경된 수량 : "+cartMap.get("quantity"));
 			map.put("message", "상품을 수정했습니다.");
 		}
-		map.put("path", "/user/cart");
+		map.put("path", "/myhome/myCart");
 		resEnt = new ResponseEntity(map, responseHeader, HttpStatus.CREATED);
 		return resEnt;
 	}

@@ -165,7 +165,7 @@ public class OrderController {
 		} else {
 			System.out.println(order_code + "번 주문 결제 완료");
 			orderService.updateStatus1(order_code);
-			map.put("path", "/order/list");
+			map.put("path", "/myhome/myOrder");
 		}
 		resEnt = new ResponseEntity(map, responseHeader, HttpStatus.CREATED);
 		return resEnt;
