@@ -28,7 +28,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import com.zzasik.board.service.BoardService;
 import com.zzasik.board.vo.BoardVO;
   
@@ -43,7 +42,7 @@ public class BoardController {
 	@Autowired 
 	private BoardVO boardVO;
 	
-	public BoardController() { 
+	public BoardController() {  
 		
 	}
    
