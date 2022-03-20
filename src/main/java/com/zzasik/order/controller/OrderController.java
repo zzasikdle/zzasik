@@ -166,6 +166,15 @@ public class OrderController {
 			System.out.println(order_code + "踰� 二쇰Ц 寃곗젣 �셿猷�");
 			orderService.updateStatus1(order_code);
 			map.put("path", "/myhome/myOrder");
+			
+			List<OrderDetailVO> list = orderService.selectOrderDetail(pmap);
+			for(int i=0; i<list.size(); i++) {
+				Map<String, Object> dmap = new HashMap<String, Object>();
+				dmap.put("order_code", order_code);
+				dmap.put("user_id", user_id);
+				dmap.put("pro_code", list.get(i).getPro_code());
+				dmap.put("quantity", list.get(i).getQuantity());
+			}
 		}
 		resEnt = new ResponseEntity(map, responseHeader, HttpStatus.CREATED);
 		return resEnt;

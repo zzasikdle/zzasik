@@ -13,5 +13,5 @@ public interface ProductService {
 	public boolean updateBoard(Map<String, Object> productMap);
 	public boolean deleteProduct(int pro_code);
 	public int updateCount(int pro_code);
-	public int updateAvail(int pro_code);
+	public boolean updateAvail(Map<String, Object> map);
 }

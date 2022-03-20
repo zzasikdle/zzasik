@@ -86,8 +86,13 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public int updateAvail(int pro_code) {
-		return productDAO.updateAvail(pro_code);
+	public boolean updateAvail(Map<String, Object> map) {
+		int queryResult = 0;
+		
+		queryResult = productDAO.updateAvail(map);
+		System.out.println(queryResult);
+		
+		return (queryResult == 1) ? true : false;
 	}
 
 }
