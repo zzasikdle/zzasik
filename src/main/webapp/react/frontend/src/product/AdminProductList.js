@@ -39,6 +39,7 @@ const AdminProductList = ( ) => {
             </div>
 
             <div id="wrapper">
+            <ul id="productul" style={{margin:"0 auto"}}>
                 {productList.length === 0 ?
                 <div>
                     <p style={{textAlign:"center"}}>
@@ -49,7 +50,6 @@ const AdminProductList = ( ) => {
                 :
                 productList.map((product, key) => {
                     return(
-						<ul id="productul" style={{margin:"0 auto"}}>
                         <li id="productli" style={{textAlign:"center"}} key={key}>
                             <Link to={`/product/view/${product.pro_code}`} style={{textDecoration:"none"}}>
                                 <div>
@@ -63,10 +63,10 @@ const AdminProductList = ( ) => {
                                 <div style={{fontSize:"20px", fontWeight:"bold", color:"firebrick"}}>{product.pro_price}</div>
                             </Link>
                         </li>
-                        </ul>
                         )
                 })
                 }
+                </ul>
                 </div>
         </div>
     )

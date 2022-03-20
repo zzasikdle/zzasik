@@ -30,6 +30,7 @@ const UserProductList = ( ) => {
             <h1 style={{textAlign:"center"}}>짜식 상품 shop</h1>
             <hr />
             <div id="wrapper">
+            <ul id="productul" style={{margin:"0 auto"}}>
                 {productList.length === 0 ?
                 <div>
                     <p style={{textAlign:"center"}}>
@@ -40,7 +41,6 @@ const UserProductList = ( ) => {
                 :
                 productList.map((product, key) => {
                     return(
-						<ul id="productul" style={{margin:"0 auto"}}>
                         <li id="productli" style={{textAlign:"center"}} key={key}>
                             <Link to={`/shop/view/${product.pro_code}`} style={{textDecoration:"none"}}>
                                 <div>
@@ -54,10 +54,10 @@ const UserProductList = ( ) => {
                                 <div style={{fontSize:"20px", fontWeight:"bold", color:"firebrick"}}>{product.pro_price}</div>
                             </Link>
                         </li>
-                        </ul>
                         )
                 })
                 }
+                </ul>
                 </div>
         </div>
     )
