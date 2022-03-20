@@ -69,7 +69,7 @@
 			SELECT  IFNULL(max(board_code), 0) + 1 from boardtbl		
 		]]>
 	</select>
-	
+	 
 	   <select id="joinBoard" parameterType="java.util.Map">
 
      	<![CDATA[
