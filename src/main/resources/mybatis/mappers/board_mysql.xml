@@ -99,7 +99,7 @@
   </select>
   
   
-    <select id="userList" resultMap="BoardsResult">
+    <select id="SignuserList" resultMap="BoardsResult">
     <![CDATA[
 SELECT J.user_id, J.joindate
 from joincart J
