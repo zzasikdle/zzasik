@@ -1,3 +1,5 @@
+/*eslint-disable*/
+
 import axios from "axios";
 import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom";
@@ -85,7 +87,7 @@ const Payment = ( ) => {
 
     return(
         <>
-            <button onClick={onClickPayment}>진짜 결제</button>
+            <button onClick={onClickPayment}>결제</button>
         </>
     );
 }

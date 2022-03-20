@@ -1,4 +1,6 @@
-import './Cart.css';
+/*eslint-disable*/
+
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -151,7 +153,7 @@ const Cart = () => {
     }
 
     return(
-        <div>
+        <div style={{padding:"20px"}}>
             <div id="wrapper">
                 <h1>장바구니</h1>
                 <hr />
@@ -160,11 +162,11 @@ const Cart = () => {
                     <thead>
                         <tr>
                             {/* <th><input type="checkbox" name="allCheck" id="allCheck" />전체 선택</th> */}
-                            <th>상품</th>
-                            <th>상품명</th>
-                            <th>수량</th>
-                            <th>가격</th>
-                            <th>기타</th>
+                            <th style={{align:"center"}}>상품</th>
+                            <th style={{align:"center"}}>상품명</th>
+                            <th style={{align:"center"}}>수량</th>
+                            <th style={{align:"center"}}>가격</th>
+                            <th style={{align:"center"}}>삭제</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -181,17 +183,17 @@ const Cart = () => {
                                 return(
                                     <tr key={key}>
                                         {/* <td><input type="checkbox" value={cart.pro_code} /></td> */}
-                                        <td style={{width:"120px", height:"120px"}}><img src={cart.productList[0].pro_img} style={{width:"100px", height:"100px"}} /></td>
-                                        <td>
+                                        <td style={{align:"center", verticalAlign:"middle", width:"120px", height:"120px"}}><img src={cart.productList[0].pro_img} style={{width:"100px", height:"100px"}} /></td>
+                                        <td style={{align:"center", verticalAlign:"middle"}}>
                                             <Link to={`/shop/view/${cart.pro_code}`} style={{textDecoration:"none"}}>{cart.productList[0].pro_name}</Link>
                                         </td>
-                                        <td>
+                                        <td style={{align:"center", verticalAlign:"middle"}}>
                                             <input type="number" name="quantity" id={key} data-key={cart.pro_code} defaultValue={cart.quantity}
                                                 min="1" max={cart.productList[0].pro_available}
                                                 onChange={setQ} />
                                         </td>
-                                        <td>{(cart.productList[0].pro_price)}</td>
-                                        <td>
+                                        <td style={{align:"center", verticalAlign:"middle"}}>{(cart.productList[0].pro_price)}</td>
+                                        <td style={{align:"center", verticalAlign:"middle"}}>
                                             <input type="button" id="delBtn" data-key={cart.pro_code} value="삭제" onClick={removeCart} className="deleteBtn" />                                        </td>
                                     </tr>
                                 )
@@ -205,8 +207,8 @@ const Cart = () => {
                     <div id="totalPrice"></div>
                 </div>
 
-                <Link to="/shop">계속 쇼핑하기</Link>
-                <input type="button" value="결제하기" onClick={goToCheck} />
+                <Link to="/shop"><button type='button'>계속 쇼핑하기</button></Link>
+                <input type="button" value="구매하기" onClick={goToCheck} />
             </div>
         </div>
     )

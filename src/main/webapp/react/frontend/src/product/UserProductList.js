@@ -1,7 +1,7 @@
 /*eslint-disable*/
 
 
-import './ProductList.css';
+import './AdminProductList.css';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -27,7 +27,9 @@ const UserProductList = ( ) => {
 
     return (
         <div id="con">
-            <div id="wrapper">
+            <h1 style={{textAlign:"center"}}>짜식 상품 shop</h1>
+            <hr />
+            <div id="wrapper" style={{width:"1500px", margin:"0 auto"}}>
                 {productList.length === 0 ?
                 <div>
                     <p style={{textAlign:"center"}}>
@@ -38,7 +40,7 @@ const UserProductList = ( ) => {
                 :
                 productList.map((product, key) => {
                     return(
-                        <ul id="productul" style={{float:"left"}}>
+            						<ul id="productul" style={{float:"left"}}>
                         <li id="productli" style={{textAlign:"center"}} key={key}>
                             <Link to={`/shop/view/${product.pro_code}`} style={{textDecoration:"none"}}>
                                 <div>

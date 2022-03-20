@@ -1,6 +1,5 @@
 /*eslint-disable*/
 
-
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -52,7 +51,7 @@ const PayOrder = ( ) => {
     
     return(
         <>
-        <div>
+        <div id="con" style={{textAlign:"center", margin:"20px auto"}}>
             <h1>결제 정보</h1>
             <table>
                 <tbody>
@@ -76,10 +75,10 @@ const PayOrder = ( ) => {
             <p>위 주문 내용을 확인하였으며, 회원 본인은 개인정보 이용 및 제공 및 결제에 동의합니다.</p>
         </div>
 
-        <Link to="#" onClick={removeOrder}>취소</Link>
+        <Link to="#" onClick={removeOrder}><button type="button">취소</button></Link>
         <Payment />
         </>
     )
 }
- 
+
 export default PayOrder;
