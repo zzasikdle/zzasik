@@ -31,7 +31,7 @@ import com.zzasik.myhome.service.MyHomeService;
 import com.zzasik.product.service.ProductService;
 import com.zzasik.product.vo.ProductVO;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("*")
 @RestController("productController")
 public class ProductController {
 	
