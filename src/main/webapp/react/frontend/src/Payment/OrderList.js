@@ -33,7 +33,7 @@ const OrderList = ( ) => {
         console.log(orderList[e]);
         const order_code = orderList[e].order_code;
         sessionStorage.setItem("order_code", order_code);
-        history.push(`/order/view/:${order_code}`);
+        history.push(`/order/view/${order_code}`);
     }
 
     return(

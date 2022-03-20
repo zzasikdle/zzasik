@@ -48,6 +48,11 @@ import AdminViewProduct from './product/AdminViewProduct';
 import UserProductList from './product/UserProductList';
 import UserViewProduct from './product/UserViewProduct';
 
+//Payment
+import CheckInfo from './Payment/CheckInfo';
+import PayOrder from './Payment/PayOrder';
+import OrderView from './Payment/OrderView';
+
 
 function App() {
 
@@ -86,6 +91,10 @@ function App() {
         
         <Route exact path="/shop"><UserProductList/></Route>
         <Route path="/shop/view/:pro_code"><UserViewProduct/></Route>
+        
+        <Route exact path="/order/check"><CheckInfo/></Route>
+        <Route exact path="/order/pay"><PayOrder/></Route>
+        <Route exact path="/order/view/:order_code"><OrderView/></Route>
         
         <MypageRoute/>
 
