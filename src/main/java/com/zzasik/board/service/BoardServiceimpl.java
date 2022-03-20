@@ -138,7 +138,6 @@ public class BoardServiceimpl implements BoardService {
 	@Override
 	public void sendMessageToCoach(Map map) throws Exception {
 		boardDAO.updateUserAnswer(map);
-		
 	}
 	
 	
