@@ -7,7 +7,7 @@ import Fade from 'react-reveal/Fade';
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { baseUrl } from '../../config';
+import { baseUrl } from '../config';
 
 function Survey() {
 
