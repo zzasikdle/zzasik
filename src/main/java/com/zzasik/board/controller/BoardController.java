@@ -128,7 +128,7 @@ public BoardVO viewBoard(@RequestParam("board_code")int board_code, HttpServletR
 	return boardService.viewBoard(board_code);
 }
 
-//占쏙옙占쌉쏙옙청 占싹깍옙
+
 @GetMapping(value="/board/joinBoard")
 public Map<String, Object> joinBoard(@RequestParam("board_code") String board_code, @RequestParam("user_id") String user_id ,@RequestParam("teacher_id") String teacher_id) throws Exception {
 	System.out.println("board_code:"+board_code);
@@ -228,7 +228,7 @@ public ResponseEntity modifyBoard(MultipartHttpServletRequest multipartRequest, 
  }
 
 
-//占쏙옙占쏙옙회占쏙옙占싯삼옙
+//신청내역에서 회원리스트 출력 
 @GetMapping("/board/searchboard")
 public List<BoardVO> searchboard(@RequestParam("board_code")String  board_code, HttpServletRequest request, 
 		HttpServletResponse response) throws Exception {
@@ -240,7 +240,7 @@ public List<BoardVO> searchboard(@RequestParam("board_code")String  board_code, 
 }
 
 
-//占쏙옙占실쇽옙占쏙옙 占쏙옙튼
+//신청내역에서 회원 승인버튼 
 @GetMapping(value="/board/subinsert")
 public void subinsert(@RequestParam("user_id") String user_id , @RequestParam("board_code") int board_code) throws Exception {
 	System.out.println("user_id:"+user_id);
@@ -253,7 +253,7 @@ public void subinsert(@RequestParam("user_id") String user_id , @RequestParam("b
 
 }
 
-//占쏙옙占쏙옙占쏙옙칭占싯삼옙
+//코칭리스트에서 회원리스트 출력
 @GetMapping("/board/coachingList")
 public List<BoardVO> coachingList(@RequestParam("board_code")String  board_code ,HttpServletRequest request, 
 		HttpServletResponse response) throws Exception {
@@ -264,7 +264,7 @@ public List<BoardVO> coachingList(@RequestParam("board_code")String  board_code 
 }
 
 
-//占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占싯삼옙
+//코칭하기에서 코칭버튼 
 @GetMapping("/board/userdetail")
 public List<BoardVO> userdetail(@RequestParam("user_id")String  user_id ,@RequestParam("board_code") String board_code ,HttpServletRequest request, 
 		HttpServletResponse response) throws Exception {
