@@ -19,11 +19,6 @@ const SignUpList = () => {
     const [ limit] = useState(10);  //한 페이지당 표시할 게시물 개수 // eslint-disable-line no-unused-vars
     const [ page, setPage] = useState(1);
     const offset = (page - 1) * limit;
-
-
-
-
-
     /* 신청 내역 가져오기 */
     useEffect(() => {
         const call =async () => {
@@ -69,13 +64,13 @@ const SignUpList = () => {
                 console.log(response.data)
              
                 setUserList(response.data)
-                for (i = 0; i < response.data.length; i++) {
-                    setUsersubit(response.data[i].user_id);
-                    console.log(i+"번:"+response.data[i].user_id)
-                    console.log(usersubit);
+                // for (i = 0; i < response.data.length; i++) {
+                //     setUsersubit(response.data[i].user_id);
+                //     console.log(i+"번:"+response.data[i].user_id)
+                //     console.log(usersubit);
 
 
-                }
+                // }
 
             })
 
