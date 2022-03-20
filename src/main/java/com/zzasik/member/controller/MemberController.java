@@ -130,7 +130,7 @@ public class MemberController {
 		// 로그인한 세션ID를 받아와서 그 아이디로 db검색 후 받아온 정보 수정. 
 		// 받아오는 정보 input 창 name은 MemberVO와 같게 해야 알아서 매칭.
 		// 바꾸지 않은 정보는 
-		
+		 
 		String user_id = memberVO.getUser_id();  // 세션에서 받아온 아이디.
 		String user_name = memberVO.getUser_name(); // 바꾸고자 하는 이름.
 

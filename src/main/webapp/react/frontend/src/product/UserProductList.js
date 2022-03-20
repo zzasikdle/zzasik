@@ -40,7 +40,7 @@ const UserProductList = ( ) => {
                 :
                 productList.map((product, key) => {
                     return(
-						<ul id="productul" style={{float:"left"}}>
+            						<ul id="productul" style={{float:"left"}}>
                         <li id="productli" style={{textAlign:"center"}} key={key}>
                             <Link to={`/shop/view/${product.pro_code}`} style={{textDecoration:"none"}}>
                                 <div>

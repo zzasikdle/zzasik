@@ -61,7 +61,7 @@ const LessonList = () => {
                             <tr>
                                 <td>{lesson.board_code}</td>
                                 <td><Link to={`/board/viewboard/${lesson.board_code}`}>{lesson.board_title}</Link></td>
-                                <td>{lesson.board_regdate}</td>
+                                <td>{lesson.writedate}</td>
                                 <td>{lesson.user_id}</td>
                             </tr>
                         )
