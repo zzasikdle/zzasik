@@ -11,6 +11,16 @@
     display: none;
 }
 
+#imagetr{
+    height: 350px;
+    vertical-align: middle;
+}
+
+#imagetr td{
+    height: 320px;
+    vertical-align: middle;
+}
+
 .image{
     width: 300px;
     height: 300px;
