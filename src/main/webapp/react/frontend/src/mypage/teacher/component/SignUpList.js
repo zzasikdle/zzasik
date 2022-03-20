@@ -53,7 +53,7 @@ const SignUpList = () => {
         var search_boardNum = "";
         var index = selectBox.indexOf("]");
         search_boardNum = selectBox.substring(1, index);
-        // console.log(search_boardNum);
+        console.log(search_boardNum);
         //회원목록 조회
         await axios
             .get(baseUrl + "/board/searchboard", {
