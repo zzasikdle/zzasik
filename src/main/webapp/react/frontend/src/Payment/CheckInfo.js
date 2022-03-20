@@ -35,7 +35,6 @@ const CheckInfo = ( ) => {
         await axios
         .delete(`${baseUrl}/order/removeOrder?order_code=${code}`)
         .then((response) => {
-			alert(response.data.message);
             history.push(response.data.path);
         })
         .catch((error) => {
@@ -43,10 +42,9 @@ const CheckInfo = ( ) => {
         })
     }
 
-
     return(
         <>
-        <div>
+        <div id="con" style={{textAlign:"center", margin:"20px auto"}}>
             <h1>구매자 정보</h1>
             <table>
                 <tbody>
@@ -66,9 +64,8 @@ const CheckInfo = ( ) => {
             </table>
         </div>
 
-        <div>
+        <div id="con" style={{textAlign:"center", margin:"20px auto"}}>
             <h1>받는 사람 정보</h1>
-            <input type="button" value="배송지 변경" />
             <table>
                 <tbody>
                     <tr>
@@ -87,8 +84,8 @@ const CheckInfo = ( ) => {
             </table>
         </div>
 
-        <Link to="/" onClick={removeOrder}>취소</Link>
-        <Link to="/order/pay">다음</Link>
+        <Link to="/" onClick={removeOrder}><button type="button">취소</button></Link>
+        <Link to="/order/pay"><button type="button">다음</button></Link>
         </>
     )
 }
