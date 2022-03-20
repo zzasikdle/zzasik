@@ -15,6 +15,7 @@ public class BoardVO {
 	private int board_price;
 	private String teacher_name;
 	private String imageFilename;
+	private String imageFilename2;
 	private String teacher_id;
 	private Date joindate;
 	private String breakfast;
@@ -29,6 +30,7 @@ public class BoardVO {
 	private Date start_date;
 	private int userstatus;
 	private int board_period;
+
 	
 	
 	
@@ -43,7 +45,18 @@ public class BoardVO {
 	
 	private int coaching_num;
 	
+
+	
+	
+	public String getImageFilename2() {
+		return imageFilename2;
+	}
+	public void setImageFilename2(String imageFilename2) {
+		this.imageFilename2 = imageFilename2;
+	}
+
 	public int getCoaching_num() {
+
 		return coaching_num;
 	}
 	public void setCoaching_num(int coaching_num) {

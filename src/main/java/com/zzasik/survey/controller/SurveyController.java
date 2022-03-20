@@ -28,7 +28,6 @@ import com.zzasik.survey.vo.SurveyVO;
 
 @RestController("surveyController")
 @CrossOrigin(origins = "http://49.50.160.29:3000")
-//@CrossOrigin("http://localhost:3000")
 public class SurveyController {
 
 	@Autowired
@@ -334,23 +333,12 @@ public class SurveyController {
 		
 		
 		
-		//  기본값 0 에서  업데이트 
 		memberService.modSurveyCode(memberVO); // 7 
 
-		// 코드에 따른 설문조사 결과 값들 가져오기.
 		SurveyVO sur = surveyService.selectSurvey(memberVO);
-//		String keyword1 = sur.getSurvey_result1();
-//		String keyword2 = sur.getSurvey_result2();
-//		String keyword3 = sur.getSurvey_result3();
-		
-		//System.out.println(keyword1 +" / "+ keyword2 +" / "+ keyword3);
-		
+
 		List surveylist = surveyService.surveylist(sur);
-		System.out.println(surveylist.get(0));
-		System.out.println(surveylist.get(1));
-		System.out.println(surveylist.get(2));
-		System.out.println(surveylist.get(3));
-		System.out.println(surveylist.get(4));
+
 		
 		return surveylist;
 	}

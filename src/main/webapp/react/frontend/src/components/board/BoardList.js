@@ -1,12 +1,17 @@
-/*eslint no-undef: "off"*/
+/*eslint-disable*/
 import './boardList.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link} from 'react-router-dom';
-
+import Pagination from "../../components/notice/Pagination";
+import { baseUrl } from '../../config'
 
 const BoardList = ( ) => {
-    const baseUrl = "http://localhost:8090";
+
+    const [ limit] = useState(10);    //한 페이지당 표시할 게시물 개수
+    const [ page, setPage] = useState(1);
+    const offset = (page - 1) * limit;
+   
 
     const [ boardList, setBoardList] = useState([]);
     useEffect(( ) => {
@@ -23,7 +28,7 @@ const BoardList = ( ) => {
             })
             }
         call();
-    }, [boardList]);
+    }, []);
     return (
         <div class="head_div">
             <div>
@@ -45,7 +50,8 @@ const BoardList = ( ) => {
                        </p></td>
                    </tr>
                   : 
-                  boardList.map((board, key) => {
+                  boardList.slice(offset, offset + limit).map((board,key) => {
+               
                       return( 
                     <Link to={`/board/viewboard/${board.board_code}`}>
                           <ul key={key} class="board_ul" >
@@ -61,7 +67,7 @@ const BoardList = ( ) => {
 
                            
                             <div class="header_div">
-                           <div class="container"> <img class="image_box" src={`${baseUrl}/download?board_code=${board.board_code}&imageFilename=${board.imageFilename}`} id="preview" alt={board.imageFilename} /></div>
+                           <div class="container"> <img class="image_box" src='/img/zzasik_image.png' id="preview" /></div>
                            </div>
                       
                             </a>
@@ -75,6 +81,15 @@ const BoardList = ( ) => {
                   }                  
               </tbody>
            </table>
+
+           <footer>
+            <Pagination
+                total={boardList.length}
+                limit={limit}
+                page={page}
+                setPage={setPage}
+            />
+            </footer>
         
         </div>        
     )
