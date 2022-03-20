@@ -1,52 +1,68 @@
 /*eslint-disable*/
 
-
-import './App.css';
-import React from 'react';
-
-import Home from './Home';
-import AdminProductList from './product/AdminProductList';
-import UserProductList from './product/UserProductList';
-import UploadProduct from './product/UploadProduct';
-import AdminViewProduct from './product/AdminViewProduct';
-import UserViewProduct from './product/UserViewProduct';
-import Cart from './product/Cart';
-import Login from './member/Login';
-import Join from './member/Join';
-import CheckInfo from './Payment/CheckInfo';
-import PayOrder from './Payment/PayOrder';
-import OrderList from './Payment/OrderList';
-import Payment from './Payment/Payment.js';
-import OrderView from './Payment/OrderView.js';
-
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { baseUrl } from "../config";
 
 
-function App() {
-  
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <div id="container">
-          <div>
-              <Route exact path="/"><Home /></Route>
-              <Route path="/login" component={Login} />
-              <Route path="/member/join" component={Join} />
-              <Route exact path="/admin/product" component={AdminProductList} />
-              <Route exact path="/admin/product/new" component={UploadProduct} />
-              <Route exact path="/admin/product/view/:pro_code" component={AdminViewProduct} />
-              <Route exact path="/shop/product" component={UserProductList} />
-              <Route exact path="/shop/product/view/:pro_code" component={UserViewProduct} />
-              <Route path="/user/cart" component={Cart} />
-              <Route exact path="/order/check" component={CheckInfo} />
-              <Route exact path="/order/pay" component={PayOrder} />
-              <Route exact path="/order/list" component={OrderList} />
-              <Route exact path="/order/view/:order_code" component={OrderView} />
-          </div>
-        </div>
-      </BrowserRouter>
-    </div>
-  );
+const OrderView = ( ) => {
+
+  const id = sessionStorage.getItem("user_id");
+  const code = sessionStorage.getItem("order_code");
+
+  const [detailList, SetDetailList] = useState([]);
+
+  useEffect(() => {
+      async function call() {
+          await axios
+          .get(`${baseUrl}/order/viewOrder?user_id=${id}&order_code=${code}`)
+          .then((response)=>{
+              console.log(response.data);
+              SetDetailList(response.data);
+          })
+          .catch((error) => {
+              console.log(error);
+          })
+      }
+      call();
+  }, []);
+
+  return(
+      <div>
+          <h1>주문 상세보기</h1>
+          <hr />
+              <table>
+                  <thead>
+                      <tr>
+                          <th>상품</th>
+                          <th>상품명</th>
+                          <th>수량</th>
+                          <th>가격</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {detailList.length === 0 ?
+                          null
+                          :
+                          detailList.map((order, key) => {
+                              return(
+                                  <tr key={key}>
+                                      {console.log(order)}
+                                      <td><img src={order.productList[0].pro_img} style={{width:"100px", height:"100px"}} /></td>
+                                      <td>
+                                          <Link to={`/shop/view/${order.pro_code}`} style={{textDecoration:"none"}}>{order.productList[0].pro_name}</Link>
+                                      </td>
+                                      <td>{order.quantity}</td>
+                                      <td>{(order.productList[0].pro_price)}</td>
+                                  </tr>
+                              )
+                          })
+                      }
+                  </tbody>
+              </table>
+      </div>
+  )
 }
 
-export default App;
+export default OrderView;
