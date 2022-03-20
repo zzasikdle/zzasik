@@ -143,7 +143,7 @@ public Map<String, Object> joinBoard(@RequestParam("board_code") String board_co
 	System.out.println(resultCheck);
 	Map<String,Object> joinMap = new HashMap<String,Object>();
 	if (resultCheck==0){
- 
+  
 		joinMap.put("user_id", user_id);
 		joinMap.put("board_code",board_code);
 		joinMap.put("teacher_id", teacher_id);	
