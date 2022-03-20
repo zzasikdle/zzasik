@@ -27,7 +27,7 @@ import com.zzasik.member.service.MemberService;
 import com.zzasik.member.vo.AddressVO;
 import com.zzasik.member.vo.MemberVO;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "http://49.50.160.29:3000")
 @RestController
 public class MemberController {
 	
