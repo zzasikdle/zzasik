@@ -1,4 +1,6 @@
+/*eslint-disable*/
 
+import { baseUrl } from '../../../config';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './MyAddress.css';
@@ -7,14 +9,12 @@ import Pagination from "../../../components/notice/Pagination";
 
 const MyAddress  =() => {
 
-    const baseUrl = "http://localhost:8090";
+    
 
     const user_id = sessionStorage.getItem("user_id");
     
     const [ AddressList,  setAddressList] = useState([]); // 배열로 배송지 리스트 받아옴. 
     
-    const [addr_receiver , setAddr_receiver] = useState('');
-
     const [ limit, setLimit] = useState(4);    //한 페이지당 표시할 게시물 개수
     const [ page, setPage] = useState(1);
     const offset = (page - 1) * limit;
@@ -48,7 +48,9 @@ const MyAddress  =() => {
 
     return(
         <>
-            <div className='box container' >
+        <h1 className='myhome-title'>마이페이지</h1>
+        <div className='content'>
+            <div className='box table-section' style={{padding:30}}>
                 <div id="content" className="delivery_setting">
 
                     <h2 className="setting_title" >배송지 목록</h2>
@@ -130,18 +132,20 @@ const MyAddress  =() => {
                     
                     
                 </div>
-                
-            </div>
-            <footer>
+                <footer style={{paddingTop:20}}>
                 <Pagination
                     total={AddressList.length}
                     limit={limit}
                     page={page}
                     setPage={setPage}
                 />
-            </footer>
+                </footer>
+            </div>
+            
+        </div>
         </>
     )
+
 }
 
 export default MyAddress ; 

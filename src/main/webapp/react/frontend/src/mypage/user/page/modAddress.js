@@ -1,3 +1,5 @@
+/*eslint-disable*/
+import { baseUrl } from '../../../config';
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
@@ -9,7 +11,7 @@ import $ from "jquery";
 
 const ModAddress = () => {
 
-    const baseUrl = "http://localhost:8090";
+    
     const {addr_receiver} = useParams(); // 원래 receiver 
     const user_id = sessionStorage.getItem("user_id");
     const [ Address,  setAddress] = useState({}); // Address는 key값과 value로 이루어진 객체이기 떄문에 {}로 받아줘야 값을 정상적으로 받을 수 있다.

@@ -1,15 +1,19 @@
+
+//no-unused-vars 경고 해결 완료
+/*eslint-disable*/
+
+import { baseUrl } from '../../../config';
 import './Edit.css';
 import React, {useState} from 'react';
-import { useEffect } from "react";
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';  
 
 /* 마이페이지 - 내 정보 수정 클릭 시 작동하는 함수 */
 function Edit(){
     //로그인 연동 후 가져오기
    //const user_id = sessionStorage.getItem('user_id');
    
-   const baseUrl = "http://localhost:8090";
+   
    const user_id  = sessionStorage.getItem("user_id");
    
    const [user_name,setUserName] = useState('');
@@ -60,19 +64,6 @@ function Edit(){
     
    }
 
-   /* 회원 정보 수정 ( 휴대전화 ) */
-
-   const selectList = ["대한민국", "미국", "호주"];
-   const [Selected, setSelected] = useState("+82");
-
-   const handleSelect = (e) => {
-    setSelected(e.target.value);
-  };
-
-   const handlePhone = (e) => {
-    setPhone(e.target.value);
-    }
-
     function submitPhone(e) {
 
         if(codeNo === ""){
@@ -103,8 +94,11 @@ function Edit(){
 
     /* 창 보이기 / 안 보이기 */
     const [ showing , setShowing] = useState(false);
+    
+    
 
     const NameModify = () => {
+
         return (
             <div>
                 <p className="btn_area_btm">
@@ -123,8 +117,22 @@ function Edit(){
    //회원가입 폼 가져오기 
    return (
         <>
-           <h1>마이페이지</h1>
-           <div className='box profile-edit'>
+           <h1 className='myhome-title'>마이페이지</h1>
+           <div className='editBox' 
+            style={ showing ? {
+                backgroundColor: "white",
+                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                margin: "50px 0 0 100px",
+                width: "1000px",
+                height: "612px"
+                } : {
+                backgroundColor: "white",
+                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                margin: "50px 0 0 100px",
+                width: "1000px",
+                height: "515px"
+                }
+                }>
                <div className='box_header'>
                 <h2>내 정보 수정</h2>
                </div>
@@ -151,7 +159,7 @@ function Edit(){
                    </th>
                    <td>
                        <div className="tdcell"><p class="contxt_tit" id="phoneNO">{sessionStorage.getItem("phone")}</p>
-                            <p className="contxt_desc">아이디, 비밀번호 찾기 등 본인확인이 필요한 경우 또는 유료 결제 등 짜식들로부터 알림을 받을 때 사용할 휴대전화입니다.</p>   
+                            <p className="contxt_desc">유료 결제 등 짜식들로부터 알림을 받을 때 또는 본인확인이 필요한 경우 또는 사용할 휴대전화입니다.</p>   
                             <div id="d_phoneNo" style={{display:"block"}}>
                 <tr>
                     <td className="cell_title">

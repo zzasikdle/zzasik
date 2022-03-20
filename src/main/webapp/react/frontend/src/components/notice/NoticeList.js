@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { baseUrl } from "../../config";
 import axios from 'axios';
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
@@ -6,7 +7,7 @@ import Pagination from "./Pagination";
 
 const NoticeList = () => {
     const [ noticeList,setNoticeList] = useState([]);   //공지사항 리스트
-    const [ limit, setLimit] = useState(10);    //한 페이지당 표시할 게시물 개수
+    const limit= 10;    //한 페이지당 표시할 게시물 개수
     const [ page, setPage] = useState(1);
     const offset = (page - 1) * limit;
 
@@ -14,7 +15,7 @@ const NoticeList = () => {
 
     useEffect(()=>{
         axios
-        .get('/notice')
+        .get(baseUrl+'/notice')
         .then((response)=>{
             console.log(response.data);
             setNoticeList(response.data);

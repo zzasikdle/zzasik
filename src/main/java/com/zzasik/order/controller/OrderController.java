@@ -67,8 +67,8 @@ public class OrderController {
 	public List<OrderVO> getOrderList(@RequestParam("user_id") String user_id) {
 		List<OrderVO> orderList = orderService.getOrderList(user_id);
 		return orderList;
-	}
-	
+	} 
+	 
 	@PostMapping(value="/order/addProduct")
 	public ResponseEntity AddOrder(MultipartHttpServletRequest multipartRequest) throws Exception {		
 		multipartRequest.setCharacterEncoding("utf-8");
@@ -203,10 +203,11 @@ public class OrderController {
 		
 		boolean isDeleted = orderService.deleteProduct(order_code);
 		if(isDeleted == false) {
-			System.out.println("상품 삭제 실패");
+			System.out.println("주문 삭제 실패");
 			map.put("path", "/");
 		} else {
 			System.out.println(order_code + "번 주문 삭제");
+      map.put("message", "주문이 취소되었습니다.");
 			map.put("path", "/");
 		}
 		resEnt = new ResponseEntity(map, responseHeader, HttpStatus.CREATED);

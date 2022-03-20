@@ -1,18 +1,21 @@
+/*eslint-disable*/
+
+
 import './MyHome.css';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { baseUrl } from "../../../config";
 
 //jquery 추가
 import $ from "jquery";
 
 /* 마이페이지 */
 export default function MyHome(){
-
-    const baseUrl = "http://localhost:8090";
     
     const user_id = sessionStorage.getItem("user_id");
     const user_name = sessionStorage.getItem("user_name");
+    const phone = sessionStorage.getItem("phone");
 
     var userType;
     if(sessionStorage.getItem('classification')==1) userType = "회원";
@@ -82,6 +85,7 @@ $(function(){
         <div>
             <h1 className="myhome-title">마이페이지</h1>
             <div className='content'>
+            <div style={{display:"flex",flexDirection:"row"}}>
                 <div className='box profile'>
                     <div className='box_header'>
                         <h2>내 정보</h2>
@@ -93,7 +97,20 @@ $(function(){
                         <span>{userType}님 반갑습니다!</span>
                     </div>
                 </div>
-                <button className='delAccount' id="delAccoutBtn"  >회원 탈퇴</button>
+                <div>
+                    <div className='box' style={{width:300,height:170,display:"inline-block",padding:30}}>
+                        <div className='shortinfo'>
+                            <div className='shortinfo-p'><p>회원 아이디</p><p>회원 이름  &ensp;</p><p>휴대전화&emsp;</p></div>
+                            <div><p>{user_id}</p><p>{user_name}</p><p>{phone}</p></div>
+                        </div>
+                    </div>
+                    <div className='box' style={{width:300,height:150,display:"inline-block",marginTop:30}}>
+                        <div className='box_header'>
+                                <h2>회원 탈퇴</h2>
+                        </div>
+                    <button className='delAccount' id="delAccoutBtn"  >회원 탈퇴</button>
+                    </div>
+                </div>
                 {/* {modalOn ? <Modal ></Modal> : ''} */}
                 
                 <div class = "j_modal">
@@ -106,7 +123,7 @@ $(function(){
                     </div>	
                     <div class="modal_layer"></div>
                 </div>
-                
+                </div>
             </div>
         </div>
     );

@@ -1,3 +1,5 @@
+/*eslint-disable*/
+
 
 import React, {useState, useEffect} from 'react';
 
@@ -29,10 +31,10 @@ import Survey from './components/Survey'
 
 
 //board
-import WriteBoard from './components/board/writeboard';
-import BoardList from './components/board/boardList';
-import ViewBoard from './components/board/viewboard';
-import TeacherBoard from './components/board/teacherBoard';
+import WriteBoard from './components/board/Writeboard';
+import BoardList from './components/board/BoardList';
+import ViewBoard from './components/board/Viewboard';
+
 import ModifyBoard from './components/board/ModifyBoard';
 
 //Notice
@@ -40,6 +42,7 @@ import NoticePage from './components/notice/NoticePage';
 import MyEditor from './components/notice/MyEditor';
 import NoticeView from './components/notice/NoticeView';
 import NoticeEdit from './components/notice/NoticeEdit';
+
 
 //Product
 import AdminProductList from './product/AdminProductList';
@@ -52,6 +55,7 @@ import UserViewProduct from './product/UserViewProduct';
 import CheckInfo from './Payment/CheckInfo';
 import PayOrder from './Payment/PayOrder';
 import OrderView from './Payment/OrderView';
+
 
 
 function App() {
@@ -77,7 +81,7 @@ function App() {
         <Route path="/writeboard" component={WriteBoard} />
         <Route path="/board/list" component={BoardList} />
         <Route path="/board/viewboard/:board_code" component={ViewBoard} />
-        <Route path="/board/teacherBoard" component={TeacherBoard} />
+    
         <Route path="/board/modifyBoard/:board_code" component={ModifyBoard} />
         
         <Route exact path="/notice"><NoticePage/></Route>

@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom';
 function Notice(){
     return (
         <>
-           <h1 className="myhome-title">공지사항</h1>
+           <h1 className="myhome-title">공지사항 관리</h1>
            <div className='content'>
                 <div className="box table-section">
                     <div className="box_header">
                     <h2>공지 사항</h2>
-                    <Link to='/notice' className='manage'>관리하기<img className="arrow" src='/img/arrow.png'/></Link>
+                    <Link to='/notice' className='manage'>관리하기<img className="arrow" src='/img/arrow.png' alt=">"/></Link>
                     </div>
                     {NoticeList()}
                 </div>

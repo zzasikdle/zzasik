@@ -28,7 +28,7 @@ public class BoardServiceimpl implements BoardService {
 	
 	
 	
-	@Override
+	@Override 
 	public int addNewBoard(Map boardMap) throws Exception {
 		int board_code = boardDAO.selectNewBoardCode();
 		boardMap.put("board_code", board_code);
@@ -69,9 +69,82 @@ public class BoardServiceimpl implements BoardService {
 	
 	
 	@Override
-	public List<BoardVO> TeacheruserList(String board_code) throws Exception {
-		List<BoardVO> userList = boardDAO.userList(board_code);
+	public List<BoardVO> TeacheruserList(int board_code) throws Exception {
+		List<BoardVO> userList = boardDAO.SignuserList(board_code);
 		return userList;
+	}
+	
+	@Override
+	public void suganginsert(Map joinMap) throws Exception {
+		System.out.println("----------------Service ���� -------------");
+		boardDAO.suganginsert(joinMap);
+		
+	}
+	
+	
+	@Override
+	public int joincheck(Map checkmap) throws Exception {
+		int joinchk =boardDAO.countJoinUser(checkmap);
+		
+		return joinchk;
+		
+	}
+	
+	@Override
+	public List<BoardVO> CoachingList(int board_code) throws Exception {
+		List<BoardVO> coachingUserList = boardDAO.coachingList(board_code);
+		return coachingUserList;
+	}
+	
+	
+	
+	
+	@Override
+	public List<BoardVO> userdetailList(Map map) throws Exception {
+		List<BoardVO> userdetailList = boardDAO.userlist(map);
+		return userdetailList; 
+	}
+	
+	
+	@Override
+	public void addcoachingAnswer(Map CoachingMap) throws Exception {
+		boardDAO.addCoachingAnswer(CoachingMap);
+		
+	}
+
+	@Override
+	public List<BoardVO> getUserBoardList(String user_id) throws Exception {
+		
+		return boardDAO.selectUserBoardList(user_id);
+		
+	}
+
+	@Override
+	public List<BoardVO> getCoachingContents(Map map) throws Exception {
+		return boardDAO.selectCoachings(map);
+	}
+
+	@Override
+	public BoardVO getStartDate(Map map) throws Exception {
+		return boardDAO.getStartDate(map);
+	}
+	
+	@Override
+	public void addSeocndcoachingAnswer(Map CoachingMap) throws Exception {
+		boardDAO.addSecondCoachingAnswer(CoachingMap);
+		
+	}
+
+	@Override
+	public void sendMessageToCoach(Map map) throws Exception {
+		boardDAO.updateUserAnswer(map);
+	}
+	
+	
+	@Override
+	public List<BoardVO> getuserMessage(Map map) throws Exception {
+		
+		return boardDAO.getUserMessage(map);
 	}
 	
 }// end class() 

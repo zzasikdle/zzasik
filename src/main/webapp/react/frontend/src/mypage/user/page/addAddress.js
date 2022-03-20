@@ -1,3 +1,6 @@
+/*eslint-disable*/
+
+import { baseUrl } from '../../../config';
 import axios from 'axios';
 import { useRef, useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
@@ -10,7 +13,6 @@ import $ from "jquery";
 
 const AddAddress = () => {
 
-    const baseUrl = "http://localhost:8090";
     
 
     const user_id = sessionStorage.getItem("user_id");
@@ -259,12 +261,12 @@ const AddAddress = () => {
                                     <span className="hyphen">  -  </span>
                                     <span className="_editable_input" style={{width: "48px"}}>
                                         <label for="telNo1Second" className="lb_text blind">연락처 두번째자리 입력</label>
-                                        <input type="text" id="telNo1Second" className="ip_text" maxlength="4" onChange={handleSecondPhone}></input>
+                                        <input type="number" id="telNo1Second" className="ip_text" maxlength="4" onChange={handleSecondPhone}></input>
                                     </span>
                                     <span className="hyphen">  -  </span>
                                     <span className="_editable_input" style={{width: "48px"}}>
                                         <label for="telNo1Third" className="lb_text blind" >연락처 세번째자리 입력</label>
-                                        <input type="text" id="telNo1Third"  className="ip_text" maxlength="4"  onChange={handleThirdPhone} ></input>
+                                        <input type="number" id="telNo1Third"  className="ip_text" maxlength="4"  onChange={handleThirdPhone} ></input>
                                     </span>
                                 </td>
                             </tr>
@@ -288,7 +290,7 @@ const AddAddress = () => {
                 <div class= "modal_content">
                     <div class= "modal_title">
                         <h3 style={{color:"black",fontSize:25,margin:20}}>주소 검색</h3>
-                        <img src='/img/close.png' id="btn_close_modal" style={{width:30,height:30,marginLeft:230}}/>
+                        <img className="closeBtnImg" src='/img/close.png' id="btn_close_modal" style={{width:30,height:30,marginLeft:230}}/>
                     </div>
                 {isOpenPost  ? (
                 <DaumPostcode style={postCodeStyle} autoClose onComplete={handleComplete } />

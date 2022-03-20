@@ -5,35 +5,45 @@
 
 <mapper namespace="com.zzasik.survey.dao.SurveyDAO">
 	<resultMap id="surveyResult" type="surveyVO">
-   	  <result property="code" column="survey_code" />
-      <result property="result1" column="survey_result1" />
-      <result property="result2" column="survey_result2" />
-      <result property="result3" column="survey_result3" />
+   	  <result property="survey_code" column="survey_code" />
+      <result property="survey_result1" column="survey_result1" />
+      <result property="survey_result2" column="survey_result2" />
+      <result property="survey_result3" column="survey_result3" />
    </resultMap> 
    
    <resultMap id="productResult" type="productVO">
-   	  <result property="proname" column="pro_name" />
-      <result property="proclass" column="pro_class" />
-      <result property="proprice" column="pro_price" />
-      <result property="proimg" column="pro_img" />
-      <result property="prodetail" column="pro_detail" />
+   	  <result property="pro_name" column="pro_name" />
+      <result property="pro_class" column="pro_class" />
+      <result property="pro_available" column="pro_available" />
+      <result property="pro_price" column="pro_price" />
+      <result property="pro_img" column="pro_img" />
+      <result property="pro_detail" column="pro_detail" />
    </resultMap> 
 
 	<select id="addSurvey" parameterType="surveyVO" >
 	<![CDATA[
 		insert into surveytbl(survey_code, survey_result1, survey_result2, survey_result3)
-		values(#{code}, #{result1}, #{result2}, #{result3})
+		values(#{survey_code}, #{survey_result1}, #{survey_result2}, #{survey_result3})
 	]]>
   </select>
   
-  <select id="surveylist" resultMap="productResult" parameterType="productVO">
+  <select id="surveylist" resultMap="productResult" parameterType="surveyVO">
 		<![CDATA[
-			select pro_name, pro_class, pro_price, pro_img, pro_detail from producttbl
-			where pro_class like '%'||'${keyword1}'||'%'
-            or pro_class like '%'||'${keyword2}'||'%'
-            or pro_class like '%'||'${keyword3}'||'%'
+			select pro_name, pro_class, pro_price, pro_available, pro_img, pro_detail from producttbl
+			where pro_class like '%'||'${survey_result1}'||'%'
+            or pro_class like '%'||'${survey_result2}'||'%'
+            or pro_class like '%'||'${survey_result3}'||'%'
 		]]>
 	</select>
+	
+	<!--   -->
+	<select id="selectSurvey" resultMap="surveyResult" parameterType="memberVO">
+		<![CDATA[
+			SELECT * FROM surveytbl
+			WHERE survey_code = #{survey_code}
+		]]>
+	</select>
+	
 
  </mapper>    
 

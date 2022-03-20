@@ -320,20 +320,30 @@
     margin: auto;
     margin: top 20px;
     background-size: cover;
-    width:60%;
+    // width:60%;
     height:60%;
   }
 
   .img-1{
     background-image: url(../public/img/merit3.jpeg);
+    width: 100%;
+    padding: 1px;
   }
 
   .img-2{
     background-image: url(../public/img/merit2.jpeg);
+    width: 100%;
+    padding: 1px;
+
+
   }
 
   .img-3{
     background-image: url(../public/img/merit4.jpeg);
+    width: 100%;
+    padding: 1px;
+
+
   }
 
   .main-steps{
@@ -521,9 +531,32 @@
       background-color: $mainColor;
       border: 0;
       border-radius: 5px;
-      font-size: 20px;
-      
+      font-size: 20px; 
     }
+
+    .btn:hover{
+      color: black;
+    }
+
+
+    .btn-copy{
+      width: 5rem;
+      color: white;
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    .btn-copy-clicked{
+      opacity: 0.8;
+      background-color: grey;
+      color: black;
+    }
+
+    .btn-bug{
+      display : inline-block;
+    }
+
+
 
     .Survey-input{
       input{

@@ -1,6 +1,9 @@
+/*eslint-disable*/
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import { useParams } from "react-router-dom";
+import { baseUrl } from "../../config";
 import axios from 'axios';
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -17,7 +20,6 @@ import './NoticePage.css';
 /*공지사항 수정*/
 const NoticeEdit = () => {
 
-    const [notice,setNotice] = useState({});
     const [inputValue, setInputValue] = useState("");
     const {notice_code} = useParams();
     // useState로 상태관리하기 초기값은 EditorState.createEmpty()
@@ -27,13 +29,12 @@ const NoticeEdit = () => {
     //글 서버에서 가져오기
     useEffect(()=>{
         axios 
-        .get('/notice/view',{
+        .get(baseUrl+'/notice/view',{
             params:{
               notice_code: notice_code
             }
         })
         .then((response)=>{
-            setNotice(response.data);
             setInputValue(response.data.notice_title);
 
             const blocksFromHtml = htmlToDraft(response.data.notice_content);
@@ -52,7 +53,6 @@ const NoticeEdit = () => {
             console.log(error);
         })
     },[]);
-    const rendered = useRef(false);
 
 
 
@@ -76,7 +76,7 @@ const NoticeEdit = () => {
       }else{
         //글 서버로 보내기
         axios 
-        .get('/notice/edit',{
+        .get(baseUrl+'/notice/edit',{
             params:{
               notice_code : notice_code,
               title : inputValue,

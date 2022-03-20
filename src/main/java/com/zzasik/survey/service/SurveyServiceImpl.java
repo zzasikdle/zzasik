@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.zzasik.member.vo.MemberVO;
 import com.zzasik.survey.dao.SurveyDAO;
 import com.zzasik.survey.vo.SurveyVO;
 
@@ -21,21 +22,20 @@ public class SurveyServiceImpl implements SurveyService{
 	private SurveyDAO surveyDAO;
 	
 	@Override
-	public int addSurvey(@RequestBody Map<String,Object> resultMap) throws Exception {
+	public void addSurvey(SurveyVO surveyVO) throws Exception {
 
-		return surveyDAO.addSurvey(resultMap);
+		surveyDAO.addSurvey(surveyVO);
 	}
 
 	@Override
-	public SurveyVO selectSurvey(int code) throws DataAccessException {
+	public SurveyVO selectSurvey(MemberVO memberVO) throws DataAccessException {
 		// TODO Auto-generated method stub
-		return surveyDAO.selectSurvey(code);
+		return surveyDAO.selectSurvey(memberVO);
 	}
 	
 	@Override
-	public List surveylist(String keyword1, String keyword2, String keyword3) throws DataAccessException {
-		List surveylist = null;
-		surveylist = surveyDAO.surveylist(keyword1, keyword2, keyword3);
+	public List surveylist(SurveyVO surveyVO) throws DataAccessException {
+		List surveylist = surveyDAO.surveylist(surveyVO);
 		return surveylist;
 	}
 

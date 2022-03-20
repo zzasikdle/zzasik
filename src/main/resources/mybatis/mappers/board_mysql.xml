@@ -14,9 +14,33 @@
     <result property="teacher_name" column="teacher_name" />
     <result property="imageFilename" column="imageFilename" />
     <result property="teacher_id" column="teacher_id" />
-     <result property="writedate" column="writedate" />
+     <result property="joindate" column="joindate" />
+     <result property="start_date" column="start_date" />
+      <result property="usertsatus" column="usertsatus" />
+      <result property="user_answer" column="user_answer" />
+     <result property="breakfast" column="breakfast" />
+     <result property="Lunch" column="Lunch" />
+     <result property="dinner" column="dinner" />
+     <result property="snack_1" column="snack_1" />
+     <result property="snack_2" column="snack_2" />
+     <result property="snack_3" column="snack_3" />
+     <result property="calorie" column="calorie" />
+     <result property="board_period" column="board_period" />
+     <result property="coaching_answer" column="coaching_answer" />
+     <result property="coaching_num" column="coaching_num" />
+     
+     <result property="user_name" column="user_name" />
+     <result property="user_pwd" column="user_pwd" />
+     <result property="birth" column="birth" />
+     <result property="phone" column="phone" />
+     <result property="email" column="email" />
+     <result property="survey_code" column="survey_code" />
+     
+   
+     
  
   </resultMap> 
+  
   
  
   <select id="selectAllBoardsList" resultMap="BoardsResult">
@@ -28,8 +52,8 @@
     <select id="addNewBoard" parameterType="java.util.Map">
 
      	<![CDATA[
-		INSERT into boardtbl(user_id,teacher_name,board_code,board_title,board_content,meal_type,board_price,imageFilename,writedate)
-		VALUES (#{user_id},#{teacher_name},#{board_code}, #{board_title}, #{board_content},	#{meal_type}, #{board_price},#{imageFilename},#{writedate})
+		INSERT into boardtbl(user_id,teacher_name,board_code,board_title,board_content,meal_type,board_price,imageFilename,writedate,board_period)
+		VALUES (#{user_id},#{teacher_name},#{board_code}, #{board_title}, #{board_content},	#{meal_type}, #{board_price},#{imageFilename},#{writedate},#{board_period})
 	]]>   
   </select>
   
@@ -45,7 +69,7 @@
 			SELECT  IFNULL(max(board_code), 0) + 1 from boardtbl		
 		]]>
 	</select>
-	
+	   
 	   <select id="joinBoard" parameterType="java.util.Map">
 
      	<![CDATA[
@@ -57,7 +81,7 @@
 	
 	  <select id="selectTeacherBoard" resultType="BoardVO" parameterType="String">
     <![CDATA[
-      SELECT board_title, user_id , board_content , board_code ,meal_type from boardtbl where user_id = #{user_id}; 
+      SELECT board_title, user_id , board_content , board_code ,meal_type, imageFilename from boardtbl where user_id = #{user_id}; 
     ]]>
   </select>
   
@@ -75,10 +99,102 @@
   </select>
   
   
-    <select id="userList" resultMap="BoardsResult">
+    <select id="SignuserList" resultMap="BoardsResult">
     <![CDATA[
-      SELECT user_id FROM joincart where board_code=#{board_code}
+SELECT J.user_id, J.joindate
+from joincart J
+ LEFT join coachingtbl C 
+ ON C.user_id = J.user_id AND C.board_code = #{board_code}
+ WHERE J.board_code = #{board_code} AND C.board_code is NULL
     ]]>
   </select> 
+  
+     <select id="suganginsert" parameterType="java.util.Map">
+
+     	<![CDATA[
+		INSERT into coachingtbl(user_id,board_code,start_date,coaching_num)
+		VALUES (#{user_id},#{board_code},current_date(),1)
+	]]>   
+  </select>
+    <select id="countJoinUser" resultType="int" parameterType="String">
+
+     	<![CDATA[
+	select count(*) from joincart where user_id=#{user_id} and board_code=#{board_code}
+	]]>   
+  </select>
+  
+   <select id="coachingList" resultType="BoardVO" parameterType="String">
+    <![CDATA[
+   SELECT * 
+from coachingtbl AS C
+INNER JOIN boardtbl AS B
+ON C.board_code = B.board_code 
+WHERE C.board_code=#{board_code}
+group by C.user_id
+  
+    ]]>
+  </select> 
+  
+   <select id="userlist" resultType="BoardVO" parameterType="java.util.Map">
+    <![CDATA[
+ select *from usertbl U
+	INNER JOIN coachingtbl C
+		ON U.user_id = C.user_id
+			where U.user_id=#{user_id} and C.board_code=#{board_code}
+    ]]>
+  </select> 
+  
+     <select id="addCoachingAnswer" parameterType="java.util.Map">
+
+     	<![CDATA[
+		update coachingtbl 
+		set breakfast=#{breakfast},Lunch=#{Lunch} ,dinner=#{dinner} ,snack_1=#{snack_1} ,snack_2=#{snack_2} ,calorie=#{calorie} ,coaching_answer=#{coaching_answer} ,coaching_num=#{coaching_num}
+		where board_code= #{board_code} and user_id=#{user_id}
+	]]>   
+  </select>
+
+       <select id="addSecondCoachingAnswer" parameterType="java.util.Map">
+
+     	<![CDATA[
+insert into coachingtbl( breakfast, Lunch, dinner, snack_1, snack_2,  calorie, coaching_answer, start_date, user_id, board_code,coaching_num )
+values (#{breakfast}, #{Lunch}, #{dinner}, #{snack_1}, #{snack_2}, #{calorie}, #{coaching_answer}, #{start_date}, #{user_id}, #{board_code},#{coaching_num})
+	]]>   
+  </select>
+  
+   
+  <select id="selectUserBoardList" parameterType="String" resultType="BoardVO">
+  		<![CDATA[
+		select b.board_code,b.board_title,teacher_name,board_period
+		from joincart as j join boardtbl as b
+		on j.board_code = b.board_code
+		where j.user_id = #{user_id}
+		]]> 
+  </select>
+  
+  <select id="selectCoachings" parameterType="java.util.Map" resultType="BoardVO">
+	  	<![CDATA[
+		  	select * 
+			from coachingtbl
+			where user_id=#{user_id} and board_code=#{board_code}
+			order by coaching_num
+		]]>
+  </select>
+  
+  <select id="getStartDate" parameterType="java.util.Map" resultType="BoardVO">
+	  	<![CDATA[
+		  	select start_date 
+			from coachingtbl
+			where user_id=#{user_id} and board_code=#{board_code} and coaching_num=1
+		]]>
+		</select>
+		
+		<select id="getUserMessage" parameterType="java.util.Map" resultType="BoardVO">
+	  	<![CDATA[
+		  	select *
+			from coachingtbl
+			where user_id=#{user_id} and board_code=#{board_code} and coaching_num=#{coaching_num}
+		]]>
+  </select>
+  
 </mapper>
   

@@ -5,8 +5,6 @@
     letter-spacing: 1px;
 }
 .content{
-    display:flex;
-    float: left;
     margin-top: 70px;
     padding: 0 0 110px 0;
 }
@@ -56,16 +54,32 @@
     text-align: center;
 }
 
+.shortinfo{
+    display:flex;
+    flex-direction:row;
+    font-size:18px;
+}
+
+.shortinfo-p{
+    width: 90px;
+    font-weight:600;
+    margin:0px 10px 0px 10px;
+}
+
+.shortinfo p{
+    margin-bottom: 20px;
+}
+
 /*회원 탈퇴 버튼*/
 .delAccount{
     width: 90px;
     height: 50px;
     margin: auto;
-    color:#fff;
-	background: rgba(0,79,255,0.9);
+    color:#5D5D5D;
+	background: rgba(234,234,234,0.9);
 	font-size: 15px;
 	border:none;
-	box-shadow: 0 4px 8px rgba(0,79,255,0.6) rgba(18, 209, 248, 0.7);
+	box-shadow: 0 4px 8px rgba(234,234,234,0.6) rgba(18, 209, 248, 0.7);
     
 }
 .delAccount:focus {
@@ -97,3 +111,104 @@
     padding-top: 10px;
     color: white;
 }
+
+/*나의 코칭 서비스 - 식단 테이블*/
+.meal-table{
+    width: 80%;
+    margin: 20px auto;
+}
+/*몇일차*/
+.day{
+    margin: 3px 0px 0px 12px;
+    font-size: 22px;
+    color: #F9B514;
+}
+
+.send_content {
+    width:550px;
+    height:550px;
+    margin: 100px auto;
+    background: white;
+}
+ 
+.send-editor {
+    text-decoration: none;
+    height: 200px !important;
+    border: 1px solid #f1f1f1 !important;
+    padding: 5px !important;
+    border-radius: 2px !important;
+}
+
+.userboard-select{
+    margin: 20px 300px;
+    font-size: 17px;
+    width: 500px;
+    height: 55px;
+    padding: .8em .5em;
+    font-family: inherit;
+    background: url('/public/img/arrow2.png') no-repeat 95% 50%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid #999;
+    border-radius: 0px;
+}
+
+/*진행된 식단 버튼 리스트*/
+.dayBtn {
+    width: 100px;
+    height: 35px;
+	background-color: #F9B514;
+    border-radius: 15px;
+	font-size: 15px;
+    font-weight: 600;
+    color: white;
+	border:none;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.buttonlist {
+    margin: 10px auto;
+}
+.buttonlist .item {
+	display: inline-block;
+    margin-top: 10px;
+	margin-left: 20px;
+	text-align: center;
+	box-shadow: 0px 0px 5px rgba(299,299,299,0.1);
+}
+.buttonlist .item:nth-child(-n+3){
+	margin-top: 0;
+}
+
+.buttonlist .item:nth-child(3n-2){
+	margin-left: 0;
+}
+
+.meal_modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width:100%;
+    height:100%;
+    z-index:1;
+    display:none;
+    
+  }
+  
+  .meal_modal_content {
+    width:600px;
+    height:600px;
+    margin: 100px auto;
+    background: white;
+    overflow: scroll;
+  }
+  
+  .meal_modal #location {
+    padding-top: 10px;
+    padding-left: 150px;
+  }

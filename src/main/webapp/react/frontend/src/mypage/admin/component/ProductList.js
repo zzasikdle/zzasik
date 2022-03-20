@@ -3,16 +3,17 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import React, {useState} from 'react';
 import Pagination from "../../../components/notice/Pagination";
+import { baseUrl } from "../../../config";
 
 const ProductList = () => {
     const [ productList,setProductList] = useState([]);
-    const [ limit, setLimit] = useState(10);    //한 페이지당 표시할 게시물 개수
+    const limit = 10;    //한 페이지당 표시할 게시물 개수
     const [ page, setPage] = useState(1);
     const offset = (page - 1) * limit;
 
     useEffect(()=>{
         axios
-        .get('/product/listProducts')
+        .get(baseUrl+'/product/listProducts')
         .then((response)=>{
             console.log(response.data);
             setProductList(response.data);
@@ -28,7 +29,7 @@ const ProductList = () => {
         <div className="box table-section">
             <div className="box_header">
                 <h2>상품 목록</h2>
-                <Link to='/product' className='manage'>관리하기<img className="arrow" src='/img/arrow.png'/></Link>
+                <Link to='/product' className='manage'>관리하기<img className="arrow" src='/img/arrow.png' alt=">"/></Link>
             </div>
             <table class="tb" style={{cellspacing:"0",border:"1"}}>
                 <colgroup>
