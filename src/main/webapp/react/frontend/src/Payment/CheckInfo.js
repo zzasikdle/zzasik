@@ -44,7 +44,7 @@ const CheckInfo = ( ) => {
 
     return(
         <>
-        <div id="con" style={{textAlign:"center", margin:"20px auto"}}>
+        <div style={{textAlign:"center", marginTop:"80px", marginBottom:"50px"}}>
             <h1>구매자 정보</h1>
             <table>
                 <tbody>
@@ -64,7 +64,7 @@ const CheckInfo = ( ) => {
             </table>
         </div>
 
-        <div id="con" style={{textAlign:"center", margin:"20px auto"}}>
+        <div id="con" style={{textAlign:"center", marginBottom:"50px"}}>
             <h1>받는 사람 정보</h1>
             <table>
                 <tbody>
@@ -84,8 +84,8 @@ const CheckInfo = ( ) => {
             </table>
         </div>
 
-        <Link to="/" onClick={removeOrder}><button type="button">취소</button></Link>
-        <Link to="/order/pay"><button type="button">다음</button></Link>
+        <Link to="/" onClick={removeOrder}><button type="button" style={{width:"70px", height:"30px", marginRight:"20px", border:"1px solid darkgray"}}>취소</button></Link>
+        <Link to="/order/pay"><button type="button" style={{width:"70px", height:"30px", marginRight:"20px", border:"1px solid darkgray"}}>다음</button></Link>
         </>
     )
 }
