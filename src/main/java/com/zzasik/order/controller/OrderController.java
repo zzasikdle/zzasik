@@ -103,7 +103,7 @@ public class OrderController {
 			map.put("path", "/user/cart");
 		} else {
 			System.out.println("성공");
-			map.put("message", "구매자 정보를 확인해주세요.");
+			map.put("message", "주문 정보를 확인해주세요.");
 			map.put("path", "/order/check");
 			map.put("order_code", order_code);
 			

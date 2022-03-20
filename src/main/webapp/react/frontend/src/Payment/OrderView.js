@@ -49,7 +49,7 @@ const OrderView = ( ) => {
                               return(
                                   <tr key={key}>
                                       {console.log(order)}
-                                      <td><img src={order.productList[0].pro_img} style={{width:"100px", height:"100px"}} /></td>
+                                      <td style={{width:"120px", height:"120px"}}><img src={order.productList[0].pro_img} style={{width:"100px", height:"100px"}} /></td>
                                       <td>
                                           <Link to={`/shop/view/${order.pro_code}`} style={{textDecoration:"none"}}>{order.productList[0].pro_name}</Link>
                                       </td>
