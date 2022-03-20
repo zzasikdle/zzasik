@@ -149,7 +149,7 @@ public Map<String, Object> joinBoard(@RequestParam("board_code") String board_co
 		joinMap.put("teacher_id", teacher_id);	
 		boardService.joinBoard(joinMap);
 		joinMap.put("message", "신청완료 ^^");
-		 
+		  
 	}else {
 		joinMap.put("message", "이미 신청한 프로그램입니다.");
 	
