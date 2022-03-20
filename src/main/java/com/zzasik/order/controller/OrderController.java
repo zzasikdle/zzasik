@@ -98,12 +98,12 @@ public class OrderController {
 		System.out.println(isRegistered);
 		
 		if(isRegistered == false) {
-			System.out.println("�떎�뙣");
-			map.put("message", "�삤瑜섍� 諛쒖깮�뻽�뒿�땲�떎. �떎�떆 �떆�룄�빐二쇱꽭�슂.");
+			System.out.println("실패");
+			map.put("message", "오류가 발생했습니다. 다시 시도해주세요.");
 			map.put("path", "/user/cart");
 		} else {
-			System.out.println("�꽦怨�");
-			map.put("message", "援щℓ�옄 �젙蹂대�� �솗�씤�빐二쇱꽭�슂.");
+			System.out.println("성공");
+			map.put("message", "주문 정보를 확인해주세요.");
 			map.put("path", "/order/check");
 			map.put("order_code", order_code);
 			
@@ -160,10 +160,10 @@ public class OrderController {
 		System.out.println(IsAdd);
 		
 		if(IsAdd == false) {
-			System.out.println("�긽�뭹 寃곗젣 �떎�뙣");
+			System.out.println("상품 결제 실패");
 			map.put("path", "/");
 		} else {
-			System.out.println(order_code + "踰� 二쇰Ц 寃곗젣 �셿猷�");
+			System.out.println(order_code + "번 주문 결제 완료");
 			orderService.updateStatus1(order_code);
 			map.put("path", "/myhome/myOrder");
 			
@@ -203,10 +203,11 @@ public class OrderController {
 		
 		boolean isDeleted = orderService.deleteProduct(order_code);
 		if(isDeleted == false) {
-			System.out.println("�긽�뭹 �궘�젣 �떎�뙣");
+			System.out.println("주문 삭제 실패");
 			map.put("path", "/");
 		} else {
-			System.out.println(order_code + "踰� 二쇰Ц �궘�젣");
+			System.out.println(order_code + "번 주문 삭제");
+      map.put("message", "주문이 취소되었습니다.");
 			map.put("path", "/");
 		}
 		resEnt = new ResponseEntity(map, responseHeader, HttpStatus.CREATED);
