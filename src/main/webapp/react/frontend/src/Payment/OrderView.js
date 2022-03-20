@@ -28,16 +28,16 @@ const OrderView = ( ) => {
     }, []);
 
     return(
-        <div>
+        <div style={{position:"absolute", top:"80px"}}>
             <h1>주문 상세보기</h1>
             <hr />
                 <table>
                     <thead>
                         <tr>
-                            <th style={{align:"center"}}>상품</th>
-                            <th style={{align:"center"}}>상품명</th>
-                            <th style={{align:"center"}}>수량</th>
-                            <th style={{align:"center"}}>가격</th>
+                            <th style={{textAlign:"center"}}>상품</th>
+                            <th style={{textAlign:"center"}}>상품명</th>
+                            <th style={{textAlign:"center"}}>수량</th>
+                            <th style={{textAlign:"center"}}>가격</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,18 +48,19 @@ const OrderView = ( ) => {
                                 return(
                                     <tr key={key}>
                                         {console.log(order)}
-                                        <td style={{align:"center"}}><img src={order.productList[0].pro_img} style={{width:"100px", height:"100px"}} /></td>
-                                        <td style={{align:"center"}}>
+                                        <td style={{textAlign:"center", width:"120px", height:"120px"}}><img src={order.productList[0].pro_img} style={{width:"100px", height:"100px"}} /></td>
+                                        <td style={{textAlign:"center"}}>
                                             <Link to={`/shop/product/view/${order.pro_code}`} style={{textDecoration:"none"}}>{order.productList[0].pro_name}</Link>
                                         </td>
-                                        <td style={{align:"center"}}>{order.quantity}</td>
-                                        <td style={{align:"center"}}>{(order.productList[0].pro_price)}</td>
+                                        <td style={{textAlign:"center"}}>{order.quantity}</td>
+                                        <td style={{textAlign:"center"}}>{(order.productList[0].pro_price)}</td>
                                     </tr>
                                 )
                             })
                         }
                     </tbody>
                 </table>
+                <Link to="/myhome/myOrder"><button type='button'>돌아가기</button></Link>
         </div>
     )
 }
