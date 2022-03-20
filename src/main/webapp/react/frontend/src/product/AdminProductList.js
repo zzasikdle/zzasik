@@ -1,7 +1,7 @@
 /*eslint-disable*/
 
 
-import './ProductList.css';
+import './AdminProductList.css';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -38,7 +38,7 @@ const AdminProductList = ( ) => {
                     <input type="button" value="글쓰기" onClick={writeProduct} />
             </div>
 
-            <div id="wrapper">
+            <div id="wrapper" style={{width:"1500px", margin:"0 auto"}}>
                 {productList.length === 0 ?
                 <div>
                     <p style={{textAlign:"center"}}>
@@ -49,7 +49,7 @@ const AdminProductList = ( ) => {
                 :
                 productList.map((product, key) => {
                     return(
-						<ul id="productul" style={{margin:"0 auto"}}>
+						<ul id="productul" style={{float:"left"}}>
                         <li id="productli" style={{textAlign:"center"}} key={key}>
                             <Link to={`/product/view/${product.pro_code}`} style={{textDecoration:"none"}}>
                                 <div>

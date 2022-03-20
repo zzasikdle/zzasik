@@ -1,6 +1,7 @@
 #con{
     position: absolute;
     top: 80px;
+    width: 100%;
 }
 
 #tr_file_upload{

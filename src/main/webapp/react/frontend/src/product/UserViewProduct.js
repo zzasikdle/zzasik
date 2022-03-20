@@ -114,7 +114,7 @@ const UserViewProduct = ( ) => {
     }
 
     return (
-        <div>
+        <div id="con">
             <h1>상품 상세 보기</h1>
             <table>
                 <tbody>
@@ -149,19 +149,20 @@ const UserViewProduct = ( ) => {
                     <tr>
                         <td>수량 선택</td>
                         <td>
-                            <input type="number" name="quantity" defaultValue="1" min="1" max={product.pro_available} onChange={(e) => {setQuantity(e.target.value)}}  />
+                            <input type="number" name="quantity" defaultValue="1" min="1" max={product.pro_available} onChange={(e) => {setQuantity(e.target.value)}} style={{width:"140px"}}  />
                         </td>
                     </tr>
                     <tr>
-                        <td>내용</td>
+                        <td style={{verticalArign:"middle"}}>내용</td>
                         <td><textarea rows="10" cols="65" name="pro_detail" value={product.pro_detail} disabled={disabled}></textarea></td>
                     </tr>
 
                     <tr id="tr_btn" >
-                        <td colSpan="2" style={{ align: "center" }}>
-                            <input type="button" value="장바구니 담기" onClick={goToCart} />
-                            <input type="button" value="바로 구매" onClick={goToCheck} />
-                            <input type="button" value="리스트로 돌아가기" onClick={backToList} />
+                    	<td></td>
+                        <td>
+                            <input type="button" value="장바구니 담기" onClick={goToCart} style={{marginRight:"15px"}} />
+                            <input type="button" value="바로 구매" onClick={goToCheck} style={{marginRight:"15px"}} />
+                            <input type="button" value="리스트로 돌아가기" onClick={backToList} style={{marginRight:"15px"}} />
                         </td>
                     </tr>
                 </tbody>
