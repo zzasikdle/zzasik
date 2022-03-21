@@ -126,12 +126,13 @@ from joincart J
   
    <select id="coachingList" resultType="BoardVO" parameterType="int">
     <![CDATA[
-  SELECT * 
+SELECT C.user_id, C.start_date
 from coachingtbl AS C
 INNER JOIN boardtbl AS B
 ON C.board_code = B.board_code 
 WHERE C.board_code=#{board_code}
-group by C.user_id
+group by C.user_id , C.start_date;
+
   
     ]]>
   </select> 
