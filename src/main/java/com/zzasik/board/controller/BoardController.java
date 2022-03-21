@@ -80,15 +80,15 @@ public class BoardController {
 		try {
 			int board_code = boardService.addNewBoard(boardMap);
 			if (imageFilename != null && imageFilename.length() != 0) {
-				File srcFile = new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + imageFilename);
-				File destDir = new File(ARTICLE_IMAGE_REPO + "\\" + board_code);
+				File srcFile = new File(ARTICLE_IMAGE_REPO + "/" + imageFilename);
+				File destDir = new File(ARTICLE_IMAGE_REPO + "/" + board_code);
 				FileUtils.moveFileToDirectory(srcFile, destDir, true);
 			}
 			map.put("message", "글쓰기 완료");
 			map.put("path", "/board/list");
 			resEnt = new ResponseEntity(map, responseHeaders, HttpStatus.CREATED);
 		} catch (Exception e) {
-			File srcFile = new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + imageFilename);
+			File srcFile = new File(ARTICLE_IMAGE_REPO + "/" + imageFilename);
 			srcFile.delete();
 			map.put("message", "오류발생");
 			map.put("path", "/");
@@ -99,7 +99,7 @@ public class BoardController {
 		
 	 }
 
-// 占싱뱄옙占쏙옙 占쏙옙占싸듸옙占싹깍옙
+// 
 	private String upload(MultipartHttpServletRequest multipartRequest) throws Exception {
 		String imageFilename = null;
 		Iterator<String> fileNames = multipartRequest.getFileNames();
