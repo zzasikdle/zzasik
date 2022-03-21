@@ -198,5 +198,13 @@ values (#{breakfast}, #{Lunch}, #{dinner}, #{snack_1}, #{snack_2}, #{calorie}, #
 		]]>
   </select>
   
+  <update id="updateUserAnswer" parameterType="java.util.Map">
+	  	<![CDATA[
+		  	update coachingtbl
+			set user_answer = #{user_answer}
+			where user_id=#{user_id} and board_code=#{board_code} and coaching_num=#{coaching_num}
+		]]>
+  </update>
+  
 </mapper>
   
