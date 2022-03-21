@@ -158,7 +158,7 @@ const AdminViewProduct = ( ) => {
                         <td><input type="text" name="pro_price" defaultValue={product.pro_price} disabled={disabled} onChange={(e) => {setPrice(e.target.value)}} /></td>
                     </tr>
                     <tr>
-                        <td style={{position:"relative", top:"-250px"}}>내용</td>
+                        <td>내용</td>
                         <td><textarea rows="10" cols="65" name="pro_detail" defaultValue={product.pro_detail} disabled={disabled} onChange={(e) => {setDetail(e.target.value)}}></textarea></td>
                     </tr>
                     <tr id="tr_btn_modify" style={{ width: "150px" }} >
@@ -171,9 +171,9 @@ const AdminViewProduct = ( ) => {
 
                     <tr id="tr_btn" >
                         <td colSpan="2" style={{ align: "center" }}>
-                               	<input type="button" value="수정하기" onClick={fn_enable} style={{marginRight:"20px"}} />
-                                <input type="button" value="삭제하기" onClick={fn_remove} style={{marginRight:"20px"}} />
-                            	<input type="button" value="리스트로 돌아가기" onClick={backToList} style={{marginRight:"20px"}} />
+                               	<input type="button" value="수정하기" onClick={fn_enable} style={{marginRight:"20px", border:"1px solid darkgray"}} />
+                                <input type="button" value="삭제하기" onClick={fn_remove} style={{marginRight:"20px", border:"1px solid darkgray"}} />
+                            	<input type="button" value="리스트로 돌아가기" onClick={backToList} style={{marginRight:"20px", border:"1px solid darkgray"}} />
                         </td>
                     </tr>
                 </tbody>
