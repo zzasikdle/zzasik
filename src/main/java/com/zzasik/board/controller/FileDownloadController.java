@@ -29,7 +29,7 @@ public class FileDownloadController {
 		String downFile = ARTICLE_IMAGE_REPO + "/" +board_code+"/"+ imageFilename;
 		System.out.println("downFile: " + downFile);
 		File file = new File(downFile);
-
+ 
 		response.setHeader("Cache-Control", "no-cache");
 		response.addHeader("Content-disposition", "attachment; fileName=" + imageFilename);
 		FileInputStream in = new FileInputStream(file);
