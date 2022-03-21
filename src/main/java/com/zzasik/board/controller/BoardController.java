@@ -347,14 +347,18 @@ public BoardVO getStartDate(@RequestParam("user_id") String user_id,@RequestPara
 }
 
 //유저 -> 코치 메시지 보내기 
-@GetMapping(value="/board/sendtocoach")
-public void sendMessageToCoach(@RequestParam("user_id") String user_id,@RequestParam("board_code") int board_code,@RequestParam("coaching_num") int coaching_num,@RequestParam("useranswer") String useranswer) throws Exception {
-	Map<String,Object> map = new HashMap<String,Object>();
-	map.put("user_id", user_id);
-	map.put("board_code", board_code);
-	map.put("coaching_num", coaching_num);
-	map.put("useranswer", useranswer);
+@PostMapping(value="/board/sendtocoach")
+public void sendMessageToCoach(MultipartHttpServletRequest multipartRequest) throws Exception {
+	multipartRequest.setCharacterEncoding("utf-8");
 	
+	Map<String,Object> map = new HashMap<String,Object>();
+	
+	Enumeration enu = multipartRequest.getParameterNames();
+	while (enu.hasMoreElements()) {
+		String name = (String) enu.nextElement();
+		String value = multipartRequest.getParameter(name);
+		map.put(name, value);		
+	}
 	boardService.sendMessageToCoach(map);
 	
 }

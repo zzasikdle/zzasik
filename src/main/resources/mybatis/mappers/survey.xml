@@ -29,10 +29,10 @@
   
   <select id="surveylist" resultMap="productResult" parameterType="surveyVO">
 		<![CDATA[
-			select pro_name, pro_class, pro_price, pro_available, pro_img, pro_detail from producttbl
-			where pro_class like '%'||'${survey_result1}'||'%'
-            or pro_class like '%'||'${survey_result2}'||'%'
-            or pro_class like '%'||'${survey_result3}'||'%'
+			select pro_code, pro_name, pro_class, pro_price, pro_available, pro_img, pro_detail from producttbl
+			where pro_class ='${survey_result1}'
+            or pro_class = '${survey_result2}'
+            or pro_class = '${survey_result3}'
 		]]>
 	</select>
 	

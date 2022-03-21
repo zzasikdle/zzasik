@@ -110,7 +110,6 @@ const UploadProduct = ( ) => {
                         <td><textarea rows="10" cols="65" name="pro_detail" onChange={(e) => {setDetail(e.target.value)}}></textarea></td>
                     </tr>
                     <tr>
-                    	<td></td>
                         <td>
                             <Link to="/product" onClick={handleWrite}><button type='button' style={{width:"70px", marginRight:"20px", border:"1px solid darkgray"}}>글쓰기</button></Link>
                             <Link to="/product"><button type="button" style={{width:"70px", marginRight:"20px", border:"1px solid darkgray"}}>취소</button></Link>
