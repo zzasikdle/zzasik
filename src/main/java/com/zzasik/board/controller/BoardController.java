@@ -184,7 +184,7 @@ public void delBoard(@RequestParam("board_code") String board_code )throws Excep
 @PostMapping(value = "/board/modifyBoard")
 public ResponseEntity modifyBoard(MultipartHttpServletRequest multipartRequest,  HttpServletResponse response) throws Exception {
 	multipartRequest.setCharacterEncoding("utf-8");
-	System.out.println("----------------占쏙옙占쏙옙 占쏙옙트占싼뤄옙 -------------------");
+
 	Map<String,Object> boardMap = new HashMap<String,Object>();
 	Enumeration enu = multipartRequest.getParameterNames();
 	while (enu.hasMoreElements()) {
@@ -207,21 +207,17 @@ public ResponseEntity modifyBoard(MultipartHttpServletRequest multipartRequest, 
 		if (imageFilename != null && imageFilename.length() != 0) {
 			File srcFile = new File(ARTICLE_IMAGE_REPO + "/"+ imageFilename);
 			File destDir = new File(ARTICLE_IMAGE_REPO + "/" + board_code);
-			FileUtils.moveFileToDirectory(srcFile, destDir, true);
-			
-			String originalFileName = (String) boardMap.get("originalFileName");
-			File oldFile = new File(ARTICLE_IMAGE_REPO + "/" + board_code + "/" + originalFileName);
-			oldFile.delete();
+			FileUtils.moveFileToDirectory(srcFile, destDir, true)
 		}
-		map.put("message", "占쏙옙占쏙옙占싹뤄옙 .");
+		map.put("message", "수정완료 .");
 		map.put("path", "/board/list/"+Integer.parseInt(board_code));
 		resEnt = new ResponseEntity(map, responseHeaders, HttpStatus.CREATED);
 	} catch (Exception e) {
 		File srcFile = new File(ARTICLE_IMAGE_REPO + "/"+ imageFilename);
 		srcFile.delete();
-		map.put("message", "占쏙옙占쏙옙占쏙옙 占쌩삼옙占쌩쏙옙占싹댐옙. 占쌕쏙옙 占시듸옙占쏙옙 占쌍쇽옙占쏙옙.");
+		map.put("message", "오류발생.");
 		map.put("path", "/");
-		resEnt = new ResponseEntity(map, responseHeaders, HttpStatus.CREATED);
+		resEnt = new ResponseEntity(map, responseHeaders, HttpStatus.CREATED); 
 		e.printStackTrace();
 	}
 	return resEnt;
