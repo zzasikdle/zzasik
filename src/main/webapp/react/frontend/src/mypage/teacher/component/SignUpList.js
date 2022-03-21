@@ -8,9 +8,6 @@ import { baseUrl } from '../../../config'
 
 //신청 내역
 const SignUpList = () => {
-
-   
- 
     const [teacherBoard, setTeacherBoard] = useState([]);
     const [selectBox, setselectBox] = useState([]);
     const [usersubit, setUsersubit] = useState([]);
@@ -19,11 +16,6 @@ const SignUpList = () => {
     const [ limit] = useState(10);  //한 페이지당 표시할 게시물 개수 // eslint-disable-line no-unused-vars
     const [ page, setPage] = useState(1);
     const offset = (page - 1) * limit;
-
-
-
-
-
     /* 신청 내역 가져오기 */
     useEffect(() => {
         const call =async () => {
@@ -40,58 +32,44 @@ const SignUpList = () => {
                     console.log(error);
                 })
         };
-
-
         call();
 
 
     }, []);
 
 //수강인원 검색버튼
-    const search_btn = async () => {
-        var i = 0;
+     const search_btn = async () => {
         var search_boardNum = "";
         var index = selectBox.indexOf("]");
         search_boardNum = selectBox.substring(1, index);
-        // console.log(search_boardNum);
+        console.log(search_boardNum);
         //회원목록 조회
         await axios
             .get(baseUrl + "/board/searchboard", {
                 params:
                 {
-                    user_id: sessionStorage.getItem('user_id'),
                     board_code:search_boardNum
-
                 }
             }
-
             ).then((response) => {
-                console.log(response.data)
+                console.log(response.data);
              
-                setUserList(response.data)
-                for (i = 0; i < response.data.length; i++) {
-                    setUsersubit(response.data[i].user_id);
-                    console.log(i+"번:"+response.data[i].user_id)
-                    console.log(usersubit);
+                setUserList(response.data);
+                // for (i = 0; i < response.data.length; i++) {
+                //     setUsersubit(response.data[i].user_id);
+                //     console.log(i+"번:"+response.data[i].user_id)
+                //     console.log(usersubit);
 
 
-                }
-
+                // } 
             })
 
             .catch((error) => {
                 console.log(error)
                 alert(error);
-
-
-
             })
         };
-
-
             
-
-
     function Boardlist() {
         var i = 0;
         var boardList = [];
@@ -111,25 +89,17 @@ const SignUpList = () => {
 
     //수강확인 버튼 
     const onClickHandler = (name) =>{
-        
         var search_boardNum = "";
         var index = selectBox.indexOf("]");
         search_boardNum = selectBox.substring(1, index);
-     
         console.log(name)
         console.log(search_boardNum)
-
         axios
             .get(baseUrl + "/board/subinsert", {
                 params:
                 {
                     user_id: name,
                     board_code:search_boardNum
-                        
-                   
-
-
-
                 }
             }
 

@@ -1,4 +1,7 @@
-import './Cart.css';
+/*eslint-disable*/
+
+
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -151,27 +154,27 @@ const Cart = () => {
     }
 
     return(
-        <div>
+        <div style={{padding:"20px"}}>
             <div id="wrapper">
                 <h1>장바구니</h1>
                 <hr />
-                <input type="button" value="전체 삭제" className="leftBtn" onClick={removeAllCart} />
+                <input type="button" value="전체 삭제" onClick={removeAllCart} style={{float:"left"}} />
                 <table>
                     <thead>
                         <tr>
                             {/* <th><input type="checkbox" name="allCheck" id="allCheck" />전체 선택</th> */}
-                            <th>상품</th>
+                            <th style={{textAlign:"center"}}>상품</th>
                             <th>상품명</th>
-                            <th>수량</th>
-                            <th>가격</th>
-                            <th>기타</th>
+                            <th style={{textAlign:"center"}}>수량</th>
+                            <th style={{textAlign:"center"}}>가격</th>
+                            <th style={{textAlign:"center"}}>삭제</th>
                         </tr>
                     </thead>
                     <tbody>
                         {cartList.length === 0 ?
                             <tr>
                                 <td colSpan="6">
-                                    <p style={{align:"center"}}>
+                                    <p style={{textAlign:"center"}}>
                                         <b><span style={{fontSize:"9pt"}}>장바구니에 상품을 담아주세요.</span></b>
                                     </p>
                                 </td>
@@ -181,18 +184,18 @@ const Cart = () => {
                                 return(
                                     <tr key={key}>
                                         {/* <td><input type="checkbox" value={cart.pro_code} /></td> */}
-                                        <td><img src={cart.productList[0].pro_img} style={{width:"100px", height:"100px"}} /></td>
-                                        <td>
-                                            <Link to={`/shop/product/view/${cart.pro_code}`} style={{textDecoration:"none"}}>{cart.productList[0].pro_name}</Link>
+                                        <td style={{textAlign:"center", verticalAlign:"middle", width:"120px", height:"120px"}}><img src={cart.productList[0].pro_img} style={{width:"100px", height:"100px"}} /></td>
+                                        <td style={{verticalAlign:"middle"}}>
+                                            <Link to={`/shop/view/${cart.pro_code}`} style={{textDecoration:"none"}}>{cart.productList[0].pro_name}</Link>
                                         </td>
-                                        <td>
+                                        <td style={{textAlign:"center", verticalAlign:"middle"}}>
                                             <input type="number" name="quantity" id={key} data-key={cart.pro_code} defaultValue={cart.quantity}
                                                 min="1" max={cart.productList[0].pro_available}
                                                 onChange={setQ} />
                                         </td>
-                                        <td>{(cart.productList[0].pro_price)}</td>
-                                        <td>
-                                            <input type="button" id="delBtn" data-key={cart.pro_code} value="삭제" onClick={removeCart} className="deleteBtn" />                                        </td>
+                                        <td style={{textAlign:"center", verticalAlign:"middle"}}>{(cart.productList[0].pro_price)}</td>
+                                        <td style={{textAlign:"center", verticalAlign:"middle"}}>
+                                            <input type="button" id="delBtn" data-key={cart.pro_code} value="삭제" onClick={removeCart} style={{width:"45px", height:"40px"}} />                                       </td>
                                     </tr>
                                 )
                             })
@@ -200,13 +203,13 @@ const Cart = () => {
                     </tbody>
                 </table>
 
-                <div>
+                <div style={{margin:"10px 0 20px 0"}}>
                     <div>{cartList.length}개의 상품</div>
                     <div id="totalPrice"></div>
                 </div>
 
-                <Link to="/shop">계속 쇼핑하기</Link>
-                <input type="button" value="결제하기" onClick={goToCheck} />
+                <Link to="/shop"><button type='button' style={{width:"80px", height:"27px", border:"1px solid darkgray", marginRight:"20px"}}>계속 쇼핑하기</button></Link>
+                <input type="button" value="구매하기" onClick={goToCheck} style={{width:"80px", height:"25px", border:"1px solid darkgray"}} />
             </div>
         </div>
     )

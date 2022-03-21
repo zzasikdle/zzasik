@@ -70,16 +70,10 @@ const WriteBoard = ( ) => {
         alert("가격을 입력해주세요")
         return false;
       }
-      else if (imageFilename=="") {
-        alert("사진등록 해주세요")
-        return false;
-      }
       else if (board_period=="") {
         alert("기간 입력해주세요")
         return false;
-      }
- 
-      else{
+      }else{
         console.log(JSON.stringify(board_content));
     
         const formData = new FormData();

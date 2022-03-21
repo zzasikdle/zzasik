@@ -200,7 +200,6 @@ export default function MyLesson(){
 
     //취소 버튼 클릭 시 작동
     const onClickCancel = () => {
-        setEditorState("");
         $(".j_modal").attr("style","display:none");
     };
 

@@ -29,7 +29,7 @@ const MemberList = () => {
 
     useEffect(()=>{
         axios
-        .get('/admin/listMembers')
+        .get(baseUrl +'/admin/listMembers')
         .then((response)=>{
             console.log(response.data);
             setMemberList(response.data);

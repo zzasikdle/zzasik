@@ -1,6 +1,7 @@
 #con{
     position: absolute;
     top: 80px;
+    width: 100%;
 }
 
 #tr_file_upload{
@@ -9,6 +10,16 @@
 
 #tr_btn_modify{
     display: none;
+}
+
+#imagetr{
+    height: 350px;
+    vertical-align: middle;
+}
+
+#imagetr td{
+    height: 320px;
+    vertical-align: middle;
 }
 
 .image{

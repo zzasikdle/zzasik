@@ -12,14 +12,11 @@
 		<result property="pro_count" column="pro_count" />
 	</resultMap>
 	
-	<resultMap type="orderVO" id="orderResult">
-		<result property="order_code" column="order_code" />
-		<result property="order_time" column="order_time" />
-		<result property="order_status" column="order_status" />
-		<result property="order_price" column="order_price" />
-		<result property="user_id" column="user_id" />
+	<resultMap type="orderDetailVO" id="orderDetialResult">
 		<result property="quantity" column="quantity" />
+		<result property="order_code" column="order_code" />
 		<result property="pro_code" column="pro_code" />
+		<collection property="productList" resultMap="productResult"></collection>
 	</resultMap>
 	
 	<resultMap type="payVO" id="payResult">
@@ -88,8 +85,8 @@
 	<update id="updateAvail">
 	<![CDATA[
 	UPDATE producttbl SET pro_available = pro_available - (
-	SELECT quantity FROM ordertbl o JOIN paytbl p ON o.order_code = p.order_code
-	WHERE o.order_code = #{order_code} AND pro_code = #{pro_code}
+	SELECT quantity FROM order_detail od JOIN paytbl p ON od.order_code = p.order_code
+	WHERE od.order_code = #{order_code} AND pro_code = #{pro_code}
 	)
 	WHERE pro_code = #{pro_code}
 	]]>

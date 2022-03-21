@@ -19,6 +19,6 @@ public interface ProductDAO {
 	public int updateProduct(Map<String, Object> productMap);
 	public int deleteProduct(int pro_code);
 	public int updateCount(int pro_code);
-	public int updateAvail(int pro_code);
+	public int updateAvail(Map<String, Object> map);
 	public int selectTotalCount();
 }

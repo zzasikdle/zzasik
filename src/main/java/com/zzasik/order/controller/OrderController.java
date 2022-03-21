@@ -27,11 +27,12 @@ import com.zzasik.myhome.service.MyHomeService;
 import com.zzasik.order.service.OrderService;
 import com.zzasik.order.vo.OrderDetailVO;
 import com.zzasik.order.vo.OrderVO;
+import com.zzasik.product.service.ProductService;
 import com.zzasik.product.vo.ProductVO;
 import com.zzasik.productCart.service.CartService;
 import com.zzasik.productCart.vo.CartVO;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("*")
 @RestController("orderController")
 public class OrderController {
 
@@ -40,6 +41,9 @@ public class OrderController {
 	
 	@Autowired
 	private CartService cartService;
+	
+	@Autowired
+	private ProductService productService;
 	
 	@Autowired
 	private MyHomeService myhomeService;
@@ -67,8 +71,8 @@ public class OrderController {
 	public List<OrderVO> getOrderList(@RequestParam("user_id") String user_id) {
 		List<OrderVO> orderList = orderService.getOrderList(user_id);
 		return orderList;
-	}
-	
+	} 
+	 
 	@PostMapping(value="/order/addProduct")
 	public ResponseEntity AddOrder(MultipartHttpServletRequest multipartRequest) throws Exception {		
 		multipartRequest.setCharacterEncoding("utf-8");
@@ -103,7 +107,7 @@ public class OrderController {
 			map.put("path", "/user/cart");
 		} else {
 			System.out.println("성공");
-			map.put("message", "구매자 정보를 확인해주세요.");
+			map.put("message", "주문 정보를 확인해주세요.");
 			map.put("path", "/order/check");
 			map.put("order_code", order_code);
 			
@@ -157,7 +161,7 @@ public class OrderController {
 		Map<String, String> map = new HashMap<String, String>();
 		
 		boolean IsAdd = orderService.AddPay(pmap);
-		System.out.println(IsAdd);
+		System.out.println("pp:"+IsAdd);
 		
 		if(IsAdd == false) {
 			System.out.println("상품 결제 실패");
@@ -166,6 +170,18 @@ public class OrderController {
 			System.out.println(order_code + "번 주문 결제 완료");
 			orderService.updateStatus1(order_code);
 			map.put("path", "/myhome/myOrder");
+			
+			List<OrderDetailVO> list = orderService.selectOrderDetail(pmap);
+			for(int i=0; i<list.size(); i++) {
+				Map<String, Object> dmap = new HashMap<String, Object>();
+				dmap.put("order_code", order_code);
+				dmap.put("user_id", user_id);
+				dmap.put("pro_code", list.get(i).getPro_code());
+				dmap.put("quantity", list.get(i).getQuantity());
+				
+				boolean isis = productService.updateAvail(dmap);
+				System.out.println("pp:"+isis);
+			}
 		}
 		resEnt = new ResponseEntity(map, responseHeader, HttpStatus.CREATED);
 		return resEnt;
@@ -194,7 +210,7 @@ public class OrderController {
 		
 		boolean isDeleted = orderService.deleteProduct(order_code);
 		if(isDeleted == false) {
-			System.out.println("상품 삭제 실패");
+			System.out.println("주문 삭제 실패");
 			map.put("path", "/");
 		} else {
 			System.out.println(order_code + "번 주문 삭제");
