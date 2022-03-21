@@ -114,14 +114,14 @@ public class BoardController {
 					file.getParentFile().mkdirs(); 
 					mFile.transferTo(new File(ARTICLE_IMAGE_REPO + "/" + imageFilename)); // 占쌈시뤄옙 占쏙옙占쏙옙占�
 																											// multipartFile占쏙옙
-																											// 占쏙옙占쏙옙 占쏙옙占싹뤄옙 占쏙옙占쏙옙
+						 																					// 占쏙옙占쏙옙 占쏙옙占싹뤄옙 占쏙옙占쏙옙
 				}
 			}
  
 		}
 		return imageFilename;
 	}
-//占쏢세븝옙占쏙옙 占쏙옙占쏙옙占쏙옙
+
 @GetMapping(value="/board/viewBoard")
 public BoardVO viewBoard(@RequestParam("board_code")int board_code, HttpServletRequest request, 
 		HttpServletResponse response) throws Exception {
