@@ -317,7 +317,7 @@ function Submit1(e) {
         ? 
         <div>
         <p >숫자만 입력해 주세요.</p>
-        <p>예 ) 180.3</p>
+        <p>예 ) 70.5</p>
         </div>
         : <p className='alert-none'>공백</p>
         }
