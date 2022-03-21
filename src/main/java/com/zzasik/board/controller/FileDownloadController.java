@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin("*")
 @Controller
 public class FileDownloadController {
-	private static final String ARTICLE_IMAGE_REPO = "D:\\ddd\\zzasik\\board_image";
+	private static final String ARTICLE_IMAGE_REPO = "/usr/local/tomcat/apache-tomcat-8.5.76/webapps/zzasic/board_image";
 	//@RequestMapping("/download")
 	@GetMapping("/download")
 	protected void download(@RequestParam("board_code") String board_code,@RequestParam("imageFilename") String imageFilename,
@@ -26,10 +26,10 @@ public class FileDownloadController {
 			                 HttpServletResponse response)throws Exception {
 		//System.out.println("dddd:" + imageFileName + "  " + articleNO);
 		OutputStream out = response.getOutputStream();
-		String downFile = ARTICLE_IMAGE_REPO + "\\" +board_code+"\\"+ imageFilename;
+		String downFile = ARTICLE_IMAGE_REPO + "/" +board_code+"/"+ imageFilename;
 		System.out.println("downFile: " + downFile);
 		File file = new File(downFile);
-
+ 
 		response.setHeader("Cache-Control", "no-cache");
 		response.addHeader("Content-disposition", "attachment; fileName=" + imageFilename);
 		FileInputStream in = new FileInputStream(file);

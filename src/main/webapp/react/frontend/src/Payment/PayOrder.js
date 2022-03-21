@@ -73,7 +73,7 @@ const PayOrder = ( ) => {
             </table>
         </div>
 
-        <div>
+        <div style={{marginBottom:"35px"}}>
             <p>위 주문 내용을 확인하였으며, 회원 본인은 개인정보 이용 및 제공 및 결제에 동의합니다.</p>
         </div>
 

@@ -35,7 +35,7 @@ import com.zzasik.board.vo.BoardVO;
 @RestController("boardController")
 public class BoardController {
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
-	private static final String ARTICLE_IMAGE_REPO = "D:\\ddd\\zzasik\\board_image";
+	private static final String ARTICLE_IMAGE_REPO = "/usr/local/tomcat/apache-tomcat-8.5.76/webapps/zzasic/board_image";
 	@Autowired
 	private BoardService boardService;
 	
@@ -45,6 +45,7 @@ public class BoardController {
 	public BoardController() {  
 		
 	}
+	//http://49.50.160.29:3000/
    
 
 	@GetMapping(value = "/board/listBoards")
@@ -107,11 +108,11 @@ public class BoardController {
 			String fileName = fileNames.next();
 			MultipartFile mFile = multipartRequest.getFile(fileName);
 			imageFilename = mFile.getOriginalFilename();
-			File file = new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + fileName);
+			File file = new File(ARTICLE_IMAGE_REPO + "/" + fileName);
 			if (mFile.getSize() != 0) { // File Null Check
 				if (!file.exists()) { 
 					file.getParentFile().mkdirs(); 
-					mFile.transferTo(new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + imageFilename)); // 占쌈시뤄옙 占쏙옙占쏙옙占�
+					mFile.transferTo(new File(ARTICLE_IMAGE_REPO + "/" + imageFilename)); // 占쌈시뤄옙 占쏙옙占쏙옙占�
 																											// multipartFile占쏙옙
 																											// 占쏙옙占쏙옙 占쏙옙占싹뤄옙 占쏙옙占쏙옙
 				}
@@ -204,19 +205,19 @@ public ResponseEntity modifyBoard(MultipartHttpServletRequest multipartRequest, 
 	try {
 		boardService.modifyBoard(boardMap);
 		if (imageFilename != null && imageFilename.length() != 0) {
-			File srcFile = new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + imageFilename);
-			File destDir = new File(ARTICLE_IMAGE_REPO + "\\" + board_code);
+			File srcFile = new File(ARTICLE_IMAGE_REPO + "/"+ imageFilename);
+			File destDir = new File(ARTICLE_IMAGE_REPO + "/" + board_code);
 			FileUtils.moveFileToDirectory(srcFile, destDir, true);
 			
 			String originalFileName = (String) boardMap.get("originalFileName");
-			File oldFile = new File(ARTICLE_IMAGE_REPO + "\\" + board_code + "\\" + originalFileName);
+			File oldFile = new File(ARTICLE_IMAGE_REPO + "/" + board_code + "/" + originalFileName);
 			oldFile.delete();
 		}
 		map.put("message", "占쏙옙占쏙옙占싹뤄옙 .");
 		map.put("path", "/board/list/"+Integer.parseInt(board_code));
 		resEnt = new ResponseEntity(map, responseHeaders, HttpStatus.CREATED);
 	} catch (Exception e) {
-		File srcFile = new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + imageFilename);
+		File srcFile = new File(ARTICLE_IMAGE_REPO + "/"+ imageFilename);
 		srcFile.delete();
 		map.put("message", "占쏙옙占쏙옙占쏙옙 占쌩삼옙占쌩쏙옙占싹댐옙. 占쌕쏙옙 占시듸옙占쏙옙 占쌍쇽옙占쏙옙.");
 		map.put("path", "/");
@@ -249,17 +250,15 @@ public void subinsert(@RequestParam("user_id") String user_id , @RequestParam("b
 	joinMap.put("board_code", board_code);
 	System.out.println(joinMap);
 	boardService.suganginsert(joinMap);
-	System.out.println("----------------占싹뤄옙 -------------");
+
 
 }
 
 //코칭리스트에서 회원리스트 출력
 @GetMapping("/board/coachingList")
-public List<BoardVO> coachingList(@RequestParam("board_code")int  board_code ,HttpServletRequest request, 
-		HttpServletResponse response) throws Exception {
+public List<BoardVO> coachingList(@RequestParam("board_code") int  board_code ,HttpServletRequest request,HttpServletResponse response) throws Exception {
 	System.out.println("board_code:" +board_code);
 	List<BoardVO> coachingList = boardService.CoachingList(board_code);
-
 	return coachingList;
 }
 

@@ -153,7 +153,7 @@ const UserViewProduct = ( ) => {
                         </td>
                     </tr>
                     <tr>
-                        <td style={{verticalArign:"middle"}}>내용</td>
+                        <td id="detailarea">내용</td>
                         <td><textarea rows="10" cols="65" name="pro_detail" value={product.pro_detail} disabled={disabled}></textarea></td>
                     </tr>
 

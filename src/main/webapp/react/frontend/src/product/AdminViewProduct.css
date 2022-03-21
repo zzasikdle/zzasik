@@ -12,6 +12,10 @@
     display: none;
 }
 
+#detailarea{
+	vertical-align: middle;
+}
+
 #imagetr{
     height: 350px;
     vertical-align: middle;
