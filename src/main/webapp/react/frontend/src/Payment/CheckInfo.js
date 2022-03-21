@@ -65,7 +65,7 @@ const CheckInfo = ( ) => {
             </table>
         </div>
 
-        <div id="con" style={{textAlign:"center", marginBottom:"50px"}}>
+        <div style={{textAlign:"center", marginBottom:"50px"}}>
             <h1>받는 사람 정보</h1>
             <table>
                 <tbody>
