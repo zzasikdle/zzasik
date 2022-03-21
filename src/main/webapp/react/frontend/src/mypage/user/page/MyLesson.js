@@ -182,7 +182,7 @@ export default function MyLesson(){
             formData.append("user_id",user_id);
             formData.append("board_code",currentBoard.board_code);
             formData.append("coaching_num",dayCount);
-            formData.append("useranswer",editorToHtml);
+            formData.append("user_answer",editorToHtml);
 
         //글 서버로 보내기
          await axios 
