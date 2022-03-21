@@ -18,8 +18,8 @@
      <result property="start_date" column="start_date" />
       <result property="usertsatus" column="usertsatus" />
       <result property="user_answer" column="user_answer" />
-     <result property="breakfast" column="breakfast" />
-     <result property="Lunch" column="Lunch" />
+<result property="breakfast" column="breakfast" />
+      <result property="Lunch" column="Lunch" />
      <result property="dinner" column="dinner" />
      <result property="snack_1" column="snack_1" />
      <result property="snack_2" column="snack_2" />
@@ -94,7 +94,7 @@
   
      <select id="modifyBoard" parameterType="java.util.Map">
      	<![CDATA[
-		UPDATE boardtbl SET  board_title=#{board_title},board_content=#{board_content},meal_type=#{meal_type},board_price=#{board_price},imageFilename=#{imageFilename} WHERE board_code=#{board_code}
+		UPDATE boardtbl SET  board_title=#{board_title},board_content=#{board_content},meal_type=#{meal_type},board_price=#{board_price},imageFilename=#{imageFilename}, board_period=#{board_period} WHERE board_code=#{board_code}
 	]]>   
   </select> 
   

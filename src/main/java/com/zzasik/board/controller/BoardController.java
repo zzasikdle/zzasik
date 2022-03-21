@@ -208,7 +208,7 @@ public ResponseEntity modifyBoard(MultipartHttpServletRequest multipartRequest, 
 			File srcFile = new File(ARTICLE_IMAGE_REPO + "/"+ imageFilename);
 			File destDir = new File(ARTICLE_IMAGE_REPO + "/" + board_code);
 			FileUtils.moveFileToDirectory(srcFile, destDir, true);
-			 String originalFileName = (String)boardMap.get("imageFilename");
+			 String originalFileName = (String)boardMap.get("(originalFileName");
 	         File oldFile = new File(ARTICLE_IMAGE_REPO+"/"+board_code+"/"+originalFileName);
 	         oldFile.delete();
 		}
