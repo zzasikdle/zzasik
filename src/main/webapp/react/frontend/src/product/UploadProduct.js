@@ -1,3 +1,6 @@
+/*eslint-disable*/
+
+
 import './UploadProduct.css';
 import axios from "axios";
 import { useState } from "react";
@@ -55,7 +58,7 @@ const UploadProduct = ( ) => {
     }
 
     return (
-        <div>
+        <div id="con">
             <h1>상품 등록</h1>
             <hr />
             <table>
@@ -65,7 +68,7 @@ const UploadProduct = ( ) => {
                     </tr>
                     <tr id="imagetr">
                         <td style={{width:"450px", height:"450px", border:"3px solid gray"}}><FilePreview image={image} /></td>
-                        <td><InputFile name="pro_img" onLoadFile={onLoadFile} onFileChange={uploadFile} /></td>
+                        <td style={{width:"400px"}}><InputFile name="pro_img" onLoadFile={onLoadFile} onFileChange={uploadFile} /></td>
                         <td><input type="button" value="삭제하기" onClick={onDeleteFile} /></td>
                     </tr>
                     <tr>
@@ -75,7 +78,7 @@ const UploadProduct = ( ) => {
                     <tr>
                         <td className='title'>카테고리</td>
                         <td>
-                            <select onChange={(e) => setClass(e.target.value)}>
+                            <select onChange={(e) => setClass(e.target.value)} style={{width:"139px", height:"46px"}}>
                                 <option value="" selected>선택해주세요</option>
                                 <option value="다이어트식단">다이어트식단</option>
                                 <option value="저염식">저염식</option>
@@ -103,13 +106,13 @@ const UploadProduct = ( ) => {
                         <td><input type="text" name="pro_available" onChange={(e) => {setAvail(e.target.value)}} /></td>
                     </tr>
                     <tr>
-                        <td className='title'>설명</td>
+                        <td className='title' style={{height:"400px", lineHeight:"400px"}}>설명</td>
                         <td><textarea rows="10" cols="65" name="pro_detail" onChange={(e) => {setDetail(e.target.value)}}></textarea></td>
                     </tr>
                     <tr>
                         <td>
-                            <Link to="product/list" onClick={handleWrite}>글쓰기</Link>
-                            <Link to="product/list">취소</Link>
+                            <Link to="/product" onClick={handleWrite}><button type='button' style={{width:"70px", marginRight:"20px", border:"1px solid darkgray"}}>글쓰기</button></Link>
+                            <Link to="/product"><button type="button" style={{width:"70px", marginRight:"20px", border:"1px solid darkgray"}}>취소</button></Link>
                         </td>
                     </tr>
                 </tbody>

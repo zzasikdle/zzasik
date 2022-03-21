@@ -12,7 +12,7 @@ import com.zzasik.board.vo.BoardVO;
 
 @Repository
 @Mapper
-public interface BoardDAO {
+public interface BoardDAO { 
 	
 	public BoardVO writeBoard(BoardVO boardDTO) throws DataAccessException;
 	public List selectAllBoardsList() throws DataAccessException;

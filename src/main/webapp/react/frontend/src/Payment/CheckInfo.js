@@ -1,6 +1,7 @@
 /*eslint-disable*/
 
 
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -44,7 +45,7 @@ const CheckInfo = ( ) => {
 
     return(
         <>
-        <div>
+        <div style={{textAlign:"center", marginTop:"80px", marginBottom:"50px"}}>
             <h1>구매자 정보</h1>
             <table>
                 <tbody>
@@ -64,9 +65,8 @@ const CheckInfo = ( ) => {
             </table>
         </div>
 
-        <div>
+        <div id="con" style={{textAlign:"center", marginBottom:"50px"}}>
             <h1>받는 사람 정보</h1>
-            <input type="button" value="배송지 변경" />
             <table>
                 <tbody>
                     <tr>
@@ -85,8 +85,8 @@ const CheckInfo = ( ) => {
             </table>
         </div>
 
-        <Link to="/" onClick={removeOrder}>취소</Link>
-        <Link to="/order/pay">다음</Link>
+        <Link to="/" onClick={removeOrder}><button type="button" style={{width:"70px", height:"30px", marginRight:"20px", border:"1px solid darkgray"}}>취소</button></Link>
+        <Link to="/order/pay"><button type="button" style={{width:"70px", height:"30px", marginRight:"20px", border:"1px solid darkgray"}}>다음</button></Link>
         </>
     )
 }
