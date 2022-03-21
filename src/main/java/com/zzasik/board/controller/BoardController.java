@@ -208,6 +208,9 @@ public ResponseEntity modifyBoard(MultipartHttpServletRequest multipartRequest, 
 			File srcFile = new File(ARTICLE_IMAGE_REPO + "/"+ imageFilename);
 			File destDir = new File(ARTICLE_IMAGE_REPO + "/" + board_code);
 			FileUtils.moveFileToDirectory(srcFile, destDir, true);
+			 String originalFileName = (String)boardMap.get("imageFilename");
+	         File oldFile = new File(ARTICLE_IMAGE_REPO+"/"+board_code+"/"+originalFileName);
+	         oldFile.delete();
 		}
 		map.put("message", "수정완료 .");
 		map.put("path", "/board/list/"+Integer.parseInt(board_code));
