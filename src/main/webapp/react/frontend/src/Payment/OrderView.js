@@ -1,7 +1,7 @@
 /*eslint-disable*/
 
 
-
+import './OrderView.css';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -30,7 +30,7 @@ const OrderView = ( ) => {
     }, []);
 
     return(
-        <div style={{position:"absolute", top:"80px"}}>
+        <div style={{position:"absolute", top:"80px", width:"100%"}}>
             <h1>주문 상세보기</h1>
             <hr />
                 <table>
@@ -62,7 +62,7 @@ const OrderView = ( ) => {
                         }
                     </tbody>
                 </table>
-                <Link to="/myhome/myOrder"><button type='button'>돌아가기</button></Link>
+                <Link to="/myhome/myOrder"><button type='button' style={{width:"80px", height:"30px", border:"1px solid darkgray", marginTop:"30px"}}>돌아가기</button></Link>
         </div>
     )
 }
