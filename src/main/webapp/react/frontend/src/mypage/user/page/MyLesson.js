@@ -175,17 +175,19 @@ export default function MyLesson(){
     }
 
     // 메시지 보내기
-    const onClickSend = () => {
+    const onClickSend = async() => {
+
         if(window.confirm( "코치에게 작성한 메시지를 보내시겠습니까?")){
+            const formData = new FormData();
+            formData.append("user_id",user_id);
+            formData.append("board_code",currentBoard.board_code);
+            formData.append("coaching_num",dayCount);
+            formData.append("useranswer",editorToHtml);
+
         //글 서버로 보내기
-         axios 
-            .get(baseUrl+'/board/sendtocoach',{
-                params:{
-                user_id : user_id,
-                board_code : currentBoard.board_code,
-                coaching_num : dayCount,
-                useranswer: editorToHtml
-                }
+         await axios 
+            .post(baseUrl+'/board/sendtocoach',formData, {
+                headers: { "Content-Type": "multipart/form-data; boundary=${formData._boundary" }     
             })
             .then(()=>{
             alert("코치에게 메시지를 보냈습니다!");
