@@ -40,6 +40,8 @@ const ModifyBoard = ( ) => {
      const [imageFilename , setImageFilename]= useState('');
      const [board, setBoard] = useState({});
      const { board_code } = useParams();
+     const [board_period , setBoard_period]= useState('');
+    
 
  
 
@@ -92,6 +94,7 @@ const ModifyBoard = ( ) => {
         formData.append("board_price",board_price);
         formData.append("imageFilename", imageFilename);
         formData.append("board_code", board_code);
+        formData.append("board_period",board_period);
     
        
 
@@ -127,20 +130,13 @@ const ModifyBoard = ( ) => {
             <div class="text_div">
             <p class="head_msg">짜식 상품 등록👍🏻</p>
             <hr ></hr>
-         <div class="proimage_text">상품이미지</div>
-         
-            <p id="proimage">
-            <img  id="preview" alt="preview" />
-            
-                </p>
+      
  
-            <a href="#!" class="temp"><br/><br/>*상품이미지는 640x640에 최적화 되어 있습니다.<br/><br/>-이미지는 상품등록 시 정사각형으로 짤려서 등록됩니다.<br/><br/>-큰 이미지일 경우 이미지가 깨지는 경우가 발생할 수 있습니다. 
-            <br/><br/>최대 지원 사이즈인 640x640 으로 리사이즈 해서 올려주세요. </a>
-            <p class="choicefile"><input type="file" class="inputfile" name="imageFilename"  onChange={readURL} /></p>
+          
             <hr></hr>
             <p class="mid_msg">상품 제목<input type="text" id="title"  defaultValue={board.board_title}  placeholder="제목"  name= "board_title" onChange={(e) => {setBoard_title(e.target.value)}}/></p>
             <p class="mid_msg">상품 타입<input type="text" class="type" defaultValue={board.meal_type}  placeholder="타입" name="meal_type"  onChange={(e) => {setMeal_type(e.target.value)}}/></p> 
-            
+            <p class="mid_msg">일수<input type="text" class="price" placeholder="period" defaultValue={board.board_period}  name="board_period" onChange={(e) => {setBoard_period(e.target.value)}}/></p>
             <p class="mid_msg">상품 가격<input type="text" class="price" defaultValue={board.board_price}  placeholder="가격"  name="board_price" onChange={(e) => {setBoard_price(e.target.value)}}/></p>
             </div>
 
@@ -179,7 +175,10 @@ const ModifyBoard = ( ) => {
             onEditorStateChange={onEditorStateChange}
           />
                 </div>
-
+                <div class="proimage_text">상품이미지</div>
+            <p id="writeimage"><img  alt ="preview" id="preview" /></p>
+            <p class="choicefile"><input type="file" class="inputfile" name="imageFilename"  onChange={readURL} /></p>
+            <hr></hr>
 
            
                 <Link to="/" onClick={modifyBtn}><button class="click">수정하기</button></Link>
