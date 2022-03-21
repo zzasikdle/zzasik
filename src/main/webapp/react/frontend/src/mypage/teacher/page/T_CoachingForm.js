@@ -240,6 +240,7 @@ export default function T_CoachingForm() {
             }
 
             ).then((response) => {
+                alert("등록완료")
                
 
 
