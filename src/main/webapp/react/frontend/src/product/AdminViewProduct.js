@@ -124,11 +124,6 @@ const AdminViewProduct = ( ) => {
                                     }
                                 </td>
                             </tr>
-                            
-                            <tr>
-                                <td><InputFile name="pro_img" disabled={disabled} onLoadFile={onLoadFile} onFileChange={uploadFile} /></td>
-                                <td><FilePreview image={image} /></td>
-                            </tr>
                         </>
                         :
                         <>
@@ -176,9 +171,9 @@ const AdminViewProduct = ( ) => {
 
                     <tr id="tr_btn" >
                         <td colSpan="2" style={{ align: "center" }}>
-                                <input type="button" value="수정하기" onClick={fn_enable} />
-                                <input type="button" value="삭제하기" onClick={fn_remove} />
-                            <input type="button" value="리스트로 돌아가기" onClick={backToList} />
+                               	<input type="button" value="수정하기" onClick={fn_enable} style={{marginRight:"20px"}} />
+                                <input type="button" value="삭제하기" onClick={fn_remove} style={{marginRight:"20px"}} />
+                            	<input type="button" value="리스트로 돌아가기" onClick={backToList} style={{marginRight:"20px"}} />
                         </td>
                     </tr>
                 </tbody>
